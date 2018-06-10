@@ -1,0 +1,11 @@
+version: '2'
+services:
+    debidadefensa-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/debidadefensa/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=debidadefensa
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
