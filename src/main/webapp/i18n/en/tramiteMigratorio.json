@@ -1,0 +1,39 @@
+
+{
+    "debidadefensaApp": {
+        "tramiteMigratorio" : {
+            "home": {
+                "title": "Tramite Migratorios",
+                "createLabel": "Create a new Tramite Migratorio",
+                "createOrEditLabel": "Create or edit a Tramite Migratorio",
+                "search": "Search for Tramite Migratorio"
+            },
+            "created": "A new Tramite Migratorio is created with identifier {{ param }}",
+            "updated": "A Tramite Migratorio is updated with identifier {{ param }}",
+            "deleted": "A Tramite Migratorio is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tramite Migratorio {{ id }}?"
+            },
+            "detail": {
+                "title": "Tramite Migratorio"
+            },
+            "nombreExtranjero": "Nombre Extranjero",
+            "tipotramite": "Tipotramite",
+            "entidad": "Entidad",
+            "nut": "Nut",
+            "contraseniaNUT": "Contrasenia NUT",
+            "fechaIngreso": "Fecha Ingreso",
+            "fechaNotificacion": "Fecha Notificacion",
+            "fechaResolucion": "Fecha Resolucion",
+            "archivo": "Archivo",
+            "observaciones": "Observaciones",
+            "cliente": "Cliente",
+            "estatusTramiteMigratorio": "Estatus Tramite Migratorio",
+            "tramitteMigratorioCosto": "Tramitte Migratorio Costo",
+            "tramitteMigratorioPago": "Tramitte Migratorio Pago",
+            "tramitteMigratorioDocumentos": "Tramitte Migratorio Documentos",
+            "fechasServicioTramiteMigratorio": "Fechas Servicio Tramite Migratorio",
+            "tramitesMigraAsociados": "Tramites Migra Asociados"
+        }
+    }
+}

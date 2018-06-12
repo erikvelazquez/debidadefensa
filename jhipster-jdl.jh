@@ -1,0 +1,166 @@
+
+
+entity Cliente {	
+  	nombre String,
+    telefonos String,
+    correoElectronico String,
+    domicilio String,
+    rfc String,
+    referencia String
+}
+
+entity Estatus {
+	descripcion String,
+	tipo String
+}
+
+entity Expediente {   
+    juzgado String,
+    numeroExpediente String,    
+    juicio String,
+    responsable String,
+    archivo String,
+    observaciones String,
+    fechaAlta Instant,
+    fechaSentencia Instant    
+}
+
+entity Parte {        
+    nombre String
+}
+
+entity ExpedienteAsociado {	
+    numeroExpediente String,
+    instancia String,
+    organocompetente String,
+    archivo String,
+    observaciones String,
+    fechaSentencia Instant
+}
+
+entity TramiteMigratorio {	
+    nombreExtranjero String,
+    tipotramite String,
+    entidad String,
+    nut Long,
+    contraseniaNUT String,
+    fechaIngreso Instant,
+    fechaNotificacion Instant,
+    fechaResolucion Instant,
+    archivo String,
+    observaciones String
+}
+
+entity TramiteGeneral {
+    titular String,
+    dependencia String,
+    numeroTramite String,
+    tipoTramite String,
+    fechaIngreso Instant,
+    fechaResolucion Instant,
+    fechaNotificacion Instant,
+    archivo String,
+    observaciones String
+}
+
+entity TramiteAsociado {
+    tipoTramite String,
+    idTramite Long
+}
+
+entity CostoServicio {
+    tipoServicio String,
+    idServicio Long,
+    tipoCosto String,
+    concepto String,
+    costo Float
+}
+
+entity Pagos {	
+    tipoServicio String,
+    idServicio Long,
+    cantidad Float,
+    fecha Instant,
+    formaPago String,
+    tipoAbono String
+}
+
+entity FechasServicio {	    
+    tipoServicio String,
+    fecha Instant,
+    descripcion String,
+    hora LocalDate,
+    observaciones String
+}
+
+entity Estatus{
+	descripcion String
+}
+
+entity TipoParte{
+	descripcion String
+}
+
+entity TipoServicio{
+	descripcion String
+}
+
+entity Documentos{
+	nombreDocumento String,
+    fecha Instant,
+    descripcion String,
+    ruta String
+}
+
+relationship OneToOne {
+  Parte{tipoParte} to TipoParte,
+  Expediente{tipoServicioExpediente} to TipoServicio,
+  CostoServicio{tipoServicioCostoServicio} to TipoServicio,
+  Pagos{tipoServicioPagos} to TipoServicio,
+  FechasServicio{tipoServicioFechas} to TipoServicio,
+  Expediente{estatusExpediente} to Estatus,
+  ExpedienteAsociado {estatusExpedienteAsociado} to Estatus,    
+  TramiteMigratorio {estatusTramiteMigratorio} to Estatus,    
+  TramiteGeneral {estatusTramiteGeneral} to Estatus,
+  Estatus{tipoServicioEstatus} to TipoServicio,
+  Documentos{tipoServicioDocumentos} to TipoServicio
+}
+
+relationship ManyToMany {
+	TramiteMigratorio{tramitesMigraAsociados} to TramiteAsociado,
+    TramiteGeneral{tramiteGeneralAsociados} to TramiteAsociado
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {		
+	Cliente{expediente} to Expediente,
+    Cliente{tramiteMigra} to TramiteMigratorio,
+    Cliente{tramiteGral} to TramiteGeneral
+    TramiteMigratorio{tramitteMigratorioCosto} to CostoServicio,
+    TramiteMigratorio{tramitteMigratorioPago} to Pagos, 
+    TramiteMigratorio{tramitteMigratorioDocumentos} to Documentos,
+    Expediente{parte} to Parte,
+    Expediente{expAsociado} to ExpedienteAsociado,
+    Expediente{costo} to CostoServicio,
+    Expediente{pagos} to Pagos,
+    Expediente{documentosExpedientes} to Documentos,
+    ExpedienteAsociado{expedienteAsociadoDocumentos} to Documentos,
+    TramiteGeneral{tramiteGralPagos} to Pagos,
+    TramiteGeneral{tramiteGralCostos} to CostoServicio
+    TramiteGeneral{tramiteGralDocumentos} to Documentos,
+    Expediente{fechasServicioExpediente} to FechasServicio
+    TramiteGeneral{fechasServicioTramiteGeneral} to FechasServicio
+    TramiteMigratorio{fechasServicioTramiteMigratorio} to FechasServicio
+}
+
+// Set pagination options
+paginate Expediente, Cliente with infinite-scroll
+paginate TramiteMigratorio, TramiteGeneral  with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with mySuffix

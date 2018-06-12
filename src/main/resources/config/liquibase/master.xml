@@ -5,6 +5,30 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211041_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211042_added_entity_Estatus.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211043_added_entity_Expediente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211044_added_entity_Parte.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211045_added_entity_ExpedienteAsociado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211046_added_entity_TramiteMigratorio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211047_added_entity_TramiteGeneral.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211048_added_entity_TramiteAsociado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211049_added_entity_CostoServicio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211050_added_entity_Pagos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211051_added_entity_FechasServicio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211052_added_entity_TipoParte.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211053_added_entity_TipoServicio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211054_added_entity_Documentos.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20180610211042_added_entity_constraints_Estatus.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211043_added_entity_constraints_Expediente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211044_added_entity_constraints_Parte.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211045_added_entity_constraints_ExpedienteAsociado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211046_added_entity_constraints_TramiteMigratorio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211047_added_entity_constraints_TramiteGeneral.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211049_added_entity_constraints_CostoServicio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211050_added_entity_constraints_Pagos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211051_added_entity_constraints_FechasServicio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211054_added_entity_constraints_Documentos.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

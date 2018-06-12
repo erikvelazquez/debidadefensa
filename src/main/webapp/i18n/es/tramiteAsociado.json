@@ -1,0 +1,24 @@
+
+{
+    "debidadefensaApp": {
+        "tramiteAsociado" : {
+            "home": {
+                "title": "Tramite Asociados",
+                "createLabel": "Crear nuevo Tramite Asociado",
+                "createOrEditLabel": "Crear o editar Tramite Asociado",
+                "search": "Search for Tramite Asociado"
+            },
+            "created": "Un nuevo Tramite Asociado ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tramite Asociado ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tramite Asociado ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tramite Asociado {{ id }}?"
+            },
+            "detail": {
+                "title": "Tramite Asociado"
+            },
+            "tipoTramite": "Tipo Tramite",
+            "idTramite": "Id Tramite"
+        }
+    }
+}

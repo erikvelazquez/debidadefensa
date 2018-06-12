@@ -1,0 +1,24 @@
+
+{
+    "debidadefensaApp": {
+        "estatus" : {
+            "home": {
+                "title": "Estatuses",
+                "createLabel": "Create a new Estatus",
+                "createOrEditLabel": "Create or edit a Estatus",
+                "search": "Search for Estatus"
+            },
+            "created": "A new Estatus is created with identifier {{ param }}",
+            "updated": "A Estatus is updated with identifier {{ param }}",
+            "deleted": "A Estatus is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Estatus {{ id }}?"
+            },
+            "detail": {
+                "title": "Estatus"
+            },
+            "descripcion": "Descripcion",
+            "tipoServicioEstatus": "Tipo Servicio Estatus"
+        }
+    }
+}

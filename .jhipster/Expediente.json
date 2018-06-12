@@ -1,0 +1,104 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tipoServicioExpediente",
+            "otherEntityName": "tipoServicio",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "estatusExpediente",
+            "otherEntityName": "estatus",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "parte",
+            "otherEntityName": "parte",
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "expAsociado",
+            "otherEntityName": "expedienteAsociado",
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "costo",
+            "otherEntityName": "costoServicio",
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pagos",
+            "otherEntityName": "pagos",
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "documentosExpedientes",
+            "otherEntityName": "documentos",
+            "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fechasServicioExpediente",
+            "otherEntityName": "fechasServicio",
+            "otherEntityRelationshipName": "expediente"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "juzgado",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroExpediente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "juicio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "responsable",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "archivo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaAlta",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaSentencia",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180610211043",
+    "entityTableName": "expediente",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

@@ -1,0 +1,30 @@
+
+<div *ngIf="tramiteAsociado">
+    <h2><span jhiTranslate="debidadefensaApp.tramiteAsociado.detail.title">Tramite Asociado</span> {{tramiteAsociado.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debidadefensaApp.tramiteAsociado.tipoTramite">Tipo Tramite</span></dt>
+        <dd>
+            <span>{{tramiteAsociado.tipoTramite}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteAsociado.idTramite">Id Tramite</span></dt>
+        <dd>
+            <span>{{tramiteAsociado.idTramite}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tramite-asociado-my-suffix/'+ tramiteAsociado.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

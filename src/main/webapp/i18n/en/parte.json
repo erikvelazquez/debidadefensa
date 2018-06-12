@@ -1,0 +1,25 @@
+
+{
+    "debidadefensaApp": {
+        "parte" : {
+            "home": {
+                "title": "Partes",
+                "createLabel": "Create a new Parte",
+                "createOrEditLabel": "Create or edit a Parte",
+                "search": "Search for Parte"
+            },
+            "created": "A new Parte is created with identifier {{ param }}",
+            "updated": "A Parte is updated with identifier {{ param }}",
+            "deleted": "A Parte is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Parte {{ id }}?"
+            },
+            "detail": {
+                "title": "Parte"
+            },
+            "nombre": "Nombre",
+            "expediente": "Expediente",
+            "tipoParte": "Tipo Parte"
+        }
+    }
+}

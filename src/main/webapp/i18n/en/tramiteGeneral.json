@@ -1,0 +1,38 @@
+
+{
+    "debidadefensaApp": {
+        "tramiteGeneral" : {
+            "home": {
+                "title": "Tramite Generals",
+                "createLabel": "Create a new Tramite General",
+                "createOrEditLabel": "Create or edit a Tramite General",
+                "search": "Search for Tramite General"
+            },
+            "created": "A new Tramite General is created with identifier {{ param }}",
+            "updated": "A Tramite General is updated with identifier {{ param }}",
+            "deleted": "A Tramite General is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tramite General {{ id }}?"
+            },
+            "detail": {
+                "title": "Tramite General"
+            },
+            "titular": "Titular",
+            "dependencia": "Dependencia",
+            "numeroTramite": "Numero Tramite",
+            "tipoTramite": "Tipo Tramite",
+            "fechaIngreso": "Fecha Ingreso",
+            "fechaResolucion": "Fecha Resolucion",
+            "fechaNotificacion": "Fecha Notificacion",
+            "archivo": "Archivo",
+            "observaciones": "Observaciones",
+            "cliente": "Cliente",
+            "estatusTramiteGeneral": "Estatus Tramite General",
+            "tramiteGralPagos": "Tramite Gral Pagos",
+            "tramiteGralCostos": "Tramite Gral Costos",
+            "tramiteGralDocumentos": "Tramite Gral Documentos",
+            "fechasServicioTramiteGeneral": "Fechas Servicio Tramite General",
+            "tramiteGeneralAsociados": "Tramite General Asociados"
+        }
+    }
+}

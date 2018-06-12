@@ -27,9 +27,13 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
+import {MatSidenavModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
+        MatSidenavModule,
+        BrowserAnimationsModule ,
         BrowserModule,
         DebidadefensaAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),

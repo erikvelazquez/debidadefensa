@@ -5,7 +5,11 @@ import { JhiLanguageHelper } from '../../shared';
 
 @Component({
     selector: 'jhi-main',
-    templateUrl: './main.component.html'
+    templateUrl: './main.component.html',
+    styleUrls: [
+        'main.scss',
+        '../navbar/navbar.scss'
+    ]
 })
 export class JhiMainComponent implements OnInit {
 

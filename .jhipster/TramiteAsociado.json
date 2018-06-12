@@ -1,0 +1,21 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tipoTramite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idTramite",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180610211048",
+    "entityTableName": "tramite_asociado",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

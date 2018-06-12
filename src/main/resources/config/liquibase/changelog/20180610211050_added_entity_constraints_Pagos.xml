@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Pagos.
+    -->
+    <changeSet id="20180610211050-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="expediente_id"
+                                 baseTableName="pagos"
+                                 constraintName="fk_pagos_expediente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="expediente"/>
+
+        <addForeignKeyConstraint baseColumnNames="tramite_migratorio_id"
+                                 baseTableName="pagos"
+                                 constraintName="fk_pagos_tramite_migratorio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_migratorio"/>
+
+        <addForeignKeyConstraint baseColumnNames="tramite_general_id"
+                                 baseTableName="pagos"
+                                 constraintName="fk_pagos_tramite_general_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_general"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_servicio_pagos_id"
+                                 baseTableName="pagos"
+                                 constraintName="fk_pagos_tipo_servicio_pagos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_servicio"/>
+
+    </changeSet>
+</databaseChangeLog>

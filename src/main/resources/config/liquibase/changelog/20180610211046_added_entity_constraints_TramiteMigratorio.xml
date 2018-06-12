@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity TramiteMigratorio.
+    -->
+    <changeSet id="20180610211046-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cliente_id"
+                                 baseTableName="tramite_migratorio"
+                                 constraintName="fk_tramite_migratorio_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_tramite_migratorio_id"
+                                 baseTableName="tramite_migratorio"
+                                 constraintName="fk_tramite_migratorio_estatus_tramite_migratorio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus"/>
+
+        <addForeignKeyConstraint baseColumnNames="tramite_migratorios_id"
+                                 baseTableName="tramite_migratorio_tramites_migra_asociados"
+                                 constraintName="fk_tramite_migratorio_tramites_migra_asociados_tramite_migratorios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_migratorio"/>
+        <addForeignKeyConstraint baseColumnNames="tramites_migra_asociados_id"
+                                 baseTableName="tramite_migratorio_tramites_migra_asociados"
+                                 constraintName="fk_tramite_migratorio_tramites_migra_asociados_tramites_migra_asociados_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_asociado"/>
+        
+    </changeSet>
+</databaseChangeLog>

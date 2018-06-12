@@ -1,0 +1,60 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "expediente",
+            "otherEntityName": "expediente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "tramiteMigratorio",
+            "otherEntityName": "tramiteMigratorio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "tramiteGeneral",
+            "otherEntityName": "tramiteGeneral",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tipoServicioCostoServicio",
+            "otherEntityName": "tipoServicio",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "costoServicio"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipoServicio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idServicio",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tipoCosto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "concepto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "costo",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180610211049",
+    "entityTableName": "costo_servicio",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

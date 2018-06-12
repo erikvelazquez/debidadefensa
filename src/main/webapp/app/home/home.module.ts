@@ -3,11 +3,14 @@ import { RouterModule } from '@angular/router';
 
 import { DebidadefensaSharedModule } from '../shared';
 
+import { BrowserModule } from '@angular/platform-browser';
+
 import { HOME_ROUTE, HomeComponent } from './';
 
 @NgModule({
     imports: [
         DebidadefensaSharedModule,
+        BrowserModule,
         RouterModule.forChild([ HOME_ROUTE ])
     ],
     declarations: [

@@ -1,0 +1,107 @@
+<div>
+    <h2>
+        <span jhiTranslate="debidadefensaApp.tramiteGeneral.home.title">Tramite Generals</span>
+        <button class="btn btn-primary float-right jh-create-entity create-tramite-general-my-suffix" [routerLink]="['/', { outlets: { popup: ['tramite-general-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="debidadefensaApp.tramiteGeneral.home.createLabel">
+            Create new Tramite General
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'debidadefensaApp.tramiteGeneral.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tramiteGenerals">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="titular"><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dependencia"><span jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia">Dependencia</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numeroTramite"><span jhiTranslate="debidadefensaApp.tramiteGeneral.numeroTramite">Numero Tramite</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tipoTramite"><span jhiTranslate="debidadefensaApp.tramiteGeneral.tipoTramite">Tipo Tramite</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fechaResolucion"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaResolucion">Fecha Resolucion</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fechaNotificacion"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaNotificacion">Fecha Notificacion</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteGeneral.archivo">Archivo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="observaciones"><span jhiTranslate="debidadefensaApp.tramiteGeneral.observaciones">Observaciones</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="clienteId"><span jhiTranslate="debidadefensaApp.tramiteGeneral.cliente">Cliente</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="estatusTramiteGeneralId"><span jhiTranslate="debidadefensaApp.tramiteGeneral.estatusTramiteGeneral">Estatus Tramite General</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
+                <td><a [routerLink]="['../tramite-general-my-suffix', tramiteGeneral.id ]">{{tramiteGeneral.id}}</a></td>
+                <td>{{tramiteGeneral.titular}}</td>
+                <td>{{tramiteGeneral.dependencia}}</td>
+                <td>{{tramiteGeneral.numeroTramite}}</td>
+                <td>{{tramiteGeneral.tipoTramite}}</td>
+                <td>{{tramiteGeneral.fechaIngreso | date:'medium'}}</td>
+                <td>{{tramiteGeneral.fechaResolucion | date:'medium'}}</td>
+                <td>{{tramiteGeneral.fechaNotificacion | date:'medium'}}</td>
+                <td>{{tramiteGeneral.archivo}}</td>
+                <td>{{tramiteGeneral.observaciones}}</td>
+                <td>
+                    <div *ngIf="tramiteGeneral.clienteId">
+                        <a [routerLink]="['../cliente-my-suffix', tramiteGeneral.clienteId  ]" >{{tramiteGeneral.clienteId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tramiteGeneral.estatusTramiteGeneralId">
+                        <a [routerLink]="['../estatus-my-suffix', tramiteGeneral.estatusTramiteGeneralId  ]" >{{tramiteGeneral.estatusTramiteGeneralId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../tramite-general-my-suffix', tramiteGeneral.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tramite-general-my-suffix/'+ tramiteGeneral.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tramite-general-my-suffix/'+ tramiteGeneral.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="tramiteGenerals && tramiteGenerals.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

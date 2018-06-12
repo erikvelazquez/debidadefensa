@@ -1,0 +1,68 @@
+
+<div *ngIf="documentos">
+    <h2><span jhiTranslate="debidadefensaApp.documentos.detail.title">Documentos</span> {{documentos.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debidadefensaApp.documentos.nombreDocumento">Nombre Documento</span></dt>
+        <dd>
+            <span>{{documentos.nombreDocumento}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{documentos.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{documentos.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.ruta">Ruta</span></dt>
+        <dd>
+            <span>{{documentos.ruta}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.expediente">Expediente</span></dt>
+        <dd>
+            <div *ngIf="documentos.expedienteId">
+                <a [routerLink]="['/expediente-my-suffix', documentos.expedienteId]">{{documentos.expedienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.expedienteAsociado">Expediente Asociado</span></dt>
+        <dd>
+            <div *ngIf="documentos.expedienteAsociadoId">
+                <a [routerLink]="['/expediente-asociado-my-suffix', documentos.expedienteAsociadoId]">{{documentos.expedienteAsociadoId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.tramiteMigratorio">Tramite Migratorio</span></dt>
+        <dd>
+            <div *ngIf="documentos.tramiteMigratorioId">
+                <a [routerLink]="['/tramite-migratorio-my-suffix', documentos.tramiteMigratorioId]">{{documentos.tramiteMigratorioId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.tramiteGeneral">Tramite General</span></dt>
+        <dd>
+            <div *ngIf="documentos.tramiteGeneralId">
+                <a [routerLink]="['/tramite-general-my-suffix', documentos.tramiteGeneralId]">{{documentos.tramiteGeneralId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.tipoServicioDocumentos">Tipo Servicio Documentos</span></dt>
+        <dd>
+            <div *ngIf="documentos.tipoServicioDocumentosId">
+                <a [routerLink]="['/tipo-servicio-my-suffix', documentos.tipoServicioDocumentosId]">{{documentos.tipoServicioDocumentosId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'documentos-my-suffix/'+ documentos.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

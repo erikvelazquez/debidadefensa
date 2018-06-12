@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "expediente",
+            "otherEntityName": "expediente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "estatusExpedienteAsociado",
+            "otherEntityName": "estatus",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "expedienteAsociado"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "expedienteAsociadoDocumentos",
+            "otherEntityName": "documentos",
+            "otherEntityRelationshipName": "expedienteAsociado"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numeroExpediente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "instancia",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "organocompetente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "archivo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaSentencia",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180610211045",
+    "entityTableName": "expediente_asociado",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

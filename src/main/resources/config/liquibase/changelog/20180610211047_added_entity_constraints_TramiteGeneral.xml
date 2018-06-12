@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity TramiteGeneral.
+    -->
+    <changeSet id="20180610211047-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cliente_id"
+                                 baseTableName="tramite_general"
+                                 constraintName="fk_tramite_general_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_tramite_general_id"
+                                 baseTableName="tramite_general"
+                                 constraintName="fk_tramite_general_estatus_tramite_general_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus"/>
+
+        <addForeignKeyConstraint baseColumnNames="tramite_generals_id"
+                                 baseTableName="tramite_general_tramite_general_asociados"
+                                 constraintName="fk_tramite_general_tramite_general_asociados_tramite_generals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_general"/>
+        <addForeignKeyConstraint baseColumnNames="tramite_general_asociados_id"
+                                 baseTableName="tramite_general_tramite_general_asociados"
+                                 constraintName="fk_tramite_general_tramite_general_asociados_tramite_general_asociados_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_asociado"/>
+        
+    </changeSet>
+</databaseChangeLog>

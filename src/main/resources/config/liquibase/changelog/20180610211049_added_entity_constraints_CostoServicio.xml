@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CostoServicio.
+    -->
+    <changeSet id="20180610211049-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="expediente_id"
+                                 baseTableName="costo_servicio"
+                                 constraintName="fk_costo_servicio_expediente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="expediente"/>
+
+        <addForeignKeyConstraint baseColumnNames="tramite_migratorio_id"
+                                 baseTableName="costo_servicio"
+                                 constraintName="fk_costo_servicio_tramite_migratorio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_migratorio"/>
+
+        <addForeignKeyConstraint baseColumnNames="tramite_general_id"
+                                 baseTableName="costo_servicio"
+                                 constraintName="fk_costo_servicio_tramite_general_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tramite_general"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_servicio_costo_servicio_id"
+                                 baseTableName="costo_servicio"
+                                 constraintName="fk_costo_servicio_tipo_servicio_costo_servicio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_servicio"/>
+
+    </changeSet>
+</databaseChangeLog>

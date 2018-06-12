@@ -1,0 +1,31 @@
+
+{
+    "debidadefensaApp": {
+        "fechasServicio" : {
+            "home": {
+                "title": "Fechas Servicios",
+                "createLabel": "Crear nuevo Fechas Servicio",
+                "createOrEditLabel": "Crear o editar Fechas Servicio",
+                "search": "Search for Fechas Servicio"
+            },
+            "created": "Un nuevo Fechas Servicio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Fechas Servicio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Fechas Servicio ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Fechas Servicio {{ id }}?"
+            },
+            "detail": {
+                "title": "Fechas Servicio"
+            },
+            "tipoServicio": "Tipo Servicio",
+            "fecha": "Fecha",
+            "descripcion": "Descripcion",
+            "hora": "Hora",
+            "observaciones": "Observaciones",
+            "expediente": "Expediente",
+            "tramiteMigratorio": "Tramite Migratorio",
+            "tramiteGeneral": "Tramite General",
+            "tipoServicioFechas": "Tipo Servicio Fechas"
+        }
+    }
+}

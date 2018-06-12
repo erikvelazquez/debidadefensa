@@ -1,0 +1,32 @@
+
+{
+    "debidadefensaApp": {
+        "pagos" : {
+            "home": {
+                "title": "Pagos",
+                "createLabel": "Crear nuevo Pagos",
+                "createOrEditLabel": "Crear o editar Pagos",
+                "search": "Search for Pagos"
+            },
+            "created": "Un nuevo Pagos ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pagos ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pagos ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pagos {{ id }}?"
+            },
+            "detail": {
+                "title": "Pagos"
+            },
+            "tipoServicio": "Tipo Servicio",
+            "idServicio": "Id Servicio",
+            "cantidad": "Cantidad",
+            "fecha": "Fecha",
+            "formaPago": "Forma Pago",
+            "tipoAbono": "Tipo Abono",
+            "expediente": "Expediente",
+            "tramiteMigratorio": "Tramite Migratorio",
+            "tramiteGeneral": "Tramite General",
+            "tipoServicioPagos": "Tipo Servicio Pagos"
+        }
+    }
+}

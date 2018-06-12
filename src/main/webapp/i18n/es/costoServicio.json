@@ -1,0 +1,31 @@
+
+{
+    "debidadefensaApp": {
+        "costoServicio" : {
+            "home": {
+                "title": "Costo Servicios",
+                "createLabel": "Crear nuevo Costo Servicio",
+                "createOrEditLabel": "Crear o editar Costo Servicio",
+                "search": "Search for Costo Servicio"
+            },
+            "created": "Un nuevo Costo Servicio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Costo Servicio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Costo Servicio ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Costo Servicio {{ id }}?"
+            },
+            "detail": {
+                "title": "Costo Servicio"
+            },
+            "tipoServicio": "Tipo Servicio",
+            "idServicio": "Id Servicio",
+            "tipoCosto": "Tipo Costo",
+            "concepto": "Concepto",
+            "costo": "Costo",
+            "expediente": "Expediente",
+            "tramiteMigratorio": "Tramite Migratorio",
+            "tramiteGeneral": "Tramite General",
+            "tipoServicioCostoServicio": "Tipo Servicio Costo Servicio"
+        }
+    }
+}

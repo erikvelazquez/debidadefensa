@@ -1,0 +1,66 @@
+
+<div *ngIf="fechasServicio">
+    <h2><span jhiTranslate="debidadefensaApp.fechasServicio.detail.title">Fechas Servicio</span> {{fechasServicio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tipoServicio">Tipo Servicio</span></dt>
+        <dd>
+            <span>{{fechasServicio.tipoServicio}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{fechasServicio.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{fechasServicio.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.hora">Hora</span></dt>
+        <dd>
+            <span>{{fechasServicio.hora | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.observaciones">Observaciones</span></dt>
+        <dd>
+            <span>{{fechasServicio.observaciones}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.expediente">Expediente</span></dt>
+        <dd>
+            <div *ngIf="fechasServicio.expedienteId">
+                <a [routerLink]="['/expediente-my-suffix', fechasServicio.expedienteId]">{{fechasServicio.expedienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tramiteMigratorio">Tramite Migratorio</span></dt>
+        <dd>
+            <div *ngIf="fechasServicio.tramiteMigratorioId">
+                <a [routerLink]="['/tramite-migratorio-my-suffix', fechasServicio.tramiteMigratorioId]">{{fechasServicio.tramiteMigratorioId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tramiteGeneral">Tramite General</span></dt>
+        <dd>
+            <div *ngIf="fechasServicio.tramiteGeneralId">
+                <a [routerLink]="['/tramite-general-my-suffix', fechasServicio.tramiteGeneralId]">{{fechasServicio.tramiteGeneralId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tipoServicioFechas">Tipo Servicio Fechas</span></dt>
+        <dd>
+            <div *ngIf="fechasServicio.tipoServicioFechasId">
+                <a [routerLink]="['/tipo-servicio-my-suffix', fechasServicio.tipoServicioFechasId]">{{fechasServicio.tipoServicioFechasId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'fechas-servicio-my-suffix/'+ fechasServicio.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

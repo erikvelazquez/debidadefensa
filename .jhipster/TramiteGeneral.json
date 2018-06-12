@@ -1,0 +1,96 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "estatusTramiteGeneral",
+            "otherEntityName": "estatus",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tramiteGeneral"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramiteGralPagos",
+            "otherEntityName": "pagos",
+            "otherEntityRelationshipName": "tramiteGeneral"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramiteGralCostos",
+            "otherEntityName": "costoServicio",
+            "otherEntityRelationshipName": "tramiteGeneral"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramiteGralDocumentos",
+            "otherEntityName": "documentos",
+            "otherEntityRelationshipName": "tramiteGeneral"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fechasServicioTramiteGeneral",
+            "otherEntityName": "fechasServicio",
+            "otherEntityRelationshipName": "tramiteGeneral"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "tramiteGeneralAsociados",
+            "otherEntityName": "tramiteAsociado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "titular",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dependencia",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroTramite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoTramite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaIngreso",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaResolucion",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaNotificacion",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "archivo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180610211047",
+    "entityTableName": "tramite_general",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

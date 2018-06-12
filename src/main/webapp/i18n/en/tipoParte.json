@@ -1,0 +1,23 @@
+
+{
+    "debidadefensaApp": {
+        "tipoParte" : {
+            "home": {
+                "title": "Tipo Partes",
+                "createLabel": "Create a new Tipo Parte",
+                "createOrEditLabel": "Create or edit a Tipo Parte",
+                "search": "Search for Tipo Parte"
+            },
+            "created": "A new Tipo Parte is created with identifier {{ param }}",
+            "updated": "A Tipo Parte is updated with identifier {{ param }}",
+            "deleted": "A Tipo Parte is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tipo Parte {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Parte"
+            },
+            "descripcion": "Descripcion"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Expediente.
+    -->
+    <changeSet id="20180610211043-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cliente_id"
+                                 baseTableName="expediente"
+                                 constraintName="fk_expediente_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_servicio_expediente_id"
+                                 baseTableName="expediente"
+                                 constraintName="fk_expediente_tipo_servicio_expediente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_servicio"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_expediente_id"
+                                 baseTableName="expediente"
+                                 constraintName="fk_expediente_estatus_expediente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus"/>
+
+    </changeSet>
+</databaseChangeLog>

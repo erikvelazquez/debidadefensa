@@ -1,0 +1,39 @@
+
+{
+    "debidadefensaApp": {
+        "expediente" : {
+            "home": {
+                "title": "Expedientes",
+                "createLabel": "Create a new Expediente",
+                "createOrEditLabel": "Create or edit a Expediente",
+                "search": "Search for Expediente"
+            },
+            "created": "A new Expediente is created with identifier {{ param }}",
+            "updated": "A Expediente is updated with identifier {{ param }}",
+            "deleted": "A Expediente is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Expediente {{ id }}?"
+            },
+            "detail": {
+                "title": "Expediente"
+            },
+            "juzgado": "Juzgado",
+            "numeroExpediente": "Numero Expediente",
+            "juicio": "Juicio",
+            "responsable": "Responsable",
+            "archivo": "Archivo",
+            "observaciones": "Observaciones",
+            "fechaAlta": "Fecha Alta",
+            "fechaSentencia": "Fecha Sentencia",
+            "cliente": "Cliente",
+            "tipoServicioExpediente": "Tipo Servicio Expediente",
+            "estatusExpediente": "Estatus Expediente",
+            "parte": "Parte",
+            "expAsociado": "Exp Asociado",
+            "costo": "Costo",
+            "pagos": "Pagos",
+            "documentosExpedientes": "Documentos Expedientes",
+            "fechasServicioExpediente": "Fechas Servicio Expediente"
+        }
+    }
+}

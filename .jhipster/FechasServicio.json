@@ -1,0 +1,60 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "expediente",
+            "otherEntityName": "expediente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "tramiteMigratorio",
+            "otherEntityName": "tramiteMigratorio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "tramiteGeneral",
+            "otherEntityName": "tramiteGeneral",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tipoServicioFechas",
+            "otherEntityName": "tipoServicio",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "fechasServicio"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipoServicio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hora",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180610211051",
+    "entityTableName": "fechas_servicio",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

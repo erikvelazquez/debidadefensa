@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "expediente",
+            "otherEntityName": "expediente",
+            "otherEntityRelationshipName": "cliente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramiteMigra",
+            "otherEntityName": "tramiteMigratorio",
+            "otherEntityRelationshipName": "cliente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramiteGral",
+            "otherEntityName": "tramiteGeneral",
+            "otherEntityRelationshipName": "cliente"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefonos",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "correoElectronico",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "domicilio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rfc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "referencia",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180610211041",
+    "entityTableName": "cliente",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

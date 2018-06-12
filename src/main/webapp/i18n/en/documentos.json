@@ -1,0 +1,31 @@
+
+{
+    "debidadefensaApp": {
+        "documentos" : {
+            "home": {
+                "title": "Documentos",
+                "createLabel": "Create a new Documentos",
+                "createOrEditLabel": "Create or edit a Documentos",
+                "search": "Search for Documentos"
+            },
+            "created": "A new Documentos is created with identifier {{ param }}",
+            "updated": "A Documentos is updated with identifier {{ param }}",
+            "deleted": "A Documentos is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Documentos {{ id }}?"
+            },
+            "detail": {
+                "title": "Documentos"
+            },
+            "nombreDocumento": "Nombre Documento",
+            "fecha": "Fecha",
+            "descripcion": "Descripcion",
+            "ruta": "Ruta",
+            "expediente": "Expediente",
+            "expedienteAsociado": "Expediente Asociado",
+            "tramiteMigratorio": "Tramite Migratorio",
+            "tramiteGeneral": "Tramite General",
+            "tipoServicioDocumentos": "Tipo Servicio Documentos"
+        }
+    }
+}

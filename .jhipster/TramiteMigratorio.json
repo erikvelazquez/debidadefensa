@@ -1,0 +1,100 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "estatusTramiteMigratorio",
+            "otherEntityName": "estatus",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tramiteMigratorio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramitteMigratorioCosto",
+            "otherEntityName": "costoServicio",
+            "otherEntityRelationshipName": "tramiteMigratorio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramitteMigratorioPago",
+            "otherEntityName": "pagos",
+            "otherEntityRelationshipName": "tramiteMigratorio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramitteMigratorioDocumentos",
+            "otherEntityName": "documentos",
+            "otherEntityRelationshipName": "tramiteMigratorio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fechasServicioTramiteMigratorio",
+            "otherEntityName": "fechasServicio",
+            "otherEntityRelationshipName": "tramiteMigratorio"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "tramitesMigraAsociados",
+            "otherEntityName": "tramiteAsociado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombreExtranjero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipotramite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "entidad",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nut",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "contraseniaNUT",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaIngreso",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaNotificacion",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaResolucion",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "archivo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180610211046",
+    "entityTableName": "tramite_migratorio",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

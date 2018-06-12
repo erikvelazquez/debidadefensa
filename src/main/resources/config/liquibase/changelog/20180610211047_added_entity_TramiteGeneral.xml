@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity TramiteGeneral.
+    -->
+    <changeSet id="20180610211047-1" author="jhipster">
+        <createTable tableName="tramite_general">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="titular" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dependencia" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="numero_tramite" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_tramite" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fecha_ingreso" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fecha_resolucion" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fecha_notificacion" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="archivo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="observaciones" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cliente_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="estatus_tramite_general_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="tramite_general" columnName="fecha_ingreso" columnDataType="datetime"/>
+        <dropDefaultValue tableName="tramite_general" columnName="fecha_resolucion" columnDataType="datetime"/>
+        <dropDefaultValue tableName="tramite_general" columnName="fecha_notificacion" columnDataType="datetime"/>
+        
+        <createTable tableName="tramite_general_tramite_general_asociados">
+            <column name="tramite_general_asociados_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tramite_generals_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tramite_generals_id, tramite_general_asociados_id" tableName="tramite_general_tramite_general_asociados"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

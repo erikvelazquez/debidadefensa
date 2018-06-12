@@ -1,0 +1,31 @@
+
+{
+    "debidadefensaApp": {
+        "expedienteAsociado" : {
+            "home": {
+                "title": "Expediente Asociados",
+                "createLabel": "Crear nuevo Expediente Asociado",
+                "createOrEditLabel": "Crear o editar Expediente Asociado",
+                "search": "Search for Expediente Asociado"
+            },
+            "created": "Un nuevo Expediente Asociado ha sido creado con el identificador {{ param }}",
+            "updated": "Un Expediente Asociado ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Expediente Asociado ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Expediente Asociado {{ id }}?"
+            },
+            "detail": {
+                "title": "Expediente Asociado"
+            },
+            "numeroExpediente": "Numero Expediente",
+            "instancia": "Instancia",
+            "organocompetente": "Organocompetente",
+            "archivo": "Archivo",
+            "observaciones": "Observaciones",
+            "fechaSentencia": "Fecha Sentencia",
+            "expediente": "Expediente",
+            "estatusExpedienteAsociado": "Estatus Expediente Asociado",
+            "expedienteAsociadoDocumentos": "Expediente Asociado Documentos"
+        }
+    }
+}
