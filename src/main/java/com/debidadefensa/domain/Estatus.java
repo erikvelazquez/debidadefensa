@@ -26,7 +26,7 @@ public class Estatus implements Serializable {
     private String descripcion;
 
     @ManyToOne
-    private TipoServicio tipoServicioEstatus;
+    private TipoServicio tipoServicio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -50,17 +50,17 @@ public class Estatus implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public TipoServicio getTipoServicioEstatus() {
-        return tipoServicioEstatus;
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
     }
 
-    public Estatus tipoServicioEstatus(TipoServicio tipoServicio) {
-        this.tipoServicioEstatus = tipoServicio;
+    public Estatus tipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
         return this;
     }
 
-    public void setTipoServicioEstatus(TipoServicio tipoServicio) {
-        this.tipoServicioEstatus = tipoServicio;
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

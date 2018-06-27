@@ -1,10 +1,13 @@
 package com.debidadefensa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -24,6 +27,10 @@ public class TipoServicio implements Serializable {
 
     @Column(name = "descripcion")
     private String descripcion;
+
+    @OneToMany(mappedBy = "tipoServicio")
+    @JsonIgnore
+    private Set<Estatus> tipoServicioEstatuses = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -45,6 +52,31 @@ public class TipoServicio implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Set<Estatus> getTipoServicioEstatuses() {
+        return tipoServicioEstatuses;
+    }
+
+    public TipoServicio tipoServicioEstatuses(Set<Estatus> estatuses) {
+        this.tipoServicioEstatuses = estatuses;
+        return this;
+    }
+
+    public TipoServicio addTipoServicioEstatus(Estatus estatus) {
+        this.tipoServicioEstatuses.add(estatus);
+        estatus.setTipoServicio(this);
+        return this;
+    }
+
+    public TipoServicio removeTipoServicioEstatus(Estatus estatus) {
+        this.tipoServicioEstatuses.remove(estatus);
+        estatus.setTipoServicio(null);
+        return this;
+    }
+
+    public void setTipoServicioEstatuses(Set<Estatus> estatuses) {
+        this.tipoServicioEstatuses = estatuses;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

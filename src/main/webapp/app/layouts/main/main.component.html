@@ -1,6 +1,6 @@
 <!-- <jhi-page-ribbon></jhi-page-ribbon> -->
 <div class="row" style="margin: 0px !important">    
-    <nav style="width: 10%;" class="navbar navbar-dark jh-navbar">
+  <!-- <nav style="width: 10%;" class="navbar navbar-dark jh-navbar">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"  *jhiHasAnyAuthority="'ROLE_ADMIN'">
                 <a class="nav-link" (click)="drawer.toggle()">
@@ -11,16 +11,18 @@
                 </a>
             </li>
         </ul>
-    </nav>
-    <div style="width: 90%;">      
+    </nav>-->
+    <div style="width: 100%;">      
         <router-outlet name="navbar"></router-outlet>        
     </div>
 </div>
 <mat-drawer-container  autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-        
-    </mat-drawer>
+        <mat-card>
+            
 
+        </mat-card>
+    </mat-drawer>
     <div class="container-fluid example-sidenav-content">        
         <div class="card jh-card" style="margin: 0px !important">
             <router-outlet></router-outlet>

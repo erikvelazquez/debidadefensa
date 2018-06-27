@@ -30,5 +30,6 @@
     <include file="config/liquibase/changelog/20180610211050_added_entity_constraints_Pagos.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180610211051_added_entity_constraints_FechasServicio.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180610211054_added_entity_constraints_Documentos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180610211053_added_entity_constraints_TipoServicio.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -2,12 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "tipoServicioEstatus",
+            "relationshipName": "tipoServicio",
             "otherEntityName": "tipoServicio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "estatus"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -21,6 +19,5 @@
     "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "angularJSSuffix": "mySuffix"
+    "jpaMetamodelFiltering": false
 }

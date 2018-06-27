@@ -15,7 +15,7 @@ public class EstatusDTO implements Serializable {
 
     private String descripcion;
 
-    private Long tipoServicioEstatusId;
+    private Long tipoServicioId;
 
     public Long getId() {
         return id;
@@ -33,12 +33,12 @@ public class EstatusDTO implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Long getTipoServicioEstatusId() {
-        return tipoServicioEstatusId;
+    public Long getTipoServicioId() {
+        return tipoServicioId;
     }
 
-    public void setTipoServicioEstatusId(Long tipoServicioId) {
-        this.tipoServicioEstatusId = tipoServicioId;
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     @Override

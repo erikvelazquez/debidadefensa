@@ -11,10 +11,10 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {TipoServicioMapper.class})
 public interface EstatusMapper extends EntityMapper<EstatusDTO, Estatus> {
 
-    @Mapping(source = "tipoServicioEstatus.id", target = "tipoServicioEstatusId")
+    @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
     EstatusDTO toDto(Estatus estatus);
 
-    @Mapping(source = "tipoServicioEstatusId", target = "tipoServicioEstatus")
+    @Mapping(source = "tipoServicioId", target = "tipoServicio")
     Estatus toEntity(EstatusDTO estatusDTO);
 
     default Estatus fromId(Long id) {

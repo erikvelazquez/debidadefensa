@@ -99,6 +99,5 @@
     "dto": "mapstruct",
     "pagination": "infinite-scroll",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "angularJSSuffix": "mySuffix"
+    "jpaMetamodelFiltering": false
 }

@@ -17,7 +17,8 @@
             "detail": {
                 "title": "Tipo Servicio"
             },
-            "descripcion": "Descripcion"
+            "descripcion": "Descripcion",
+            "tipoServicioEstatus": "Tipo Servicio Estatus"
         }
     }
 }

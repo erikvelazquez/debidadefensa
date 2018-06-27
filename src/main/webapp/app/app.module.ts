@@ -27,12 +27,18 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
-import {MatSidenavModule} from '@angular/material';
+import {MatSidenavModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
         MatSidenavModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
         BrowserAnimationsModule ,
         BrowserModule,
         DebidadefensaAppRoutingModule,

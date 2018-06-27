@@ -121,8 +121,7 @@ relationship OneToOne {
   Expediente{estatusExpediente} to Estatus,
   ExpedienteAsociado {estatusExpedienteAsociado} to Estatus,    
   TramiteMigratorio {estatusTramiteMigratorio} to Estatus,    
-  TramiteGeneral {estatusTramiteGeneral} to Estatus,
-  Estatus{tipoServicioEstatus} to TipoServicio,
+  TramiteGeneral {estatusTramiteGeneral} to Estatus,  
   Documentos{tipoServicioDocumentos} to TipoServicio
 }
 
@@ -148,8 +147,9 @@ relationship OneToMany {
     TramiteGeneral{tramiteGralPagos} to Pagos,
     TramiteGeneral{tramiteGralCostos} to CostoServicio
     TramiteGeneral{tramiteGralDocumentos} to Documentos,
-    Expediente{fechasServicioExpediente} to FechasServicio
-    TramiteGeneral{fechasServicioTramiteGeneral} to FechasServicio
+    Expediente{fechasServicioExpediente} to FechasServicio,
+    TramiteGeneral{fechasServicioTramiteGeneral} to FechasServicio,
+    TipoServicio{tipoServicioEstatus} to Estatus,
     TramiteMigratorio{fechasServicioTramiteMigratorio} to FechasServicio
 }
 
@@ -162,5 +162,3 @@ dto * with mapstruct
 // Set service options to all except few
 // service all with serviceImpl except Employee, Job
 service all with serviceImpl
-// Set an angular suffix
-angularSuffix * with mySuffix

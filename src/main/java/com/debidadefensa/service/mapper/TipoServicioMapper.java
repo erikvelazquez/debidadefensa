@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface TipoServicioMapper extends EntityMapper<TipoServicioDTO, TipoServicio> {
 
 
+    @Mapping(target = "tipoServicioEstatuses", ignore = true)
+    TipoServicio toEntity(TipoServicioDTO tipoServicioDTO);
 
     default TipoServicio fromId(Long id) {
         if (id == null) {
