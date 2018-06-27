@@ -1,0 +1,87 @@
+/* tslint:disable max-line-length */
+import { ComponentFixture, TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
+import { HttpResponse } from '@angular/common/http';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs/Observable';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { DebidadefensaTestModule } from '../../../test.module';
+import { EstatusDialogComponent } from '../../../../../../main/webapp/app/entities/estatus/estatus-dialog.component';
+import { EstatusService } from '../../../../../../main/webapp/app/entities/estatus/estatus.service';
+import { Estatus } from '../../../../../../main/webapp/app/entities/estatus/estatus.model';
+import { TipoServicioService } from '../../../../../../main/webapp/app/entities/tipo-servicio';
+
+describe('Component Tests', () => {
+
+    describe('Estatus Management Dialog Component', () => {
+        let comp: EstatusDialogComponent;
+        let fixture: ComponentFixture<EstatusDialogComponent>;
+        let service: EstatusService;
+        let mockEventManager: any;
+        let mockActiveModal: any;
+
+        beforeEach(async(() => {
+            TestBed.configureTestingModule({
+                imports: [DebidadefensaTestModule],
+                declarations: [EstatusDialogComponent],
+                providers: [
+                    TipoServicioService,
+                    EstatusService
+                ]
+            })
+            .overrideTemplate(EstatusDialogComponent, '')
+            .compileComponents();
+        }));
+
+        beforeEach(() => {
+            fixture = TestBed.createComponent(EstatusDialogComponent);
+            comp = fixture.componentInstance;
+            service = fixture.debugElement.injector.get(EstatusService);
+            mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
+            mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
+        });
+
+        describe('save', () => {
+            it('Should call update service on save for existing entity',
+                inject([],
+                    fakeAsync(() => {
+                        // GIVEN
+                        const entity = new Estatus(123);
+                        spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
+                        comp.estatus = entity;
+                        // WHEN
+                        comp.save();
+                        tick(); // simulate async
+
+                        // THEN
+                        expect(service.update).toHaveBeenCalledWith(entity);
+                        expect(comp.isSaving).toEqual(false);
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'estatusListModification', content: 'OK'});
+                        expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
+                    })
+                )
+            );
+
+            it('Should call create service on save for new entity',
+                inject([],
+                    fakeAsync(() => {
+                        // GIVEN
+                        const entity = new Estatus();
+                        spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
+                        comp.estatus = entity;
+                        // WHEN
+                        comp.save();
+                        tick(); // simulate async
+
+                        // THEN
+                        expect(service.create).toHaveBeenCalledWith(entity);
+                        expect(comp.isSaving).toEqual(false);
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'estatusListModification', content: 'OK'});
+                        expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
+                    })
+                )
+            );
+        });
+    });
+
+});

@@ -1,0 +1,76 @@
+
+<div *ngIf="tramiteGeneral">
+    <h2><span jhiTranslate="debidadefensaApp.tramiteGeneral.detail.title">Tramite General</span> {{tramiteGeneral.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.titular}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia">Dependencia</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.dependencia}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.numeroTramite">Numero Tramite</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.numeroTramite}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.tipoTramite">Tipo Tramite</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.tipoTramite}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaIngreso">Fecha Ingreso</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.fechaIngreso | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaResolucion">Fecha Resolucion</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.fechaResolucion | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaNotificacion">Fecha Notificacion</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.fechaNotificacion | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.archivo">Archivo</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.archivo}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.observaciones">Observaciones</span></dt>
+        <dd>
+            <span>{{tramiteGeneral.observaciones}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.cliente">Cliente</span></dt>
+        <dd>
+            <div *ngIf="tramiteGeneral.clienteId">
+                <a [routerLink]="['/cliente', tramiteGeneral.clienteId]">{{tramiteGeneral.clienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.estatusTramiteGeneral">Estatus Tramite General</span></dt>
+        <dd>
+            <div *ngIf="tramiteGeneral.estatusTramiteGeneralId">
+                <a [routerLink]="['/estatus', tramiteGeneral.estatusTramiteGeneralId]">{{tramiteGeneral.estatusTramiteGeneralId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.tramiteGeneral.tramiteGeneralAsociados">Tramite General Asociados</span></dt>
+        <dd>
+            <span *ngFor="let tramiteGeneralAsociados of tramiteGeneral.tramiteGeneralAsociados; let last = last">
+                <a [routerLink]="['/tramite-asociado', tramiteGeneralAsociados?.id ]">{{tramiteGeneralAsociados.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tramite-general/'+ tramiteGeneral.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

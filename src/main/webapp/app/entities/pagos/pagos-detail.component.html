@@ -1,0 +1,70 @@
+
+<div *ngIf="pagos">
+    <h2><span jhiTranslate="debidadefensaApp.pagos.detail.title">Pagos</span> {{pagos.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debidadefensaApp.pagos.tipoServicio">Tipo Servicio</span></dt>
+        <dd>
+            <span>{{pagos.tipoServicio}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.idServicio">Id Servicio</span></dt>
+        <dd>
+            <span>{{pagos.idServicio}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.cantidad">Cantidad</span></dt>
+        <dd>
+            <span>{{pagos.cantidad}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{pagos.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.formaPago">Forma Pago</span></dt>
+        <dd>
+            <span>{{pagos.formaPago}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.tipoAbono">Tipo Abono</span></dt>
+        <dd>
+            <span>{{pagos.tipoAbono}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.expediente">Expediente</span></dt>
+        <dd>
+            <div *ngIf="pagos.expedienteId">
+                <a [routerLink]="['/expediente', pagos.expedienteId]">{{pagos.expedienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.tramiteMigratorio">Tramite Migratorio</span></dt>
+        <dd>
+            <div *ngIf="pagos.tramiteMigratorioId">
+                <a [routerLink]="['/tramite-migratorio', pagos.tramiteMigratorioId]">{{pagos.tramiteMigratorioId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.tramiteGeneral">Tramite General</span></dt>
+        <dd>
+            <div *ngIf="pagos.tramiteGeneralId">
+                <a [routerLink]="['/tramite-general', pagos.tramiteGeneralId]">{{pagos.tramiteGeneralId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.pagos.tipoServicioPagos">Tipo Servicio Pagos</span></dt>
+        <dd>
+            <div *ngIf="pagos.tipoServicioPagosId">
+                <a [routerLink]="['/tipo-servicio', pagos.tipoServicioPagosId]">{{pagos.tipoServicioPagosId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pagos/'+ pagos.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

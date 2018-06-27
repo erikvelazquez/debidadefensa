@@ -1,0 +1,72 @@
+
+<div *ngIf="expediente">
+    <h2><span jhiTranslate="debidadefensaApp.expediente.detail.title">Expediente</span> {{expediente.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debidadefensaApp.expediente.juzgado">Juzgado</span></dt>
+        <dd>
+            <span>{{expediente.juzgado}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.numeroExpediente">Numero Expediente</span></dt>
+        <dd>
+            <span>{{expediente.numeroExpediente}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.juicio">Juicio</span></dt>
+        <dd>
+            <span>{{expediente.juicio}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.responsable">Responsable</span></dt>
+        <dd>
+            <span>{{expediente.responsable}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.archivo">Archivo</span></dt>
+        <dd>
+            <span>{{expediente.archivo}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.observaciones">Observaciones</span></dt>
+        <dd>
+            <span>{{expediente.observaciones}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.fechaAlta">Fecha Alta</span></dt>
+        <dd>
+            <span>{{expediente.fechaAlta | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.fechaSentencia">Fecha Sentencia</span></dt>
+        <dd>
+            <span>{{expediente.fechaSentencia | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.cliente">Cliente</span></dt>
+        <dd>
+            <div *ngIf="expediente.clienteId">
+                <a [routerLink]="['/cliente', expediente.clienteId]">{{expediente.clienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.tipoServicioExpediente">Tipo Servicio Expediente</span></dt>
+        <dd>
+            <div *ngIf="expediente.tipoServicioExpedienteId">
+                <a [routerLink]="['/tipo-servicio', expediente.tipoServicioExpedienteId]">{{expediente.tipoServicioExpedienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.estatusExpediente">Estatus Expediente</span></dt>
+        <dd>
+            <div *ngIf="expediente.estatusExpedienteId">
+                <a [routerLink]="['/estatus', expediente.estatusExpedienteId]">{{expediente.estatusExpedienteId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
