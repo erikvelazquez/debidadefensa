@@ -41,15 +41,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="fecha_ingreso" type="timestamp">
+            <column name="fecha_ingreso" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="fecha_notificacion" type="timestamp">
+            <column name="fecha_notificacion" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="fecha_resolucion" type="timestamp">
+            <column name="fecha_resolucion" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -69,9 +69,6 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="tramite_migratorio" columnName="fecha_ingreso" columnDataType="datetime"/>
-        <dropDefaultValue tableName="tramite_migratorio" columnName="fecha_notificacion" columnDataType="datetime"/>
-        <dropDefaultValue tableName="tramite_migratorio" columnName="fecha_resolucion" columnDataType="datetime"/>
         
         <createTable tableName="tramite_migratorio_tramites_migra_asociados">
             <column name="tramites_migra_asociados_id" type="bigint">

@@ -1,7 +1,7 @@
 package com.debidadefensa.service.dto;
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,13 +14,9 @@ public class PagosDTO implements Serializable {
 
     private Long id;
 
-    private String tipoServicio;
-
-    private Long idServicio;
-
     private Float cantidad;
 
-    private Instant fecha;
+    private LocalDate fecha;
 
     private String formaPago;
 
@@ -32,7 +28,7 @@ public class PagosDTO implements Serializable {
 
     private Long tramiteGeneralId;
 
-    private Long tipoServicioPagosId;
+    private Long tipoServicioId;
 
     public Long getId() {
         return id;
@@ -40,22 +36,6 @@ public class PagosDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public Long getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(Long idServicio) {
-        this.idServicio = idServicio;
     }
 
     public Float getCantidad() {
@@ -66,11 +46,11 @@ public class PagosDTO implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -114,12 +94,12 @@ public class PagosDTO implements Serializable {
         this.tramiteGeneralId = tramiteGeneralId;
     }
 
-    public Long getTipoServicioPagosId() {
-        return tipoServicioPagosId;
+    public Long getTipoServicioId() {
+        return tipoServicioId;
     }
 
-    public void setTipoServicioPagosId(Long tipoServicioId) {
-        this.tipoServicioPagosId = tipoServicioId;
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     @Override
@@ -147,8 +127,6 @@ public class PagosDTO implements Serializable {
     public String toString() {
         return "PagosDTO{" +
             "id=" + getId() +
-            ", tipoServicio='" + getTipoServicio() + "'" +
-            ", idServicio=" + getIdServicio() +
             ", cantidad=" + getCantidad() +
             ", fecha='" + getFecha() + "'" +
             ", formaPago='" + getFormaPago() + "'" +

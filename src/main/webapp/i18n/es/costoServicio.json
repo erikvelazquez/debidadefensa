@@ -17,15 +17,13 @@
             "detail": {
                 "title": "Costo Servicio"
             },
-            "tipoServicio": "Tipo Servicio",
-            "idServicio": "Id Servicio",
             "tipoCosto": "Tipo Costo",
             "concepto": "Concepto",
             "costo": "Costo",
             "expediente": "Expediente",
             "tramiteMigratorio": "Tramite Migratorio",
             "tramiteGeneral": "Tramite General",
-            "tipoServicioCostoServicio": "Tipo Servicio Costo Servicio"
+            "tipoServicio": "Tipo Servicio"
         }
     }
 }

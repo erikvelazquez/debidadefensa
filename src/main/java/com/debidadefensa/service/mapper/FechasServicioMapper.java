@@ -14,13 +14,13 @@ public interface FechasServicioMapper extends EntityMapper<FechasServicioDTO, Fe
     @Mapping(source = "expediente.id", target = "expedienteId")
     @Mapping(source = "tramiteMigratorio.id", target = "tramiteMigratorioId")
     @Mapping(source = "tramiteGeneral.id", target = "tramiteGeneralId")
-    @Mapping(source = "tipoServicioFechas.id", target = "tipoServicioFechasId")
+    @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
     FechasServicioDTO toDto(FechasServicio fechasServicio);
 
     @Mapping(source = "expedienteId", target = "expediente")
     @Mapping(source = "tramiteMigratorioId", target = "tramiteMigratorio")
     @Mapping(source = "tramiteGeneralId", target = "tramiteGeneral")
-    @Mapping(source = "tipoServicioFechasId", target = "tipoServicioFechas")
+    @Mapping(source = "tipoServicioId", target = "tipoServicio")
     FechasServicio toEntity(FechasServicioDTO fechasServicioDTO);
 
     default FechasServicio fromId(Long id) {

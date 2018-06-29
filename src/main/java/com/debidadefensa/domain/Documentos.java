@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -27,7 +27,7 @@ public class Documentos implements Serializable {
     private String nombreDocumento;
 
     @Column(name = "fecha")
-    private Instant fecha;
+    private LocalDate fecha;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -47,9 +47,8 @@ public class Documentos implements Serializable {
     @ManyToOne
     private TramiteGeneral tramiteGeneral;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private TipoServicio tipoServicioDocumentos;
+    @ManyToOne
+    private TipoServicio tipoServicio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -73,16 +72,16 @@ public class Documentos implements Serializable {
         this.nombreDocumento = nombreDocumento;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public Documentos fecha(Instant fecha) {
+    public Documentos fecha(LocalDate fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -164,17 +163,17 @@ public class Documentos implements Serializable {
         this.tramiteGeneral = tramiteGeneral;
     }
 
-    public TipoServicio getTipoServicioDocumentos() {
-        return tipoServicioDocumentos;
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
     }
 
-    public Documentos tipoServicioDocumentos(TipoServicio tipoServicio) {
-        this.tipoServicioDocumentos = tipoServicio;
+    public Documentos tipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
         return this;
     }
 
-    public void setTipoServicioDocumentos(TipoServicio tipoServicio) {
-        this.tipoServicioDocumentos = tipoServicio;
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

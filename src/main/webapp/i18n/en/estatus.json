@@ -3,7 +3,7 @@
     "debidadefensaApp": {
         "estatus" : {
             "home": {
-                "title": "Estatuses",
+                "title": "Estatus",
                 "createLabel": "Create a new Estatus",
                 "createOrEditLabel": "Create or edit a Estatus",
                 "search": "Search for Estatus"

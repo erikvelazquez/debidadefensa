@@ -13,16 +13,6 @@
                    [(ngModel)]="costoServicio.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
-            <input type="text" class="form-control" name="tipoServicio" id="field_tipoServicio"
-                [(ngModel)]="costoServicio.tipoServicio" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.idServicio" for="field_idServicio">Id Servicio</label>
-            <input type="number" class="form-control" name="idServicio" id="field_idServicio"
-                [(ngModel)]="costoServicio.idServicio" />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tipoCosto" for="field_tipoCosto">Tipo Costo</label>
             <input type="text" class="form-control" name="tipoCosto" id="field_tipoCosto"
                 [(ngModel)]="costoServicio.tipoCosto" />
@@ -60,10 +50,10 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tipoServicioCostoServicio" for="field_tipoServicioCostoServicio">Tipo Servicio Costo Servicio</label>
-            <select class="form-control" id="field_tipoServicioCostoServicio" name="tipoServicioCostoServicio" [(ngModel)]="costoServicio.tipoServicioCostoServicioId">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
+            <select class="form-control" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="costoServicio.tipoServicioId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposerviciocostoservicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
+                <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
             </select>
         </div>
     </div>

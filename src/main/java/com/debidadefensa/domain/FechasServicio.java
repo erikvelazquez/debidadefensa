@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -24,17 +23,14 @@ public class FechasServicio implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "tipo_servicio")
-    private String tipoServicio;
-
     @Column(name = "fecha")
-    private Instant fecha;
+    private LocalDate fecha;
 
     @Column(name = "descripcion")
     private String descripcion;
 
     @Column(name = "hora")
-    private LocalDate hora;
+    private Long hora;
 
     @Column(name = "observaciones")
     private String observaciones;
@@ -48,9 +44,8 @@ public class FechasServicio implements Serializable {
     @ManyToOne
     private TramiteGeneral tramiteGeneral;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private TipoServicio tipoServicioFechas;
+    @ManyToOne
+    private TipoServicio tipoServicio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -61,29 +56,16 @@ public class FechasServicio implements Serializable {
         this.id = id;
     }
 
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public FechasServicio tipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-        return this;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public FechasServicio fecha(Instant fecha) {
+    public FechasServicio fecha(LocalDate fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -100,16 +82,16 @@ public class FechasServicio implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public LocalDate getHora() {
+    public Long getHora() {
         return hora;
     }
 
-    public FechasServicio hora(LocalDate hora) {
+    public FechasServicio hora(Long hora) {
         this.hora = hora;
         return this;
     }
 
-    public void setHora(LocalDate hora) {
+    public void setHora(Long hora) {
         this.hora = hora;
     }
 
@@ -165,17 +147,17 @@ public class FechasServicio implements Serializable {
         this.tramiteGeneral = tramiteGeneral;
     }
 
-    public TipoServicio getTipoServicioFechas() {
-        return tipoServicioFechas;
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
     }
 
-    public FechasServicio tipoServicioFechas(TipoServicio tipoServicio) {
-        this.tipoServicioFechas = tipoServicio;
+    public FechasServicio tipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
         return this;
     }
 
-    public void setTipoServicioFechas(TipoServicio tipoServicio) {
-        this.tipoServicioFechas = tipoServicio;
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -203,10 +185,9 @@ public class FechasServicio implements Serializable {
     public String toString() {
         return "FechasServicio{" +
             "id=" + getId() +
-            ", tipoServicio='" + getTipoServicio() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
-            ", hora='" + getHora() + "'" +
+            ", hora=" + getHora() +
             ", observaciones='" + getObservaciones() + "'" +
             "}";
     }

@@ -1,7 +1,6 @@
 package com.debidadefensa.service.dto;
 
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -23,15 +22,11 @@ public class ExpedienteDTO implements Serializable {
 
     private String responsable;
 
-    private String archivo;
-
     private String observaciones;
 
-    private Instant fechaAlta;
+    private LocalDate fechaAlta;
 
-    private Instant fechaSentencia;
-
-    private LocalDate fecPrueba;
+    private LocalDate fechaSentencia;
 
     private Long clienteId;
 
@@ -79,14 +74,6 @@ public class ExpedienteDTO implements Serializable {
         this.responsable = responsable;
     }
 
-    public String getArchivo() {
-        return archivo;
-    }
-
-    public void setArchivo(String archivo) {
-        this.archivo = archivo;
-    }
-
     public String getObservaciones() {
         return observaciones;
     }
@@ -95,28 +82,20 @@ public class ExpedienteDTO implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Instant getFechaAlta() {
+    public LocalDate getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Instant fechaAlta) {
+    public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public Instant getFechaSentencia() {
+    public LocalDate getFechaSentencia() {
         return fechaSentencia;
     }
 
-    public void setFechaSentencia(Instant fechaSentencia) {
+    public void setFechaSentencia(LocalDate fechaSentencia) {
         this.fechaSentencia = fechaSentencia;
-    }
-
-    public LocalDate getFecPrueba() {
-        return fecPrueba;
-    }
-
-    public void setFecPrueba(LocalDate fecPrueba) {
-        this.fecPrueba = fecPrueba;
     }
 
     public Long getClienteId() {
@@ -172,11 +151,9 @@ public class ExpedienteDTO implements Serializable {
             ", numeroExpediente='" + getNumeroExpediente() + "'" +
             ", juicio='" + getJuicio() + "'" +
             ", responsable='" + getResponsable() + "'" +
-            ", archivo='" + getArchivo() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
             ", fechaAlta='" + getFechaAlta() + "'" +
             ", fechaSentencia='" + getFechaSentencia() + "'" +
-            ", fecPrueba='" + getFecPrueba() + "'" +
             "}";
     }
 }

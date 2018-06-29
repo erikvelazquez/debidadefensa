@@ -10,7 +10,7 @@
         </dd>
         <dt><span jhiTranslate="debidadefensaApp.documentos.fecha">Fecha</span></dt>
         <dd>
-            <span>{{documentos.fecha | date:'medium'}}</span>
+            <span>{{documentos.fecha | date:'mediumDate'}}</span>
         </dd>
         <dt><span jhiTranslate="debidadefensaApp.documentos.descripcion">Descripcion</span></dt>
         <dd>
@@ -44,10 +44,10 @@
                 <a [routerLink]="['/tramite-general', documentos.tramiteGeneralId]">{{documentos.tramiteGeneralId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="debidadefensaApp.documentos.tipoServicioDocumentos">Tipo Servicio Documentos</span></dt>
+        <dt><span jhiTranslate="debidadefensaApp.documentos.tipoServicio">Tipo Servicio</span></dt>
         <dd>
-            <div *ngIf="documentos.tipoServicioDocumentosId">
-                <a [routerLink]="['/tipo-servicio', documentos.tipoServicioDocumentosId]">{{documentos.tipoServicioDocumentosId}}</a>
+            <div *ngIf="documentos.tipoServicioId">
+                <a [routerLink]="['/tipo-servicio', documentos.tipoServicioId]">{{documentos.tipoServicioId}}</a>
             </div>
         </dd>
     </dl>

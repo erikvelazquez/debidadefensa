@@ -7,6 +7,14 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
+            </select>
+        </div>
+            
         <div class="form-group" [hidden]="!expediente.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
@@ -33,61 +41,45 @@
                 [(ngModel)]="expediente.responsable" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.archivo" for="field_archivo">Archivo</label>
-            <input type="text" class="form-control" name="archivo" id="field_archivo"
-                [(ngModel)]="expediente.archivo" />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.observaciones" for="field_observaciones">Observaciones</label>
             <input type="text" class="form-control" name="observaciones" id="field_observaciones"
                 [(ngModel)]="expediente.observaciones" />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
-            <div class="d-flex">
-                <input id="field_fechaAlta" type="datetime-local" class="form-control" name="fechaAlta" [(ngModel)]="expediente.fechaAlta"
+            <div class="input-group">
+                <input id="field_fechaAlta" type="text" class="form-control" name="fechaAlta" ngbDatepicker  #fechaAltaDp="ngbDatepicker" [(ngModel)]="expediente.fechaAlta"
                 />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaAltaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
-            <div class="d-flex">
-                <input id="field_fechaSentencia" type="datetime-local" class="form-control" name="fechaSentencia" [(ngModel)]="expediente.fechaSentencia"
-                />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.fecPrueba" for="field_fecPrueba">Fec Prueba</label>
             <div class="input-group">
-                <input id="field_fecPrueba" type="text" class="form-control" name="fecPrueba" ngbDatepicker  #fecPruebaDp="ngbDatepicker" [(ngModel)]="expediente.fecPrueba"
+                <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"
                 />
                 <span class="input-group-append">
-                    <button type="button" class="btn btn-secondary" (click)="fecPruebaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
-
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
-            </select>
-        </div>
+        
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.estatusExpediente" for="field_estatusExpediente">Estatus Expediente</label>
             <select class="form-control" id="field_estatusExpediente" name="estatusExpediente" [(ngModel)]="expediente.estatusExpedienteId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedientes; trackBy: trackEstatusById">{{estatusOption.id}}</option>
+                <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedientes; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
             <select class="form-control" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="expediente.tipoServicioId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
             </select>
-        </div>
+        </div>-->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

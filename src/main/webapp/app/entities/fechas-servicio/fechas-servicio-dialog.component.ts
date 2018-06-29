@@ -29,8 +29,8 @@ export class FechasServicioDialogComponent implements OnInit {
 
     tramitegenerals: TramiteGeneral[];
 
-    tiposerviciofechas: TipoServicio[];
-    horaDp: any;
+    tiposervicios: TipoServicio[];
+    fechaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -52,19 +52,8 @@ export class FechasServicioDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<TramiteMigratorio[]>) => { this.tramitemigratorios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.tramiteGeneralService.query()
             .subscribe((res: HttpResponse<TramiteGeneral[]>) => { this.tramitegenerals = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.tipoServicioService
-            .query({filter: 'fechasservicio-is-null'})
-            .subscribe((res: HttpResponse<TipoServicio[]>) => {
-                if (!this.fechasServicio.tipoServicioFechasId) {
-                    this.tiposerviciofechas = res.body;
-                } else {
-                    this.tipoServicioService
-                        .find(this.fechasServicio.tipoServicioFechasId)
-                        .subscribe((subRes: HttpResponse<TipoServicio>) => {
-                            this.tiposerviciofechas = [subRes.body].concat(res.body);
-                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
-                }
-            }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.tipoServicioService.query()
+            .subscribe((res: HttpResponse<TipoServicio[]>) => { this.tiposervicios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {

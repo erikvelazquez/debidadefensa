@@ -71,7 +71,7 @@ export class PagosService {
     private convertItemFromServer(pagos: Pagos): Pagos {
         const copy: Pagos = Object.assign({}, pagos);
         copy.fecha = this.dateUtils
-            .convertDateTimeFromServer(pagos.fecha);
+            .convertLocalDateFromServer(pagos.fecha);
         return copy;
     }
 
@@ -80,8 +80,8 @@ export class PagosService {
      */
     private convert(pagos: Pagos): Pagos {
         const copy: Pagos = Object.assign({}, pagos);
-
-        copy.fecha = this.dateUtils.toDate(pagos.fecha);
+        copy.fecha = this.dateUtils
+            .convertLocalDateToServer(pagos.fecha);
         return copy;
     }
 }

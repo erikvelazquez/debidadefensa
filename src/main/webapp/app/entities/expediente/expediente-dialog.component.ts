@@ -27,7 +27,8 @@ export class ExpedienteDialogComponent implements OnInit {
     estatusexpedientes: Estatus[];
 
     tiposervicios: TipoServicio[];
-    fecPruebaDp: any;
+    fechaAltaDp: any;
+    fechaSentenciaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -67,6 +68,7 @@ export class ExpedienteDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.expediente.tipoServicioId = 1001;
         if (this.expediente.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.expedienteService.update(this.expediente));

@@ -30,8 +30,6 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="debidadefensaApp.pagos.tipoServicio">Tipo Servicio</span></th>
-            <th><span jhiTranslate="debidadefensaApp.pagos.idServicio">Id Servicio</span></th>
             <th><span jhiTranslate="debidadefensaApp.pagos.cantidad">Cantidad</span></th>
             <th><span jhiTranslate="debidadefensaApp.pagos.fecha">Fecha</span></th>
             <th><span jhiTranslate="debidadefensaApp.pagos.formaPago">Forma Pago</span></th>
@@ -39,17 +37,15 @@
             <th><span jhiTranslate="debidadefensaApp.pagos.expediente">Expediente</span></th>
             <th><span jhiTranslate="debidadefensaApp.pagos.tramiteMigratorio">Tramite Migratorio</span></th>
             <th><span jhiTranslate="debidadefensaApp.pagos.tramiteGeneral">Tramite General</span></th>
-            <th><span jhiTranslate="debidadefensaApp.pagos.tipoServicioPagos">Tipo Servicio Pagos</span></th>
+            <th><span jhiTranslate="debidadefensaApp.pagos.tipoServicio">Tipo Servicio</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let pagos of pagos ;trackBy: trackId">
                 <td><a [routerLink]="['../pagos', pagos.id ]">{{pagos.id}}</a></td>
-                <td>{{pagos.tipoServicio}}</td>
-                <td>{{pagos.idServicio}}</td>
                 <td>{{pagos.cantidad}}</td>
-                <td>{{pagos.fecha | date:'medium'}}</td>
+                <td>{{pagos.fecha | date:'mediumDate'}}</td>
                 <td>{{pagos.formaPago}}</td>
                 <td>{{pagos.tipoAbono}}</td>
                 <td>
@@ -68,8 +64,8 @@
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="pagos.tipoServicioPagosId">
-                        <a [routerLink]="['../tipo-servicio', pagos.tipoServicioPagosId  ]" >{{pagos.tipoServicioPagosId}}</a>
+                    <div *ngIf="pagos.tipoServicioId">
+                        <a [routerLink]="['../tipo-servicio', pagos.tipoServicioId  ]" >{{pagos.tipoServicioId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

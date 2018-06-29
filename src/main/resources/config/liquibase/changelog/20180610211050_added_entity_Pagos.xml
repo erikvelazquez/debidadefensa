@@ -21,19 +21,11 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="tipo_servicio" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="id_servicio" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <column name="cantidad" type="${floatType}">
                 <constraints nullable="true" />
             </column>
 
-            <column name="fecha" type="timestamp">
+            <column name="fecha" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -56,12 +48,13 @@
             <column name="tramite_general_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="tipo_servicio_pagos_id" type="bigint">
-                <constraints unique="true" nullable="true" />
+
+            <column name="tipo_servicio_id" type="bigint">
+                <constraints nullable="true" />
             </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="pagos" columnName="fecha" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

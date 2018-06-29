@@ -26,9 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static com.debidadefensa.web.rest.TestUtil.createFormattingConversionService;
@@ -46,17 +44,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DebidadefensaApp.class)
 public class FechasServicioResourceIntTest {
 
-    private static final String DEFAULT_TIPO_SERVICIO = "AAAAAAAAAA";
-    private static final String UPDATED_TIPO_SERVICIO = "BBBBBBBBBB";
-
-    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_HORA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_HORA = LocalDate.now(ZoneId.systemDefault());
+    private static final Long DEFAULT_HORA = 1L;
+    private static final Long UPDATED_HORA = 2L;
 
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
@@ -108,7 +103,6 @@ public class FechasServicioResourceIntTest {
      */
     public static FechasServicio createEntity(EntityManager em) {
         FechasServicio fechasServicio = new FechasServicio()
-            .tipoServicio(DEFAULT_TIPO_SERVICIO)
             .fecha(DEFAULT_FECHA)
             .descripcion(DEFAULT_DESCRIPCION)
             .hora(DEFAULT_HORA)
@@ -138,7 +132,6 @@ public class FechasServicioResourceIntTest {
         List<FechasServicio> fechasServicioList = fechasServicioRepository.findAll();
         assertThat(fechasServicioList).hasSize(databaseSizeBeforeCreate + 1);
         FechasServicio testFechasServicio = fechasServicioList.get(fechasServicioList.size() - 1);
-        assertThat(testFechasServicio.getTipoServicio()).isEqualTo(DEFAULT_TIPO_SERVICIO);
         assertThat(testFechasServicio.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testFechasServicio.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
         assertThat(testFechasServicio.getHora()).isEqualTo(DEFAULT_HORA);
@@ -180,10 +173,9 @@ public class FechasServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fechasServicio.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoServicio").value(hasItem(DEFAULT_TIPO_SERVICIO.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].hora").value(hasItem(DEFAULT_HORA.toString())))
+            .andExpect(jsonPath("$.[*].hora").value(hasItem(DEFAULT_HORA.intValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
     }
 
@@ -198,10 +190,9 @@ public class FechasServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(fechasServicio.getId().intValue()))
-            .andExpect(jsonPath("$.tipoServicio").value(DEFAULT_TIPO_SERVICIO.toString()))
             .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
             .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
-            .andExpect(jsonPath("$.hora").value(DEFAULT_HORA.toString()))
+            .andExpect(jsonPath("$.hora").value(DEFAULT_HORA.intValue()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
     }
 
@@ -226,7 +217,6 @@ public class FechasServicioResourceIntTest {
         // Disconnect from session so that the updates on updatedFechasServicio are not directly saved in db
         em.detach(updatedFechasServicio);
         updatedFechasServicio
-            .tipoServicio(UPDATED_TIPO_SERVICIO)
             .fecha(UPDATED_FECHA)
             .descripcion(UPDATED_DESCRIPCION)
             .hora(UPDATED_HORA)
@@ -242,7 +232,6 @@ public class FechasServicioResourceIntTest {
         List<FechasServicio> fechasServicioList = fechasServicioRepository.findAll();
         assertThat(fechasServicioList).hasSize(databaseSizeBeforeUpdate);
         FechasServicio testFechasServicio = fechasServicioList.get(fechasServicioList.size() - 1);
-        assertThat(testFechasServicio.getTipoServicio()).isEqualTo(UPDATED_TIPO_SERVICIO);
         assertThat(testFechasServicio.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testFechasServicio.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
         assertThat(testFechasServicio.getHora()).isEqualTo(UPDATED_HORA);
@@ -306,10 +295,9 @@ public class FechasServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fechasServicio.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoServicio").value(hasItem(DEFAULT_TIPO_SERVICIO.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].hora").value(hasItem(DEFAULT_HORA.toString())))
+            .andExpect(jsonPath("$.[*].hora").value(hasItem(DEFAULT_HORA.intValue())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
     }
 

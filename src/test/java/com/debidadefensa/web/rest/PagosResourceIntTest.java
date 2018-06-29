@@ -25,8 +25,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static com.debidadefensa.web.rest.TestUtil.createFormattingConversionService;
@@ -44,17 +44,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DebidadefensaApp.class)
 public class PagosResourceIntTest {
 
-    private static final String DEFAULT_TIPO_SERVICIO = "AAAAAAAAAA";
-    private static final String UPDATED_TIPO_SERVICIO = "BBBBBBBBBB";
-
-    private static final Long DEFAULT_ID_SERVICIO = 1L;
-    private static final Long UPDATED_ID_SERVICIO = 2L;
-
     private static final Float DEFAULT_CANTIDAD = 1F;
     private static final Float UPDATED_CANTIDAD = 2F;
 
-    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_FORMA_PAGO = "AAAAAAAAAA";
     private static final String UPDATED_FORMA_PAGO = "BBBBBBBBBB";
@@ -109,8 +103,6 @@ public class PagosResourceIntTest {
      */
     public static Pagos createEntity(EntityManager em) {
         Pagos pagos = new Pagos()
-            .tipoServicio(DEFAULT_TIPO_SERVICIO)
-            .idServicio(DEFAULT_ID_SERVICIO)
             .cantidad(DEFAULT_CANTIDAD)
             .fecha(DEFAULT_FECHA)
             .formaPago(DEFAULT_FORMA_PAGO)
@@ -140,8 +132,6 @@ public class PagosResourceIntTest {
         List<Pagos> pagosList = pagosRepository.findAll();
         assertThat(pagosList).hasSize(databaseSizeBeforeCreate + 1);
         Pagos testPagos = pagosList.get(pagosList.size() - 1);
-        assertThat(testPagos.getTipoServicio()).isEqualTo(DEFAULT_TIPO_SERVICIO);
-        assertThat(testPagos.getIdServicio()).isEqualTo(DEFAULT_ID_SERVICIO);
         assertThat(testPagos.getCantidad()).isEqualTo(DEFAULT_CANTIDAD);
         assertThat(testPagos.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testPagos.getFormaPago()).isEqualTo(DEFAULT_FORMA_PAGO);
@@ -183,8 +173,6 @@ public class PagosResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pagos.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoServicio").value(hasItem(DEFAULT_TIPO_SERVICIO.toString())))
-            .andExpect(jsonPath("$.[*].idServicio").value(hasItem(DEFAULT_ID_SERVICIO.intValue())))
             .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.doubleValue())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].formaPago").value(hasItem(DEFAULT_FORMA_PAGO.toString())))
@@ -202,8 +190,6 @@ public class PagosResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(pagos.getId().intValue()))
-            .andExpect(jsonPath("$.tipoServicio").value(DEFAULT_TIPO_SERVICIO.toString()))
-            .andExpect(jsonPath("$.idServicio").value(DEFAULT_ID_SERVICIO.intValue()))
             .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD.doubleValue()))
             .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
             .andExpect(jsonPath("$.formaPago").value(DEFAULT_FORMA_PAGO.toString()))
@@ -231,8 +217,6 @@ public class PagosResourceIntTest {
         // Disconnect from session so that the updates on updatedPagos are not directly saved in db
         em.detach(updatedPagos);
         updatedPagos
-            .tipoServicio(UPDATED_TIPO_SERVICIO)
-            .idServicio(UPDATED_ID_SERVICIO)
             .cantidad(UPDATED_CANTIDAD)
             .fecha(UPDATED_FECHA)
             .formaPago(UPDATED_FORMA_PAGO)
@@ -248,8 +232,6 @@ public class PagosResourceIntTest {
         List<Pagos> pagosList = pagosRepository.findAll();
         assertThat(pagosList).hasSize(databaseSizeBeforeUpdate);
         Pagos testPagos = pagosList.get(pagosList.size() - 1);
-        assertThat(testPagos.getTipoServicio()).isEqualTo(UPDATED_TIPO_SERVICIO);
-        assertThat(testPagos.getIdServicio()).isEqualTo(UPDATED_ID_SERVICIO);
         assertThat(testPagos.getCantidad()).isEqualTo(UPDATED_CANTIDAD);
         assertThat(testPagos.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testPagos.getFormaPago()).isEqualTo(UPDATED_FORMA_PAGO);
@@ -313,8 +295,6 @@ public class PagosResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pagos.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoServicio").value(hasItem(DEFAULT_TIPO_SERVICIO.toString())))
-            .andExpect(jsonPath("$.[*].idServicio").value(hasItem(DEFAULT_ID_SERVICIO.intValue())))
             .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.doubleValue())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].formaPago").value(hasItem(DEFAULT_FORMA_PAGO.toString())))

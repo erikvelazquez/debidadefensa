@@ -25,8 +25,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static com.debidadefensa.web.rest.TestUtil.createFormattingConversionService;
@@ -59,14 +59,14 @@ public class TramiteMigratorioResourceIntTest {
     private static final String DEFAULT_CONTRASENIA_NUT = "AAAAAAAAAA";
     private static final String UPDATED_CONTRASENIA_NUT = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_FECHA_INGRESO = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA_INGRESO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_FECHA_INGRESO = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA_INGRESO = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Instant DEFAULT_FECHA_NOTIFICACION = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA_NOTIFICACION = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_FECHA_NOTIFICACION = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA_NOTIFICACION = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Instant DEFAULT_FECHA_RESOLUCION = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA_RESOLUCION = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_FECHA_RESOLUCION = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA_RESOLUCION = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_ARCHIVO = "AAAAAAAAAA";
     private static final String UPDATED_ARCHIVO = "BBBBBBBBBB";

@@ -1,7 +1,7 @@
 package com.debidadefensa.service.dto;
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,11 +24,11 @@ public class TramiteMigratorioDTO implements Serializable {
 
     private String contraseniaNUT;
 
-    private Instant fechaIngreso;
+    private LocalDate fechaIngreso;
 
-    private Instant fechaNotificacion;
+    private LocalDate fechaNotificacion;
 
-    private Instant fechaResolucion;
+    private LocalDate fechaResolucion;
 
     private String archivo;
 
@@ -88,27 +88,27 @@ public class TramiteMigratorioDTO implements Serializable {
         this.contraseniaNUT = contraseniaNUT;
     }
 
-    public Instant getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Instant fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Instant getFechaNotificacion() {
+    public LocalDate getFechaNotificacion() {
         return fechaNotificacion;
     }
 
-    public void setFechaNotificacion(Instant fechaNotificacion) {
+    public void setFechaNotificacion(LocalDate fechaNotificacion) {
         this.fechaNotificacion = fechaNotificacion;
     }
 
-    public Instant getFechaResolucion() {
+    public LocalDate getFechaResolucion() {
         return fechaResolucion;
     }
 
-    public void setFechaResolucion(Instant fechaResolucion) {
+    public void setFechaResolucion(LocalDate fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
 

@@ -42,12 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DebidadefensaApp.class)
 public class CostoServicioResourceIntTest {
 
-    private static final String DEFAULT_TIPO_SERVICIO = "AAAAAAAAAA";
-    private static final String UPDATED_TIPO_SERVICIO = "BBBBBBBBBB";
-
-    private static final Long DEFAULT_ID_SERVICIO = 1L;
-    private static final Long UPDATED_ID_SERVICIO = 2L;
-
     private static final String DEFAULT_TIPO_COSTO = "AAAAAAAAAA";
     private static final String UPDATED_TIPO_COSTO = "BBBBBBBBBB";
 
@@ -104,8 +98,6 @@ public class CostoServicioResourceIntTest {
      */
     public static CostoServicio createEntity(EntityManager em) {
         CostoServicio costoServicio = new CostoServicio()
-            .tipoServicio(DEFAULT_TIPO_SERVICIO)
-            .idServicio(DEFAULT_ID_SERVICIO)
             .tipoCosto(DEFAULT_TIPO_COSTO)
             .concepto(DEFAULT_CONCEPTO)
             .costo(DEFAULT_COSTO);
@@ -134,8 +126,6 @@ public class CostoServicioResourceIntTest {
         List<CostoServicio> costoServicioList = costoServicioRepository.findAll();
         assertThat(costoServicioList).hasSize(databaseSizeBeforeCreate + 1);
         CostoServicio testCostoServicio = costoServicioList.get(costoServicioList.size() - 1);
-        assertThat(testCostoServicio.getTipoServicio()).isEqualTo(DEFAULT_TIPO_SERVICIO);
-        assertThat(testCostoServicio.getIdServicio()).isEqualTo(DEFAULT_ID_SERVICIO);
         assertThat(testCostoServicio.getTipoCosto()).isEqualTo(DEFAULT_TIPO_COSTO);
         assertThat(testCostoServicio.getConcepto()).isEqualTo(DEFAULT_CONCEPTO);
         assertThat(testCostoServicio.getCosto()).isEqualTo(DEFAULT_COSTO);
@@ -176,8 +166,6 @@ public class CostoServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(costoServicio.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoServicio").value(hasItem(DEFAULT_TIPO_SERVICIO.toString())))
-            .andExpect(jsonPath("$.[*].idServicio").value(hasItem(DEFAULT_ID_SERVICIO.intValue())))
             .andExpect(jsonPath("$.[*].tipoCosto").value(hasItem(DEFAULT_TIPO_COSTO.toString())))
             .andExpect(jsonPath("$.[*].concepto").value(hasItem(DEFAULT_CONCEPTO.toString())))
             .andExpect(jsonPath("$.[*].costo").value(hasItem(DEFAULT_COSTO.doubleValue())));
@@ -194,8 +182,6 @@ public class CostoServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(costoServicio.getId().intValue()))
-            .andExpect(jsonPath("$.tipoServicio").value(DEFAULT_TIPO_SERVICIO.toString()))
-            .andExpect(jsonPath("$.idServicio").value(DEFAULT_ID_SERVICIO.intValue()))
             .andExpect(jsonPath("$.tipoCosto").value(DEFAULT_TIPO_COSTO.toString()))
             .andExpect(jsonPath("$.concepto").value(DEFAULT_CONCEPTO.toString()))
             .andExpect(jsonPath("$.costo").value(DEFAULT_COSTO.doubleValue()));
@@ -222,8 +208,6 @@ public class CostoServicioResourceIntTest {
         // Disconnect from session so that the updates on updatedCostoServicio are not directly saved in db
         em.detach(updatedCostoServicio);
         updatedCostoServicio
-            .tipoServicio(UPDATED_TIPO_SERVICIO)
-            .idServicio(UPDATED_ID_SERVICIO)
             .tipoCosto(UPDATED_TIPO_COSTO)
             .concepto(UPDATED_CONCEPTO)
             .costo(UPDATED_COSTO);
@@ -238,8 +222,6 @@ public class CostoServicioResourceIntTest {
         List<CostoServicio> costoServicioList = costoServicioRepository.findAll();
         assertThat(costoServicioList).hasSize(databaseSizeBeforeUpdate);
         CostoServicio testCostoServicio = costoServicioList.get(costoServicioList.size() - 1);
-        assertThat(testCostoServicio.getTipoServicio()).isEqualTo(UPDATED_TIPO_SERVICIO);
-        assertThat(testCostoServicio.getIdServicio()).isEqualTo(UPDATED_ID_SERVICIO);
         assertThat(testCostoServicio.getTipoCosto()).isEqualTo(UPDATED_TIPO_COSTO);
         assertThat(testCostoServicio.getConcepto()).isEqualTo(UPDATED_CONCEPTO);
         assertThat(testCostoServicio.getCosto()).isEqualTo(UPDATED_COSTO);
@@ -302,8 +284,6 @@ public class CostoServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(costoServicio.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tipoServicio").value(hasItem(DEFAULT_TIPO_SERVICIO.toString())))
-            .andExpect(jsonPath("$.[*].idServicio").value(hasItem(DEFAULT_ID_SERVICIO.intValue())))
             .andExpect(jsonPath("$.[*].tipoCosto").value(hasItem(DEFAULT_TIPO_COSTO.toString())))
             .andExpect(jsonPath("$.[*].concepto").value(hasItem(DEFAULT_CONCEPTO.toString())))
             .andExpect(jsonPath("$.[*].costo").value(hasItem(DEFAULT_COSTO.doubleValue())));

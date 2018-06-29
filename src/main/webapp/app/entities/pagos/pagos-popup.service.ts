@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { Pagos } from './pagos.model';
 import { PagosService } from './pagos.service';
 
@@ -11,7 +10,6 @@ export class PagosPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private pagosService: PagosService
@@ -31,8 +29,13 @@ export class PagosPopupService {
                 this.pagosService.find(id)
                     .subscribe((pagosResponse: HttpResponse<Pagos>) => {
                         const pagos: Pagos = pagosResponse.body;
-                        pagos.fecha = this.datePipe
-                            .transform(pagos.fecha, 'yyyy-MM-ddTHH:mm:ss');
+                        if (pagos.fecha) {
+                            pagos.fecha = {
+                                year: pagos.fecha.getFullYear(),
+                                month: pagos.fecha.getMonth() + 1,
+                                day: pagos.fecha.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.pagosModalRef(component, pagos);
                         resolve(this.ngbModalRef);
                     });

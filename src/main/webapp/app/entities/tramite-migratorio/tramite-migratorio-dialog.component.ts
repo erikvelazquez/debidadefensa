@@ -27,6 +27,9 @@ export class TramiteMigratorioDialogComponent implements OnInit {
     estatustramitemigratorios: Estatus[];
 
     tramiteasociados: TramiteAsociado[];
+    fechaIngresoDp: any;
+    fechaNotificacionDp: any;
+    fechaResolucionDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,

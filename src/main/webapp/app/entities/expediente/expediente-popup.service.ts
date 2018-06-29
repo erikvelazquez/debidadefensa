@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { Expediente } from './expediente.model';
 import { ExpedienteService } from './expediente.service';
 
@@ -11,7 +10,6 @@ export class ExpedientePopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private expedienteService: ExpedienteService
@@ -31,15 +29,18 @@ export class ExpedientePopupService {
                 this.expedienteService.find(id)
                     .subscribe((expedienteResponse: HttpResponse<Expediente>) => {
                         const expediente: Expediente = expedienteResponse.body;
-                        expediente.fechaAlta = this.datePipe
-                            .transform(expediente.fechaAlta, 'yyyy-MM-ddTHH:mm:ss');
-                        expediente.fechaSentencia = this.datePipe
-                            .transform(expediente.fechaSentencia, 'yyyy-MM-ddTHH:mm:ss');
-                        if (expediente.fecPrueba) {
-                            expediente.fecPrueba = {
-                                year: expediente.fecPrueba.getFullYear(),
-                                month: expediente.fecPrueba.getMonth() + 1,
-                                day: expediente.fecPrueba.getDate()
+                        if (expediente.fechaAlta) {
+                            expediente.fechaAlta = {
+                                year: expediente.fechaAlta.getFullYear(),
+                                month: expediente.fechaAlta.getMonth() + 1,
+                                day: expediente.fechaAlta.getDate()
+                            };
+                        }
+                        if (expediente.fechaSentencia) {
+                            expediente.fechaSentencia = {
+                                year: expediente.fechaSentencia.getFullYear(),
+                                month: expediente.fechaSentencia.getMonth() + 1,
+                                day: expediente.fechaSentencia.getDate()
                             };
                         }
                         this.ngbModalRef = this.expedienteModalRef(component, expediente);

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -42,13 +42,13 @@ public class TramiteMigratorio implements Serializable {
     private String contraseniaNUT;
 
     @Column(name = "fecha_ingreso")
-    private Instant fechaIngreso;
+    private LocalDate fechaIngreso;
 
     @Column(name = "fecha_notificacion")
-    private Instant fechaNotificacion;
+    private LocalDate fechaNotificacion;
 
     @Column(name = "fecha_resolucion")
-    private Instant fechaResolucion;
+    private LocalDate fechaResolucion;
 
     @Column(name = "archivo")
     private String archivo;
@@ -159,42 +159,42 @@ public class TramiteMigratorio implements Serializable {
         this.contraseniaNUT = contraseniaNUT;
     }
 
-    public Instant getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public TramiteMigratorio fechaIngreso(Instant fechaIngreso) {
+    public TramiteMigratorio fechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
         return this;
     }
 
-    public void setFechaIngreso(Instant fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Instant getFechaNotificacion() {
+    public LocalDate getFechaNotificacion() {
         return fechaNotificacion;
     }
 
-    public TramiteMigratorio fechaNotificacion(Instant fechaNotificacion) {
+    public TramiteMigratorio fechaNotificacion(LocalDate fechaNotificacion) {
         this.fechaNotificacion = fechaNotificacion;
         return this;
     }
 
-    public void setFechaNotificacion(Instant fechaNotificacion) {
+    public void setFechaNotificacion(LocalDate fechaNotificacion) {
         this.fechaNotificacion = fechaNotificacion;
     }
 
-    public Instant getFechaResolucion() {
+    public LocalDate getFechaResolucion() {
         return fechaResolucion;
     }
 
-    public TramiteMigratorio fechaResolucion(Instant fechaResolucion) {
+    public TramiteMigratorio fechaResolucion(LocalDate fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
         return this;
     }
 
-    public void setFechaResolucion(Instant fechaResolucion) {
+    public void setFechaResolucion(LocalDate fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
 

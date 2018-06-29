@@ -14,13 +14,13 @@ public interface CostoServicioMapper extends EntityMapper<CostoServicioDTO, Cost
     @Mapping(source = "expediente.id", target = "expedienteId")
     @Mapping(source = "tramiteMigratorio.id", target = "tramiteMigratorioId")
     @Mapping(source = "tramiteGeneral.id", target = "tramiteGeneralId")
-    @Mapping(source = "tipoServicioCostoServicio.id", target = "tipoServicioCostoServicioId")
+    @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
     CostoServicioDTO toDto(CostoServicio costoServicio);
 
     @Mapping(source = "expedienteId", target = "expediente")
     @Mapping(source = "tramiteMigratorioId", target = "tramiteMigratorio")
     @Mapping(source = "tramiteGeneralId", target = "tramiteGeneral")
-    @Mapping(source = "tipoServicioCostoServicioId", target = "tipoServicioCostoServicio")
+    @Mapping(source = "tipoServicioId", target = "tipoServicio")
     CostoServicio toEntity(CostoServicioDTO costoServicioDTO);
 
     default CostoServicio fromId(Long id) {

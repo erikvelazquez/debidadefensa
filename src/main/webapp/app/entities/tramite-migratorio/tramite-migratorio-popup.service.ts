@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { TramiteMigratorio } from './tramite-migratorio.model';
 import { TramiteMigratorioService } from './tramite-migratorio.service';
 
@@ -11,7 +10,6 @@ export class TramiteMigratorioPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private tramiteMigratorioService: TramiteMigratorioService
@@ -31,12 +29,27 @@ export class TramiteMigratorioPopupService {
                 this.tramiteMigratorioService.find(id)
                     .subscribe((tramiteMigratorioResponse: HttpResponse<TramiteMigratorio>) => {
                         const tramiteMigratorio: TramiteMigratorio = tramiteMigratorioResponse.body;
-                        tramiteMigratorio.fechaIngreso = this.datePipe
-                            .transform(tramiteMigratorio.fechaIngreso, 'yyyy-MM-ddTHH:mm:ss');
-                        tramiteMigratorio.fechaNotificacion = this.datePipe
-                            .transform(tramiteMigratorio.fechaNotificacion, 'yyyy-MM-ddTHH:mm:ss');
-                        tramiteMigratorio.fechaResolucion = this.datePipe
-                            .transform(tramiteMigratorio.fechaResolucion, 'yyyy-MM-ddTHH:mm:ss');
+                        if (tramiteMigratorio.fechaIngreso) {
+                            tramiteMigratorio.fechaIngreso = {
+                                year: tramiteMigratorio.fechaIngreso.getFullYear(),
+                                month: tramiteMigratorio.fechaIngreso.getMonth() + 1,
+                                day: tramiteMigratorio.fechaIngreso.getDate()
+                            };
+                        }
+                        if (tramiteMigratorio.fechaNotificacion) {
+                            tramiteMigratorio.fechaNotificacion = {
+                                year: tramiteMigratorio.fechaNotificacion.getFullYear(),
+                                month: tramiteMigratorio.fechaNotificacion.getMonth() + 1,
+                                day: tramiteMigratorio.fechaNotificacion.getDate()
+                            };
+                        }
+                        if (tramiteMigratorio.fechaResolucion) {
+                            tramiteMigratorio.fechaResolucion = {
+                                year: tramiteMigratorio.fechaResolucion.getFullYear(),
+                                month: tramiteMigratorio.fechaResolucion.getMonth() + 1,
+                                day: tramiteMigratorio.fechaResolucion.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.tramiteMigratorioModalRef(component, tramiteMigratorio);
                         resolve(this.ngbModalRef);
                     });

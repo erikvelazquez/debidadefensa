@@ -14,13 +14,13 @@ public interface PagosMapper extends EntityMapper<PagosDTO, Pagos> {
     @Mapping(source = "expediente.id", target = "expedienteId")
     @Mapping(source = "tramiteMigratorio.id", target = "tramiteMigratorioId")
     @Mapping(source = "tramiteGeneral.id", target = "tramiteGeneralId")
-    @Mapping(source = "tipoServicioPagos.id", target = "tipoServicioPagosId")
+    @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
     PagosDTO toDto(Pagos pagos);
 
     @Mapping(source = "expedienteId", target = "expediente")
     @Mapping(source = "tramiteMigratorioId", target = "tramiteMigratorio")
     @Mapping(source = "tramiteGeneralId", target = "tramiteGeneral")
-    @Mapping(source = "tipoServicioPagosId", target = "tipoServicioPagos")
+    @Mapping(source = "tipoServicioId", target = "tipoServicio")
     Pagos toEntity(PagosDTO pagosDTO);
 
     default Pagos fromId(Long id) {

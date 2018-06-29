@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -23,17 +23,11 @@ public class Pagos implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "tipo_servicio")
-    private String tipoServicio;
-
-    @Column(name = "id_servicio")
-    private Long idServicio;
-
     @Column(name = "cantidad")
     private Float cantidad;
 
     @Column(name = "fecha")
-    private Instant fecha;
+    private LocalDate fecha;
 
     @Column(name = "forma_pago")
     private String formaPago;
@@ -50,9 +44,8 @@ public class Pagos implements Serializable {
     @ManyToOne
     private TramiteGeneral tramiteGeneral;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private TipoServicio tipoServicioPagos;
+    @ManyToOne
+    private TipoServicio tipoServicio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -61,32 +54,6 @@ public class Pagos implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public Pagos tipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-        return this;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public Long getIdServicio() {
-        return idServicio;
-    }
-
-    public Pagos idServicio(Long idServicio) {
-        this.idServicio = idServicio;
-        return this;
-    }
-
-    public void setIdServicio(Long idServicio) {
-        this.idServicio = idServicio;
     }
 
     public Float getCantidad() {
@@ -102,16 +69,16 @@ public class Pagos implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public Pagos fecha(Instant fecha) {
+    public Pagos fecha(LocalDate fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -180,17 +147,17 @@ public class Pagos implements Serializable {
         this.tramiteGeneral = tramiteGeneral;
     }
 
-    public TipoServicio getTipoServicioPagos() {
-        return tipoServicioPagos;
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
     }
 
-    public Pagos tipoServicioPagos(TipoServicio tipoServicio) {
-        this.tipoServicioPagos = tipoServicio;
+    public Pagos tipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
         return this;
     }
 
-    public void setTipoServicioPagos(TipoServicio tipoServicio) {
-        this.tipoServicioPagos = tipoServicio;
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -218,8 +185,6 @@ public class Pagos implements Serializable {
     public String toString() {
         return "Pagos{" +
             "id=" + getId() +
-            ", tipoServicio='" + getTipoServicio() + "'" +
-            ", idServicio=" + getIdServicio() +
             ", cantidad=" + getCantidad() +
             ", fecha='" + getFecha() + "'" +
             ", formaPago='" + getFormaPago() + "'" +

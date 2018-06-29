@@ -71,11 +71,9 @@ export class ExpedienteService {
     private convertItemFromServer(expediente: Expediente): Expediente {
         const copy: Expediente = Object.assign({}, expediente);
         copy.fechaAlta = this.dateUtils
-            .convertDateTimeFromServer(expediente.fechaAlta);
+            .convertLocalDateFromServer(expediente.fechaAlta);
         copy.fechaSentencia = this.dateUtils
-            .convertDateTimeFromServer(expediente.fechaSentencia);
-        copy.fecPrueba = this.dateUtils
-            .convertLocalDateFromServer(expediente.fecPrueba);
+            .convertLocalDateFromServer(expediente.fechaSentencia);
         return copy;
     }
 
@@ -84,12 +82,10 @@ export class ExpedienteService {
      */
     private convert(expediente: Expediente): Expediente {
         const copy: Expediente = Object.assign({}, expediente);
-
-        copy.fechaAlta = this.dateUtils.toDate(expediente.fechaAlta);
-
-        copy.fechaSentencia = this.dateUtils.toDate(expediente.fechaSentencia);
-        copy.fecPrueba = this.dateUtils
-            .convertLocalDateToServer(expediente.fecPrueba);
+        copy.fechaAlta = this.dateUtils
+            .convertLocalDateToServer(expediente.fechaAlta);
+        copy.fechaSentencia = this.dateUtils
+            .convertLocalDateToServer(expediente.fechaSentencia);
         return copy;
     }
 }

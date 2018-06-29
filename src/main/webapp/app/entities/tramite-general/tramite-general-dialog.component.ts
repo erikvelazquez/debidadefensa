@@ -27,6 +27,9 @@ export class TramiteGeneralDialogComponent implements OnInit {
     estatustramitegenerals: Estatus[];
 
     tramiteasociados: TramiteAsociado[];
+    fechaIngresoDp: any;
+    fechaResolucionDp: any;
+    fechaNotificacionDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,

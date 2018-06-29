@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { TramiteGeneral } from './tramite-general.model';
 import { TramiteGeneralService } from './tramite-general.service';
 
@@ -11,7 +10,6 @@ export class TramiteGeneralPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private tramiteGeneralService: TramiteGeneralService
@@ -31,12 +29,27 @@ export class TramiteGeneralPopupService {
                 this.tramiteGeneralService.find(id)
                     .subscribe((tramiteGeneralResponse: HttpResponse<TramiteGeneral>) => {
                         const tramiteGeneral: TramiteGeneral = tramiteGeneralResponse.body;
-                        tramiteGeneral.fechaIngreso = this.datePipe
-                            .transform(tramiteGeneral.fechaIngreso, 'yyyy-MM-ddTHH:mm:ss');
-                        tramiteGeneral.fechaResolucion = this.datePipe
-                            .transform(tramiteGeneral.fechaResolucion, 'yyyy-MM-ddTHH:mm:ss');
-                        tramiteGeneral.fechaNotificacion = this.datePipe
-                            .transform(tramiteGeneral.fechaNotificacion, 'yyyy-MM-ddTHH:mm:ss');
+                        if (tramiteGeneral.fechaIngreso) {
+                            tramiteGeneral.fechaIngreso = {
+                                year: tramiteGeneral.fechaIngreso.getFullYear(),
+                                month: tramiteGeneral.fechaIngreso.getMonth() + 1,
+                                day: tramiteGeneral.fechaIngreso.getDate()
+                            };
+                        }
+                        if (tramiteGeneral.fechaResolucion) {
+                            tramiteGeneral.fechaResolucion = {
+                                year: tramiteGeneral.fechaResolucion.getFullYear(),
+                                month: tramiteGeneral.fechaResolucion.getMonth() + 1,
+                                day: tramiteGeneral.fechaResolucion.getDate()
+                            };
+                        }
+                        if (tramiteGeneral.fechaNotificacion) {
+                            tramiteGeneral.fechaNotificacion = {
+                                year: tramiteGeneral.fechaNotificacion.getFullYear(),
+                                month: tramiteGeneral.fechaNotificacion.getMonth() + 1,
+                                day: tramiteGeneral.fechaNotificacion.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.tramiteGeneralModalRef(component, tramiteGeneral);
                         resolve(this.ngbModalRef);
                     });

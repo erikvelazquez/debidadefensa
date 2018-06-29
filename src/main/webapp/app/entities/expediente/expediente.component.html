@@ -29,34 +29,30 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="juzgado"><span jhiTranslate="debidadefensaApp.expediente.juzgado">Juzgado</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="numeroExpediente"><span jhiTranslate="debidadefensaApp.expediente.numeroExpediente">Numero Expediente</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="juzgado"><span jhiTranslate="debidadefensaApp.expediente.juzgado">Juzgado</span> <span class="fa fa-sort"></span></th>
+            
             <th jhiSortBy="juicio"><span jhiTranslate="debidadefensaApp.expediente.juicio">Juicio</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="responsable"><span jhiTranslate="debidadefensaApp.expediente.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.expediente.archivo">Archivo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="observaciones"><span jhiTranslate="debidadefensaApp.expediente.observaciones">Observaciones</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaAlta"><span jhiTranslate="debidadefensaApp.expediente.fechaAlta">Fecha Alta</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaSentencia"><span jhiTranslate="debidadefensaApp.expediente.fechaSentencia">Fecha Sentencia</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fecPrueba"><span jhiTranslate="debidadefensaApp.expediente.fecPrueba">Fec Prueba</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="clienteId"><span jhiTranslate="debidadefensaApp.expediente.cliente">Cliente</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="estatusExpedienteId"><span jhiTranslate="debidadefensaApp.expediente.estatusExpediente">Estatus Expediente</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="tipoServicioId"><span jhiTranslate="debidadefensaApp.expediente.tipoServicio">Tipo Servicio</span> <span class="fa fa-sort"></span></th>
+            
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let expediente of expedientes ;trackBy: trackId">
-                <td><a [routerLink]="['../expediente', expediente.id ]">{{expediente.id}}</a></td>
+                <td><a [routerLink]="['../expediente', expediente.id ]">{{expediente.numeroExpediente}}</a></td>
                 <td>{{expediente.juzgado}}</td>
-                <td>{{expediente.numeroExpediente}}</td>
+      
                 <td>{{expediente.juicio}}</td>
                 <td>{{expediente.responsable}}</td>
-                <td>{{expediente.archivo}}</td>
                 <td>{{expediente.observaciones}}</td>
-                <td>{{expediente.fechaAlta | date:'medium'}}</td>
-                <td>{{expediente.fechaSentencia | date:'medium'}}</td>
-                <td>{{expediente.fecPrueba | date:'mediumDate'}}</td>
+                <td>{{expediente.fechaAlta | date:'mediumDate'}}</td>
+                <td>{{expediente.fechaSentencia | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="expediente.clienteId">
                         <a [routerLink]="['../cliente', expediente.clienteId  ]" >{{expediente.clienteId}}</a>
@@ -67,19 +63,15 @@
                         <a [routerLink]="['../estatus', expediente.estatusExpedienteId  ]" >{{expediente.estatusExpedienteId}}</a>
                     </div>
                 </td>
-                <td>
-                    <div *ngIf="expediente.tipoServicioId">
-                        <a [routerLink]="['../tipo-servicio', expediente.tipoServicioId  ]" >{{expediente.tipoServicioId}}</a>
-                    </div>
-                </td>
+              
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                       <!--<button type="submit"
                                 [routerLink]="['../expediente', expediente.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
+                        </button>-->
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/edit'} }]"
                                 replaceUrl="true"

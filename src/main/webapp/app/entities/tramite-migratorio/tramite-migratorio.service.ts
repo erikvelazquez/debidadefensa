@@ -71,11 +71,11 @@ export class TramiteMigratorioService {
     private convertItemFromServer(tramiteMigratorio: TramiteMigratorio): TramiteMigratorio {
         const copy: TramiteMigratorio = Object.assign({}, tramiteMigratorio);
         copy.fechaIngreso = this.dateUtils
-            .convertDateTimeFromServer(tramiteMigratorio.fechaIngreso);
+            .convertLocalDateFromServer(tramiteMigratorio.fechaIngreso);
         copy.fechaNotificacion = this.dateUtils
-            .convertDateTimeFromServer(tramiteMigratorio.fechaNotificacion);
+            .convertLocalDateFromServer(tramiteMigratorio.fechaNotificacion);
         copy.fechaResolucion = this.dateUtils
-            .convertDateTimeFromServer(tramiteMigratorio.fechaResolucion);
+            .convertLocalDateFromServer(tramiteMigratorio.fechaResolucion);
         return copy;
     }
 
@@ -84,12 +84,12 @@ export class TramiteMigratorioService {
      */
     private convert(tramiteMigratorio: TramiteMigratorio): TramiteMigratorio {
         const copy: TramiteMigratorio = Object.assign({}, tramiteMigratorio);
-
-        copy.fechaIngreso = this.dateUtils.toDate(tramiteMigratorio.fechaIngreso);
-
-        copy.fechaNotificacion = this.dateUtils.toDate(tramiteMigratorio.fechaNotificacion);
-
-        copy.fechaResolucion = this.dateUtils.toDate(tramiteMigratorio.fechaResolucion);
+        copy.fechaIngreso = this.dateUtils
+            .convertLocalDateToServer(tramiteMigratorio.fechaIngreso);
+        copy.fechaNotificacion = this.dateUtils
+            .convertLocalDateToServer(tramiteMigratorio.fechaNotificacion);
+        copy.fechaResolucion = this.dateUtils
+            .convertLocalDateToServer(tramiteMigratorio.fechaResolucion);
         return copy;
     }
 }

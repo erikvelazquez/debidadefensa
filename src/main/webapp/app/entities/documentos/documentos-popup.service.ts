@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { Documentos } from './documentos.model';
 import { DocumentosService } from './documentos.service';
 
@@ -11,7 +10,6 @@ export class DocumentosPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private documentosService: DocumentosService
@@ -31,8 +29,13 @@ export class DocumentosPopupService {
                 this.documentosService.find(id)
                     .subscribe((documentosResponse: HttpResponse<Documentos>) => {
                         const documentos: Documentos = documentosResponse.body;
-                        documentos.fecha = this.datePipe
-                            .transform(documentos.fecha, 'yyyy-MM-ddTHH:mm:ss');
+                        if (documentos.fecha) {
+                            documentos.fecha = {
+                                year: documentos.fecha.getFullYear(),
+                                month: documentos.fecha.getMonth() + 1,
+                                day: documentos.fecha.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.documentosModalRef(component, documentos);
                         resolve(this.ngbModalRef);
                     });

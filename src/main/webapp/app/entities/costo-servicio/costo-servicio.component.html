@@ -30,23 +30,19 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="debidadefensaApp.costoServicio.tipoServicio">Tipo Servicio</span></th>
-            <th><span jhiTranslate="debidadefensaApp.costoServicio.idServicio">Id Servicio</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.tipoCosto">Tipo Costo</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.concepto">Concepto</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.costo">Costo</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.expediente">Expediente</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.tramiteMigratorio">Tramite Migratorio</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.tramiteGeneral">Tramite General</span></th>
-            <th><span jhiTranslate="debidadefensaApp.costoServicio.tipoServicioCostoServicio">Tipo Servicio Costo Servicio</span></th>
+            <th><span jhiTranslate="debidadefensaApp.costoServicio.tipoServicio">Tipo Servicio</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let costoServicio of costoServicios ;trackBy: trackId">
                 <td><a [routerLink]="['../costo-servicio', costoServicio.id ]">{{costoServicio.id}}</a></td>
-                <td>{{costoServicio.tipoServicio}}</td>
-                <td>{{costoServicio.idServicio}}</td>
                 <td>{{costoServicio.tipoCosto}}</td>
                 <td>{{costoServicio.concepto}}</td>
                 <td>{{costoServicio.costo}}</td>
@@ -66,8 +62,8 @@
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="costoServicio.tipoServicioCostoServicioId">
-                        <a [routerLink]="['../tipo-servicio', costoServicio.tipoServicioCostoServicioId  ]" >{{costoServicio.tipoServicioCostoServicioId}}</a>
+                    <div *ngIf="costoServicio.tipoServicioId">
+                        <a [routerLink]="['../tipo-servicio', costoServicio.tipoServicioId  ]" >{{costoServicio.tipoServicioId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

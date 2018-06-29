@@ -71,11 +71,11 @@ export class TramiteGeneralService {
     private convertItemFromServer(tramiteGeneral: TramiteGeneral): TramiteGeneral {
         const copy: TramiteGeneral = Object.assign({}, tramiteGeneral);
         copy.fechaIngreso = this.dateUtils
-            .convertDateTimeFromServer(tramiteGeneral.fechaIngreso);
+            .convertLocalDateFromServer(tramiteGeneral.fechaIngreso);
         copy.fechaResolucion = this.dateUtils
-            .convertDateTimeFromServer(tramiteGeneral.fechaResolucion);
+            .convertLocalDateFromServer(tramiteGeneral.fechaResolucion);
         copy.fechaNotificacion = this.dateUtils
-            .convertDateTimeFromServer(tramiteGeneral.fechaNotificacion);
+            .convertLocalDateFromServer(tramiteGeneral.fechaNotificacion);
         return copy;
     }
 
@@ -84,12 +84,12 @@ export class TramiteGeneralService {
      */
     private convert(tramiteGeneral: TramiteGeneral): TramiteGeneral {
         const copy: TramiteGeneral = Object.assign({}, tramiteGeneral);
-
-        copy.fechaIngreso = this.dateUtils.toDate(tramiteGeneral.fechaIngreso);
-
-        copy.fechaResolucion = this.dateUtils.toDate(tramiteGeneral.fechaResolucion);
-
-        copy.fechaNotificacion = this.dateUtils.toDate(tramiteGeneral.fechaNotificacion);
+        copy.fechaIngreso = this.dateUtils
+            .convertLocalDateToServer(tramiteGeneral.fechaIngreso);
+        copy.fechaResolucion = this.dateUtils
+            .convertLocalDateToServer(tramiteGeneral.fechaResolucion);
+        copy.fechaNotificacion = this.dateUtils
+            .convertLocalDateToServer(tramiteGeneral.fechaNotificacion);
         return copy;
     }
 }

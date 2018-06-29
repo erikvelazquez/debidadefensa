@@ -4,14 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="debidadefensaApp.costoServicio.tipoServicio">Tipo Servicio</span></dt>
-        <dd>
-            <span>{{costoServicio.tipoServicio}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.costoServicio.idServicio">Id Servicio</span></dt>
-        <dd>
-            <span>{{costoServicio.idServicio}}</span>
-        </dd>
         <dt><span jhiTranslate="debidadefensaApp.costoServicio.tipoCosto">Tipo Costo</span></dt>
         <dd>
             <span>{{costoServicio.tipoCosto}}</span>
@@ -42,10 +34,10 @@
                 <a [routerLink]="['/tramite-general', costoServicio.tramiteGeneralId]">{{costoServicio.tramiteGeneralId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="debidadefensaApp.costoServicio.tipoServicioCostoServicio">Tipo Servicio Costo Servicio</span></dt>
+        <dt><span jhiTranslate="debidadefensaApp.costoServicio.tipoServicio">Tipo Servicio</span></dt>
         <dd>
-            <div *ngIf="costoServicio.tipoServicioCostoServicioId">
-                <a [routerLink]="['/tipo-servicio', costoServicio.tipoServicioCostoServicioId]">{{costoServicio.tipoServicioCostoServicioId}}</a>
+            <div *ngIf="costoServicio.tipoServicioId">
+                <a [routerLink]="['/tipo-servicio', costoServicio.tipoServicioId]">{{costoServicio.tipoServicioId}}</a>
             </div>
         </dd>
     </dl>

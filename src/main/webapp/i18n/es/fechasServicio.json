@@ -17,7 +17,6 @@
             "detail": {
                 "title": "Fechas Servicio"
             },
-            "tipoServicio": "Tipo Servicio",
             "fecha": "Fecha",
             "descripcion": "Descripcion",
             "hora": "Hora",
@@ -25,7 +24,7 @@
             "expediente": "Expediente",
             "tramiteMigratorio": "Tramite Migratorio",
             "tramiteGeneral": "Tramite General",
-            "tipoServicioFechas": "Tipo Servicio Fechas"
+            "tipoServicio": "Tipo Servicio"
         }
     }
 }

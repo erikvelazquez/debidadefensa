@@ -34,23 +34,32 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaIngreso" for="field_fechaIngreso">Fecha Ingreso</label>
-            <div class="d-flex">
-                <input id="field_fechaIngreso" type="datetime-local" class="form-control" name="fechaIngreso" [(ngModel)]="tramiteGeneral.fechaIngreso"
+            <div class="input-group">
+                <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaIngreso"
                 />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaIngresoDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
-            <div class="d-flex">
-                <input id="field_fechaResolucion" type="datetime-local" class="form-control" name="fechaResolucion" [(ngModel)]="tramiteGeneral.fechaResolucion"
+            <div class="input-group">
+                <input id="field_fechaResolucion" type="text" class="form-control" name="fechaResolucion" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaResolucion"
                 />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaResolucionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
-            <div class="d-flex">
-                <input id="field_fechaNotificacion" type="datetime-local" class="form-control" name="fechaNotificacion" [(ngModel)]="tramiteGeneral.fechaNotificacion"
+            <div class="input-group">
+                <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaNotificacion"
                 />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaNotificacionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
         </div>
         <div class="form-group">

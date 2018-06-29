@@ -25,7 +25,7 @@
             "expedienteAsociado": "Expediente Asociado",
             "tramiteMigratorio": "Tramite Migratorio",
             "tramiteGeneral": "Tramite General",
-            "tipoServicioDocumentos": "Tipo Servicio Documentos"
+            "tipoServicio": "Tipo Servicio"
         }
     }
 }

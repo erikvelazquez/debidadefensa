@@ -15,14 +15,14 @@ public interface DocumentosMapper extends EntityMapper<DocumentosDTO, Documentos
     @Mapping(source = "expedienteAsociado.id", target = "expedienteAsociadoId")
     @Mapping(source = "tramiteMigratorio.id", target = "tramiteMigratorioId")
     @Mapping(source = "tramiteGeneral.id", target = "tramiteGeneralId")
-    @Mapping(source = "tipoServicioDocumentos.id", target = "tipoServicioDocumentosId")
+    @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
     DocumentosDTO toDto(Documentos documentos);
 
     @Mapping(source = "expedienteId", target = "expediente")
     @Mapping(source = "expedienteAsociadoId", target = "expedienteAsociado")
     @Mapping(source = "tramiteMigratorioId", target = "tramiteMigratorio")
     @Mapping(source = "tramiteGeneralId", target = "tramiteGeneral")
-    @Mapping(source = "tipoServicioDocumentosId", target = "tipoServicioDocumentos")
+    @Mapping(source = "tipoServicioId", target = "tipoServicio")
     Documentos toEntity(DocumentosDTO documentosDTO);
 
     default Documentos fromId(Long id) {

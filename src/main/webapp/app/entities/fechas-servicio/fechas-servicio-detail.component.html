@@ -4,13 +4,9 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tipoServicio">Tipo Servicio</span></dt>
-        <dd>
-            <span>{{fechasServicio.tipoServicio}}</span>
-        </dd>
         <dt><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></dt>
         <dd>
-            <span>{{fechasServicio.fecha | date:'medium'}}</span>
+            <span>{{fechasServicio.fecha | date:'mediumDate'}}</span>
         </dd>
         <dt><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripcion</span></dt>
         <dd>
@@ -18,7 +14,7 @@
         </dd>
         <dt><span jhiTranslate="debidadefensaApp.fechasServicio.hora">Hora</span></dt>
         <dd>
-            <span>{{fechasServicio.hora | date:'mediumDate'}}</span>
+            <span>{{fechasServicio.hora}}</span>
         </dd>
         <dt><span jhiTranslate="debidadefensaApp.fechasServicio.observaciones">Observaciones</span></dt>
         <dd>
@@ -42,10 +38,10 @@
                 <a [routerLink]="['/tramite-general', fechasServicio.tramiteGeneralId]">{{fechasServicio.tramiteGeneralId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tipoServicioFechas">Tipo Servicio Fechas</span></dt>
+        <dt><span jhiTranslate="debidadefensaApp.fechasServicio.tipoServicio">Tipo Servicio</span></dt>
         <dd>
-            <div *ngIf="fechasServicio.tipoServicioFechasId">
-                <a [routerLink]="['/tipo-servicio', fechasServicio.tipoServicioFechasId]">{{fechasServicio.tipoServicioFechasId}}</a>
+            <div *ngIf="fechasServicio.tipoServicioId">
+                <a [routerLink]="['/tipo-servicio', fechasServicio.tipoServicioId]">{{fechasServicio.tipoServicioId}}</a>
             </div>
         </dd>
     </dl>

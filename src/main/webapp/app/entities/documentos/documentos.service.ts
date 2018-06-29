@@ -71,7 +71,7 @@ export class DocumentosService {
     private convertItemFromServer(documentos: Documentos): Documentos {
         const copy: Documentos = Object.assign({}, documentos);
         copy.fecha = this.dateUtils
-            .convertDateTimeFromServer(documentos.fecha);
+            .convertLocalDateFromServer(documentos.fecha);
         return copy;
     }
 
@@ -80,8 +80,8 @@ export class DocumentosService {
      */
     private convert(documentos: Documentos): Documentos {
         const copy: Documentos = Object.assign({}, documentos);
-
-        copy.fecha = this.dateUtils.toDate(documentos.fecha);
+        copy.fecha = this.dateUtils
+            .convertLocalDateToServer(documentos.fecha);
         return copy;
     }
 }

@@ -1,7 +1,7 @@
 package com.debidadefensa.service.dto;
 
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +16,7 @@ public class DocumentosDTO implements Serializable {
 
     private String nombreDocumento;
 
-    private Instant fecha;
+    private LocalDate fecha;
 
     private String descripcion;
 
@@ -30,7 +30,7 @@ public class DocumentosDTO implements Serializable {
 
     private Long tramiteGeneralId;
 
-    private Long tipoServicioDocumentosId;
+    private Long tipoServicioId;
 
     public Long getId() {
         return id;
@@ -48,11 +48,11 @@ public class DocumentosDTO implements Serializable {
         this.nombreDocumento = nombreDocumento;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -104,12 +104,12 @@ public class DocumentosDTO implements Serializable {
         this.tramiteGeneralId = tramiteGeneralId;
     }
 
-    public Long getTipoServicioDocumentosId() {
-        return tipoServicioDocumentosId;
+    public Long getTipoServicioId() {
+        return tipoServicioId;
     }
 
-    public void setTipoServicioDocumentosId(Long tipoServicioId) {
-        this.tipoServicioDocumentosId = tipoServicioId;
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     @Override

@@ -13,10 +13,6 @@ public class CostoServicioDTO implements Serializable {
 
     private Long id;
 
-    private String tipoServicio;
-
-    private Long idServicio;
-
     private String tipoCosto;
 
     private String concepto;
@@ -29,7 +25,7 @@ public class CostoServicioDTO implements Serializable {
 
     private Long tramiteGeneralId;
 
-    private Long tipoServicioCostoServicioId;
+    private Long tipoServicioId;
 
     public Long getId() {
         return id;
@@ -37,22 +33,6 @@ public class CostoServicioDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public Long getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(Long idServicio) {
-        this.idServicio = idServicio;
     }
 
     public String getTipoCosto() {
@@ -103,12 +83,12 @@ public class CostoServicioDTO implements Serializable {
         this.tramiteGeneralId = tramiteGeneralId;
     }
 
-    public Long getTipoServicioCostoServicioId() {
-        return tipoServicioCostoServicioId;
+    public Long getTipoServicioId() {
+        return tipoServicioId;
     }
 
-    public void setTipoServicioCostoServicioId(Long tipoServicioId) {
-        this.tipoServicioCostoServicioId = tipoServicioId;
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     @Override
@@ -136,8 +116,6 @@ public class CostoServicioDTO implements Serializable {
     public String toString() {
         return "CostoServicioDTO{" +
             "id=" + getId() +
-            ", tipoServicio='" + getTipoServicio() + "'" +
-            ", idServicio=" + getIdServicio() +
             ", tipoCosto='" + getTipoCosto() + "'" +
             ", concepto='" + getConcepto() + "'" +
             ", costo=" + getCosto() +

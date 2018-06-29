@@ -19,9 +19,12 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.fecha" for="field_fecha">Fecha</label>
-            <div class="d-flex">
-                <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" [(ngModel)]="documentos.fecha"
+            <div class="input-group">
+                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="documentos.fecha"
                 />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
         </div>
         <div class="form-group">
@@ -64,10 +67,10 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.tipoServicioDocumentos" for="field_tipoServicioDocumentos">Tipo Servicio Documentos</label>
-            <select class="form-control" id="field_tipoServicioDocumentos" name="tipoServicioDocumentos" [(ngModel)]="documentos.tipoServicioDocumentosId">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
+            <select class="form-control" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="documentos.tipoServicioId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposerviciodocumentos; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
+                <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
             </select>
         </div>
     </div>

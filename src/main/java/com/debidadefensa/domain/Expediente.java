@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,20 +38,14 @@ public class Expediente implements Serializable {
     @Column(name = "responsable")
     private String responsable;
 
-    @Column(name = "archivo")
-    private String archivo;
-
     @Column(name = "observaciones")
     private String observaciones;
 
     @Column(name = "fecha_alta")
-    private Instant fechaAlta;
+    private LocalDate fechaAlta;
 
     @Column(name = "fecha_sentencia")
-    private Instant fechaSentencia;
-
-    @Column(name = "fec_prueba")
-    private LocalDate fecPrueba;
+    private LocalDate fechaSentencia;
 
     @ManyToOne
     private Cliente cliente;
@@ -149,19 +142,6 @@ public class Expediente implements Serializable {
         this.responsable = responsable;
     }
 
-    public String getArchivo() {
-        return archivo;
-    }
-
-    public Expediente archivo(String archivo) {
-        this.archivo = archivo;
-        return this;
-    }
-
-    public void setArchivo(String archivo) {
-        this.archivo = archivo;
-    }
-
     public String getObservaciones() {
         return observaciones;
     }
@@ -175,43 +155,30 @@ public class Expediente implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Instant getFechaAlta() {
+    public LocalDate getFechaAlta() {
         return fechaAlta;
     }
 
-    public Expediente fechaAlta(Instant fechaAlta) {
+    public Expediente fechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
         return this;
     }
 
-    public void setFechaAlta(Instant fechaAlta) {
+    public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public Instant getFechaSentencia() {
+    public LocalDate getFechaSentencia() {
         return fechaSentencia;
     }
 
-    public Expediente fechaSentencia(Instant fechaSentencia) {
+    public Expediente fechaSentencia(LocalDate fechaSentencia) {
         this.fechaSentencia = fechaSentencia;
         return this;
     }
 
-    public void setFechaSentencia(Instant fechaSentencia) {
+    public void setFechaSentencia(LocalDate fechaSentencia) {
         this.fechaSentencia = fechaSentencia;
-    }
-
-    public LocalDate getFecPrueba() {
-        return fecPrueba;
-    }
-
-    public Expediente fecPrueba(LocalDate fecPrueba) {
-        this.fecPrueba = fecPrueba;
-        return this;
-    }
-
-    public void setFecPrueba(LocalDate fecPrueba) {
-        this.fecPrueba = fecPrueba;
     }
 
     public Cliente getCliente() {
@@ -432,11 +399,9 @@ public class Expediente implements Serializable {
             ", numeroExpediente='" + getNumeroExpediente() + "'" +
             ", juicio='" + getJuicio() + "'" +
             ", responsable='" + getResponsable() + "'" +
-            ", archivo='" + getArchivo() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
             ", fechaAlta='" + getFechaAlta() + "'" +
             ", fechaSentencia='" + getFechaSentencia() + "'" +
-            ", fecPrueba='" + getFecPrueba() + "'" +
             "}";
     }
 }

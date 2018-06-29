@@ -1,7 +1,6 @@
 package com.debidadefensa.service.dto;
 
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,13 +14,11 @@ public class FechasServicioDTO implements Serializable {
 
     private Long id;
 
-    private String tipoServicio;
-
-    private Instant fecha;
+    private LocalDate fecha;
 
     private String descripcion;
 
-    private LocalDate hora;
+    private Long hora;
 
     private String observaciones;
 
@@ -31,7 +28,7 @@ public class FechasServicioDTO implements Serializable {
 
     private Long tramiteGeneralId;
 
-    private Long tipoServicioFechasId;
+    private Long tipoServicioId;
 
     public Long getId() {
         return id;
@@ -41,19 +38,11 @@ public class FechasServicioDTO implements Serializable {
         this.id = id;
     }
 
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -65,11 +54,11 @@ public class FechasServicioDTO implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public LocalDate getHora() {
+    public Long getHora() {
         return hora;
     }
 
-    public void setHora(LocalDate hora) {
+    public void setHora(Long hora) {
         this.hora = hora;
     }
 
@@ -105,12 +94,12 @@ public class FechasServicioDTO implements Serializable {
         this.tramiteGeneralId = tramiteGeneralId;
     }
 
-    public Long getTipoServicioFechasId() {
-        return tipoServicioFechasId;
+    public Long getTipoServicioId() {
+        return tipoServicioId;
     }
 
-    public void setTipoServicioFechasId(Long tipoServicioId) {
-        this.tipoServicioFechasId = tipoServicioId;
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     @Override
@@ -138,10 +127,9 @@ public class FechasServicioDTO implements Serializable {
     public String toString() {
         return "FechasServicioDTO{" +
             "id=" + getId() +
-            ", tipoServicio='" + getTipoServicio() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
-            ", hora='" + getHora() + "'" +
+            ", hora=" + getHora() +
             ", observaciones='" + getObservaciones() + "'" +
             "}";
     }

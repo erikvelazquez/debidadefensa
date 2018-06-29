@@ -17,8 +17,6 @@
             "detail": {
                 "title": "Pagos"
             },
-            "tipoServicio": "Tipo Servicio",
-            "idServicio": "Id Servicio",
             "cantidad": "Cantidad",
             "fecha": "Fecha",
             "formaPago": "Forma Pago",
@@ -26,7 +24,7 @@
             "expediente": "Expediente",
             "tramiteMigratorio": "Tramite Migratorio",
             "tramiteGeneral": "Tramite General",
-            "tipoServicioPagos": "Tipo Servicio Pagos"
+            "tipoServicio": "Tipo Servicio"
         }
     }
 }

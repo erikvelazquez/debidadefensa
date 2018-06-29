@@ -22,12 +22,6 @@ public class CostoServicio implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "tipo_servicio")
-    private String tipoServicio;
-
-    @Column(name = "id_servicio")
-    private Long idServicio;
-
     @Column(name = "tipo_costo")
     private String tipoCosto;
 
@@ -46,9 +40,8 @@ public class CostoServicio implements Serializable {
     @ManyToOne
     private TramiteGeneral tramiteGeneral;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private TipoServicio tipoServicioCostoServicio;
+    @ManyToOne
+    private TipoServicio tipoServicio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -57,32 +50,6 @@ public class CostoServicio implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public CostoServicio tipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-        return this;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public Long getIdServicio() {
-        return idServicio;
-    }
-
-    public CostoServicio idServicio(Long idServicio) {
-        this.idServicio = idServicio;
-        return this;
-    }
-
-    public void setIdServicio(Long idServicio) {
-        this.idServicio = idServicio;
     }
 
     public String getTipoCosto() {
@@ -163,17 +130,17 @@ public class CostoServicio implements Serializable {
         this.tramiteGeneral = tramiteGeneral;
     }
 
-    public TipoServicio getTipoServicioCostoServicio() {
-        return tipoServicioCostoServicio;
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
     }
 
-    public CostoServicio tipoServicioCostoServicio(TipoServicio tipoServicio) {
-        this.tipoServicioCostoServicio = tipoServicio;
+    public CostoServicio tipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
         return this;
     }
 
-    public void setTipoServicioCostoServicio(TipoServicio tipoServicio) {
-        this.tipoServicioCostoServicio = tipoServicio;
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -201,8 +168,6 @@ public class CostoServicio implements Serializable {
     public String toString() {
         return "CostoServicio{" +
             "id=" + getId() +
-            ", tipoServicio='" + getTipoServicio() + "'" +
-            ", idServicio=" + getIdServicio() +
             ", tipoCosto='" + getTipoCosto() + "'" +
             ", concepto='" + getConcepto() + "'" +
             ", costo=" + getCosto() +

@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { FechasServicio } from './fechas-servicio.model';
 import { FechasServicioService } from './fechas-servicio.service';
 
@@ -11,7 +10,6 @@ export class FechasServicioPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private fechasServicioService: FechasServicioService
@@ -31,13 +29,11 @@ export class FechasServicioPopupService {
                 this.fechasServicioService.find(id)
                     .subscribe((fechasServicioResponse: HttpResponse<FechasServicio>) => {
                         const fechasServicio: FechasServicio = fechasServicioResponse.body;
-                        fechasServicio.fecha = this.datePipe
-                            .transform(fechasServicio.fecha, 'yyyy-MM-ddTHH:mm:ss');
-                        if (fechasServicio.hora) {
-                            fechasServicio.hora = {
-                                year: fechasServicio.hora.getFullYear(),
-                                month: fechasServicio.hora.getMonth() + 1,
-                                day: fechasServicio.hora.getDate()
+                        if (fechasServicio.fecha) {
+                            fechasServicio.fecha = {
+                                year: fechasServicio.fecha.getFullYear(),
+                                month: fechasServicio.fecha.getMonth() + 1,
+                                day: fechasServicio.fecha.getDate()
                             };
                         }
                         this.ngbModalRef = this.fechasServicioModalRef(component, fechasServicio);
