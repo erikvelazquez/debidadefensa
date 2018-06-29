@@ -29,7 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            
             <th jhiSortBy="nombreExtranjero"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="tipotramite"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite">Tipotramite</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="entidad"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad">Entidad</span> <span class="fa fa-sort"></span></th>
@@ -47,8 +47,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">
-                <td><a [routerLink]="['../tramite-migratorio', tramiteMigratorio.id ]">{{tramiteMigratorio.id}}</a></td>
-                <td>{{tramiteMigratorio.nombreExtranjero}}</td>
+                <td><a [routerLink]="['../tramite-migratorio', tramiteMigratorio.id ]">{{tramiteMigratorio.nombreExtranjero}}</a></td>
+                
                 <td>{{tramiteMigratorio.tipotramite}}</td>
                 <td>{{tramiteMigratorio.entidad}}</td>
                 <td>{{tramiteMigratorio.nut}}</td>
@@ -70,12 +70,12 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <!--<button type="submit"
                                 [routerLink]="['../tramite-migratorio', tramiteMigratorio.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
+                        </button>-->
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/edit'} }]"
                                 replaceUrl="true"

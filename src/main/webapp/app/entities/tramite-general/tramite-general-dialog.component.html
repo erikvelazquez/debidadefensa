@@ -18,6 +18,20 @@
                 [(ngModel)]="tramiteGeneral.titular" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.cliente" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="tramiteGeneral.clienteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.estatusTramiteGeneral" for="field_estatusTramiteGeneral">Estatus Tramite General</label>
+            <select class="form-control" id="field_estatusTramiteGeneral" name="estatusTramiteGeneral" [(ngModel)]="tramiteGeneral.estatusTramiteGeneralId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatustramitegenerals; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia" for="field_dependencia">Dependencia</label>
             <input type="text" class="form-control" name="dependencia" id="field_dependencia"
                 [(ngModel)]="tramiteGeneral.dependencia" />
@@ -62,31 +76,18 @@
                 </span>
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.archivo" for="field_archivo">Archivo</label>
             <input type="text" class="form-control" name="archivo" id="field_archivo"
                 [(ngModel)]="tramiteGeneral.archivo" />
-        </div>
+        </div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.observaciones" for="field_observaciones">Observaciones</label>
             <input type="text" class="form-control" name="observaciones" id="field_observaciones"
                 [(ngModel)]="tramiteGeneral.observaciones" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="tramiteGeneral.clienteId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteGeneral.estatusTramiteGeneral" for="field_estatusTramiteGeneral">Estatus Tramite General</label>
-            <select class="form-control" id="field_estatusTramiteGeneral" name="estatusTramiteGeneral" [(ngModel)]="tramiteGeneral.estatusTramiteGeneralId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatustramitegenerals; trackBy: trackEstatusById">{{estatusOption.id}}</option>
-            </select>
-        </div>
+        
         <div class="form-group">
             <label jhiTranslate="debidadefensaApp.tramiteGeneral.tramiteGeneralAsociados" for="field_tramiteGeneralAsociados">Tramite General Asociados</label>
             <select class="form-control" id="field_tramiteGeneralAsociados" multiple name="tramiteGeneralAsociados" [(ngModel)]="tramiteGeneral.tramiteGeneralAsociados">

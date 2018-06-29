@@ -22,14 +22,14 @@
             <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.expediente" for="field_expediente">Expediente</label>
             <select class="form-control" id="field_expediente" name="expediente" [(ngModel)]="parte.expedienteId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.id}}</option>
+                <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.tipoParte" for="field_tipoParte">Tipo Parte</label>
             <select class="form-control" id="field_tipoParte" name="tipoParte" [(ngModel)]="parte.tipoParteId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="tipoParteOption.id" *ngFor="let tipoParteOption of tipopartes; trackBy: trackTipoParteById">{{tipoParteOption.id}}</option>
+                <option [ngValue]="tipoParteOption.id" *ngFor="let tipoParteOption of tipopartes; trackBy: trackTipoParteById">{{tipoParteOption.descripcion}}</option>
             </select>
         </div>
     </div>

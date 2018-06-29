@@ -29,7 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            
             <th jhiSortBy="titular"><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dependencia"><span jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia">Dependencia</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="numeroTramite"><span jhiTranslate="debidadefensaApp.tramiteGeneral.numeroTramite">Numero Tramite</span> <span class="fa fa-sort"></span></th>
@@ -46,8 +46,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
-                <td><a [routerLink]="['../tramite-general', tramiteGeneral.id ]">{{tramiteGeneral.id}}</a></td>
-                <td>{{tramiteGeneral.titular}}</td>
+                <td><a [routerLink]="['../tramite-general', tramiteGeneral.id ]">{{tramiteGeneral.titular}}</a></td>
+                
                 <td>{{tramiteGeneral.dependencia}}</td>
                 <td>{{tramiteGeneral.numeroTramite}}</td>
                 <td>{{tramiteGeneral.tipoTramite}}</td>
@@ -68,12 +68,12 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <!--<button type="submit"
                                 [routerLink]="['../tramite-general', tramiteGeneral.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
+                        </button>-->
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'tramite-general/'+ tramiteGeneral.id + '/edit'} }]"
                                 replaceUrl="true"

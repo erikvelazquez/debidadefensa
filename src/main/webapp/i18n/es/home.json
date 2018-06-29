@@ -1,7 +1,7 @@
 {
     "home": {
         "title": "¡Bienvenido!",
-        "subtitle": "Inicio",
+        "subtitle": "",
         "logged": {
             "message": "Está conectado como \"{{username}}\"."
         },

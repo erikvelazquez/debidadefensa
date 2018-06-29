@@ -29,9 +29,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+                    <th><span jhiTranslate="debidadefensaApp.costoServicio.concepto">Concepto</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.tipoCosto">Tipo Costo</span></th>
-            <th><span jhiTranslate="debidadefensaApp.costoServicio.concepto">Concepto</span></th>
+            
             <th><span jhiTranslate="debidadefensaApp.costoServicio.costo">Costo</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.expediente">Expediente</span></th>
             <th><span jhiTranslate="debidadefensaApp.costoServicio.tramiteMigratorio">Tramite Migratorio</span></th>
@@ -42,9 +42,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let costoServicio of costoServicios ;trackBy: trackId">
-                <td><a [routerLink]="['../costo-servicio', costoServicio.id ]">{{costoServicio.id}}</a></td>
+                <td><a [routerLink]="['../costo-servicio', costoServicio.id ]">{{costoServicio.concepto}}</a></td>
                 <td>{{costoServicio.tipoCosto}}</td>
-                <td>{{costoServicio.concepto}}</td>
                 <td>{{costoServicio.costo}}</td>
                 <td>
                     <div *ngIf="costoServicio.expedienteId">
