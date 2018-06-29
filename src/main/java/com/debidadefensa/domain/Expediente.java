@@ -55,10 +55,6 @@ public class Expediente implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private TipoServicio tipoServicioExpediente;
-
-    @OneToOne
-    @JoinColumn(unique = true)
     private Estatus estatusExpediente;
 
     @OneToMany(mappedBy = "expediente")
@@ -84,6 +80,9 @@ public class Expediente implements Serializable {
     @OneToMany(mappedBy = "expediente")
     @JsonIgnore
     private Set<FechasServicio> fechasServicioExpedientes = new HashSet<>();
+
+    @ManyToOne
+    private TipoServicio tipoServicio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -209,19 +208,6 @@ public class Expediente implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public TipoServicio getTipoServicioExpediente() {
-        return tipoServicioExpediente;
-    }
-
-    public Expediente tipoServicioExpediente(TipoServicio tipoServicio) {
-        this.tipoServicioExpediente = tipoServicio;
-        return this;
-    }
-
-    public void setTipoServicioExpediente(TipoServicio tipoServicio) {
-        this.tipoServicioExpediente = tipoServicio;
     }
 
     public Estatus getEstatusExpediente() {
@@ -385,6 +371,19 @@ public class Expediente implements Serializable {
 
     public void setFechasServicioExpedientes(Set<FechasServicio> fechasServicios) {
         this.fechasServicioExpedientes = fechasServicios;
+    }
+
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
+    }
+
+    public Expediente tipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
+        return this;
+    }
+
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

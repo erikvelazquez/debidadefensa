@@ -6,6 +6,12 @@
             "relationshipName": "tipoServicioEstatus",
             "otherEntityName": "estatus",
             "otherEntityRelationshipName": "tipoServicio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tipoServicioExpediente",
+            "otherEntityName": "expediente",
+            "otherEntityRelationshipName": "tipoServicio"
         }
     ],
     "fields": [

@@ -13,6 +13,7 @@ public interface TipoServicioMapper extends EntityMapper<TipoServicioDTO, TipoSe
 
 
     @Mapping(target = "tipoServicioEstatuses", ignore = true)
+    @Mapping(target = "tipoServicioExpedientes", ignore = true)
     TipoServicio toEntity(TipoServicioDTO tipoServicioDTO);
 
     default TipoServicio fromId(Long id) {

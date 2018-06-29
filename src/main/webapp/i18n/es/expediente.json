@@ -26,14 +26,14 @@
             "fechaAlta": "Fecha Alta",
             "fechaSentencia": "Fecha Sentencia",
             "cliente": "Cliente",
-            "tipoServicioExpediente": "Tipo Servicio Expediente",
             "estatusExpediente": "Estatus Expediente",
             "parte": "Parte",
             "expAsociado": "Exp Asociado",
             "costo": "Costo",
             "pagos": "Pagos",
             "documentosExpedientes": "Documentos Expedientes",
-            "fechasServicioExpediente": "Fechas Servicio Expediente"
+            "fechasServicioExpediente": "Fechas Servicio Expediente",
+            "tipoServicio": "Tipo Servicio"
         }
     }
 }

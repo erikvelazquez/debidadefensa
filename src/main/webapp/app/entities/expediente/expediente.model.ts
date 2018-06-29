@@ -12,7 +12,6 @@ export class Expediente implements BaseEntity {
         public fechaAlta?: any,
         public fechaSentencia?: any,
         public clienteId?: number,
-        public tipoServicioExpedienteId?: number,
         public estatusExpedienteId?: number,
         public partes?: BaseEntity[],
         public expAsociados?: BaseEntity[],
@@ -20,6 +19,7 @@ export class Expediente implements BaseEntity {
         public pagos?: BaseEntity[],
         public documentosExpedientes?: BaseEntity[],
         public fechasServicioExpedientes?: BaseEntity[],
+        public tipoServicioId?: number,
     ) {
     }
 }

@@ -1,0 +1,15 @@
+id;descripcion;tipo_servicio_id
+1051;Demanda;1001
+1052;Contestación de demanda;1001
+1053;Pruebas;1001
+1054;Alegatos;1001
+1055;Sentencia;1001
+1056;Pendiente resolución;1002
+1057;Documentación del extranjero;1002
+1058;Resolución;1002
+1059;Prevención;1002
+1060;Emisión forma migratoria;1002
+1061;Concluido;1002
+1062;Pendiente de resolución;1003
+1063;Prevención;1003
+1064;Resolución;1003

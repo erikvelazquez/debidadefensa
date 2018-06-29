@@ -18,7 +18,8 @@
                 "title": "Tipo Servicio"
             },
             "descripcion": "Descripcion",
-            "tipoServicioEstatus": "Tipo Servicio Estatus"
+            "tipoServicioEstatus": "Tipo Servicio Estatus",
+            "tipoServicioExpediente": "Tipo Servicio Expediente"
         }
     }
 }

@@ -113,8 +113,7 @@ entity Documentos{
 }
 
 relationship OneToOne {
-  Parte{tipoParte} to TipoParte,
-  Expediente{tipoServicioExpediente} to TipoServicio,
+  Parte{tipoParte} to TipoParte,  
   CostoServicio{tipoServicioCostoServicio} to TipoServicio,
   Pagos{tipoServicioPagos} to TipoServicio,
   FechasServicio{tipoServicioFechas} to TipoServicio,
@@ -150,7 +149,8 @@ relationship OneToMany {
     Expediente{fechasServicioExpediente} to FechasServicio,
     TramiteGeneral{fechasServicioTramiteGeneral} to FechasServicio,
     TipoServicio{tipoServicioEstatus} to Estatus,
-    TramiteMigratorio{fechasServicioTramiteMigratorio} to FechasServicio
+    TramiteMigratorio{fechasServicioTramiteMigratorio} to FechasServicio,
+    TipoServicio {tipoServicioExpediente} to Expediente
 }
 
 // Set pagination options

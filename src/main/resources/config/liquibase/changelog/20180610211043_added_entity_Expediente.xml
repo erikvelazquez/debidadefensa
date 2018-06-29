@@ -56,11 +56,13 @@
             <column name="cliente_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="tipo_servicio_expediente_id" type="bigint">
-                <constraints unique="true" nullable="true" />
-            </column>            <column name="estatus_expediente_id" type="bigint">
+            <column name="estatus_expediente_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
+            <column name="tipo_servicio_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="expediente" columnName="fecha_alta" columnDataType="datetime"/>

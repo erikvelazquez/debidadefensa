@@ -9,14 +9,6 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "tipoServicioExpediente",
-            "otherEntityName": "tipoServicio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "expediente"
-        },
-        {
-            "relationshipType": "one-to-one",
             "relationshipName": "estatusExpediente",
             "otherEntityName": "estatus",
             "otherEntityField": "id",
@@ -58,6 +50,12 @@
             "relationshipName": "fechasServicioExpediente",
             "otherEntityName": "fechasServicio",
             "otherEntityRelationshipName": "expediente"
+        },
+        {
+            "relationshipName": "tipoServicio",
+            "otherEntityName": "tipoServicio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

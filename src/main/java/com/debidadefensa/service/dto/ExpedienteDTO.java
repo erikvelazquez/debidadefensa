@@ -32,9 +32,9 @@ public class ExpedienteDTO implements Serializable {
 
     private Long clienteId;
 
-    private Long tipoServicioExpedienteId;
-
     private Long estatusExpedienteId;
+
+    private Long tipoServicioId;
 
     public Long getId() {
         return id;
@@ -116,20 +116,20 @@ public class ExpedienteDTO implements Serializable {
         this.clienteId = clienteId;
     }
 
-    public Long getTipoServicioExpedienteId() {
-        return tipoServicioExpedienteId;
-    }
-
-    public void setTipoServicioExpedienteId(Long tipoServicioId) {
-        this.tipoServicioExpedienteId = tipoServicioId;
-    }
-
     public Long getEstatusExpedienteId() {
         return estatusExpedienteId;
     }
 
     public void setEstatusExpedienteId(Long estatusId) {
         this.estatusExpedienteId = estatusId;
+    }
+
+    public Long getTipoServicioId() {
+        return tipoServicioId;
+    }
+
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
     }
 
     @Override

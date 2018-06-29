@@ -10,15 +10,12 @@ import { Expediente } from './expediente.model';
 import { ExpedientePopupService } from './expediente-popup.service';
 import { ExpedienteService } from './expediente.service';
 import { Cliente, ClienteService } from '../cliente';
-import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 import { Estatus, EstatusService } from '../estatus';
+import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 
 @Component({
     selector: 'jhi-expediente-dialog',
-    templateUrl: './expediente-dialog.component.html',
-    styleUrls: [
-        '../../app.scss'
-    ]
+    templateUrl: './expediente-dialog.component.html'
 })
 export class ExpedienteDialogComponent implements OnInit {
 
@@ -27,17 +24,17 @@ export class ExpedienteDialogComponent implements OnInit {
 
     clientes: Cliente[];
 
-    tiposervicioexpedientes: TipoServicio[];
-
     estatusexpedientes: Estatus[];
+
+    tiposervicios: TipoServicio[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private expedienteService: ExpedienteService,
         private clienteService: ClienteService,
-        private tipoServicioService: TipoServicioService,
         private estatusService: EstatusService,
+        private tipoServicioService: TipoServicioService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -46,19 +43,6 @@ export class ExpedienteDialogComponent implements OnInit {
         this.isSaving = false;
         this.clienteService.query()
             .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.tipoServicioService
-            .query({filter: 'expediente-is-null'})
-            .subscribe((res: HttpResponse<TipoServicio[]>) => {
-                if (!this.expediente.tipoServicioExpedienteId) {
-                    this.tiposervicioexpedientes = res.body;
-                } else {
-                    this.tipoServicioService
-                        .find(this.expediente.tipoServicioExpedienteId)
-                        .subscribe((subRes: HttpResponse<TipoServicio>) => {
-                            this.tiposervicioexpedientes = [subRes.body].concat(res.body);
-                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
-                }
-            }, (res: HttpErrorResponse) => this.onError(res.message));
         this.estatusService
             .query({filter: 'expediente-is-null'})
             .subscribe((res: HttpResponse<Estatus[]>) => {
@@ -72,6 +56,8 @@ export class ExpedienteDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.tipoServicioService.query()
+            .subscribe((res: HttpResponse<TipoServicio[]>) => { this.tiposervicios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -112,11 +98,11 @@ export class ExpedienteDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackTipoServicioById(index: number, item: TipoServicio) {
+    trackEstatusById(index: number, item: Estatus) {
         return item.id;
     }
 
-    trackEstatusById(index: number, item: Estatus) {
+    trackTipoServicioById(index: number, item: TipoServicio) {
         return item.id;
     }
 }

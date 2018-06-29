@@ -32,6 +32,10 @@ public class TipoServicio implements Serializable {
     @JsonIgnore
     private Set<Estatus> tipoServicioEstatuses = new HashSet<>();
 
+    @OneToMany(mappedBy = "tipoServicio")
+    @JsonIgnore
+    private Set<Expediente> tipoServicioExpedientes = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -77,6 +81,31 @@ public class TipoServicio implements Serializable {
 
     public void setTipoServicioEstatuses(Set<Estatus> estatuses) {
         this.tipoServicioEstatuses = estatuses;
+    }
+
+    public Set<Expediente> getTipoServicioExpedientes() {
+        return tipoServicioExpedientes;
+    }
+
+    public TipoServicio tipoServicioExpedientes(Set<Expediente> expedientes) {
+        this.tipoServicioExpedientes = expedientes;
+        return this;
+    }
+
+    public TipoServicio addTipoServicioExpediente(Expediente expediente) {
+        this.tipoServicioExpedientes.add(expediente);
+        expediente.setTipoServicio(this);
+        return this;
+    }
+
+    public TipoServicio removeTipoServicioExpediente(Expediente expediente) {
+        this.tipoServicioExpedientes.remove(expediente);
+        expediente.setTipoServicio(null);
+        return this;
+    }
+
+    public void setTipoServicioExpedientes(Set<Expediente> expedientes) {
+        this.tipoServicioExpedientes = expedientes;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -5,6 +5,7 @@ export class TipoServicio implements BaseEntity {
         public id?: number,
         public descripcion?: string,
         public tipoServicioEstatuses?: BaseEntity[],
+        public tipoServicioExpedientes?: BaseEntity[],
     ) {
     }
 }

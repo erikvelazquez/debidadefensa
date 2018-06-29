@@ -10,8 +10,8 @@ import { ExpedienteDialogComponent } from '../../../../../../main/webapp/app/ent
 import { ExpedienteService } from '../../../../../../main/webapp/app/entities/expediente/expediente.service';
 import { Expediente } from '../../../../../../main/webapp/app/entities/expediente/expediente.model';
 import { ClienteService } from '../../../../../../main/webapp/app/entities/cliente';
-import { TipoServicioService } from '../../../../../../main/webapp/app/entities/tipo-servicio';
 import { EstatusService } from '../../../../../../main/webapp/app/entities/estatus';
+import { TipoServicioService } from '../../../../../../main/webapp/app/entities/tipo-servicio';
 
 describe('Component Tests', () => {
 
@@ -28,8 +28,8 @@ describe('Component Tests', () => {
                 declarations: [ExpedienteDialogComponent],
                 providers: [
                     ClienteService,
-                    TipoServicioService,
                     EstatusService,
+                    TipoServicioService,
                     ExpedienteService
                 ]
             })
