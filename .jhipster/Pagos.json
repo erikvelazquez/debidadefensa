@@ -20,30 +20,20 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "tipoServicioPagos",
+            "relationshipName": "tipoServicio",
             "otherEntityName": "tipoServicio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "pagos"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
-        {
-            "fieldName": "tipoServicio",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "idServicio",
-            "fieldType": "Long"
-        },
         {
             "fieldName": "cantidad",
             "fieldType": "Float"
         },
         {
             "fieldName": "fecha",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "formaPago",

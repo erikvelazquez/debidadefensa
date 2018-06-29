@@ -76,20 +76,16 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "archivo",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "observaciones",
             "fieldType": "String"
         },
         {
             "fieldName": "fechaAlta",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "fechaSentencia",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         }
     ],
     "changelogDate": "20180610211043",

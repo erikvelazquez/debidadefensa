@@ -11,6 +11,7 @@ export class Expediente implements BaseEntity {
         public observaciones?: string,
         public fechaAlta?: any,
         public fechaSentencia?: any,
+        public fecPrueba?: any,
         public clienteId?: number,
         public estatusExpedienteId?: number,
         public partes?: BaseEntity[],

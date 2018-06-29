@@ -25,7 +25,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -67,6 +69,9 @@ public class ExpedienteResourceIntTest {
 
     private static final Instant DEFAULT_FECHA_SENTENCIA = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_FECHA_SENTENCIA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final LocalDate DEFAULT_FEC_PRUEBA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FEC_PRUEBA = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private ExpedienteRepository expedienteRepository;
@@ -122,7 +127,8 @@ public class ExpedienteResourceIntTest {
             .archivo(DEFAULT_ARCHIVO)
             .observaciones(DEFAULT_OBSERVACIONES)
             .fechaAlta(DEFAULT_FECHA_ALTA)
-            .fechaSentencia(DEFAULT_FECHA_SENTENCIA);
+            .fechaSentencia(DEFAULT_FECHA_SENTENCIA)
+            .fecPrueba(DEFAULT_FEC_PRUEBA);
         return expediente;
     }
 
@@ -156,6 +162,7 @@ public class ExpedienteResourceIntTest {
         assertThat(testExpediente.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
         assertThat(testExpediente.getFechaAlta()).isEqualTo(DEFAULT_FECHA_ALTA);
         assertThat(testExpediente.getFechaSentencia()).isEqualTo(DEFAULT_FECHA_SENTENCIA);
+        assertThat(testExpediente.getFecPrueba()).isEqualTo(DEFAULT_FEC_PRUEBA);
 
         // Validate the Expediente in Elasticsearch
         Expediente expedienteEs = expedienteSearchRepository.findOne(testExpediente.getId());
@@ -200,7 +207,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.[*].archivo").value(hasItem(DEFAULT_ARCHIVO.toString())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
-            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())));
+            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())))
+            .andExpect(jsonPath("$.[*].fecPrueba").value(hasItem(DEFAULT_FEC_PRUEBA.toString())));
     }
 
     @Test
@@ -221,7 +229,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.archivo").value(DEFAULT_ARCHIVO.toString()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
             .andExpect(jsonPath("$.fechaAlta").value(DEFAULT_FECHA_ALTA.toString()))
-            .andExpect(jsonPath("$.fechaSentencia").value(DEFAULT_FECHA_SENTENCIA.toString()));
+            .andExpect(jsonPath("$.fechaSentencia").value(DEFAULT_FECHA_SENTENCIA.toString()))
+            .andExpect(jsonPath("$.fecPrueba").value(DEFAULT_FEC_PRUEBA.toString()));
     }
 
     @Test
@@ -252,7 +261,8 @@ public class ExpedienteResourceIntTest {
             .archivo(UPDATED_ARCHIVO)
             .observaciones(UPDATED_OBSERVACIONES)
             .fechaAlta(UPDATED_FECHA_ALTA)
-            .fechaSentencia(UPDATED_FECHA_SENTENCIA);
+            .fechaSentencia(UPDATED_FECHA_SENTENCIA)
+            .fecPrueba(UPDATED_FEC_PRUEBA);
         ExpedienteDTO expedienteDTO = expedienteMapper.toDto(updatedExpediente);
 
         restExpedienteMockMvc.perform(put("/api/expedientes")
@@ -272,6 +282,7 @@ public class ExpedienteResourceIntTest {
         assertThat(testExpediente.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
         assertThat(testExpediente.getFechaAlta()).isEqualTo(UPDATED_FECHA_ALTA);
         assertThat(testExpediente.getFechaSentencia()).isEqualTo(UPDATED_FECHA_SENTENCIA);
+        assertThat(testExpediente.getFecPrueba()).isEqualTo(UPDATED_FEC_PRUEBA);
 
         // Validate the Expediente in Elasticsearch
         Expediente expedienteEs = expedienteSearchRepository.findOne(testExpediente.getId());
@@ -338,7 +349,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.[*].archivo").value(hasItem(DEFAULT_ARCHIVO.toString())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
-            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())));
+            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())))
+            .andExpect(jsonPath("$.[*].fecPrueba").value(hasItem(DEFAULT_FEC_PRUEBA.toString())));
     }
 
     @Test

@@ -19,10 +19,9 @@ entity Expediente {
     numeroExpediente String,    
     juicio String,
     responsable String,
-    archivo String,
     observaciones String,
-    fechaAlta Instant,
-    fechaSentencia Instant    
+    fechaAlta LocalDate,
+    fechaSentencia LocalDate    
 }
 
 entity Parte {        
@@ -35,7 +34,7 @@ entity ExpedienteAsociado {
     organocompetente String,
     archivo String,
     observaciones String,
-    fechaSentencia Instant
+    fechaSentencia LocalDate
 }
 
 entity TramiteMigratorio {	
@@ -44,9 +43,9 @@ entity TramiteMigratorio {
     entidad String,
     nut Long,
     contraseniaNUT String,
-    fechaIngreso Instant,
-    fechaNotificacion Instant,
-    fechaResolucion Instant,
+    fechaIngreso LocalDate,
+    fechaNotificacion LocalDate,
+    fechaResolucion LocalDate,
     archivo String,
     observaciones String
 }
@@ -56,9 +55,9 @@ entity TramiteGeneral {
     dependencia String,
     numeroTramite String,
     tipoTramite String,
-    fechaIngreso Instant,
-    fechaResolucion Instant,
-    fechaNotificacion Instant,
+    fechaIngreso LocalDate,
+    fechaResolucion LocalDate,
+    fechaNotificacion LocalDate,
     archivo String,
     observaciones String
 }
@@ -68,28 +67,23 @@ entity TramiteAsociado {
     idTramite Long
 }
 
-entity CostoServicio {
-    tipoServicio String,
-    idServicio Long,
+entity CostoServicio {   
     tipoCosto String,
     concepto String,
     costo Float
 }
 
-entity Pagos {	
-    tipoServicio String,
-    idServicio Long,
+entity Pagos {	   
     cantidad Float,
-    fecha Instant,
+    fecha LocalDate,
     formaPago String,
     tipoAbono String
 }
 
-entity FechasServicio {	    
-    tipoServicio String,
-    fecha Instant,
+entity FechasServicio {	      
+    fecha LocalDate,
     descripcion String,
-    hora LocalDate,
+    hora Long,
     observaciones String
 }
 
@@ -107,21 +101,17 @@ entity TipoServicio{
 
 entity Documentos{
 	nombreDocumento String,
-    fecha Instant,
+    fecha LocalDate,
     descripcion String,
     ruta String
 }
 
 relationship OneToOne {
   Parte{tipoParte} to TipoParte,  
-  CostoServicio{tipoServicioCostoServicio} to TipoServicio,
-  Pagos{tipoServicioPagos} to TipoServicio,
-  FechasServicio{tipoServicioFechas} to TipoServicio,
   Expediente{estatusExpediente} to Estatus,
   ExpedienteAsociado {estatusExpedienteAsociado} to Estatus,    
   TramiteMigratorio {estatusTramiteMigratorio} to Estatus,    
-  TramiteGeneral {estatusTramiteGeneral} to Estatus,  
-  Documentos{tipoServicioDocumentos} to TipoServicio
+  TramiteGeneral {estatusTramiteGeneral} to Estatus
 }
 
 relationship ManyToMany {
@@ -133,7 +123,7 @@ relationship ManyToMany {
 relationship OneToMany {		
 	Cliente{expediente} to Expediente,
     Cliente{tramiteMigra} to TramiteMigratorio,
-    Cliente{tramiteGral} to TramiteGeneral
+    Cliente{tramiteGral} to TramiteGeneral,
     TramiteMigratorio{tramitteMigratorioCosto} to CostoServicio,
     TramiteMigratorio{tramitteMigratorioPago} to Pagos, 
     TramiteMigratorio{tramitteMigratorioDocumentos} to Documentos,
@@ -144,13 +134,17 @@ relationship OneToMany {
     Expediente{documentosExpedientes} to Documentos,
     ExpedienteAsociado{expedienteAsociadoDocumentos} to Documentos,
     TramiteGeneral{tramiteGralPagos} to Pagos,
-    TramiteGeneral{tramiteGralCostos} to CostoServicio
+    TramiteGeneral{tramiteGralCostos} to CostoServicio,
     TramiteGeneral{tramiteGralDocumentos} to Documentos,
     Expediente{fechasServicioExpediente} to FechasServicio,
     TramiteGeneral{fechasServicioTramiteGeneral} to FechasServicio,
     TipoServicio{tipoServicioEstatus} to Estatus,
     TramiteMigratorio{fechasServicioTramiteMigratorio} to FechasServicio,
-    TipoServicio {tipoServicioExpediente} to Expediente
+    TipoServicio {tipoServicioExpediente} to Expediente,
+    TipoServicio {tipoServicioCostoServicio} to CostoServicio,
+    TipoServicio {tipoServicioPagos} to Pagos,
+    TipoServicio {tipoServicioFechas} to FechasServicio,
+    TipoServicio {tipoServicioDocumentos} to Documentos
 }
 
 // Set pagination options

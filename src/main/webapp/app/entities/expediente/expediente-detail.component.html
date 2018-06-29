@@ -36,22 +36,26 @@
         <dd>
             <span>{{expediente.fechaSentencia | date:'medium'}}</span>
         </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.fecPrueba">Fec Prueba</span></dt>
+        <dd>
+            <span>{{expediente.fecPrueba | date:'mediumDate'}}</span>
+        </dd>
         <dt><span jhiTranslate="debidadefensaApp.expediente.cliente">Cliente</span></dt>
         <dd>
             <div *ngIf="expediente.clienteId">
                 <a [routerLink]="['/cliente', expediente.clienteId]">{{expediente.clienteId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.tipoServicioExpediente">Tipo Servicio Expediente</span></dt>
-        <dd>
-            <div *ngIf="expediente.tipoServicioExpedienteId">
-                <a [routerLink]="['/tipo-servicio', expediente.tipoServicioExpedienteId]">{{expediente.tipoServicioExpedienteId}}</a>
-            </div>
-        </dd>
         <dt><span jhiTranslate="debidadefensaApp.expediente.estatusExpediente">Estatus Expediente</span></dt>
         <dd>
             <div *ngIf="expediente.estatusExpedienteId">
                 <a [routerLink]="['/estatus', expediente.estatusExpedienteId]">{{expediente.estatusExpedienteId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debidadefensaApp.expediente.tipoServicio">Tipo Servicio</span></dt>
+        <dd>
+            <div *ngIf="expediente.tipoServicioId">
+                <a [routerLink]="['/tipo-servicio', expediente.tipoServicioId]">{{expediente.tipoServicioId}}</a>
             </div>
         </dd>
     </dl>

@@ -26,12 +26,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "tipoServicioDocumentos",
+            "relationshipName": "tipoServicio",
             "otherEntityName": "tipoServicio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "documentos"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -41,7 +39,7 @@
         },
         {
             "fieldName": "fecha",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "descripcion",

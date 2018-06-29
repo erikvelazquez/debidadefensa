@@ -20,22 +20,16 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "tipoServicioFechas",
+            "relationshipName": "tipoServicio",
             "otherEntityName": "tipoServicio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "fechasServicio"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
         {
-            "fieldName": "tipoServicio",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "fecha",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "descripcion",
@@ -43,7 +37,7 @@
         },
         {
             "fieldName": "hora",
-            "fieldType": "LocalDate"
+            "fieldType": "Long"
         },
         {
             "fieldName": "observaciones",

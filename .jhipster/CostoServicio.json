@@ -20,23 +20,13 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "tipoServicioCostoServicio",
+            "relationshipName": "tipoServicio",
             "otherEntityName": "tipoServicio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "costoServicio"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
-        {
-            "fieldName": "tipoServicio",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "idServicio",
-            "fieldType": "Long"
-        },
         {
             "fieldName": "tipoCosto",
             "fieldType": "String"

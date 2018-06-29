@@ -2,6 +2,7 @@ package com.debidadefensa.service.dto;
 
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +30,8 @@ public class ExpedienteDTO implements Serializable {
     private Instant fechaAlta;
 
     private Instant fechaSentencia;
+
+    private LocalDate fecPrueba;
 
     private Long clienteId;
 
@@ -108,6 +111,14 @@ public class ExpedienteDTO implements Serializable {
         this.fechaSentencia = fechaSentencia;
     }
 
+    public LocalDate getFecPrueba() {
+        return fecPrueba;
+    }
+
+    public void setFecPrueba(LocalDate fecPrueba) {
+        this.fecPrueba = fecPrueba;
+    }
+
     public Long getClienteId() {
         return clienteId;
     }
@@ -165,6 +176,7 @@ public class ExpedienteDTO implements Serializable {
             ", observaciones='" + getObservaciones() + "'" +
             ", fechaAlta='" + getFechaAlta() + "'" +
             ", fechaSentencia='" + getFechaSentencia() + "'" +
+            ", fecPrueba='" + getFecPrueba() + "'" +
             "}";
     }
 }

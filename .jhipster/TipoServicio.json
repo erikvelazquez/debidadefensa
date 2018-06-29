@@ -12,6 +12,30 @@
             "relationshipName": "tipoServicioExpediente",
             "otherEntityName": "expediente",
             "otherEntityRelationshipName": "tipoServicio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tipoServicioCostoServicio",
+            "otherEntityName": "costoServicio",
+            "otherEntityRelationshipName": "tipoServicio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tipoServicioPagos",
+            "otherEntityName": "pagos",
+            "otherEntityRelationshipName": "tipoServicio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tipoServicioFechas",
+            "otherEntityName": "fechasServicio",
+            "otherEntityRelationshipName": "tipoServicio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tipoServicioDocumentos",
+            "otherEntityName": "documentos",
+            "otherEntityRelationshipName": "tipoServicio"
         }
     ],
     "fields": [

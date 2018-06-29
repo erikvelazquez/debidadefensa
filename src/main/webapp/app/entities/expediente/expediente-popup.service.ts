@@ -35,6 +35,13 @@ export class ExpedientePopupService {
                             .transform(expediente.fechaAlta, 'yyyy-MM-ddTHH:mm:ss');
                         expediente.fechaSentencia = this.datePipe
                             .transform(expediente.fechaSentencia, 'yyyy-MM-ddTHH:mm:ss');
+                        if (expediente.fecPrueba) {
+                            expediente.fecPrueba = {
+                                year: expediente.fecPrueba.getFullYear(),
+                                month: expediente.fecPrueba.getMonth() + 1,
+                                day: expediente.fecPrueba.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.expedienteModalRef(component, expediente);
                         resolve(this.ngbModalRef);
                     });

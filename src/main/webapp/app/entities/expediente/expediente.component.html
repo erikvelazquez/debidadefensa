@@ -38,9 +38,10 @@
             <th jhiSortBy="observaciones"><span jhiTranslate="debidadefensaApp.expediente.observaciones">Observaciones</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaAlta"><span jhiTranslate="debidadefensaApp.expediente.fechaAlta">Fecha Alta</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaSentencia"><span jhiTranslate="debidadefensaApp.expediente.fechaSentencia">Fecha Sentencia</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fecPrueba"><span jhiTranslate="debidadefensaApp.expediente.fecPrueba">Fec Prueba</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="clienteId"><span jhiTranslate="debidadefensaApp.expediente.cliente">Cliente</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="tipoServicioExpedienteId"><span jhiTranslate="debidadefensaApp.expediente.tipoServicioExpediente">Tipo Servicio Expediente</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="estatusExpedienteId"><span jhiTranslate="debidadefensaApp.expediente.estatusExpediente">Estatus Expediente</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tipoServicioId"><span jhiTranslate="debidadefensaApp.expediente.tipoServicio">Tipo Servicio</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -55,19 +56,20 @@
                 <td>{{expediente.observaciones}}</td>
                 <td>{{expediente.fechaAlta | date:'medium'}}</td>
                 <td>{{expediente.fechaSentencia | date:'medium'}}</td>
+                <td>{{expediente.fecPrueba | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="expediente.clienteId">
                         <a [routerLink]="['../cliente', expediente.clienteId  ]" >{{expediente.clienteId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="expediente.tipoServicioExpedienteId">
-                        <a [routerLink]="['../tipo-servicio', expediente.tipoServicioExpedienteId  ]" >{{expediente.tipoServicioExpedienteId}}</a>
+                    <div *ngIf="expediente.estatusExpedienteId">
+                        <a [routerLink]="['../estatus', expediente.estatusExpedienteId  ]" >{{expediente.estatusExpedienteId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="expediente.estatusExpedienteId">
-                        <a [routerLink]="['../estatus', expediente.estatusExpedienteId  ]" >{{expediente.estatusExpedienteId}}</a>
+                    <div *ngIf="expediente.tipoServicioId">
+                        <a [routerLink]="['../tipo-servicio', expediente.tipoServicioId  ]" >{{expediente.tipoServicioId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

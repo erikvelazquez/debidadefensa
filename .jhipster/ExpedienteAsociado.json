@@ -45,7 +45,7 @@
         },
         {
             "fieldName": "fechaSentencia",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         }
     ],
     "changelogDate": "20180610211045",

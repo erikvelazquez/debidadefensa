@@ -74,6 +74,8 @@ export class ExpedienteService {
             .convertDateTimeFromServer(expediente.fechaAlta);
         copy.fechaSentencia = this.dateUtils
             .convertDateTimeFromServer(expediente.fechaSentencia);
+        copy.fecPrueba = this.dateUtils
+            .convertLocalDateFromServer(expediente.fecPrueba);
         return copy;
     }
 
@@ -86,6 +88,8 @@ export class ExpedienteService {
         copy.fechaAlta = this.dateUtils.toDate(expediente.fechaAlta);
 
         copy.fechaSentencia = this.dateUtils.toDate(expediente.fechaSentencia);
+        copy.fecPrueba = this.dateUtils
+            .convertLocalDateToServer(expediente.fecPrueba);
         return copy;
     }
 }

@@ -27,6 +27,7 @@ export class ExpedienteDialogComponent implements OnInit {
     estatusexpedientes: Estatus[];
 
     tiposervicios: TipoServicio[];
+    fecPruebaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
