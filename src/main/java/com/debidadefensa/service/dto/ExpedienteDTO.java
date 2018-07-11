@@ -32,6 +32,8 @@ public class ExpedienteDTO implements Serializable {
 
     private Long estatusExpedienteId;
 
+    private String estatusDescripcion;
+
     private Long tipoServicioId;
 
     public Long getId() {
@@ -113,6 +115,15 @@ public class ExpedienteDTO implements Serializable {
     public void setEstatusExpedienteId(Long estatusId) {
         this.estatusExpedienteId = estatusId;
     }
+
+    public String getEstatusDescripcion() {
+        return estatusDescripcion;
+    }
+
+    public void setEstatusDescripcion(String estatusDescripcion) {
+        this.estatusDescripcion = estatusDescripcion;
+    }
+
 
     public Long getTipoServicioId() {
         return tipoServicioId;
