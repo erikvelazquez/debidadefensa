@@ -30,6 +30,8 @@ public class ExpedienteDTO implements Serializable {
 
     private Long clienteId;
 
+    private String clienteNombre;
+
     private Long estatusExpedienteId;
 
     private String estatusDescripcion;
@@ -107,6 +109,14 @@ public class ExpedienteDTO implements Serializable {
     public void setClienteId(Long clienteId) {
         this.clienteId = clienteId;
     }
+
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
+    }    
 
     public Long getEstatusExpedienteId() {
         return estatusExpedienteId;

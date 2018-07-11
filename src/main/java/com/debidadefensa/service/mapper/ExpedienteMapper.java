@@ -12,7 +12,9 @@ import org.mapstruct.*;
 public interface ExpedienteMapper extends EntityMapper<ExpedienteDTO, Expediente> {
 
     @Mapping(source = "cliente.id", target = "clienteId")
+    @Mapping(source = "cliente.nombre", target = "clienteNombre")
     @Mapping(source = "estatusExpediente.id", target = "estatusExpedienteId")
+    @Mapping(source = "estatusExpediente.descripcion", target = "estatusDescripcion")
     @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
     ExpedienteDTO toDto(Expediente expediente);
 

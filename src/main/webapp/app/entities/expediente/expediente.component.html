@@ -55,7 +55,7 @@
                 <td>{{expediente.fechaSentencia | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="expediente.clienteId">
-                        <a [routerLink]="['../cliente', expediente.clienteId  ]" >{{expediente.clienteId}}</a>
+                        <a [routerLink]="['../cliente', expediente.clienteId  ]" >{{expediente.clienteNombre}}</a>
                     </div>
                 </td>
                 <td>
