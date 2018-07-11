@@ -71,7 +71,7 @@ export class ExpedienteAsociadoService {
     private convertItemFromServer(expedienteAsociado: ExpedienteAsociado): ExpedienteAsociado {
         const copy: ExpedienteAsociado = Object.assign({}, expedienteAsociado);
         copy.fechaSentencia = this.dateUtils
-            .convertDateTimeFromServer(expedienteAsociado.fechaSentencia);
+            .convertLocalDateFromServer(expedienteAsociado.fechaSentencia);
         return copy;
     }
 
@@ -80,8 +80,8 @@ export class ExpedienteAsociadoService {
      */
     private convert(expedienteAsociado: ExpedienteAsociado): ExpedienteAsociado {
         const copy: ExpedienteAsociado = Object.assign({}, expedienteAsociado);
-
-        copy.fechaSentencia = this.dateUtils.toDate(expedienteAsociado.fechaSentencia);
+        copy.fechaSentencia = this.dateUtils
+            .convertLocalDateToServer(expedienteAsociado.fechaSentencia);
         return copy;
     }
 }

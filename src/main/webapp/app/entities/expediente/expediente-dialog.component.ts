@@ -50,11 +50,17 @@ export class ExpedienteDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Estatus[]>) => {
                 if (!this.expediente.estatusExpedienteId) {
                     this.estatusexpedientes = res.body;
+                    this.estatusexpedientes = this.estatusexpedientes.filter((s) => {
+                                                    return s.tipoServicioId === 1001;
+                                                });
                 } else {
                     this.estatusService
                         .find(this.expediente.estatusExpedienteId)
                         .subscribe((subRes: HttpResponse<Estatus>) => {
-                            this.estatusexpedientes = [subRes.body].concat(res.body);
+                            this.estatusexpedientes = res.body; // [subRes.body].concat(res.body);
+                            this.estatusexpedientes = this.estatusexpedientes.filter((s) => {
+                                return s.tipoServicioId === 1001;
+                            });
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));

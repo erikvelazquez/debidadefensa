@@ -18,20 +18,6 @@
                 [(ngModel)]="expedienteAsociado.numeroExpediente" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.expediente" for="field_expediente">Expediente</label>
-            <select class="form-control" id="field_expediente" name="expediente" [(ngModel)]="expedienteAsociado.expedienteId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.estatusExpedienteAsociado" for="field_estatusExpedienteAsociado">Estatus Expediente Asociado</label>
-            <select class="form-control" id="field_estatusExpedienteAsociado" name="estatusExpedienteAsociado" [(ngModel)]="expedienteAsociado.estatusExpedienteAsociadoId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedienteasociados; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.instancia" for="field_instancia">Instancia</label>
             <input type="text" class="form-control" name="instancia" id="field_instancia"
                 [(ngModel)]="expedienteAsociado.instancia" />
@@ -41,11 +27,11 @@
             <input type="text" class="form-control" name="organocompetente" id="field_organocompetente"
                 [(ngModel)]="expedienteAsociado.organocompetente" />
         </div>
-        <!--<div class="form-group">
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.archivo" for="field_archivo">Archivo</label>
             <input type="text" class="form-control" name="archivo" id="field_archivo"
                 [(ngModel)]="expedienteAsociado.archivo" />
-        </div>-->
+        </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.observaciones" for="field_observaciones">Observaciones</label>
             <input type="text" class="form-control" name="observaciones" id="field_observaciones"
@@ -53,11 +39,29 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
-            <div class="d-flex">
-                <input id="field_fechaSentencia" type="datetime-local" class="form-control" name="fechaSentencia" [(ngModel)]="expedienteAsociado.fechaSentencia"
+            <div class="input-group">
+                <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"
                 />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
-        </div>        
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.expediente" for="field_expediente">Expediente</label>
+            <select class="form-control" id="field_expediente" name="expediente" [(ngModel)]="expedienteAsociado.expedienteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.expedienteAsociado.estatusExpedienteAsociado" for="field_estatusExpedienteAsociado">Estatus Expediente Asociado</label>
+            <select class="form-control" id="field_estatusExpedienteAsociado" name="estatusExpedienteAsociado" [(ngModel)]="expedienteAsociado.estatusExpedienteAsociadoId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedienteasociados; trackBy: trackEstatusById">{{estatusOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

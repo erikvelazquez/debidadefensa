@@ -2,7 +2,6 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { ExpedienteAsociado } from './expediente-asociado.model';
 import { ExpedienteAsociadoService } from './expediente-asociado.service';
 
@@ -11,7 +10,6 @@ export class ExpedienteAsociadoPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private expedienteAsociadoService: ExpedienteAsociadoService
@@ -31,8 +29,13 @@ export class ExpedienteAsociadoPopupService {
                 this.expedienteAsociadoService.find(id)
                     .subscribe((expedienteAsociadoResponse: HttpResponse<ExpedienteAsociado>) => {
                         const expedienteAsociado: ExpedienteAsociado = expedienteAsociadoResponse.body;
-                        expedienteAsociado.fechaSentencia = this.datePipe
-                            .transform(expedienteAsociado.fechaSentencia, 'yyyy-MM-ddTHH:mm:ss');
+                        if (expedienteAsociado.fechaSentencia) {
+                            expedienteAsociado.fechaSentencia = {
+                                year: expedienteAsociado.fechaSentencia.getFullYear(),
+                                month: expedienteAsociado.fechaSentencia.getMonth() + 1,
+                                day: expedienteAsociado.fechaSentencia.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.expedienteAsociadoModalRef(component, expedienteAsociado);
                         resolve(this.ngbModalRef);
                     });

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -42,7 +42,7 @@ public class ExpedienteAsociado implements Serializable {
     private String observaciones;
 
     @Column(name = "fecha_sentencia")
-    private Instant fechaSentencia;
+    private LocalDate fechaSentencia;
 
     @ManyToOne
     private Expediente expediente;
@@ -129,16 +129,16 @@ public class ExpedienteAsociado implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Instant getFechaSentencia() {
+    public LocalDate getFechaSentencia() {
         return fechaSentencia;
     }
 
-    public ExpedienteAsociado fechaSentencia(Instant fechaSentencia) {
+    public ExpedienteAsociado fechaSentencia(LocalDate fechaSentencia) {
         this.fechaSentencia = fechaSentencia;
         return this;
     }
 
-    public void setFechaSentencia(Instant fechaSentencia) {
+    public void setFechaSentencia(LocalDate fechaSentencia) {
         this.fechaSentencia = fechaSentencia;
     }
 

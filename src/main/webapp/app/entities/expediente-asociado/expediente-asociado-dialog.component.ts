@@ -24,6 +24,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     expedientes: Expediente[];
 
     estatusexpedienteasociados: Estatus[];
+    fechaSentenciaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,

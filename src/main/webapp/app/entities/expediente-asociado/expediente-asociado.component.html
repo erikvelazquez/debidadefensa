@@ -28,7 +28,8 @@
     <div class="table-responsive" *ngIf="expedienteAsociados">
         <table class="table table-striped">
             <thead>
-            <tr>           
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.numeroExpediente">Numero Expediente</span></th>
             <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.instancia">Instancia</span></th>
             <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.organocompetente">Organocompetente</span></th>
@@ -42,13 +43,13 @@
             </thead>
             <tbody>
             <tr *ngFor="let expedienteAsociado of expedienteAsociados ;trackBy: trackId">
-                <td><a [routerLink]="['../expediente-asociado', expedienteAsociado.id ]">{{expedienteAsociado.numeroExpediente}}</a></td>
-             
+                <td><a [routerLink]="['../expediente-asociado', expedienteAsociado.id ]">{{expedienteAsociado.id}}</a></td>
+                <td>{{expedienteAsociado.numeroExpediente}}</td>
                 <td>{{expedienteAsociado.instancia}}</td>
                 <td>{{expedienteAsociado.organocompetente}}</td>
                 <td>{{expedienteAsociado.archivo}}</td>
                 <td>{{expedienteAsociado.observaciones}}</td>
-                <td>{{expedienteAsociado.fechaSentencia | date:'medium'}}</td>
+                <td>{{expedienteAsociado.fechaSentencia | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="expedienteAsociado.expedienteId">
                         <a [routerLink]="['../expediente', expedienteAsociado.expedienteId  ]" >{{expedienteAsociado.expedienteId}}</a>
@@ -61,12 +62,12 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <!--<button type="submit"
+                        <button type="submit"
                                 [routerLink]="['../expediente-asociado', expedienteAsociado.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>-->
+                        </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/edit'} }]"
                                 replaceUrl="true"
