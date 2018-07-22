@@ -59,14 +59,20 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
             );
             return;
         }
-        this.expedienteService.query({
+        this.expedienteService.findByUser(1001)
+        .subscribe(
+            (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+
+       /* this.expedienteService.query({
             page: this.page,
             size: this.itemsPerPage,
             sort: this.sort()
         }).subscribe(
             (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        );*/
     }
 
     reset() {

@@ -100,6 +100,21 @@ public class ExpedienteResource {
     }
 
     /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/expedientes/user/{iduser}")
+    @Timed
+    public ResponseEntity<List<ExpedienteDTO>> getAllExpedientesById(@PathVariable Long iduser) {
+        log.debug("REST request to get a page of Expedientes");
+        List<ExpedienteDTO> ls = expedienteService.findByIdUser(iduser);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
      * GET  /expedientes/:id : get the "id" expediente.
      *
      * @param id the id of the expedienteDTO to retrieve

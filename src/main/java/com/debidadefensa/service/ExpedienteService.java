@@ -1,5 +1,7 @@
 package com.debidadefensa.service;
 
+import java.util.List;
+
 import com.debidadefensa.service.dto.ExpedienteDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +26,14 @@ public interface ExpedienteService {
      * @return the list of entities
      */
     Page<ExpedienteDTO> findAll(Pageable pageable);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<ExpedienteDTO> findByIdUser(Long idUser);
 
     /**
      * Get the "id" expediente.

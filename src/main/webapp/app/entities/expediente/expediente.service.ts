@@ -35,6 +35,12 @@ export class ExpedienteService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByUser(req: number): Observable<HttpResponse<Expediente[]>> {
+        const options = createRequestOption(req);
+        return this.http.get<Expediente[]>(SERVER_API_URL + "api/expedientes/user/" + req, { observe: 'response' })
+            .map((res: HttpResponse<Expediente[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Expediente[]>> {
         const options = createRequestOption(req);
         return this.http.get<Expediente[]>(this.resourceUrl, { params: options, observe: 'response' })
