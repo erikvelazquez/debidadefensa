@@ -43,6 +43,9 @@ public class Cliente implements Serializable {
     @Column(name = "referencia")
     private String referencia;
 
+  /*  @Column(name = "totalExpediente")
+    private Long totalExpediente;*/
+
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private Set<Expediente> expedientes = new HashSet<>();
@@ -58,9 +61,9 @@ public class Cliente implements Serializable {
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
-    }
+    }    
 
-    public void setId(Long id) {
+	public void setId(Long id) {
         this.id = id;
     }
 
@@ -142,6 +145,20 @@ public class Cliente implements Serializable {
         this.referencia = referencia;
     }
 
+    /**
+	 * @return the totalExpediente
+	 */
+/*	public Long getTotalExpediente() {
+		return totalExpediente;
+	}*/
+
+	/**
+	 * @param totalExpediente the totalExpediente to set
+	 */
+	/* public void setTotalExpediente(Long totalExpediente) {
+		this.totalExpediente = totalExpediente;
+    } */
+
     public Set<Expediente> getExpedientes() {
         return expedientes;
     }
@@ -165,12 +182,12 @@ public class Cliente implements Serializable {
 
     public void setExpedientes(Set<Expediente> expedientes) {
         this.expedientes = expedientes;
-    }
+    }    
 
     public Set<TramiteMigratorio> getTramiteMigras() {
         return tramiteMigras;
-    }
-
+    }    
+    
     public Cliente tramiteMigras(Set<TramiteMigratorio> tramiteMigratorios) {
         this.tramiteMigras = tramiteMigratorios;
         return this;
@@ -248,6 +265,7 @@ public class Cliente implements Serializable {
             ", domicilio='" + getDomicilio() + "'" +
             ", rfc='" + getRfc() + "'" +
             ", referencia='" + getReferencia() + "'" +
+         //   ", totalExpediente='" + getTotalExpediente() + "'" +            
             "}";
     }
 }

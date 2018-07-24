@@ -25,11 +25,13 @@ public class ClienteDTO implements Serializable {
 
     private String referencia;
 
+    private Long totalExpediente;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+	public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,6 +83,20 @@ public class ClienteDTO implements Serializable {
         this.referencia = referencia;
     }
 
+    /**
+	 * @return the totalExpediente
+	 */
+	public Long getTotalExpediente() {
+		return totalExpediente;
+	}
+
+	/**
+	 * @param totalExpediente the totalExpediente to set
+	 */
+	public void setTotalExpediente(Long totalExpediente) {
+		this.totalExpediente = totalExpediente;
+	}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -112,6 +128,7 @@ public class ClienteDTO implements Serializable {
             ", domicilio='" + getDomicilio() + "'" +
             ", rfc='" + getRfc() + "'" +
             ", referencia='" + getReferencia() + "'" +
+            ", totalExpediente='" + getTotalExpediente() + "'" +
             "}";
     }
 }

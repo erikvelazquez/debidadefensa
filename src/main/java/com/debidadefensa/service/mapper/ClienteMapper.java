@@ -10,8 +10,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface ClienteMapper extends EntityMapper<ClienteDTO, Cliente> {
-
-
+    
     @Mapping(target = "expedientes", ignore = true)
     @Mapping(target = "tramiteMigras", ignore = true)
     @Mapping(target = "tramiteGrals", ignore = true)

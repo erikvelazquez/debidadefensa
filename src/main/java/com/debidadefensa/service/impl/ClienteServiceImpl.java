@@ -63,8 +63,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional(readOnly = true)
     public Page<ClienteDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Clientes");
-        return clienteRepository.findAll(pageable)
-            .map(clienteMapper::toDto);
+        return clienteRepository.findClientes(pageable)
+        .map(clienteMapper::toDto);
+        
+       /* return clienteRepository.findAll(pageable)
+            .map(clienteMapper::toDto);*/
     }
 
     /**

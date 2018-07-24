@@ -23,6 +23,7 @@
             "domicilio": "Domicilio",
             "rfc": "Rfc",
             "referencia": "Referencia",
+            "totalExpediente": "Total Expediente",
             "expediente": "Expediente",
             "tramiteMigra": "Tramite Migra",
             "tramiteGral": "Tramite Gral"
