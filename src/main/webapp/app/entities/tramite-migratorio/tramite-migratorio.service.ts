@@ -36,7 +36,7 @@ export class TramiteMigratorioService {
     }
 
     findByUser(req: number): Observable<HttpResponse<TramiteMigratorio[]>> {
-        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + "api/tramite-migratorios/user/" + req, { observe: 'response' })
+        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + 'api/tramite-migratorios/user/' + req, { observe: 'response' })
             .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
     }
 

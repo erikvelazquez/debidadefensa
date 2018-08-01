@@ -37,6 +37,17 @@ export const tramiteMigratorioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
+        path: 'tramite-migratorio-usuario/:id',
+        component: TramiteMigratorioComponent,
+        resolve: {
+            'pagingParams': TramiteMigratorioResolvePagingParams
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
         path: 'tramite-migratorio/:id',
         component: TramiteMigratorioDetailComponent,
         data: {

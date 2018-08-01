@@ -38,7 +38,9 @@
             <th jhiSortBy="domicilio"><span jhiTranslate="debidadefensaApp.cliente.domicilio">Domicilio</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="rfc"><span jhiTranslate="debidadefensaApp.cliente.rfc">Rfc</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="referencia"><span jhiTranslate="debidadefensaApp.cliente.referencia">Referencia</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="totalExpediente"><span jhiTranslate="debidadefensaApp.cliente.totalExpediente">Expedientes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalExpediente"><span jhiTranslate="debidadefensaApp.cliente.tramiteMigra">Migratorios</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalExpediente"><span jhiTranslate="debidadefensaApp.cliente.tramiteGral">Generales</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalExpediente"><span jhiTranslate="debidadefensaApp.cliente.expediente">Expedientes</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -51,7 +53,9 @@
                 <td>{{cliente.domicilio}}</td>
                 <td>{{cliente.rfc}}</td>
                 <td>{{cliente.referencia}}</td>
-                <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ cliente.id + '/edit'} }]">0  </a></td>
+                <td><a [routerLink]="['../tramite-migratorio-usuario', cliente.id ]">0  </a></td>
+                <td><a [routerLink]="['../tramite-general-usuario', cliente.id ]">0  </a></td>
+                <td><a [routerLink]="['../expediente-usuario', cliente.id ]">0  </a></td>
                 <!--<td>{{cliente.totalExpediente}}</td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

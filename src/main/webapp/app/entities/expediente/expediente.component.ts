@@ -7,6 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Expediente } from './expediente.model';
 import { ExpedienteService } from './expediente.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import { Cliente } from '../cliente';
 
 @Component({
     selector: 'jhi-expediente',
@@ -18,6 +19,7 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 export class ExpedienteComponent implements OnInit, OnDestroy {
 
     expedientes: Expediente[];
+    cliente: Cliente;
     currentAccount: any;
     eventSubscriber: Subscription;
     itemsPerPage: number;
@@ -28,6 +30,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     currentSearch: string;
+    private subscription: Subscription;
 
     constructor(
         private expedienteService: ExpedienteService,
@@ -35,7 +38,8 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        private principal: Principal,
+        private route: ActivatedRoute
     ) {
         this.expedientes = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -43,6 +47,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         this.links = {
             last: 0
         };
+        this.cliente = new Cliente();
         this.predicate = 'id';
         this.reverse = true;
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
@@ -62,20 +67,24 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
             );
             return;
         }
-        this.expedienteService.findByUser(1001)
-        .subscribe(
-            (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
 
-       /* this.expedienteService.query({
-            page: this.page,
-            size: this.itemsPerPage,
-            sort: this.sort()
-        }).subscribe(
-            (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );*/
+        if (this.cliente.id > 0) {
+            this.expedienteService.findByUser(this.cliente.id)
+            .subscribe(
+                (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        } else {
+            this.expedienteService.query({
+                page: this.page,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            }).subscribe(
+                (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+
+        }
     }
 
     reset() {
@@ -116,6 +125,11 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         this.loadAll();
     }
     ngOnInit() {
+
+        this.subscription = this.route.params.subscribe((params) => {
+            this.cliente.id = params["id"];
+        });
+
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
@@ -124,6 +138,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.subscription.unsubscribe();
         this.eventManager.destroy(this.eventSubscriber);
     }
 

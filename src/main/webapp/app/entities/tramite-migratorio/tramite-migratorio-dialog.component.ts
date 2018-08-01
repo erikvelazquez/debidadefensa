@@ -57,7 +57,7 @@ export class TramiteMigratorioDialogComponent implements OnInit {
                     this.estatustramitemigratorios = this.estatustramitemigratorios.filter((s) => {
                         return s.tipoServicioId === 1002;
                     });
-                    
+
                 } else {
                     this.estatusService
                         .find(this.tramiteMigratorio.estatusTramiteMigratorioId)

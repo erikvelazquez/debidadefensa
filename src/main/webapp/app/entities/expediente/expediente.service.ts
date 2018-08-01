@@ -15,6 +15,7 @@ export class ExpedienteService {
 
     private resourceUrl =  SERVER_API_URL + 'api/expedientes';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/expedientes';
+    private resourceURLbyUser = SERVER_API_URL + 'api/expedientes/user/';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
@@ -36,7 +37,7 @@ export class ExpedienteService {
     }
 
     findByUser(req: number): Observable<HttpResponse<Expediente[]>> {
-        return this.http.get<Expediente[]>(SERVER_API_URL + "api/expedientes/user/" + req, { observe: 'response' })
+        return this.http.get<Expediente[]>(`${this.resourceURLbyUser}/${req}`, { observe: 'response' })
             .map((res: HttpResponse<Expediente[]>) => this.convertArrayResponse(res));
     }
 

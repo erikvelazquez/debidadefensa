@@ -37,6 +37,17 @@ export const tramiteGeneralRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
+        path: 'tramite-general-usuario/:id',
+        component: TramiteGeneralComponent,
+        resolve: {
+            'pagingParams': TramiteGeneralResolvePagingParams
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
         path: 'tramite-general/:id',
         component: TramiteGeneralDetailComponent,
         data: {

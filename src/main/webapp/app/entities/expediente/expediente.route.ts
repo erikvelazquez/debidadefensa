@@ -16,6 +16,14 @@ export const expedienteRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
+        path: 'expediente-usuario/:id',
+        component: ExpedienteComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.expediente.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
         path: 'expediente/:id',
         component: ExpedienteDetailComponent,
         data: {

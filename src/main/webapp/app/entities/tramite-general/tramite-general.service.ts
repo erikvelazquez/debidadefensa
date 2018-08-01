@@ -36,7 +36,7 @@ export class TramiteGeneralService {
     }
 
     findByUser(req: number): Observable<HttpResponse<TramiteGeneral[]>> {
-        return this.http.get<TramiteGeneral[]>(SERVER_API_URL + "api/tramite-generals/user/" + req, { observe: 'response' })
+        return this.http.get<TramiteGeneral[]>(SERVER_API_URL + 'api/tramite-generals/user/' + req, { observe: 'response' })
             .map((res: HttpResponse<TramiteGeneral[]>) => this.convertArrayResponse(res));
     }
 

@@ -7,6 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { TramiteGeneral } from './tramite-general.model';
 import { TramiteGeneralService } from './tramite-general.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import { Cliente } from '../cliente';
 
 @Component({
     selector: 'jhi-tramite-general',
@@ -15,6 +16,7 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 export class TramiteGeneralComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
+    cliente: Cliente;
     tramiteGenerals: TramiteGeneral[];
     error: any;
     success: any;
@@ -29,6 +31,8 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    private route: ActivatedRoute
+    private subscription: Subscription;
 
     constructor(
         private tramiteGeneralService: TramiteGeneralService,
@@ -40,6 +44,7 @@ currentAccount: any;
         private eventManager: JhiEventManager
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
+        this.cliente = new Cliente();
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data.pagingParams.page;
             this.previousPage = data.pagingParams.page;
@@ -62,13 +67,22 @@ currentAccount: any;
                 );
             return;
         }
-        this.tramiteGeneralService.query({
-            page: this.page - 1,
-            size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+
+        if (this.cliente.id > 0) {
+            this.tramiteGeneralService.findByUser(this.cliente.id)
+            .subscribe(
                 (res: HttpResponse<TramiteGeneral[]>) => this.onSuccess(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
-        );
+            );
+        } else {
+            this.tramiteGeneralService.query({
+                page: this.page - 1,
+                size: this.itemsPerPage,
+                sort: this.sort()}).subscribe(
+                    (res: HttpResponse<TramiteGeneral[]>) => this.onSuccess(res.body, res.headers),
+                    (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        }
     }
     loadPage(page: number) {
         if (page !== this.previousPage) {
@@ -111,6 +125,9 @@ currentAccount: any;
         this.loadAll();
     }
     ngOnInit() {
+        this.subscription = this.route.params.subscribe((params) => {
+            this.cliente.id = params["id"];
+        });
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
@@ -119,6 +136,7 @@ currentAccount: any;
     }
 
     ngOnDestroy() {
+        this.subscription.unsubscribe();
         this.eventManager.destroy(this.eventSubscriber);
     }
 
