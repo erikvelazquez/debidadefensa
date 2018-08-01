@@ -126,7 +126,7 @@ public class CostoServicioServiceImpl implements CostoServicioService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return CostoServicioRepository.findByExpediente_id(idUser).stream().map(costoServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return costoServicioRepository.findByExpediente_id(idUser).stream().map(costoServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 }

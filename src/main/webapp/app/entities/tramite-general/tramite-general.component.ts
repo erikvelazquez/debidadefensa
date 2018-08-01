@@ -7,7 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { TramiteGeneral } from './tramite-general.model';
 import { TramiteGeneralService } from './tramite-general.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
-import { Cliente } from '../cliente';
+import { Cliente, ClienteService } from '../cliente';
 
 @Component({
     selector: 'jhi-tramite-general',
@@ -41,7 +41,8 @@ currentAccount: any;
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private eventManager: JhiEventManager,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private clienteService: ClienteService,
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.cliente = new Cliente();
@@ -69,6 +70,11 @@ currentAccount: any;
         }
 
         if (this.cliente.id > 0) {
+            this.clienteService.find(this.cliente.id)
+            .subscribe((clienteResponse: HttpResponse<Cliente>) => {
+                this.cliente = clienteResponse.body;
+            });
+
             this.tramiteGeneralService.findByUser(this.cliente.id)
             .subscribe(
                 (res: HttpResponse<TramiteGeneral[]>) => this.onSuccess(res.body, res.headers),
@@ -156,8 +162,10 @@ currentAccount: any;
     }
 
     private onSuccess(data, headers) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = headers.get('X-Total-Count');
+        this.links = 100; // this.parseLinks.parse(headers.get('link'));
+        this.totalItems = data.length; // headers.get('X-Total-Count');
+        /* this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = headers.get('X-Total-Count');*/
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
         this.tramiteGenerals = data;

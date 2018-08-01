@@ -7,7 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Expediente } from './expediente.model';
 import { ExpedienteService } from './expediente.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
-import { Cliente } from '../cliente';
+import { Cliente, ClienteService } from '../cliente';
 
 @Component({
     selector: 'jhi-expediente',
@@ -39,7 +39,8 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private principal: Principal,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private clienteService: ClienteService,
     ) {
         this.expedientes = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -69,6 +70,12 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         }
 
         if (this.cliente.id > 0) {
+            this.clienteService.find(this.cliente.id)
+            .subscribe((clienteResponse: HttpResponse<Cliente>) => {
+                this.cliente = clienteResponse.body;
+            });
+
+
             this.expedienteService.findByUser(this.cliente.id)
             .subscribe(
                 (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),

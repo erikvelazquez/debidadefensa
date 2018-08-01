@@ -127,7 +127,7 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return FechasServicioRepository.findByExpediente_id(idUser).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return fechasServicioRepository.findByExpediente_id(idUser).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 }

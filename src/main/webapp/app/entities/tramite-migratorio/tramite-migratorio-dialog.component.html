@@ -1,4 +1,4 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm" >
 
     <div class="modal-header">
         <h4 class="modal-title" id="myTramiteMigratorioLabel" jhiTranslate="debidadefensaApp.tramiteMigratorio.home.createOrEditLabel">Create or edit a Tramite Migratorio</h4>
@@ -55,27 +55,22 @@
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso" for="field_fechaIngreso">Fecha Ingreso</label>
-            <div class="input-group col-md-10">
-                <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaIngreso"
-                />
+            <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
+                <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaIngreso"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaIngresoDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
-        </div>
-        <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
-            <div class="input-group col-md-10">
+            <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
                 <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaNotificacion"
                 />
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaNotificacionDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
-        </div>
-        <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
-            <div class="input-group col-md-10">
+            <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
                 <input id="field_fechaResolucion" type="text" class="form-control" name="fechaResolucion" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaResolucion"
                 />
                 <span class="input-group-append">
@@ -83,6 +78,7 @@
                 </span>
             </div>
         </div>
+       
         <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.archivo" for="field_archivo">Archivo</label>
             <input type="text" class="form-control" name="archivo" id="field_archivo"
@@ -94,13 +90,105 @@
                 [(ngModel)]="tramiteMigratorio.observaciones" />
         </div>
 
-        
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.tramitesMigraAsociados" for="field_tramitesMigraAsociados">Tramites Migra Asociados</label>
             <select class="form-control col-md-10" id="field_tramitesMigraAsociados" multiple name="tramitesMigraAsociados" [(ngModel)]="tramiteMigratorio.tramitesMigraAsociados">
                 <option [ngValue]="getSelected(tramiteMigratorio.tramitesMigraAsociados, tramiteAsociadoOption)" *ngFor="let tramiteAsociadoOption of tramiteasociados; trackBy: trackTramiteAsociadoById">{{tramiteAsociadoOption.id}}</option>
             </select>
         </div>
+
+        <!-- COSTOS Y PAGOS -->
+        <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">                     
+            <label class="form-control-label col-md-2 text-right label-title" for="field_observaciones">Costos y Pagos</label>            
+            <div class="row col-md-3">
+                <label class="form-control-label col-md-8 text-right" for="field_costos">Costos Totales</label>
+                <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
+            </div>
+            <div class="row col-md-3">
+                <label class="form-control-label col-md-8 text-right" for="field_costos">Pagos Totales</label>
+                <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
+            </div>
+            <div class="row col-md-3">
+                <label class="form-control-label col-md-8 text-right" for="field_costos">Deuda Total</label>
+                <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
+            </div>          
+            <button type="button" class="btn btn-secondary " data-dismiss="modal" (click)="clear()">
+                    <span class="fa fa-plus"></span>
+                </button>
+
+        </div>
+
+        <!-- Asociaciones y Fechas -->
+        <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">
+            <br>
+            <div class="row col-md-6 text-right" style="margin-right: 0px; margin-left: 0px;">                
+                <span class="form-control-label col-md-12 text-center label-title">Trámites migratorios asociados</span>
+                <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                            <th><span jhiTranslate="global.field.id">ID</span></th>
+                            <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.tipoTramite">Tipo Tramite</span></th>
+                            <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.idTramite">Id Tramite</span></th>
+                            <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let tramiteAsociado of tramiteAsociados ;trackBy: trackId">
+                                <td><a [routerLink]="['../tramite-asociado', tramiteAsociado.id ]">{{tramiteAsociado.id}}</a></td>
+                                <td>{{tramiteAsociado.tipoTramite}}</td>
+                                <td>{{tramiteAsociado.idTramite}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">                                        
+                                        <button type="submit"
+                                                [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteAsociado.id + '/delete'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-danger btn-sm">
+                                            <span class="fa fa-remove"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <div class="row col-md-6 text-right" style="margin-right: 0px; margin-left: 0px;">
+                <span class="col-md-12 text-center label-title">Fechas</span>
+                <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>                                
+                                <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
+                                <th><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripcion</span></th>                            
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">
+                                <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
+                                <td>{{fechasServicio.descripcion}}</td>                                
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">                                      
+                                        <button type="submit"
+                                                [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-danger btn-sm">
+                                            <span class="fa fa-remove"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

@@ -30,6 +30,7 @@ import {
 import {MatSidenavModule,
         MatCardModule,
         MatMenuModule,
+        MatDividerModule,
         MatIconModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -38,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MatSidenavModule,
         MatCardModule,
         MatMenuModule,
+        MatDividerModule,
         MatIconModule,
         BrowserAnimationsModule ,
         BrowserModule,

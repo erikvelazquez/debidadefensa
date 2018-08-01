@@ -1,12 +1,15 @@
 <div>
     <h2>
         <span jhiTranslate="debidadefensaApp.expediente.home.title">Expedientes</span>
+        
         <button class="btn btn-primary float-right jh-create-entity create-expediente" [routerLink]="['/', { outlets: { popup: ['expediente-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="debidadefensaApp.expediente.home.createLabel">
             Create new Expediente
             </span>
         </button>
+        <br>
+        <span *ngIf="cliente.id">Cliente: {{cliente.nombre}}</span>
     </h2>
     <!--<jhi-alert></jhi-alert>-->
     <div class="row">
@@ -22,7 +25,7 @@
                     </button>
                 </div>
             </form>
-        </div>
+        </div>        
     </div>
     <br/>
     <div class="table-responsive" *ngIf="expedientes">
