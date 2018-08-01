@@ -15,7 +15,10 @@ import { TramiteAsociado, TramiteAsociadoService } from '../tramite-asociado';
 
 @Component({
     selector: 'jhi-tramite-general-dialog',
-    templateUrl: './tramite-general-dialog.component.html'
+    templateUrl: './tramite-general-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class TramiteGeneralDialogComponent implements OnInit {
 
@@ -50,12 +53,20 @@ export class TramiteGeneralDialogComponent implements OnInit {
             .query({filter: 'tramitegeneral-is-null'})
             .subscribe((res: HttpResponse<Estatus[]>) => {
                 if (!this.tramiteGeneral.estatusTramiteGeneralId) {
+                    // this.estatustramitegenerals = res.body;
                     this.estatustramitegenerals = res.body;
+                    this.estatustramitegenerals = this.estatustramitegenerals.filter((s) => {
+                        return s.tipoServicioId === 1003;
+                    });
                 } else {
                     this.estatusService
                         .find(this.tramiteGeneral.estatusTramiteGeneralId)
                         .subscribe((subRes: HttpResponse<Estatus>) => {
-                            this.estatustramitegenerals = [subRes.body].concat(res.body);
+                            // this.estatustramitegenerals = [subRes.body].concat(res.body);
+                            this.estatustramitegenerals = res.body;
+                            this.estatustramitegenerals = this.estatustramitegenerals.filter((s) => {
+                                return s.tipoServicioId === 1003;
+                            });
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));

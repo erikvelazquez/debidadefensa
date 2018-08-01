@@ -27,6 +27,27 @@ public class ClienteDTO implements Serializable {
 
     private Long totalExpediente;
 
+    public ClienteDTO() {
+    }
+
+    public ClienteDTO (Long _id, 
+                        String _nombre, 
+                        String _telefonos, 
+                        String _correoElectronico, 
+                        String _domicilio, 
+                        String _rfc, 
+                        String _referencia, 
+                        Long _totalExpediente) {
+    this.id = _id;
+    this.nombre = _nombre;
+    this.telefonos = _telefonos;
+    this.correoElectronico = _correoElectronico;
+    this.domicilio = _domicilio;
+    this.rfc = _rfc;
+    this.referencia = _referencia;
+    this.totalExpediente = _totalExpediente;
+    }
+
     public Long getId() {
         return id;
     }

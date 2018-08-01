@@ -144,4 +144,20 @@ public class TramiteMigratorioResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/tramite-migratorios/user/{iduser}")
+    @Timed
+    public ResponseEntity<List<TramiteMigratorioDTO>> getAllTramitesMigratoriosById(@PathVariable Long iduser) {
+        log.debug("REST request to get a page of Expedientes");
+        List<TramiteMigratorioDTO> ls = tramiteMigratorioService.findByIdUser(iduser);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
 }

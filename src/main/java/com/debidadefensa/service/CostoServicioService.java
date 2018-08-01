@@ -46,4 +46,12 @@ public interface CostoServicioService {
      * @return the list of entities
      */
     List<CostoServicioDTO> search(String query);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<CostoServicioDTO> findByExpediente_id(Long idUser);
 }

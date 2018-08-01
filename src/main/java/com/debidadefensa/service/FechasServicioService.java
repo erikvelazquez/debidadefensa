@@ -46,4 +46,12 @@ public interface FechasServicioService {
      * @return the list of entities
      */
     List<FechasServicioDTO> search(String query);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<FechasServicioDTO> findByIdUser(Long idUser);
 }

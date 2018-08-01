@@ -42,10 +42,7 @@ public class Cliente implements Serializable {
 
     @Column(name = "referencia")
     private String referencia;
-
-  /*  @Column(name = "totalExpediente")
-    private Long totalExpediente;*/
-
+   
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private Set<Expediente> expedientes = new HashSet<>();
@@ -143,21 +140,7 @@ public class Cliente implements Serializable {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
-    }
-
-    /**
-	 * @return the totalExpediente
-	 */
-/*	public Long getTotalExpediente() {
-		return totalExpediente;
-	}*/
-
-	/**
-	 * @param totalExpediente the totalExpediente to set
-	 */
-	/* public void setTotalExpediente(Long totalExpediente) {
-		this.totalExpediente = totalExpediente;
-    } */
+    }    
 
     public Set<Expediente> getExpedientes() {
         return expedientes;

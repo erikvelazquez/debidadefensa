@@ -12,8 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-
+import java.util.stream.Collectors;
+import java.util.LinkedList;
+import java.util.List;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -106,5 +107,24 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
         log.debug("Request to search for a page of TramiteGenerals for query {}", query);
         Page<TramiteGeneral> result = tramiteGeneralSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(tramiteGeneralMapper::toDto);
+    }
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<TramiteGeneralDTO> findByIdUser(Long idUser) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return tramiteGeneralRepository.findByCliente_id(idUser).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
     }
 }

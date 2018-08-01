@@ -35,6 +35,11 @@ export class TramiteMigratorioService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByUser(req: number): Observable<HttpResponse<TramiteMigratorio[]>> {
+        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + "api/tramite-migratorios/user/" + req, { observe: 'response' })
+            .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<TramiteMigratorio[]>> {
         const options = createRequestOption(req);
         return this.http.get<TramiteMigratorio[]>(this.resourceUrl, { params: options, observe: 'response' })

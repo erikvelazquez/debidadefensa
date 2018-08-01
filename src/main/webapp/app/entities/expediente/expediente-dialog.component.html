@@ -7,47 +7,48 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
+            <select  [disabled]="expediente.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
             </select>
         </div>
             
-        <div class="form-group" [hidden]="!expediente.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="expediente.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.juzgado" for="field_juzgado">Juzgado</label>
-            <input type="text" class="form-control" name="juzgado" id="field_juzgado"
-                [(ngModel)]="expediente.juzgado" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.numeroExpediente" for="field_numeroExpediente">Numero Expediente</label>
-            <input type="text" class="form-control" name="numeroExpediente" id="field_numeroExpediente"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.numeroExpediente" for="field_numeroExpediente">Numero Expediente</label>
+            <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente"
                 [(ngModel)]="expediente.numeroExpediente" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.juicio" for="field_juicio">Juicio</label>
-            <input type="text" class="form-control" name="juicio" id="field_juicio"
+        <!-- <div class="form-group row" [hidden]="!expediente.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control col-md-10" id="id" name="id"
+                   [(ngModel)]="expediente.id" readonly />
+        </div> -->
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.juzgado" for="field_juzgado">Juzgado</label>
+            <input type="text" class="form-control col-md-10" name="juzgado" id="field_juzgado"
+                [(ngModel)]="expediente.juzgado" />
+        </div>
+        
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.juicio" for="field_juicio">Juicio</label>
+            <input type="text" class="form-control col-md-10" name="juicio" id="field_juicio"
                 [(ngModel)]="expediente.juicio" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.responsable" for="field_responsable">Responsable</label>
-            <input type="text" class="form-control" name="responsable" id="field_responsable"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.responsable" for="field_responsable">Responsable</label>
+            <input type="text" class="form-control col-md-10" name="responsable" id="field_responsable"
                 [(ngModel)]="expediente.responsable" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.observaciones" for="field_observaciones">Observaciones</label>
-            <input type="text" class="form-control" name="observaciones" id="field_observaciones"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.observaciones" for="field_observaciones">Observaciones</label>
+            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
                 [(ngModel)]="expediente.observaciones" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
-            <div class="input-group">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
+            <div class="input-group col-md-10">
                 <input id="field_fechaAlta" type="text" class="form-control" name="fechaAlta" ngbDatepicker  #fechaAltaDp="ngbDatepicker" [(ngModel)]="expediente.fechaAlta"
                 />
                 <span class="input-group-append">
@@ -55,9 +56,9 @@
                 </span>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
-            <div class="input-group">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
+            <div class="input-group col-md-10">
                 <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"
                 />
                 <span class="input-group-append">
@@ -66,9 +67,9 @@
             </div>
         </div>
         
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.estatusExpediente" for="field_estatusExpediente">Estatus Expediente</label>
-            <select class="form-control" id="field_estatusExpediente" name="estatusExpediente" [(ngModel)]="expediente.estatusExpedienteId">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.estatusExpediente" for="field_estatusExpediente">Estatus Expediente</label>
+            <select class="form-control col-md-10" id="field_estatusExpediente" name="estatusExpediente" [(ngModel)]="expediente.estatusExpedienteId">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedientes; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
             </select>

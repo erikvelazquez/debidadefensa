@@ -16,7 +16,10 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 
 @Component({
     selector: 'jhi-fechas-servicio-dialog',
-    templateUrl: './fechas-servicio-dialog.component.html'
+    templateUrl: './fechas-servicio-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class FechasServicioDialogComponent implements OnInit {
 

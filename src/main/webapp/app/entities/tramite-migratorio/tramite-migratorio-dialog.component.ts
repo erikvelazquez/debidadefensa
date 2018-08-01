@@ -15,7 +15,10 @@ import { TramiteAsociado, TramiteAsociadoService } from '../tramite-asociado';
 
 @Component({
     selector: 'jhi-tramite-migratorio-dialog',
-    templateUrl: './tramite-migratorio-dialog.component.html'
+    templateUrl: './tramite-migratorio-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class TramiteMigratorioDialogComponent implements OnInit {
 
@@ -51,11 +54,19 @@ export class TramiteMigratorioDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Estatus[]>) => {
                 if (!this.tramiteMigratorio.estatusTramiteMigratorioId) {
                     this.estatustramitemigratorios = res.body;
+                    this.estatustramitemigratorios = this.estatustramitemigratorios.filter((s) => {
+                        return s.tipoServicioId === 1002;
+                    });
+                    
                 } else {
                     this.estatusService
                         .find(this.tramiteMigratorio.estatusTramiteMigratorioId)
                         .subscribe((subRes: HttpResponse<Estatus>) => {
-                            this.estatustramitemigratorios = [subRes.body].concat(res.body);
+                           // this.estatustramitemigratorios = [subRes.body].concat(res.body);
+                           this.estatustramitemigratorios = res.body;
+                            this.estatustramitemigratorios = this.estatustramitemigratorios.filter((s) => {
+                                return s.tipoServicioId === 1002;
+                            });
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));

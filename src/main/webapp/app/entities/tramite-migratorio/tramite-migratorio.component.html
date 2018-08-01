@@ -38,7 +38,7 @@
             <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaNotificacion"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion">Fecha Notificacion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaResolucion"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion">Fecha Resolucion</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.archivo">Archivo</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.archivo">Archivo</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="observaciones"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.observaciones">Observaciones</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="clienteId"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.cliente">Cliente</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="estatusTramiteMigratorioId"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa fa-sort"></span></th>
@@ -47,7 +47,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">
-                <td><a [routerLink]="['../tramite-migratorio', tramiteMigratorio.id ]">{{tramiteMigratorio.nombreExtranjero}}</a></td>
+                <td><a [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/edit'} }]">{{tramiteMigratorio.nombreExtranjero}}</a></td>
                 
                 <td>{{tramiteMigratorio.tipotramite}}</td>
                 <td>{{tramiteMigratorio.entidad}}</td>
@@ -56,18 +56,14 @@
                 <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>
                 <td>{{tramiteMigratorio.fechaNotificacion | date:'mediumDate'}}</td>
                 <td>{{tramiteMigratorio.fechaResolucion | date:'mediumDate'}}</td>
-                <td>{{tramiteMigratorio.archivo}}</td>
+                <!--<td>{{tramiteMigratorio.archivo}}</td>-->
                 <td>{{tramiteMigratorio.observaciones}}</td>
                 <td>
                     <div *ngIf="tramiteMigratorio.clienteId">
-                        <a [routerLink]="['../cliente', tramiteMigratorio.clienteId  ]" >{{tramiteMigratorio.clienteId}}</a>
+                            <a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteMigratorio.clienteId + '/edit'} }]">{{tramiteMigratorio.clienteNombre}}</a>
                     </div>
                 </td>
-                <td>
-                    <div *ngIf="tramiteMigratorio.estatusTramiteMigratorioId">
-                        <a [routerLink]="['../estatus', tramiteMigratorio.estatusTramiteMigratorioId  ]" >{{tramiteMigratorio.estatusTramiteMigratorioId}}</a>
-                    </div>
-                </td>
+                <td>{{tramiteMigratorio.estatusDescripcion}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <!--<button type="submit"

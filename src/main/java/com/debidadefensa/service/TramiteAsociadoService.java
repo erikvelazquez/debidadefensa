@@ -46,4 +46,5 @@ public interface TramiteAsociadoService {
      * @return the list of entities
      */
     List<TramiteAsociadoDTO> search(String query);
+
 }

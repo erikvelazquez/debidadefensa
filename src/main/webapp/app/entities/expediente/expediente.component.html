@@ -8,7 +8,7 @@
             </span>
         </button>
     </h2>
-    <jhi-alert></jhi-alert>
+    <!--<jhi-alert></jhi-alert>-->
     <div class="row">
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
@@ -45,7 +45,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let expediente of expedientes ;trackBy: trackId">
-                <td><a [routerLink]="['../expediente', expediente.id ]">{{expediente.numeroExpediente}}</a></td>
+                <td><a [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/edit'} }]">{{expediente.numeroExpediente}}</a></td>
                 <td>{{expediente.juzgado}}</td>
       
                 <td>{{expediente.juicio}}</td>
@@ -55,14 +55,11 @@
                 <td>{{expediente.fechaSentencia | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="expediente.clienteId">
-                        <a [routerLink]="['../cliente', expediente.clienteId  ]" >{{expediente.clienteNombre}}</a>
+                        <a [routerLink]="['/', { outlets: { popup: 'cliente/'+ expediente.clienteId + '/edit'} }]">{{expediente.clienteNombre}}</a>
+                        <!--<a [routerLink]="['../cliente', expediente.clienteId  ]" >{{expediente.clienteNombre}}</a>-->
                     </div>
                 </td>
-                <td>
-                    <div *ngIf="expediente.estatusExpedienteId">
-                        <a [routerLink]="['../estatus', expediente.estatusExpedienteId  ]" >{{expediente.estatusDescripcion}}</a>
-                    </div>
-                </td>
+                <td>{{expediente.estatusDescripcion}}</td>
               
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

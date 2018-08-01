@@ -7,53 +7,55 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!tramiteMigratorio.id">
+        <!--<div class="form-group row" [hidden]="!tramiteMigratorio.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="tramiteMigratorio.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero" for="field_nombreExtranjero">Nombre Extranjero</label>
-            <input type="text" class="form-control" name="nombreExtranjero" id="field_nombreExtranjero"
-                [(ngModel)]="tramiteMigratorio.nombreExtranjero" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="tramiteMigratorio.clienteId" >
+        </div>-->
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.cliente" for="field_cliente">Cliente</label>
+            <select [disabled]="tramiteMigratorio.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="tramiteMigratorio.clienteId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio" for="field_estatusTramiteMigratorio">Estatus Tramite Migratorio</label>
-            <select class="form-control" id="field_estatusTramiteMigratorio" name="estatusTramiteMigratorio" [(ngModel)]="tramiteMigratorio.estatusTramiteMigratorioId">
+
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero" for="field_nombreExtranjero">Nombre Extranjero</label>
+            <input type="text" class="form-control col-md-10" name="nombreExtranjero" id="field_nombreExtranjero"
+                [(ngModel)]="tramiteMigratorio.nombreExtranjero" />
+        </div>
+        
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio" for="field_estatusTramiteMigratorio">Estatus Tramite Migratorio</label>
+            <select class="form-control col-md-10" id="field_estatusTramiteMigratorio" name="estatusTramiteMigratorio" [(ngModel)]="tramiteMigratorio.estatusTramiteMigratorioId">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatustramitemigratorios; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite" for="field_tipotramite">Tipotramite</label>
-            <input type="text" class="form-control" name="tipotramite" id="field_tipotramite"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite" for="field_tipotramite">Tipotramite</label>
+            <input type="text" class="form-control col-md-10" name="tipotramite" id="field_tipotramite"
                 [(ngModel)]="tramiteMigratorio.tipotramite" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad" for="field_entidad">Entidad</label>
-            <input type="text" class="form-control" name="entidad" id="field_entidad"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad" for="field_entidad">Entidad</label>
+            <input type="text" class="form-control col-md-10" name="entidad" id="field_entidad"
                 [(ngModel)]="tramiteMigratorio.entidad" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.nut" for="field_nut">Nut</label>
-            <input type="number" class="form-control" name="nut" id="field_nut"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.nut" for="field_nut">Nut</label>
+            <input type="number" class="form-control col-md-10" name="nut" id="field_nut"
                 [(ngModel)]="tramiteMigratorio.nut" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.contraseniaNUT" for="field_contraseniaNUT">Contrasenia NUT</label>
-            <input type="text" class="form-control" name="contraseniaNUT" id="field_contraseniaNUT"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.contraseniaNUT" for="field_contraseniaNUT">Contrasenia NUT</label>
+            <input type="text" class="form-control col-md-10" name="contraseniaNUT" id="field_contraseniaNUT"
                 [(ngModel)]="tramiteMigratorio.contraseniaNUT" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso" for="field_fechaIngreso">Fecha Ingreso</label>
-            <div class="input-group">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso" for="field_fechaIngreso">Fecha Ingreso</label>
+            <div class="input-group col-md-10">
                 <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaIngreso"
                 />
                 <span class="input-group-append">
@@ -61,9 +63,9 @@
                 </span>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
-            <div class="input-group">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
+            <div class="input-group col-md-10">
                 <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaNotificacion"
                 />
                 <span class="input-group-append">
@@ -71,9 +73,9 @@
                 </span>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
-            <div class="input-group">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
+            <div class="input-group col-md-10">
                 <input id="field_fechaResolucion" type="text" class="form-control" name="fechaResolucion" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaResolucion"
                 />
                 <span class="input-group-append">
@@ -86,16 +88,16 @@
             <input type="text" class="form-control" name="archivo" id="field_archivo"
                 [(ngModel)]="tramiteMigratorio.archivo" />
         </div>-->
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.tramiteMigratorio.observaciones" for="field_observaciones">Observaciones</label>
-            <input type="text" class="form-control" name="observaciones" id="field_observaciones"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.observaciones" for="field_observaciones">Observaciones</label>
+            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
                 [(ngModel)]="tramiteMigratorio.observaciones" />
         </div>
 
         
-        <div class="form-group">
-            <label jhiTranslate="debidadefensaApp.tramiteMigratorio.tramitesMigraAsociados" for="field_tramitesMigraAsociados">Tramites Migra Asociados</label>
-            <select class="form-control" id="field_tramitesMigraAsociados" multiple name="tramitesMigraAsociados" [(ngModel)]="tramiteMigratorio.tramitesMigraAsociados">
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.tramitesMigraAsociados" for="field_tramitesMigraAsociados">Tramites Migra Asociados</label>
+            <select class="form-control col-md-10" id="field_tramitesMigraAsociados" multiple name="tramitesMigraAsociados" [(ngModel)]="tramiteMigratorio.tramitesMigraAsociados">
                 <option [ngValue]="getSelected(tramiteMigratorio.tramitesMigraAsociados, tramiteAsociadoOption)" *ngFor="let tramiteAsociadoOption of tramiteasociados; trackBy: trackTramiteAsociadoById">{{tramiteAsociadoOption.id}}</option>
             </select>
         </div>

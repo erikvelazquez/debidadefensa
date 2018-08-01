@@ -10,7 +10,10 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-expediente',
-    templateUrl: './expediente.component.html'
+    templateUrl: './expediente.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class ExpedienteComponent implements OnInit, OnDestroy {
 

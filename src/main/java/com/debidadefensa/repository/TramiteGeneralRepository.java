@@ -19,4 +19,7 @@ public interface TramiteGeneralRepository extends JpaRepository<TramiteGeneral, 
     @Query("select tramite_general from TramiteGeneral tramite_general left join fetch tramite_general.tramiteGeneralAsociados where tramite_general.id =:id")
     TramiteGeneral findOneWithEagerRelationships(@Param("id") Long id);
 
+   // @Query("SELECT p FROM Expediente p WHERE p.cliente_id = :cliente_id")
+    // List<Expediente> findByCliente_id(@Param("cliente_id") long cliente_id);
+    List<TramiteGeneral> findByCliente_id(long cliente_id);
 }

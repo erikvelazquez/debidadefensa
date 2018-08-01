@@ -51,7 +51,8 @@
                 <td>{{cliente.domicilio}}</td>
                 <td>{{cliente.rfc}}</td>
                 <td>{{cliente.referencia}}</td>
-                <td>{{cliente.totalExpediente}}</td>
+                <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ cliente.id + '/edit'} }]">0  </a></td>
+                <!--<td>{{cliente.totalExpediente}}</td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <!--<button type="submit"

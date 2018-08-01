@@ -37,7 +37,7 @@
             <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaResolucion"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaResolucion">Fecha Resolucion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaNotificacion"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaNotificacion">Fecha Notificacion</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteGeneral.archivo">Archivo</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteGeneral.archivo">Archivo</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="observaciones"><span jhiTranslate="debidadefensaApp.tramiteGeneral.observaciones">Observaciones</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="clienteId"><span jhiTranslate="debidadefensaApp.tramiteGeneral.cliente">Cliente</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="estatusTramiteGeneralId"><span jhiTranslate="debidadefensaApp.tramiteGeneral.estatusTramiteGeneral">Estatus Tramite General</span> <span class="fa fa-sort"></span></th>
@@ -46,7 +46,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
-                <td><a [routerLink]="['../tramite-general', tramiteGeneral.id ]">{{tramiteGeneral.titular}}</a></td>
+                <td><a [routerLink]="['/', { outlets: { popup: 'tramite-general/'+ tramiteGeneral.id + '/edit'} }]">{{tramiteGeneral.titular}}</a></td>
                 
                 <td>{{tramiteGeneral.dependencia}}</td>
                 <td>{{tramiteGeneral.numeroTramite}}</td>
@@ -54,18 +54,14 @@
                 <td>{{tramiteGeneral.fechaIngreso | date:'mediumDate'}}</td>
                 <td>{{tramiteGeneral.fechaResolucion | date:'mediumDate'}}</td>
                 <td>{{tramiteGeneral.fechaNotificacion | date:'mediumDate'}}</td>
-                <td>{{tramiteGeneral.archivo}}</td>
+                <!--<td>{{tramiteGeneral.archivo}}</td>-->
                 <td>{{tramiteGeneral.observaciones}}</td>
                 <td>
                     <div *ngIf="tramiteGeneral.clienteId">
-                        <a [routerLink]="['../cliente', tramiteGeneral.clienteId  ]" >{{tramiteGeneral.clienteId}}</a>
+                            <a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteGeneral.clienteId + '/edit'} }]">{{tramiteGeneral.clienteNombre}}</a>
                     </div>
                 </td>
-                <td>
-                    <div *ngIf="tramiteGeneral.estatusTramiteGeneralId">
-                        <a [routerLink]="['../estatus', tramiteGeneral.estatusTramiteGeneralId  ]" >{{tramiteGeneral.estatusTramiteGeneralId}}</a>
-                    </div>
-                </td>
+                <td>{{tramiteGeneral.estatusDescripcion}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <!--<button type="submit"

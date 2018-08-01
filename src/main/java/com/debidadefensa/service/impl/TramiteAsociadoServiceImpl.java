@@ -109,5 +109,5 @@ public class TramiteAsociadoServiceImpl implements TramiteAsociadoService {
             .stream(tramiteAsociadoSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(tramiteAsociadoMapper::toDto)
             .collect(Collectors.toList());
-    }
+    }    
 }

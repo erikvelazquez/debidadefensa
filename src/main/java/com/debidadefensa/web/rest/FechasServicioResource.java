@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.HttpStatus;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -132,5 +133,22 @@ public class FechasServicioResource {
         log.debug("REST request to search FechasServicios for query {}", query);
         return fechasServicioService.search(query);
     }
+
+/**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/fechas-servicios/user/{iduser}")
+    @Timed
+    public ResponseEntity<List<FechasServicioDTO>> getAllFechasById(@PathVariable Long iduser) {
+        log.debug("REST request to get a page of Expedientes");
+        List<FechasServicioDTO> ls = fechasServicioService.findByIdUser(iduser);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+
 
 }

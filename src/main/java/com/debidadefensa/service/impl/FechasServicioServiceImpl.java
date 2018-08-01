@@ -110,4 +110,24 @@ public class FechasServicioServiceImpl implements FechasServicioService {
             .map(fechasServicioMapper::toDto)
             .collect(Collectors.toList());
     }
+
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<FechasServicioDTO> findByIdUser(Long idUser) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return FechasServicioRepository.findByExpediente_id(idUser).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
 }

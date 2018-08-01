@@ -15,7 +15,10 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 
 @Component({
     selector: 'jhi-expediente-dialog',
-    templateUrl: './expediente-dialog.component.html'
+    templateUrl: './expediente-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class ExpedienteDialogComponent implements OnInit {
 

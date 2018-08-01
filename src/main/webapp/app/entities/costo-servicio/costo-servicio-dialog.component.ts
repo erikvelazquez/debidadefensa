@@ -16,7 +16,10 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 
 @Component({
     selector: 'jhi-costo-servicio-dialog',
-    templateUrl: './costo-servicio-dialog.component.html'
+    templateUrl: './costo-servicio-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class CostoServicioDialogComponent implements OnInit {
 

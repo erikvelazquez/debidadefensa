@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.springframework.http.HttpStatus;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -133,4 +134,18 @@ public class CostoServicioResource {
         return costoServicioService.search(query);
     }
 
+/**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/costo-servicios/user/{iduser}")
+    @Timed
+    public ResponseEntity<List<CostoServicioDTO>> getAllCostosById(@PathVariable Long iduser) {
+        log.debug("REST request to get a page of Expedientes");
+        List<CostoServicioDTO> ls = costoServicioService.findByExpediente_id(iduser);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
 }

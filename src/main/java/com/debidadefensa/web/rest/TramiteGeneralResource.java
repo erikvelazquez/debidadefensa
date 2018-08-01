@@ -144,4 +144,19 @@ public class TramiteGeneralResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/tramite-generals/user/{iduser}")
+    @Timed
+    public ResponseEntity<List<TramiteGeneralDTO>> getAllTramitesGeneralesById(@PathVariable Long iduser) {
+        log.debug("REST request to get a page of Expedientes");
+        List<TramiteGeneralDTO> ls = tramiteGeneralService.findByIdUser(iduser);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
 }

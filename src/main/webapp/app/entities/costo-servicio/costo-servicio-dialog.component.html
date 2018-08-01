@@ -7,51 +7,51 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!costoServicio.id">
+        <!--<div class="form-group row" [hidden]="!costoServicio.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="costoServicio.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tipoCosto" for="field_tipoCosto">Tipo Costo</label>
-            <input type="text" class="form-control" name="tipoCosto" id="field_tipoCosto"
+        </div>-->
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.tipoCosto" for="field_tipoCosto">Tipo Costo</label>
+            <input type="text" class="form-control col-md-10" name="tipoCosto" id="field_tipoCosto"
                 [(ngModel)]="costoServicio.tipoCosto" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.concepto" for="field_concepto">Concepto</label>
-            <input type="text" class="form-control" name="concepto" id="field_concepto"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.concepto" for="field_concepto">Concepto</label>
+            <input type="text" class="form-control col-md-10" name="concepto" id="field_concepto"
                 [(ngModel)]="costoServicio.concepto" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.costo" for="field_costo">Costo</label>
-            <input type="number" class="form-control" name="costo" id="field_costo"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.costo" for="field_costo">Costo</label>
+            <input type="number" class="form-control col-md-10" name="costo" id="field_costo"
                 [(ngModel)]="costoServicio.costo" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.expediente" for="field_expediente">Expediente</label>
-            <select class="form-control" id="field_expediente" name="expediente" [(ngModel)]="costoServicio.expedienteId" >
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.expediente" for="field_expediente">Expediente</label>
+            <select class="form-control col-md-10" id="field_expediente" name="expediente" [(ngModel)]="costoServicio.expedienteId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tramiteMigratorio" for="field_tramiteMigratorio">Tramite Migratorio</label>
-            <select class="form-control" id="field_tramiteMigratorio" name="tramiteMigratorio" [(ngModel)]="costoServicio.tramiteMigratorioId" >
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.tramiteMigratorio" for="field_tramiteMigratorio">Tramite Migratorio</label>
+            <select class="form-control col-md-10" id="field_tramiteMigratorio" name="tramiteMigratorio" [(ngModel)]="costoServicio.tramiteMigratorioId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tramiteMigratorioOption.id" *ngFor="let tramiteMigratorioOption of tramitemigratorios; trackBy: trackTramiteMigratorioById">{{tramiteMigratorioOption.nombreExtranjero}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tramiteGeneral" for="field_tramiteGeneral">Tramite General</label>
-            <select class="form-control" id="field_tramiteGeneral" name="tramiteGeneral" [(ngModel)]="costoServicio.tramiteGeneralId" >
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.tramiteGeneral" for="field_tramiteGeneral">Tramite General</label>
+            <select class="form-control col-md-10" id="field_tramiteGeneral" name="tramiteGeneral" [(ngModel)]="costoServicio.tramiteGeneralId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tramiteGeneralOption.id" *ngFor="let tramiteGeneralOption of tramitegenerals; trackBy: trackTramiteGeneralById">{{tramiteGeneralOption.titular}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.costoServicio.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
-            <select class="form-control" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="costoServicio.tipoServicioId" >
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
+            <select class="form-control col-md-10" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="costoServicio.tipoServicioId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.descripcion}}</option>
             </select>

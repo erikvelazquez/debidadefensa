@@ -3,7 +3,7 @@ package com.debidadefensa.service;
 import com.debidadefensa.service.dto.TramiteMigratorioDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
+import java.util.List;
 /**
  * Service Interface for managing TramiteMigratorio.
  */
@@ -49,4 +49,13 @@ public interface TramiteMigratorioService {
      * @return the list of entities
      */
     Page<TramiteMigratorioDTO> search(String query, Pageable pageable);
+
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<TramiteMigratorioDTO> findByIdUser(Long idUser);
 }

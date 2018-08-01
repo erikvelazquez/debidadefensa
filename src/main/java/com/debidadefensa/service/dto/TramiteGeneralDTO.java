@@ -34,7 +34,11 @@ public class TramiteGeneralDTO implements Serializable {
 
     private Long clienteId;
 
+    private String clienteNombre;
+
     private Long estatusTramiteGeneralId;
+
+    private String estatusDescripcion;
 
     private Set<TramiteAsociadoDTO> tramiteGeneralAsociados = new HashSet<>();
 
@@ -42,7 +46,35 @@ public class TramiteGeneralDTO implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the estatusDescripcion
+	 */
+	public String getEstatusDescripcion() {
+		return estatusDescripcion;
+	}
+
+	/**
+	 * @param estatusDescripcion the estatusDescripcion to set
+	 */
+	public void setEstatusDescripcion(String estatusDescripcion) {
+		this.estatusDescripcion = estatusDescripcion;
+	}
+
+	/**
+	 * @return the clienteNombre
+	 */
+	public String getClienteNombre() {
+		return clienteNombre;
+	}
+
+	/**
+	 * @param clienteNombre the clienteNombre to set
+	 */
+	public void setClienteNombre(String clienteNombre) {
+		this.clienteNombre = clienteNombre;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 
