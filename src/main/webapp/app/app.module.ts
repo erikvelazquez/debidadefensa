@@ -33,6 +33,7 @@ import {MatSidenavModule,
         MatDividerModule,
         MatIconModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
     imports: [
@@ -50,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         DebidadefensaAdminModule,
         DebidadefensaAccountModule,
         DebidadefensaEntityModule,
+        CalendarModule.forRoot(),
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
