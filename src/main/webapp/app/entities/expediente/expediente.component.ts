@@ -131,7 +131,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         });
 
         this.loadAll();
-        this.principal.identity().then((account) => {
+        this.principal.identity().then((account) => {   
             this.currentAccount = account;
         });
         this.registerChangeInExpedientes();

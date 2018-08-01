@@ -30,8 +30,7 @@ currentAccount: any;
     page: any;
     predicate: any;
     previousPage: any;
-    reverse: any;
-    private route: ActivatedRoute
+    reverse: any;    
     private subscription: Subscription;
 
     constructor(
@@ -41,7 +40,8 @@ currentAccount: any;
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private route: ActivatedRoute
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.cliente = new Cliente();
@@ -125,9 +125,11 @@ currentAccount: any;
         this.loadAll();
     }
     ngOnInit() {
+        
         this.subscription = this.route.params.subscribe((params) => {
             this.cliente.id = params["id"];
         });
+        
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
