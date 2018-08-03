@@ -35,6 +35,21 @@ export class PagosService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByExpediente(req: number): Observable<HttpResponse<Pagos[]>> {
+        return this.http.get<Pagos[]>(SERVER_API_URL + 'api/pagos/expediente/' + req, { observe: 'response' })
+            .map((res: HttpResponse<Pagos[]>) => this.convertArrayResponse(res));
+    }
+
+    findByMigratorio(req: number): Observable<HttpResponse<Pagos[]>> {
+        return this.http.get<Pagos[]>(SERVER_API_URL + 'api/pagos/migratorio/' + req, { observe: 'response' })
+            .map((res: HttpResponse<Pagos[]>) => this.convertArrayResponse(res));
+    }
+
+    findByGeneral(req: number): Observable<HttpResponse<Pagos[]>> {
+        return this.http.get<Pagos[]>(SERVER_API_URL + 'api/pagos/general/' + req, { observe: 'response' })
+            .map((res: HttpResponse<Pagos[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Pagos[]>> {
         const options = createRequestOption(req);
         return this.http.get<Pagos[]>(this.resourceUrl, { params: options, observe: 'response' })

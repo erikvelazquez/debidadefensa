@@ -33,6 +33,21 @@ export class CostoServicioService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByExpediente(req: number): Observable<HttpResponse<CostoServicio[]>> {
+        return this.http.get<CostoServicio[]>(SERVER_API_URL + 'api/costo-servicios/expediente/' + req, { observe: 'response' })
+            .map((res: HttpResponse<CostoServicio[]>) => this.convertArrayResponse(res));
+    }
+
+    findByMigratorio(req: number): Observable<HttpResponse<CostoServicio[]>> {
+        return this.http.get<CostoServicio[]>(SERVER_API_URL + 'api/costo-servicios/migratorio/' + req, { observe: 'response' })
+            .map((res: HttpResponse<CostoServicio[]>) => this.convertArrayResponse(res));
+    }
+
+    findByGeneral(req: number): Observable<HttpResponse<CostoServicio[]>> {
+        return this.http.get<CostoServicio[]>(SERVER_API_URL + 'api/costo-servicios/general/' + req, { observe: 'response' })
+            .map((res: HttpResponse<CostoServicio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<CostoServicio[]>> {
         const options = createRequestOption(req);
         return this.http.get<CostoServicio[]>(this.resourceUrl, { params: options, observe: 'response' })

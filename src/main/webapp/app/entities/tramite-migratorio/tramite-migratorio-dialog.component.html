@@ -112,10 +112,14 @@
                 <label class="form-control-label col-md-8 text-right" for="field_costos">Deuda Total</label>
                 <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
             </div>          
-            <button type="button" class="btn btn-secondary " data-dismiss="modal" (click)="clear()">
-                    <span class="fa fa-plus"></span>
-                </button>
-
+            <button type="submit"
+                    
+                    [routerLink]="['../', { outlets: { popup: ['costo-servicio-view'] } }]"
+                    replaceUrl="true"
+                    queryParamsHandling="merge"
+                    class="btn btn-secondary btn-sm">
+                <span class="fa fa-plus"></span>                
+            </button>           
         </div>
 
         <!-- Asociaciones y Fechas -->

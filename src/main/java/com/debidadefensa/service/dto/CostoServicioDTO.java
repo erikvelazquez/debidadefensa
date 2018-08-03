@@ -13,6 +13,8 @@ public class CostoServicioDTO implements Serializable {
 
     private Long id;
 
+    private String tipo;
+
     private String tipoCosto;
 
     private String concepto;
@@ -41,6 +43,14 @@ public class CostoServicioDTO implements Serializable {
 
     public void setTipoCosto(String tipoCosto) {
         this.tipoCosto = tipoCosto;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getConcepto() {
@@ -116,6 +126,7 @@ public class CostoServicioDTO implements Serializable {
     public String toString() {
         return "CostoServicioDTO{" +
             "id=" + getId() +
+            ", tipo='" + getTipo() + "'" +
             ", tipoCosto='" + getTipoCosto() + "'" +
             ", concepto='" + getConcepto() + "'" +
             ", costo=" + getCosto() +

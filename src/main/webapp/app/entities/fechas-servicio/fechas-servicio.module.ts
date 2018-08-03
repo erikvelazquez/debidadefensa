@@ -14,6 +14,7 @@ import {
     fechasServicioRoute,
     fechasServicioPopupRoute,
 } from './';
+import { AgendaComponent } from './agenda.component';
 
 const ENTITY_STATES = [
     ...fechasServicioRoute,
@@ -26,6 +27,7 @@ const ENTITY_STATES = [
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
+        AgendaComponent,
         FechasServicioComponent,
         FechasServicioDetailComponent,
         FechasServicioDialogComponent,

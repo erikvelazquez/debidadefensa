@@ -119,14 +119,25 @@ public class CostoServicioServiceImpl implements CostoServicioService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<CostoServicioDTO> findByExpediente_id(Long idUser) {
-        log.debug("Request to get all Expedientes by user");       
-       /*  Cliente cliente = new Cliente();
-        cliente.setId(idUser);
-        Expediente exp = new Expediente();
-        exp.setCliente(cliente);
-        Example<Expediente> expediente = Example.of(exp);*/
-       return costoServicioRepository.findByExpediente_id(idUser).stream().map(costoServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    public List<CostoServicioDTO> findByExpediente_id(Long id) {
+        log.debug("Request to get all Expedientes by user");             
+       return costoServicioRepository.findByExpediente_id(id).stream().map(costoServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CostoServicioDTO> findByTramite_migratorio_id(Long id) {
+        log.debug("Request to get all Expedientes by user");     
+       return costoServicioRepository.findByTramiteMigratorio_id(id).stream().map(costoServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CostoServicioDTO> findByTramite_general_id(Long id) {
+        log.debug("Request to get all Expedientes by user");   
+       return costoServicioRepository.findByTramiteGeneral_id(id).stream().map(costoServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 }

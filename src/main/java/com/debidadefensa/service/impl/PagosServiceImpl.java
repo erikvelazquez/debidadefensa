@@ -110,4 +110,28 @@ public class PagosServiceImpl implements PagosService {
             .map(pagosMapper::toDto)
             .collect(Collectors.toList());
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PagosDTO> findByExpediente_id(Long id) {
+        log.debug("Request to get all Expedientes by user"); 
+       return pagosRepository.findByExpediente_id(id).stream().map(pagosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PagosDTO> findByTramite_migratorio_id(Long id) {
+        log.debug("Request to get all Expedientes by user");  
+       return pagosRepository.findByTramiteMigratorio_id(id).stream().map(pagosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PagosDTO> findByTramite_general_id(Long id) {
+        log.debug("Request to get all Expedientes by user"); 
+       return pagosRepository.findByTramiteGeneral_id(id).stream().map(pagosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
 }

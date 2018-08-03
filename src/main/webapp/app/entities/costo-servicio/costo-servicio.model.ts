@@ -3,6 +3,7 @@ import { BaseEntity } from './../../shared';
 export class CostoServicio implements BaseEntity {
     constructor(
         public id?: number,
+        public tipo?: string,
         public tipoCosto?: string,
         public concepto?: string,
         public costo?: number,

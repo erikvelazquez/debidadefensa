@@ -64,6 +64,7 @@ export class CostoServicioDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.costoServicio.tipo = 'C';
         if (this.costoServicio.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.costoServicioService.update(this.costoServicio));

@@ -50,8 +50,24 @@ public interface CostoServicioService {
     /**
      * Get all the expedientes by user.
      *
-     * @param idUser the id of user
+     * @param id the id of expediente
      * @return the list of entities
      */
-    List<CostoServicioDTO> findByExpediente_id(Long idUser);
+    List<CostoServicioDTO> findByExpediente_id(Long id);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param id the id of tramite migratorio
+     * @return the list of entities
+     */
+    List<CostoServicioDTO> findByTramite_migratorio_id(Long id);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param id the id of tramite general
+     * @return the list of entities
+     */
+    List<CostoServicioDTO> findByTramite_general_id(Long id);
 }

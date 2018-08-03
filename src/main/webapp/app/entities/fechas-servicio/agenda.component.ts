@@ -20,12 +20,15 @@ const colors: any = {
 };
   
   @Component({
-    selector: 'mwl-demo-component',
+    selector: 'agenda',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: ['styles.css'],
-    templateUrl: 'template.html'
+   // styleUrls: ['styles.css'],
+    templateUrl: './agenda.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
   })
-  export class DemoComponent {
+  export class AgendaComponent {
     @ViewChild('modalContent') modalContent: TemplateRef<any>;
   
     view: string = 'month';

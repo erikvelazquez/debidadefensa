@@ -5,6 +5,7 @@ import { FechasServicioComponent } from './fechas-servicio.component';
 import { FechasServicioDetailComponent } from './fechas-servicio-detail.component';
 import { FechasServicioPopupComponent } from './fechas-servicio-dialog.component';
 import { FechasServicioDeletePopupComponent } from './fechas-servicio-delete-dialog.component';
+import { AgendaComponent } from './agenda.component';
 
 export const fechasServicioRoute: Routes = [
     {
@@ -53,6 +54,16 @@ export const fechasServicioPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'debidadefensaApp.fechasServicio.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'agenda',
+        component: AgendaComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Agenda'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

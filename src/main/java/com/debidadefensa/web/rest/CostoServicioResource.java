@@ -135,16 +135,46 @@ public class CostoServicioResource {
     }
 
 /**
-     * GET  /expedientes : get all the expedientes.
+     * GET  /expedientes : get all by expedientes.
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
      */
-    @GetMapping("/costo-servicios/user/{iduser}")
+    @GetMapping("/costo-servicios/expediente/{id}")
     @Timed
-    public ResponseEntity<List<CostoServicioDTO>> getAllCostosById(@PathVariable Long iduser) {
+    public ResponseEntity<List<CostoServicioDTO>> getAllCostosByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
-        List<CostoServicioDTO> ls = costoServicioService.findByExpediente_id(iduser);
+        List<CostoServicioDTO> ls = costoServicioService.findByExpediente_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all by expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/costo-servicios/migratorio/{id}")
+    @Timed
+    public ResponseEntity<List<CostoServicioDTO>> getAllCostosMigratorioById(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<CostoServicioDTO> ls = costoServicioService.findByTramite_migratorio_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all by expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/costo-servicios/general/{id}")
+    @Timed
+    public ResponseEntity<List<CostoServicioDTO>> getAllCostosGeneralById(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<CostoServicioDTO> ls = costoServicioService.findByTramite_general_id(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
         return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }

@@ -46,4 +46,29 @@ public interface PagosService {
      * @return the list of entities
      */
     List<PagosDTO> search(String query);
+
+    
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<PagosDTO> findByExpediente_id(Long id);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<PagosDTO> findByTramite_migratorio_id(Long id);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<PagosDTO> findByTramite_general_id(Long id);
 }

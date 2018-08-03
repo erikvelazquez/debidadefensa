@@ -22,6 +22,9 @@ public class CostoServicio implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "tipo")
+    private String tipo;
+
     @Column(name = "tipo_costo")
     private String tipoCosto;
 
@@ -52,6 +55,19 @@ public class CostoServicio implements Serializable {
         this.id = id;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public CostoServicio tipo(String tipo) {
+        this.tipo = tipo;
+        return this;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public String getTipoCosto() {
         return tipoCosto;
     }
@@ -64,7 +80,7 @@ public class CostoServicio implements Serializable {
     public void setTipoCosto(String tipoCosto) {
         this.tipoCosto = tipoCosto;
     }
-
+    
     public String getConcepto() {
         return concepto;
     }

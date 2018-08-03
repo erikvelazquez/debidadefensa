@@ -8,6 +8,7 @@ import com.debidadefensa.service.dto.PagosDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -131,6 +132,51 @@ public class PagosResource {
     public List<PagosDTO> searchPagos(@RequestParam String query) {
         log.debug("REST request to search Pagos for query {}", query);
         return pagosService.search(query);
+    }
+
+    /**
+     * GET  /expedientes : get all by expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/pagos/expediente/{id}")
+    @Timed
+    public ResponseEntity<List<PagosDTO>> getAllCostosByExpedienteId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<PagosDTO> ls = pagosService.findByExpediente_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all by expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/pagos/migratorio/{id}")
+    @Timed
+    public ResponseEntity<List<PagosDTO>> getAllCostosMigratorioById(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<PagosDTO> ls = pagosService.findByTramite_migratorio_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all by expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/pagos/general/{id}")
+    @Timed
+    public ResponseEntity<List<PagosDTO>> getAllCostosGeneralById(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<PagosDTO> ls = pagosService.findByTramite_general_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }
 
 }

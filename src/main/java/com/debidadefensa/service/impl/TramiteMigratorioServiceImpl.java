@@ -125,7 +125,8 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return tramiteMigratorioRepository.findByCliente_id(idUser).stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        List<TramiteMigratorio> result = tramiteMigratorioRepository.findByCliente_id(idUser);
+        return result.stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 }

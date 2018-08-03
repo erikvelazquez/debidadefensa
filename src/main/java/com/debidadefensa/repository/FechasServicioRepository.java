@@ -15,4 +15,8 @@ public interface FechasServicioRepository extends JpaRepository<FechasServicio, 
 // @Query("SELECT p FROM Expediente p WHERE p.cliente_id = :cliente_id")
     // List<Expediente> findByCliente_id(@Param("cliente_id") long cliente_id);
     List<FechasServicio> findByExpediente_id(long expediente_id);
+
+    List<FechasServicio> findByTramiteMigratorio_id(long id);
+
+    List<FechasServicio> findByTramiteGeneral_id(long id);
 }

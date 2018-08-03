@@ -28,6 +28,15 @@ export const costoServicioRoute: Routes = [
 
 export const costoServicioPopupRoute: Routes = [
     {
+        path: 'costo-servicio-view',
+        component: CostoServicioComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.costoServicio.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },{
         path: 'costo-servicio-new',
         component: CostoServicioPopupComponent,
         data: {

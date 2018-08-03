@@ -6,7 +6,8 @@
         
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
             <span class="logo-img"></span>
-            <span jhiTranslate="global.title" class="navbar-title">Debidadefensa</span> <span class="navbar-version">{{version}}</span>
+            <span jhiTranslate="global.title" class="navbar-title">Debidadefensa</span> 
+            <!--<span class="navbar-version">{{version}}</span>-->
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
@@ -37,9 +38,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="estatus" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="tramite-migratorio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.estatus">Estatus</span>
+                            <span jhiTranslate="global.menu.entities.tramiteMigratorio">Tramite Migratorio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="tramite-general" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.tramiteGeneral">Tramite General</span>
                         </a>
                     </li>
                     <li>
@@ -48,6 +55,28 @@
                             <span jhiTranslate="global.menu.entities.expediente">Expediente</span>
                         </a>
                     </li>
+
+                    <!--Inicia seccion del administrador-->
+                    <li  *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="tipo-parte" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.tipoParte">Tipo Parte</span>
+                        </a>
+                    </li>
+                    <li  *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="tipo-servicio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.tipoServicio">Tipo Servicio</span>
+                        </a>
+                    </li>
+                    <li  *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="dropdown-item" routerLink="estatus" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.estatus">Estatus</span>
+                        </a>
+                    </li>
+                    
+                    <!--
                     <li>
                         <a class="dropdown-item" routerLink="parte" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
@@ -60,18 +89,7 @@
                             <span jhiTranslate="global.menu.entities.expedienteAsociado">Expediente Asociado</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tramite-migratorio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.tramiteMigratorio">Tramite Migratorio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tramite-general" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.tramiteGeneral">Tramite General</span>
-                        </a>
-                    </li>
+                   
                     <li>
                         <a class="dropdown-item" routerLink="tramite-asociado" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
@@ -96,25 +114,14 @@
                             <span jhiTranslate="global.menu.entities.fechasServicio">Fechas Servicio</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tipo-parte" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.tipoParte">Tipo Parte</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tipo-servicio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.tipoServicio">Tipo Servicio</span>
-                        </a>
-                    </li>
+                    
                     <li>
                         <a class="dropdown-item" routerLink="documentos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.documentos">Documentos</span>
                         </a>
                     </li>
-                   
+                -->
                    
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
