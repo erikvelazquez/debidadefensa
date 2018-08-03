@@ -28,7 +28,7 @@ export const pagosRoute: Routes = [
 
 export const pagosPopupRoute: Routes = [
     {
-        path: 'pagos-new',
+        path: 'pagos-new/:idTramite/:tiposervicio',
         component: PagosPopupComponent,
         data: {
             authorities: ['ROLE_USER'],

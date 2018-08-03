@@ -16,7 +16,10 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 
 @Component({
     selector: 'jhi-pagos-dialog',
-    templateUrl: './pagos-dialog.component.html'
+    templateUrl: './pagos-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class PagosDialogComponent implements OnInit {
 
@@ -124,10 +127,10 @@ export class PagosPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.pagosPopupService
-                    .open(PagosDialogComponent as Component, params['id']);
+                    .open(PagosDialogComponent as Component, params['idTramite'],  params['tiposervicio'], params['id']);
             } else {
                 this.pagosPopupService
-                    .open(PagosDialogComponent as Component);
+                    .open(PagosDialogComponent as Component, params['idTramite'],  params['tiposervicio']);
             }
         });
     }

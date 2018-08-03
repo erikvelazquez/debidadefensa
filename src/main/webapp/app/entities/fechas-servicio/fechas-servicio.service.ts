@@ -35,6 +35,21 @@ export class FechasServicioService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByExpedienteId(id: number): Observable<HttpResponse<FechasServicio[]>> {
+        return this.http.get<FechasServicio[]>(SERVER_API_URL + 'api/fechas-servicios/expediente/' + id, { observe: 'response' })
+            .map((res: HttpResponse<FechasServicio[]>) => this.convertArrayResponse(res));
+    }
+
+    findByMigratorioId(id: number): Observable<HttpResponse<FechasServicio[]>> {
+        return this.http.get<FechasServicio[]>(SERVER_API_URL + 'api/fechas-servicios/migratorio/' + id, { observe: 'response' })
+            .map((res: HttpResponse<FechasServicio[]>) => this.convertArrayResponse(res));
+    }
+
+    findByGeneralId(id: number): Observable<HttpResponse<FechasServicio[]>> {
+        return this.http.get<FechasServicio[]>(SERVER_API_URL + 'api/fechas-servicios/general/' + id, { observe: 'response' })
+            .map((res: HttpResponse<FechasServicio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<FechasServicio[]>> {
         const options = createRequestOption(req);
         return this.http.get<FechasServicio[]>(this.resourceUrl, { params: options, observe: 'response' })

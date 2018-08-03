@@ -53,5 +53,21 @@ public interface FechasServicioService {
      * @param idUser the id of user
      * @return the list of entities
      */
-    List<FechasServicioDTO> findByIdUser(Long idUser);
+    List<FechasServicioDTO> findByExpedienteId(Long id);
+
+     /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<FechasServicioDTO> findByMigratorio(Long id);
+
+     /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<FechasServicioDTO> findByGeneral(Long id);
 }

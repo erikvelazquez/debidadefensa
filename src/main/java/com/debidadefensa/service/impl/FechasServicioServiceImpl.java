@@ -120,14 +120,53 @@ public class FechasServicioServiceImpl implements FechasServicioService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<FechasServicioDTO> findByIdUser(Long idUser) {
+    public List<FechasServicioDTO> findByExpedienteId(Long id) {
         log.debug("Request to get all Expedientes by user");       
        /*  Cliente cliente = new Cliente();
         cliente.setId(idUser);
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return fechasServicioRepository.findByExpediente_id(idUser).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return fechasServicioRepository.findByExpediente_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<FechasServicioDTO> findByMigratorio(Long id) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return fechasServicioRepository.findByTramiteMigratorio_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<FechasServicioDTO> findByGeneral(Long id) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return fechasServicioRepository.findByTramiteGeneral_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 }

@@ -20,10 +20,7 @@ public class CostoServicio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    private Long id;
-
-    @Column(name = "tipo")
-    private String tipo;
+    private Long id;   
 
     @Column(name = "tipo_costo")
     private String tipoCosto;
@@ -53,20 +50,7 @@ public class CostoServicio implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public CostoServicio tipo(String tipo) {
-        this.tipo = tipo;
-        return this;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    }    
     
     public String getTipoCosto() {
         return tipoCosto;

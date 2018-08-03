@@ -63,8 +63,7 @@ export class CostoServicioDialogComponent implements OnInit {
     }
 
     save() {
-        this.isSaving = true;
-        this.costoServicio.tipo = 'C';
+        this.isSaving = true;       
         if (this.costoServicio.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.costoServicioService.update(this.costoServicio));
@@ -127,10 +126,10 @@ export class CostoServicioPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.costoServicioPopupService
-                    .open(CostoServicioDialogComponent as Component, params['id']);
+                    .open(CostoServicioDialogComponent as Component,  params['idTramite'],  params['tiposervicio'], params['id']);
             } else {
                 this.costoServicioPopupService
-                    .open(CostoServicioDialogComponent as Component);
+                    .open(CostoServicioDialogComponent as Component,  params['idTramite'],  params['tiposervicio']);
             }
         });
     }

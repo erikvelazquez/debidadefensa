@@ -140,11 +140,41 @@ public class FechasServicioResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
      */
-    @GetMapping("/fechas-servicios/user/{iduser}")
+    @GetMapping("/fechas-servicios/expediente/{id}")
     @Timed
-    public ResponseEntity<List<FechasServicioDTO>> getAllFechasById(@PathVariable Long iduser) {
+    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
-        List<FechasServicioDTO> ls = fechasServicioService.findByIdUser(iduser);
+        List<FechasServicioDTO> ls = fechasServicioService.findByExpedienteId(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/fechas-servicios/migratorio/{id}")
+    @Timed
+    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByMigratoriosId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<FechasServicioDTO> ls = fechasServicioService.findByMigratorio(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/fechas-servicios/general/{id}")
+    @Timed
+    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByGeneralesId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<FechasServicioDTO> ls = fechasServicioService.findByGeneral(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
         return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }
