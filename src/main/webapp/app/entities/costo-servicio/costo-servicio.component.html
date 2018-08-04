@@ -1,16 +1,29 @@
 <div>
     <!-- <jhi-alert></jhi-alert>  -->
     <div class="row">
-        <div class="col-md-12 row">
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1002'" >
             <h4 class="col-md-6">Cliente: {{tramiteMigratorio.clienteNombre}}</h4>
             <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
             <h4 class="col-md-6">Nombre Extranjero: {{tramiteMigratorio.nombreExtranjero}}</h4>
             <h4 class="col-md-6">Tipo Tramite: {{tramiteMigratorio.tipotramite}}</h4>            
         </div>
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1003'">
+                <h4 class="col-md-6">Cliente: {{tramiteGeneral.clienteNombre}}</h4>
+                <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
+                <h4 class="col-md-6">Número Tramite: {{tramiteGeneral.numeroTramite}}</h4>
+                <h4 class="col-md-6">Tipo Tramite: {{tramiteGeneral.titular}}</h4>            
+            </div>
         <br>  
-        <div class="col-md-12 row">
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1002'">
             <button type="submit"                               
                     [routerLink]="['/tramite-migratorio', idTramite ]"
+                    class="btn btn-info">            
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button> 
+        </div> 
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1003'">
+            <button type="submit"                               
+                    [routerLink]="['/tramite-general', idTramite ]"
                     class="btn btn-info">            
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button> 

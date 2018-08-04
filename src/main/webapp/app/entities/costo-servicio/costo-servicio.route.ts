@@ -15,6 +15,14 @@ export const costoServicioRoute: Routes = [
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
+    },{      
+        path: 'tramite-general/costo-servicio/:id/:tiposervicio',
+        component: CostoServicioComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.costoServicio.home.title'
+        },
+        canActivate: [UserRouteAccessService]
     },{
         path: 'costo-servicio',
         component: CostoServicioComponent,

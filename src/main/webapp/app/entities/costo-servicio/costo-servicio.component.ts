@@ -10,6 +10,7 @@ import { Principal } from '../../shared';
 import { Cliente, ClienteService } from '../cliente';
 import { Pagos, PagosService } from '../pagos';
 import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
+import { TramiteGeneralService, TramiteGeneral } from '../tramite-general';
 
 @Component({
     selector: 'jhi-costo-servicio',
@@ -31,6 +32,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
     nombreTipoServicio: String;
 
     tramiteMigratorio: TramiteMigratorio;
+    tramiteGeneral: TramiteGeneral;
 
     private subscription: Subscription;
 
@@ -43,9 +45,12 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
         private pagosService: PagosService,
         private route: ActivatedRoute,
         private tramiteMigratorioService: TramiteMigratorioService,
+        private tramiteGeneralService: TramiteGeneralService,
     ) {
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
-            this.activatedRoute.snapshot.params['search'] : '';
+        this.activatedRoute.snapshot.params['search'] : '';
+        this.tramiteGeneral = new TramiteGeneral();
+        this.tramiteMigratorio = new TramiteMigratorio();
     }
 
     loadAll() {
@@ -94,14 +99,19 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
             } 
             case "1003": { 
                 //General; 
-                this.costoServicioService.findByGeneral(this.idTramite)
-                .subscribe((res: HttpResponse<CostoServicio[]>) => {
+
+                this.tramiteGeneralService.find(this.idTramite )
+                .subscribe((tramiteGeneralResponse: HttpResponse<TramiteGeneral>) => {
+                     this.tramiteGeneral = tramiteGeneralResponse.body;
+                });
+
+                this.nombreTipoServicio = "Tramite General";
+                this.costoServicioService.findByGeneral(this.idTramite).subscribe((res: HttpResponse<CostoServicio[]>) => {
                     this.costoServicios = res.body; 
                     this.calculaTotles();                                     
                 },(res: HttpErrorResponse) => this.onError(res.message));                
-
-                this.pagosService.findByGeneral(this.idTramite)
-                .subscribe(
+                
+                this.pagosService.findByGeneral(this.idTramite).subscribe(
                     (res: HttpResponse<Pagos[]>) => {
                         this.pagos = res.body;   
                         this.calculaTotles();                                          

@@ -80,7 +80,28 @@ export class FechasServicioDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: FechasServicio) {
-        this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+        switch(result.tipoServicioId) { 
+            case 1001: { 
+               //Expediente; 
+               this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+               break; 
+            } 
+            case 1002: { 
+               //Migratorio; 
+               this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+               break; 
+            } 
+            case 1003: { 
+                //General; 
+                this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+                break; 
+             } 
+            default: { 
+               //statements; 
+               break; 
+            } 
+        } 
+
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
