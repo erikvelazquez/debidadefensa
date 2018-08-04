@@ -1,36 +1,51 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy,
+        ChangeDetectionStrategy,
+        ViewChild,
+        TemplateRef } from '@angular/core';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent } from 'angular-calendar';
-  
+import '../../../../../../node_modules/angular-calendar/css/angular-calendar.css';
+import { ActivatedRoute } from '@angular/router';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent
+} from 'angular-calendar';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { FechasServicio } from './fechas-servicio.model';
+import { FechasServicioPopupService } from './fechas-servicio-popup.service';
+import { FechasServicioService } from './fechas-servicio.service';
+
+
 const colors: any = {
-    red: {
-      primary: '#ad2121',
-      secondary: '#FAE3E3'
-    },
-    blue: {
-      primary: '#1e90ff',
-      secondary: '#D1E8FF'
-    },
-    yellow: {
-      primary: '#e3bc08',
-      secondary: '#FDF1BA'
-    }
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3'
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF'
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
+  }
 };
-  
-  @Component({
-    selector: 'agenda',
+
+@Component({
+    selector: 'jhi-agenda',
     changeDetection: ChangeDetectionStrategy.OnPush,
-   // styleUrls: ['styles.css'],
     templateUrl: './agenda.component.html',
-    styleUrls: [
-        '../../app.scss'
-    ]
-  })
-  export class AgendaComponent {
+    styleUrls: ['../../../../../../node_modules/angular-calendar/css/angular-calendar.css']
+})
+export class AgendaComponent {
+
+    fechasServicio: FechasServicio;
+
     @ViewChild('modalContent') modalContent: TemplateRef<any>;
-  
+
     view: string = 'month';
   
     viewDate: Date = new Date();
@@ -94,8 +109,13 @@ const colors: any = {
   
     activeDayIsOpen: boolean = true;
   
-    constructor(private modal: NgbModal) {}
-  
+    constructor(
+        private fechasServicioService: FechasServicioService,
+        public activeModal: NgbActiveModal,
+        private eventManager: JhiEventManager,
+        private modal: NgbModal
+    ) {}
+
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
       if (isSameMonth(date, this.viewDate)) {
         if (
@@ -140,4 +160,43 @@ const colors: any = {
       });
       this.refresh.next();
     }
-  }
+
+    clear() {
+        this.activeModal.dismiss('cancel');
+    }
+
+    confirmDelete(id: number) {
+        this.fechasServicioService.delete(id).subscribe((response) => {
+            this.eventManager.broadcast({
+                name: 'tramiteMigratorioListModification',
+                content: 'Deleted an fechasServicio'
+            });
+            this.activeModal.dismiss(true);
+        });
+    }
+}
+
+@Component({
+    selector: 'jhi-agenda-popup',
+    template: ''
+})
+export class AgendaPopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private fechasServicioPopupService: FechasServicioPopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            this.fechasServicioPopupService
+                .open(AgendaComponent as Component, params['id']);
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}

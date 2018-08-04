@@ -28,7 +28,7 @@ export const parteRoute: Routes = [
 
 export const partePopupRoute: Routes = [
     {
-        path: 'parte-new',
+        path: 'parte-new/:idTramite',
         component: PartePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

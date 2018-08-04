@@ -18,7 +18,7 @@ export class PartePopupService {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, idTramite?: number, id?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -35,7 +35,9 @@ export class PartePopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.parteModalRef(component, new Parte());
+                    let parte = new Parte();
+                    parte.expedienteId = +idTramite;
+                    this.ngbModalRef = this.parteModalRef(component, parte);
                     resolve(this.ngbModalRef);
                 }, 0);
             }

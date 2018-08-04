@@ -13,6 +13,7 @@ public interface ParteMapper extends EntityMapper<ParteDTO, Parte> {
 
     @Mapping(source = "expediente.id", target = "expedienteId")
     @Mapping(source = "tipoParte.id", target = "tipoParteId")
+    @Mapping(source = "tipoParte.descripcion", target = "tipoParteNombre")
     ParteDTO toDto(Parte parte);
 
     @Mapping(source = "expedienteId", target = "expediente")

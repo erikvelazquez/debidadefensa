@@ -8,6 +8,7 @@ import com.debidadefensa.service.dto.ParteDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -131,6 +132,21 @@ public class ParteResource {
     public List<ParteDTO> searchPartes(@RequestParam String query) {
         log.debug("REST request to search Partes for query {}", query);
         return parteService.search(query);
+    }
+
+    /**
+     * GET  /expedientes : get all by expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/partes/expediente/{id}")
+    @Timed
+    public ResponseEntity<List<ParteDTO>> getAllPartesByExpedienteId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<ParteDTO> ls = parteService.findByExpediente_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }
 
 }

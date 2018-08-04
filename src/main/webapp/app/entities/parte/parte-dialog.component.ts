@@ -75,7 +75,7 @@ export class ParteDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Parte) {
-        this.eventManager.broadcast({ name: 'parteListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -114,10 +114,10 @@ export class PartePopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.partePopupService
-                    .open(ParteDialogComponent as Component, params['id']);
+                    .open(ParteDialogComponent as Component, params['idTramite'], params['id']);
             } else {
                 this.partePopupService
-                    .open(ParteDialogComponent as Component);
+                    .open(ParteDialogComponent as Component, params['idTramite']);
             }
         });
     }

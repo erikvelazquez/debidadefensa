@@ -30,7 +30,7 @@ export class ParteDeleteDialogComponent {
     confirmDelete(id: number) {
         this.parteService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
-                name: 'parteListModification',
+                name: 'expedienteListModification',
                 content: 'Deleted an parte'
             });
             this.activeModal.dismiss(true);

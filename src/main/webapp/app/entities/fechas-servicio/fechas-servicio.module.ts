@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import 'flatpickr/dist/flatpickr.css';
 import { DebidadefensaSharedModule } from '../../shared';
 import {
     FechasServicioService,
@@ -9,12 +9,14 @@ import {
     FechasServicioDetailComponent,
     FechasServicioDialogComponent,
     FechasServicioPopupComponent,
-    FechasServicioDeletePopupComponent,
+    FechasServicioDeletePopupComponent,    
     FechasServicioDeleteDialogComponent,
     fechasServicioRoute,
     fechasServicioPopupRoute,
 } from './';
-import { AgendaComponent } from './agenda.component';
+import { AgendaComponent, AgendaPopupComponent } from './agenda.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 
 const ENTITY_STATES = [
     ...fechasServicioRoute,
@@ -24,23 +26,27 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         DebidadefensaSharedModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
+        BrowserAnimationsModule, CalendarModule.forRoot()
     ],
-    declarations: [
-        AgendaComponent,
+    declarations: [        
         FechasServicioComponent,
         FechasServicioDetailComponent,
         FechasServicioDialogComponent,
         FechasServicioDeleteDialogComponent,
+        AgendaComponent,
         FechasServicioPopupComponent,
         FechasServicioDeletePopupComponent,
+        AgendaPopupComponent,
     ],
     entryComponents: [
         FechasServicioComponent,
         FechasServicioDialogComponent,
         FechasServicioPopupComponent,
         FechasServicioDeleteDialogComponent,
+        AgendaComponent,
         FechasServicioDeletePopupComponent,
+        AgendaPopupComponent,
     ],
     providers: [
         FechasServicioService,

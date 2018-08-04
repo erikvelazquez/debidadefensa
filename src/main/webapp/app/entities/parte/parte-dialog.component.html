@@ -7,24 +7,23 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!parte.id">
+        <!--<div class="form-group" [hidden]="!parte.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="parte.id" readonly />
+        </div>-->
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.expediente" for="field_expediente">Expediente</label>
+            <select [disabled]="true" class="form-control" id="field_expediente" name="expediente" [(ngModel)]="parte.expedienteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
+            </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.nombre" for="field_nombre">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="field_nombre"
                 [(ngModel)]="parte.nombre" />
-        </div>
-
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.expediente" for="field_expediente">Expediente</label>
-            <select class="form-control" id="field_expediente" name="expediente" [(ngModel)]="parte.expedienteId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
-            </select>
-        </div>
+        </div>        
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.tipoParte" for="field_tipoParte">Tipo Parte</label>
             <select class="form-control" id="field_tipoParte" name="tipoParte" [(ngModel)]="parte.tipoParteId">

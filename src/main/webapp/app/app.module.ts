@@ -1,11 +1,10 @@
 import './vendor.ts';
-
 import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
-
+import { CommonModule } from '@angular/common';
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
@@ -33,8 +32,11 @@ import {MatSidenavModule,
         MatDividerModule,
         MatIconModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule } from 'angular-calendar';
+import { CalendarModule, CalendarCommonModule, CalendarDayModule, CalendarMonthModule, CalendarWeekModule} from 'angular-calendar';
 
+import { FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
+// import { FlatpickrModule } from 'flatpickr';
 @NgModule({
     imports: [
         MatSidenavModule,
@@ -52,6 +54,14 @@ import { CalendarModule } from 'angular-calendar';
         DebidadefensaAccountModule,
         DebidadefensaEntityModule,
         CalendarModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        NgbModalModule.forRoot(),
+        CalendarCommonModule,
+        CalendarModule,
+        CalendarDayModule,
+        CalendarMonthModule,
+        CalendarWeekModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -61,7 +71,7 @@ import { CalendarModule } from 'angular-calendar';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent
-    ],
+    ],   
     providers: [
         ProfileService,
         PaginationConfig,

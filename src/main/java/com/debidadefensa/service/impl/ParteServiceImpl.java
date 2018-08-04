@@ -110,4 +110,12 @@ public class ParteServiceImpl implements ParteService {
             .map(parteMapper::toDto)
             .collect(Collectors.toList());
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ParteDTO> findByExpediente_id(Long id) {
+        log.debug("Request to get all Expedientes by user"); 
+       return parteRepository.findByExpediente_id(id).stream().map(parteMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
 }

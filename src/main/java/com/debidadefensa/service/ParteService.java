@@ -46,4 +46,12 @@ public interface ParteService {
      * @return the list of entities
      */
     List<ParteDTO> search(String query);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<ParteDTO> findByExpediente_id(Long id);
 }

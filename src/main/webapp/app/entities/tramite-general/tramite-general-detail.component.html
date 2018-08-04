@@ -95,32 +95,36 @@
             </div>-->
 
             <!-- COSTOS Y PAGOS -->
-            <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
-                <h3 class="form-control-label col-md-2 text-right" for="field_observaciones">Costos y Pagos</h3> 
-                <div class="row col-md-3">
-                    <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
-                    <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
+            <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">
+                <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
+                    <div class="col-md-12" style="height: 40px;">
+                        <span class="text-center label-title">COSTOS Y PAGOS</span>                    
+                    </div>                 
+                    <div class="row col-md-4">
+                        <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
+                        <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
+                    </div>
+                    <div class="row col-md-4">
+                        <h4 class="form-control-label col-md-8 text-right" >Pagos Totales</h4>
+                        <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
+                    </div>
+                    <div class="row col-md-4">
+                        <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
+                        <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
+                    </div> 
+                    <button type="submit" 
+                            [routerLink]="['../costo-servicio', tramiteGeneral.id, tipoServicio  ]"      
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-secondary btn-sm">
+                        <span class="fa fa-eye"></span>                
+                    </button> 
                 </div>
-                <div class="row col-md-3">
-                    <h4 class="form-control-label col-md-8 text-right" >Pagos Totales</h4>
-                    <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
-                </div>
-                <div class="row col-md-3">
-                    <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
-                    <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
-                </div> 
-                <button type="submit" 
-                        [routerLink]="['../costo-servicio', tramiteGeneral.id, tipoServicio  ]"      
-                        replaceUrl="true"
-                        queryParamsHandling="merge"
-                        class="btn btn-secondary btn-sm">
-                    <span class="fa fa-eye"></span>                
-                </button> 
             </div>    
             
             <!-- Asociaciones y Fechas -->
         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
-                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
+                <!--<div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title">Trámites generales asociados</span>       
                         <button class="btn btn-secondary btn-sm"                                
@@ -162,7 +166,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title">Fechas</span>

@@ -19,11 +19,27 @@ public class ParteDTO implements Serializable {
 
     private Long tipoParteId;
 
+    private String tipoParteNombre;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the tipoParteNombre
+	 */
+	public String getTipoParteNombre() {
+		return tipoParteNombre;
+	}
+
+	/**
+	 * @param tipoParteNombre the tipoParteNombre to set
+	 */
+	public void setTipoParteNombre(String tipoParteNombre) {
+		this.tipoParteNombre = tipoParteNombre;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

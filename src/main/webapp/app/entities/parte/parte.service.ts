@@ -33,6 +33,11 @@ export class ParteService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByExpediente(req: number): Observable<HttpResponse<Parte[]>> {
+        return this.http.get<Parte[]>(SERVER_API_URL + 'api/partes/expediente/' + req, { observe: 'response' })
+            .map((res: HttpResponse<Parte[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Parte[]>> {
         const options = createRequestOption(req);
         return this.http.get<Parte[]>(this.resourceUrl, { params: options, observe: 'response' })
