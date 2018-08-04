@@ -8,6 +8,14 @@ import { CostoServicioDeletePopupComponent } from './costo-servicio-delete-dialo
 
 export const costoServicioRoute: Routes = [
     {      
+        path: 'expediente/costo-servicio/:id/:tiposervicio',
+        component: CostoServicioComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.costoServicio.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },{      
         path: 'tramite-migratorio/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {

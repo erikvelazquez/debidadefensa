@@ -1,68 +1,205 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
-<div *ngIf="expediente">
-    <h2><span jhiTranslate="debidadefensaApp.expediente.detail.title">Expediente</span> {{expediente.id}}</h2>
-    <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="debidadefensaApp.expediente.juzgado">Juzgado</span></dt>
-        <dd>
-            <span>{{expediente.juzgado}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.numeroExpediente">Numero Expediente</span></dt>
-        <dd>
-            <span>{{expediente.numeroExpediente}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.juicio">Juicio</span></dt>
-        <dd>
-            <span>{{expediente.juicio}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.responsable">Responsable</span></dt>
-        <dd>
-            <span>{{expediente.responsable}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.observaciones">Observaciones</span></dt>
-        <dd>
-            <span>{{expediente.observaciones}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.fechaAlta">Fecha Alta</span></dt>
-        <dd>
-            <span>{{expediente.fechaAlta | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.fechaSentencia">Fecha Sentencia</span></dt>
-        <dd>
-            <span>{{expediente.fechaSentencia | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.cliente">Cliente</span></dt>
-        <dd>
-            <div *ngIf="expediente.clienteId">
-                <a [routerLink]="['/cliente', expediente.clienteId]">{{expediente.clienteId}}</a>
+        <div class="modal-header">
+            <h4 class="modal-title" id="myExpedienteLabel" jhiTranslate="debidadefensaApp.expediente.home.createOrEditLabel">Create or edit a Expediente</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    (click)="clear()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!--<jhi-alert-error></jhi-alert-error>-->
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
+                <select  [disabled]="expediente.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
+                </select>
             </div>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.estatusExpediente">Estatus Expediente</span></dt>
-        <dd>
-            <div *ngIf="expediente.estatusExpedienteId">
-                <a [routerLink]="['/estatus', expediente.estatusExpedienteId]">{{expediente.estatusExpedienteId}}</a>
+                
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.numeroExpediente" for="field_numeroExpediente">Numero Expediente</label>
+                <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente"
+                    [(ngModel)]="expediente.numeroExpediente" />
             </div>
-        </dd>
-        <dt><span jhiTranslate="debidadefensaApp.expediente.tipoServicio">Tipo Servicio</span></dt>
-        <dd>
-            <div *ngIf="expediente.tipoServicioId">
-                <a [routerLink]="['/tipo-servicio', expediente.tipoServicioId]">{{expediente.tipoServicioId}}</a>
+            <!-- <div class="form-group row" [hidden]="!expediente.id">
+                <label for="id" jhiTranslate="global.field.id">ID</label>
+                <input type="text" class="form-control col-md-10" id="id" name="id"
+                       [(ngModel)]="expediente.id" readonly />
+            </div> -->
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.juzgado" for="field_juzgado">Juzgado</label>
+                <input type="text" class="form-control col-md-10" name="juzgado" id="field_juzgado"
+                    [(ngModel)]="expediente.juzgado" />
             </div>
-        </dd>
-    </dl>
-
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/edit'} }]"
-            replaceUrl="true"
-            queryParamsHandling="merge"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
-</div>
+            
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.juicio" for="field_juicio">Juicio</label>
+                <input type="text" class="form-control col-md-10" name="juicio" id="field_juicio"
+                    [(ngModel)]="expediente.juicio" />
+            </div>
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.responsable" for="field_responsable">Responsable</label>
+                <input type="text" class="form-control col-md-10" name="responsable" id="field_responsable"
+                    [(ngModel)]="expediente.responsable" />
+            </div>
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.observaciones" for="field_observaciones">Observaciones</label>
+                <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
+                    [(ngModel)]="expediente.observaciones" />
+            </div>
+            <div class="form-group row">            
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
+                <div class="input-group col-md-2">
+                    <input id="field_fechaAlta" type="text" class="form-control" name="fechaAlta" ngbDatepicker  #fechaAltaDp="ngbDatepicker" [(ngModel)]="expediente.fechaAlta"
+                    />
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fechaAltaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
+                <div class="input-group col-md-2">
+                    <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"
+                    />
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>            
+            </div>
+            
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right"  for="field_estatusExpediente">Estatus</label>
+                <select class="form-control col-md-10" id="field_estatusExpediente" name="estatusExpediente" [(ngModel)]="expediente.estatusExpedienteId">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedientes; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
+                </select>
+            </div>
+            <!--<div class="form-group">
+                <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
+                <select class="form-control" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="expediente.tipoServicioId" >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
+                </select>
+            </div>-->    
+            
+            <!-- COSTOS Y PAGOS -->
+        <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
+                <h3 class="form-control-label col-md-2 text-right" for="field_observaciones">Costos y Pagos</h3> 
+                <div class="row col-md-3">
+                    <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
+                    <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
+                </div>
+                <div class="row col-md-3">
+                    <h4 class="form-control-label col-md-8 text-right" >Pagos Totales</h4>
+                    <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
+                </div>
+                <div class="row col-md-3">
+                    <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
+                    <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
+                </div> 
+                <button type="submit" 
+                        [routerLink]="['../costo-servicio', expediente.id, tipoServicio  ]"      
+                        replaceUrl="true"
+                        queryParamsHandling="merge"
+                        class="btn btn-secondary btn-sm">
+                    <span class="fa fa-eye"></span>                
+                </button> 
+            </div>          
+    
+            <!-- Asociaciones y Fechas -->
+            <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
+                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
+                    <div class="col-md-12" style="height: 40px;">
+                        <span class="col-md-12 text-center label-title">Expedientes asociados</span>       
+                        <button class="btn btn-secondary btn-sm"                                
+                                [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + expediente.id + '/' + tipoServicio } }]">
+                            <span class="fa fa-plus"></span>
+                            
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                <th><span jhiTranslate="global.field.id">ID</span></th>
+                                <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.tipoTramite">Tipo Tramite</span></th>
+                                <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.idTramite">Id Tramite</span></th>
+                                <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let tramiteAsociado of tramiteAsociados ;trackBy: trackId">
+                                    <td><a [routerLink]="['../tramite-asociado', tramiteAsociado.id ]">{{tramiteAsociado.id}}</a></td>
+                                    <td>{{tramiteAsociado.tipoTramite}}</td>
+                                    <td>{{tramiteAsociado.idTramite}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">                                        
+                                            <button type="submit"
+                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteAsociado.id + '/delete'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                    class="btn btn-danger btn-sm">
+                                                <span class="fa fa-remove"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
+                    <div class="col-md-12" style="height: 40px;">
+                        <span class="text-center label-title">Fechas</span>
+                        <button class="btn btn-secondary btn-sm" 
+                                [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + expediente.id + '/' + tipoServicio } }]">
+                            <span class="fa fa-plus"></span>                        
+                        </button>
+                    </div>
+                    <div class="table-responsive" >
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>                                
+                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
+                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripcion</span></th>                            
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">
+                                    <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
+                                    <td>{{fechasServicio.descripcion}}</td>                                
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">                                      
+                                            <button type="submit"
+                                                    [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                    class="btn btn-danger btn-sm">
+                                                <span class="fa fa-remove"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="modal-footer">
+            <button type="submit"      
+                    [routerLink]="['/expediente-usuario', expediente.clienteId ]"
+                    class="btn btn-info">            
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+            
+            <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </form>
+    

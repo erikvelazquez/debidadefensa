@@ -11,6 +11,7 @@ import { Cliente, ClienteService } from '../cliente';
 import { Pagos, PagosService } from '../pagos';
 import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
 import { TramiteGeneralService, TramiteGeneral } from '../tramite-general';
+import { Expediente, ExpedienteService } from '../expediente';
 
 @Component({
     selector: 'jhi-costo-servicio',
@@ -33,6 +34,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
 
     tramiteMigratorio: TramiteMigratorio;
     tramiteGeneral: TramiteGeneral;
+    expediente: Expediente;
 
     private subscription: Subscription;
 
@@ -46,11 +48,13 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private tramiteMigratorioService: TramiteMigratorioService,
         private tramiteGeneralService: TramiteGeneralService,
+        private expedienteService: ExpedienteService
     ) {
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
         this.activatedRoute.snapshot.params['search'] : '';
         this.tramiteGeneral = new TramiteGeneral();
         this.tramiteMigratorio = new TramiteMigratorio();
+        this.expediente = new Expediente();
     }
 
     loadAll() {
@@ -60,6 +64,13 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
         switch(this.tiposervicio) { 
             case "1001": { 
                //Expediente; 
+               this.expedienteService.find(this.idTramite )
+               .subscribe((expedienteResponse: HttpResponse<Expediente>) => {
+                    this.expediente = expedienteResponse.body;
+               });
+
+               this.nombreTipoServicio = "Expediente";
+
                this.costoServicioService.findByExpediente(this.idTramite)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
                     this.costoServicios = res.body;  

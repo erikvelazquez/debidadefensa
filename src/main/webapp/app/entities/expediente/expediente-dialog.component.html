@@ -6,7 +6,7 @@
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+        <!--<jhi-alert-error></jhi-alert-error>-->
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
             <select  [disabled]="expediente.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
@@ -46,25 +46,23 @@
             <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
                 [(ngModel)]="expediente.observaciones" />
         </div>
-        <div class="form-group row">
+        <div class="form-group row">            
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
-            <div class="input-group col-md-10">
+            <div class="input-group col-md-2">
                 <input id="field_fechaAlta" type="text" class="form-control" name="fechaAlta" ngbDatepicker  #fechaAltaDp="ngbDatepicker" [(ngModel)]="expediente.fechaAlta"
                 />
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaAltaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
-        </div>
-        <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
-            <div class="input-group col-md-10">
+            <div class="input-group col-md-2">
                 <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"
                 />
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
-            </div>
+            </div>            
         </div>
         
         <div class="form-group row">
@@ -80,99 +78,8 @@
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
             </select>
-        </div>-->
-
-        <!-- COSTOS Y PAGOS -->
-        <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">                     
-                <label class="form-control-label col-md-2 text-right label-title" for="field_observaciones">Costos y Pagos</label>            
-                <div class="row col-md-3">
-                    <label class="form-control-label col-md-8 text-right" for="field_costos">Costos Totales</label>
-                    <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
-                </div>
-                <div class="row col-md-3">
-                    <label class="form-control-label col-md-8 text-right" for="field_costos">Pagos Totales</label>
-                    <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
-                </div>
-                <div class="row col-md-3">
-                    <label class="form-control-label col-md-8 text-right" for="field_costos">Deuda Total</label>
-                    <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
-                </div>          
-                <button type="button" class="btn btn-secondary " data-dismiss="modal" (click)="clear()">
-                        <span class="fa fa-plus"></span>
-                    </button>
+        </div>-->        
     
-            </div>
-    
-            <!-- Asociaciones y Fechas -->
-            <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">
-                <br>
-                <div class="row col-md-6 text-right" style="margin-right: 0px; margin-left: 0px;">                
-                    <span class="form-control-label col-md-12 text-center label-title">Expedientes asociados</span>
-                    <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                <th><span jhiTranslate="global.field.id">ID</span></th>
-                                <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.tipoTramite">Tipo Tramite</span></th>
-                                <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.idTramite">Id Tramite</span></th>
-                                <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let tramiteAsociado of tramiteAsociados ;trackBy: trackId">
-                                    <td><a [routerLink]="['../tramite-asociado', tramiteAsociado.id ]">{{tramiteAsociado.id}}</a></td>
-                                    <td>{{tramiteAsociado.tipoTramite}}</td>
-                                    <td>{{tramiteAsociado.idTramite}}</td>
-                                    <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">                                        
-                                            <button type="submit"
-                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteAsociado.id + '/delete'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                    class="btn btn-danger btn-sm">
-                                                <span class="fa fa-remove"></span>
-                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                </div>
-                <div class="row col-md-6 text-right" style="margin-right: 0px; margin-left: 0px;">
-                    <span class="col-md-12 text-center label-title">Fechas</span>
-                    <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>                                
-                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
-                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripcion</span></th>                            
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">
-                                    <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
-                                    <td>{{fechasServicio.descripcion}}</td>                                
-                                    <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">                                      
-                                            <button type="submit"
-                                                    [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                    class="btn btn-danger btn-sm">
-                                                <span class="fa fa-remove"></span>
-                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                </div>
-            </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

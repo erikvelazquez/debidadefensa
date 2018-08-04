@@ -1,12 +1,18 @@
 <div>
     <!-- <jhi-alert></jhi-alert>  -->
     <div class="row">
-        <div class="col-md-12 row" *ngIf="tiposervicio === '1002'" >
-            <h4 class="col-md-6">Cliente: {{tramiteMigratorio.clienteNombre}}</h4>
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1001'" >
+            <h4 class="col-md-6">Cliente: {{expediente.clienteNombre}}</h4>
             <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
-            <h4 class="col-md-6">Nombre Extranjero: {{tramiteMigratorio.nombreExtranjero}}</h4>
-            <h4 class="col-md-6">Tipo Tramite: {{tramiteMigratorio.tipotramite}}</h4>            
+            <h4 class="col-md-6">Número Expediente: {{expediente.numeroExpediente}}</h4>
+            <h4 class="col-md-6">Responsable: {{expediente.responsable}}</h4>            
         </div>
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1002'" >
+                <h4 class="col-md-6">Cliente: {{tramiteMigratorio.clienteNombre}}</h4>
+                <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
+                <h4 class="col-md-6">Nombre Extranjero: {{tramiteMigratorio.nombreExtranjero}}</h4>
+                <h4 class="col-md-6">Tipo Tramite: {{tramiteMigratorio.tipotramite}}</h4>            
+            </div>
         <div class="col-md-12 row" *ngIf="tiposervicio === '1003'">
                 <h4 class="col-md-6">Cliente: {{tramiteGeneral.clienteNombre}}</h4>
                 <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
@@ -14,6 +20,13 @@
                 <h4 class="col-md-6">Tipo Tramite: {{tramiteGeneral.titular}}</h4>            
             </div>
         <br>  
+        <div class="col-md-12 row" *ngIf="tiposervicio === '1001'">
+            <button type="submit"                               
+                    [routerLink]="['/expediente', idTramite ]"
+                    class="btn btn-info">            
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button> 
+        </div> 
         <div class="col-md-12 row" *ngIf="tiposervicio === '1002'">
             <button type="submit"                               
                     [routerLink]="['/tramite-migratorio', idTramite ]"

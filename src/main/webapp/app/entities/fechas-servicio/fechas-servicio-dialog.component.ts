@@ -83,7 +83,7 @@ export class FechasServicioDialogComponent implements OnInit {
         switch(result.tipoServicioId) { 
             case 1001: { 
                //Expediente; 
-               this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+               this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
                break; 
             } 
             case 1002: { 
