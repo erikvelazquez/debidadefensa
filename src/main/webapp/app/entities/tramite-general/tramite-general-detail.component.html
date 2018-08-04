@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
         <div class="modal-header">
-            <h4 class="modal-title" id="myTramiteGeneralLabel" jhiTranslate="debidadefensaApp.tramiteGeneral.home.createOrEditLabel">Create or edit a Tramite General</h4>
+            <h4 class="modal-title" id="myTramiteGeneralLabel" style="font-weight: bold" jhiTranslate="debidadefensaApp.tramiteGeneral.home.createOrEditLabel">Create or edit a Tramite General</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                     (click)="clear()">&times;</button>
         </div>
@@ -98,7 +98,7 @@
             <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
-                        <span class="text-center label-title">COSTOS Y PAGOS</span>                    
+                        <span class="text-center label-title" style="font-weight: bold">COSTOS Y PAGOS</span>                    
                     </div>                 
                     <div class="row col-md-4">
                         <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
@@ -167,9 +167,9 @@
                         </div>
                     </div>
                 </div>-->
-                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
+                <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
-                        <span class="text-center label-title">Fechas</span>
+                        <span class="text-center label-title" style="font-weight: bold">Fechas</span>
                         <button class="btn btn-secondary btn-sm" 
                                 [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + tramiteGeneral.id + '/' + tipoServicio } }]">
                             <span class="fa fa-plus"></span>                        
