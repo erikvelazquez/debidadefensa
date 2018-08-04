@@ -11,6 +11,8 @@ import { Estatus, EstatusService } from '../estatus';
 import { TramiteAsociado, TramiteAsociadoService } from '../tramite-asociado';
 import { Subscription } from 'rxjs/Subscription';
 import { FechasServicioService, FechasServicio} from '../fechas-servicio';
+import { CostoServicioService, CostoServicio } from '../costo-servicio';
+import { PagosService, Pagos } from '../pagos';
 
 @Component({
     selector: 'jhi-tramite-migratorio-detail',
@@ -31,6 +33,13 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     fechaIngresoDp: any;
     fechaNotificacionDp: any;
     fechaResolucionDp: any;
+    eventSubscriberFechas: Subscription;
+
+    costoServicios: CostoServicio[];
+    pagos: Pagos[];
+    totalCostos: number;
+    totalPagos: number;
+    
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -42,7 +51,9 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
         private estatusService: EstatusService,
         private tramiteAsociadoService: TramiteAsociadoService,        
         private fechasServicioService: FechasServicioService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private costoServicioService: CostoServicioService,
+        private pagosService: PagosService,
     ) {
     }
 
@@ -86,11 +97,28 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                     };
                 }
 
-                this.fechasServicioService.findByMigratorioId(id).subscribe(
-                        (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
-                        (res: HttpErrorResponse) => this.onError(res.message)
-                    );
+                this.totalCostos = 0;
+                this.totalPagos = 0;  
 
+                this.costoServicioService.findByMigratorio(id)
+                .subscribe((res: HttpResponse<CostoServicio[]>) => {
+                    this.costoServicios = res.body;    
+                    this.totalCostos = this.costoServicios.reduce(function(prev, cur){
+                        return prev + cur.costo;
+                    },0);                                 
+                },(res: HttpErrorResponse) => this.onError(res.message));                
+
+                this.pagosService.findByMigratorio(id)
+                .subscribe(
+                    (res: HttpResponse<Pagos[]>) => {
+                        this.pagos = res.body;   
+                        this.totalPagos = this.pagos.reduce(function(prev, cur){
+                            return prev + cur.cantidad;
+                        },0);                                       
+                },(res: HttpErrorResponse) => this.onError(res.message));
+
+                this.encuentraFechas(id);
+                
                 this.estatusService
                 .query({filter: 'tramitemigratorio-is-null'})
                 .subscribe((res: HttpResponse<Estatus[]>) => {
@@ -114,6 +142,14 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                 }, (res: HttpErrorResponse) => this.onError(res.message));
             });
     }
+
+    encuentraFechas(id){
+        this.fechasServicioService.findByMigratorioId(id).subscribe(
+            (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
+
     previousState() {
         window.history.back();
     }
@@ -121,13 +157,15 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.subscription.unsubscribe();
         this.eventManager.destroy(this.eventSubscriber);
+        this.eventManager.destroy(this.eventSubscriberFechas);        
     }
 
     registerChangeInTramiteMigratorios() {
-        this.eventSubscriber = this.eventManager.subscribe(
-            'tramiteMigratorioListModification',
-            (response) => this.load(this.tramiteMigratorio.id)
-        );
+        this.eventSubscriber = this.eventManager.subscribe('tramiteMigratorioListModification', (response) => this.load(this.tramiteMigratorio.id));
+    }
+
+    registerChangeInFechasServicios() {
+        this.eventSubscriberFechas = this.eventManager.subscribe('fechasServicioListModification', (response) => this.encuentraFechas(this.tramiteMigratorio.id));
     }
 
   

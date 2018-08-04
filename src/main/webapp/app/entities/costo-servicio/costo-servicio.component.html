@@ -1,13 +1,27 @@
 <div>
-    <jhi-alert></jhi-alert>  
+    <!-- <jhi-alert></jhi-alert>  -->
     <div class="row">
-        <h2 class="col-md-2">
+        <div class="col-md-12 row">
+            <h4 class="col-md-6">Cliente: {{tramiteMigratorio.clienteNombre}}</h4>
+            <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
+            <h4 class="col-md-6">Nombre Extranjero: {{tramiteMigratorio.nombreExtranjero}}</h4>
+            <h4 class="col-md-6">Tipo Tramite: {{tramiteMigratorio.tipotramite}}</h4>            
+        </div>
+        <br>  
+        <div class="col-md-12 row">
+            <button type="submit"                               
+                    [routerLink]="['/tramite-migratorio', idTramite ]"
+                    class="btn btn-info">            
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button> 
+        </div>      
+        <h4 class="col-md-2">
             <span >Costos</span>
             <button class="btn btn-primary float-right jh-create-entity create-costo-servicio" 
                 [routerLink]="['/', { outlets: { popup: 'costo-servicio-new/' + idTramite + '/' + tiposervicio } }]">
                 <span class="fa fa-plus"></span>            
             </button>
-        </h2>    
+        </h4>    
         <br/>
         <div class="table-responsive col-md-8" >
             <table class="table table-striped">
@@ -52,14 +66,14 @@
     </div> 
     <br>
     <div class="row">
-        <h2 class="col-md-2 ">
+        <h4 class="col-md-2 ">
             <span jhiTranslate="debidadefensaApp.pagos.home.title">Pagos</span>
             <button class="btn btn-primary float-right jh-create-entity create-pagos"   
                 
                 [routerLink]="['/', { outlets: { popup: 'pagos-new/' + idTramite + '/' + tiposervicio } }]">
                 <span class="fa fa-plus"></span>
             </button>
-        </h2>
+        </h4>
         <br>
         <div class="table-responsive col-md-8">
             <table class="table table-striped">
@@ -105,17 +119,17 @@
     </div>
 
     <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
-            <div class="row col-md-4">
-                <label class="form-control-label col-md-8 text-right" >Costos Totales</label>
-                <label class="form-control-label col-md-4 text-left">{{totalCostos}}</label>
-            </div>
-            <div class="row col-md-4">
-                <label class="form-control-label col-md-8 text-right" >Pagos Totales</label>
-                <label class="form-control-label col-md-4 text-left" >{{totalPagos}}</label>
-            </div>
-            <div class="row col-md-4">
-                <label class="form-control-label col-md-8 text-right" >Deuda Total</label>
-                <label class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</label>
-            </div> 
-        </div>    
+        <div class="row col-md-4">
+            <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
+            <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
+        </div>
+        <div class="row col-md-4">
+            <h4 class="form-control-label col-md-8 text-right" >Pagos Totales</h4>
+            <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
+        </div>
+        <div class="row col-md-4">
+            <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
+            <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
+        </div> 
+    </div>    
 </div>

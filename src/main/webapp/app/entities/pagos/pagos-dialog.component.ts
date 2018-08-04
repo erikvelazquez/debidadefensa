@@ -80,7 +80,7 @@ export class PagosDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Pagos) {
-        this.eventManager.broadcast({ name: 'pagosListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'costoServicioListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }

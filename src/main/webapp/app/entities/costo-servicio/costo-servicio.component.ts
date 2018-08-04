@@ -9,6 +9,7 @@ import { CostoServicioService } from './costo-servicio.service';
 import { Principal } from '../../shared';
 import { Cliente, ClienteService } from '../cliente';
 import { Pagos, PagosService } from '../pagos';
+import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
 
 @Component({
     selector: 'jhi-costo-servicio',
@@ -27,6 +28,10 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
     totalCostos: number;
     totalPagos: number;
 
+    nombreTipoServicio: String;
+
+    tramiteMigratorio: TramiteMigratorio;
+
     private subscription: Subscription;
 
     constructor(
@@ -37,6 +42,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
         private principal: Principal,
         private pagosService: PagosService,
         private route: ActivatedRoute,
+        private tramiteMigratorioService: TramiteMigratorioService,
     ) {
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
             this.activatedRoute.snapshot.params['search'] : '';
@@ -45,24 +51,78 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
     loadAll() {
         this.totalCostos = 0;
         this.totalPagos = 0;    
-       
-       this.costoServicioService.findByMigratorio(this.idTramite)
-        .subscribe((res: HttpResponse<CostoServicio[]>) => {
-            this.costoServicios = res.body;
-            this.totalCostos = this.costoServicios.reduce(function(prev, cur){
-                return prev + cur.costo;
-            },0);
-        },(res: HttpErrorResponse) => this.onError(res.message));
-        
 
-        this.pagosService.findByMigratorio(this.idTramite)
-        .subscribe(
-            (res: HttpResponse<Pagos[]>) => {
-                this.pagos = res.body;
-                this.totalPagos = this.pagos.reduce(function(prev, cur){
-                    return prev + cur.cantidad;
-                },0);   
-        },(res: HttpErrorResponse) => this.onError(res.message));
+        switch(this.tiposervicio) { 
+            case "1001": { 
+               //Expediente; 
+               this.costoServicioService.findByExpediente(this.idTramite)
+                .subscribe((res: HttpResponse<CostoServicio[]>) => {
+                    this.costoServicios = res.body;  
+                    this.calculaTotles();                  
+                },(res: HttpErrorResponse) => this.onError(res.message));                
+
+                this.pagosService.findByExpediente(this.idTramite)
+                .subscribe(
+                    (res: HttpResponse<Pagos[]>) => {
+                        this.pagos = res.body;    
+                        this.calculaTotles();                                         
+                },(res: HttpErrorResponse) => this.onError(res.message));
+               break; 
+            } 
+            case "1002": { 
+               //Migratorio; 
+               this.tramiteMigratorioService.find(this.idTramite )
+               .subscribe((tramiteMigratorioResponse: HttpResponse<TramiteMigratorio>) => {
+                    this.tramiteMigratorio = tramiteMigratorioResponse.body;
+               });
+
+               this.nombreTipoServicio = "Tramite Migratorio";
+
+               this.costoServicioService.findByMigratorio(this.idTramite)
+                .subscribe((res: HttpResponse<CostoServicio[]>) => {
+                    this.costoServicios = res.body;    
+                    this.calculaTotles();                                  
+                },(res: HttpErrorResponse) => this.onError(res.message));                
+
+                this.pagosService.findByMigratorio(this.idTramite)
+                .subscribe(
+                    (res: HttpResponse<Pagos[]>) => {
+                        this.pagos = res.body;   
+                        this.calculaTotles();                                          
+                },(res: HttpErrorResponse) => this.onError(res.message));
+               break; 
+            } 
+            case "1003": { 
+                //General; 
+                this.costoServicioService.findByGeneral(this.idTramite)
+                .subscribe((res: HttpResponse<CostoServicio[]>) => {
+                    this.costoServicios = res.body; 
+                    this.calculaTotles();                                     
+                },(res: HttpErrorResponse) => this.onError(res.message));                
+
+                this.pagosService.findByGeneral(this.idTramite)
+                .subscribe(
+                    (res: HttpResponse<Pagos[]>) => {
+                        this.pagos = res.body;   
+                        this.calculaTotles();                                          
+                },(res: HttpErrorResponse) => this.onError(res.message));
+                break; 
+             } 
+            default: { 
+               //statements; 
+               break; 
+            } 
+        } 
+    }
+
+    calculaTotles() {
+        this.totalCostos = this.costoServicios.reduce(function(prev, cur){
+            return prev + cur.costo;
+        },0);
+
+        this.totalPagos = this.pagos.reduce(function(prev, cur){
+            return prev + cur.cantidad;
+        },0);
     }
    
     clear() {
@@ -96,10 +156,6 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
 
     registerChangeInCostoServicios() {
         this.eventSubscriber = this.eventManager.subscribe('costoServicioListModification', (response) => this.loadAll());
-    }
-
-    registerChangeInPagos() {
-        this.eventSubscriber = this.eventManager.subscribe('pagosListModification', (response) => this.loadAll());
     }
     
     private onError(error) {

@@ -6,7 +6,7 @@
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+        <!-- <jhi-alert-error></jhi-alert-error>-->
         <!--<div class="form-group row" [hidden]="!tramiteMigratorio.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
@@ -98,28 +98,28 @@
         </div>
 
         <!-- COSTOS Y PAGOS -->
-        <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">                     
-            <label class="form-control-label col-md-2 text-right label-title" for="field_observaciones">Costos y Pagos</label>            
+        <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
+            <h3 class="form-control-label col-md-2 text-right" for="field_observaciones">Costos y Pagos</h3> 
             <div class="row col-md-3">
-                <label class="form-control-label col-md-8 text-right" for="field_costos">Costos Totales</label>
-                <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
+                <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
+                <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
             </div>
             <div class="row col-md-3">
-                <label class="form-control-label col-md-8 text-right" for="field_costos">Pagos Totales</label>
-                <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
+                <h4 class="form-control-label col-md-8 text-right" >Pagos Totales</h4>
+                <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
             </div>
             <div class="row col-md-3">
-                <label class="form-control-label col-md-8 text-right" for="field_costos">Deuda Total</label>
-                <label class="form-control-label col-md-4 text-left" for="field_observaciones">1000</label>
-            </div>          
+                <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
+                <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
+            </div> 
             <button type="submit" 
                     [routerLink]="['../costo-servicio', tramiteMigratorio.id, tipoServicio  ]"      
                     replaceUrl="true"
                     queryParamsHandling="merge"
                     class="btn btn-secondary btn-sm">
-                <span class="fa fa-plus"></span>                
-            </button>           
-        </div>
+                <span class="fa fa-eye"></span>                
+            </button> 
+        </div>          
 
         <!-- Asociaciones y Fechas -->
         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
@@ -207,10 +207,10 @@
         </div>
 
     </div>
-    <div class="modal-footer">        
-        <button type="submit"
-                (click)="previousState()"
-                class="btn btn-info">
+    <div class="modal-footer">  
+        <button type="submit"      
+                [routerLink]="['/tramite-migratorio-usuario', tramiteMigratorio.clienteId ]"
+                class="btn btn-info">            
             <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">

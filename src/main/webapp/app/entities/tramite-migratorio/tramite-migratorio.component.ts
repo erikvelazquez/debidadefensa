@@ -20,7 +20,7 @@ currentAccount: any;
     tramiteMigratorios: TramiteMigratorio[];
     error: any;
     success: any;
-    eventSubscriber: Subscription;
+    eventSubscriber: Subscription;    
     currentSearch: string;
     routeData: any;
     links: any;
@@ -151,6 +151,7 @@ currentAccount: any;
     trackId(index: number, item: TramiteMigratorio) {
         return item.id;
     }
+
     registerChangeInTramiteMigratorios() {
         this.eventSubscriber = this.eventManager.subscribe('tramiteMigratorioListModification', (response) => this.loadAll());
     }
