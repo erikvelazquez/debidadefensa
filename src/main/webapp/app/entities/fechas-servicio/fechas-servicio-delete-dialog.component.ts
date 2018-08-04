@@ -30,7 +30,7 @@ export class FechasServicioDeleteDialogComponent {
     confirmDelete(id: number) {
         this.fechasServicioService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
-                name: 'fechasServicioListModification',
+                name: 'tramiteMigratorioListModification',
                 content: 'Deleted an fechasServicio'
             });
             this.activeModal.dismiss(true);

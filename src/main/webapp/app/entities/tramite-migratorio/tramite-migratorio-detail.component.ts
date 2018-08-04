@@ -156,18 +156,12 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
-        this.eventManager.destroy(this.eventSubscriber);
-        this.eventManager.destroy(this.eventSubscriberFechas);        
+        this.eventManager.destroy(this.eventSubscriber);        
     }
 
     registerChangeInTramiteMigratorios() {
         this.eventSubscriber = this.eventManager.subscribe('tramiteMigratorioListModification', (response) => this.load(this.tramiteMigratorio.id));
     }
-
-    registerChangeInFechasServicios() {
-        this.eventSubscriberFechas = this.eventManager.subscribe('fechasServicioListModification', (response) => this.encuentraFechas(this.tramiteMigratorio.id));
-    }
-
   
     save() {
         this.isSaving = true;

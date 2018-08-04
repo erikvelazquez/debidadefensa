@@ -80,7 +80,7 @@ export class FechasServicioDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: FechasServicio) {
-        this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -127,10 +127,10 @@ export class FechasServicioPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.fechasServicioPopupService
-                    .open(FechasServicioDialogComponent as Component, params['id']);
+                    .open(FechasServicioDialogComponent as Component,  params['idTramite'],  params['tiposervicio'], params['id']);
             } else {
                 this.fechasServicioPopupService
-                    .open(FechasServicioDialogComponent as Component);
+                    .open(FechasServicioDialogComponent as Component,  params['idTramite'],  params['tiposervicio']);
             }
         });
     }

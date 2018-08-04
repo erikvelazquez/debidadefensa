@@ -37,6 +37,15 @@ export const fechasServicioPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
+    },{
+        path: 'fechas-servicio-newby/:idTramite/:tiposervicio',
+        component: FechasServicioPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.costoServicio.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
     },
     {
         path: 'fechas-servicio/:id/edit',
