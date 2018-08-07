@@ -29,13 +29,13 @@ export class FechasServicioPopupService {
                 this.fechasServicioService.find(id)
                     .subscribe((fechasServicioResponse: HttpResponse<FechasServicio>) => {
                         const fechasServicio: FechasServicio = fechasServicioResponse.body;
-                        if (fechasServicio.fecha) {
+                       /* if (fechasServicio.fecha) {
                             fechasServicio.fecha = {
                                 year: fechasServicio.fecha.getFullYear(),
                                 month: fechasServicio.fecha.getMonth() + 1,
                                 day: fechasServicio.fecha.getDate()
                             };
-                        }
+                        } */
                         this.ngbModalRef = this.fechasServicioModalRef(component, fechasServicio);
                         resolve(this.ngbModalRef);
                     });

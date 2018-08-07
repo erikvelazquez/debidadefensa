@@ -86,7 +86,7 @@ export class FechasServicioService {
     private convertItemFromServer(fechasServicio: FechasServicio): FechasServicio {
         const copy: FechasServicio = Object.assign({}, fechasServicio);
         copy.fecha = this.dateUtils
-            .convertLocalDateFromServer(fechasServicio.fecha);
+            .convertDateTimeFromServer(fechasServicio.fecha);
         return copy;
     }
 
@@ -95,8 +95,7 @@ export class FechasServicioService {
      */
     private convert(fechasServicio: FechasServicio): FechasServicio {
         const copy: FechasServicio = Object.assign({}, fechasServicio);
-        copy.fecha = this.dateUtils
-            .convertLocalDateToServer(fechasServicio.fecha);
+       // copy.fecha = this.dateUtils.convertLocalDateToServer(fechasServicio.fecha);
         return copy;
     }
 }

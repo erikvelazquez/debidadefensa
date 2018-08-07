@@ -4,7 +4,6 @@ import { Component, OnInit, OnDestroy,
         TemplateRef } from '@angular/core';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { Subject } from 'rxjs';
-import '../../../../../../node_modules/angular-calendar/css/angular-calendar.css';
 import { ActivatedRoute } from '@angular/router';
 import {
   CalendarEvent,
@@ -37,8 +36,7 @@ const colors: any = {
 @Component({
     selector: 'jhi-agenda',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './agenda.component.html',
-    styleUrls: ['../../../../../../node_modules/angular-calendar/css/angular-calendar.css']
+    templateUrl: './agenda.component.html'
 })
 export class AgendaComponent {
 

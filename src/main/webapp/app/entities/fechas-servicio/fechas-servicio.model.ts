@@ -3,9 +3,8 @@ import { BaseEntity } from './../../shared';
 export class FechasServicio implements BaseEntity {
     constructor(
         public id?: number,
-        public fecha?: any,
+        public fecha?: Date,
         public descripcion?: string,
-        public hora?: number,
         public observaciones?: string,
         public expedienteId?: number,
         public tramiteMigratorioId?: number,

@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -24,13 +24,10 @@ public class FechasServicio implements Serializable {
     private Long id;
 
     @Column(name = "fecha")
-    private LocalDate fecha;
+    private Instant fecha;
 
     @Column(name = "descripcion")
     private String descripcion;
-
-    @Column(name = "hora")
-    private Long hora;
 
     @Column(name = "observaciones")
     private String observaciones;
@@ -56,16 +53,16 @@ public class FechasServicio implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public Instant getFecha() {
         return fecha;
     }
 
-    public FechasServicio fecha(LocalDate fecha) {
+    public FechasServicio fecha(Instant fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Instant fecha) {
         this.fecha = fecha;
     }
 
@@ -80,20 +77,7 @@ public class FechasServicio implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Long getHora() {
-        return hora;
-    }
-
-    public FechasServicio hora(Long hora) {
-        this.hora = hora;
-        return this;
-    }
-
-    public void setHora(Long hora) {
-        this.hora = hora;
-    }
+    }   
 
     public String getObservaciones() {
         return observaciones;
@@ -187,7 +171,6 @@ public class FechasServicio implements Serializable {
             "id=" + getId() +
             ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
-            ", hora=" + getHora() +
             ", observaciones='" + getObservaciones() + "'" +
             "}";
     }

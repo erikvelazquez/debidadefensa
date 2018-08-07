@@ -1,11 +1,10 @@
 package com.debidadefensa.service.dto;
 
-
-import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import java.time.Instant;;
 
 /**
  * A DTO for the FechasServicio entity.
@@ -14,11 +13,9 @@ public class FechasServicioDTO implements Serializable {
 
     private Long id;
 
-    private LocalDate fecha;
+    private Instant fecha;
 
     private String descripcion;
-
-    private Long hora;
 
     private String observaciones;
 
@@ -38,11 +35,11 @@ public class FechasServicioDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public Instant getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Instant fecha) {
         this.fecha = fecha;
     }
 
@@ -52,15 +49,7 @@ public class FechasServicioDTO implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Long getHora() {
-        return hora;
-    }
-
-    public void setHora(Long hora) {
-        this.hora = hora;
-    }
+    }    
 
     public String getObservaciones() {
         return observaciones;
@@ -129,7 +118,6 @@ public class FechasServicioDTO implements Serializable {
             "id=" + getId() +
             ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
-            ", hora=" + getHora() +
             ", observaciones='" + getObservaciones() + "'" +
             "}";
     }

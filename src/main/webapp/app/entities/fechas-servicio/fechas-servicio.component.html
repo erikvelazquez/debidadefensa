@@ -45,8 +45,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">                
-                <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
+            <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">   
+                <td>{{fechasServicio.fecha | date:'dd/MM/yy HH:mm'}}</td>             
+                <!-- <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>-->
                 <td>{{fechasServicio.descripcion}}</td>                
                 <td>{{fechasServicio.observaciones}}</td>                
                 <td class="text-right">
