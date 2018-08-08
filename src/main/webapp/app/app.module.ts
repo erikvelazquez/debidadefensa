@@ -36,6 +36,7 @@ import { CalendarModule, CalendarCommonModule, CalendarDayModule, CalendarMonthM
 
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
+import { NgxDateTimePickerModule } from  'ngx-date-time-picker';
 // import { FlatpickrModule } from 'flatpickr';
 @NgModule({
     imports: [
@@ -62,6 +63,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
         CalendarDayModule,
         CalendarMonthModule,
         CalendarWeekModule,
+        NgxDateTimePickerModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

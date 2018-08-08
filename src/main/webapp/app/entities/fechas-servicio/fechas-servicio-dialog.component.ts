@@ -23,15 +23,17 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 })
 export class FechasServicioDialogComponent implements OnInit {
 
+   
     fechasServicio: FechasServicio;
     isSaving: boolean;
 
     expedientes: Expediente[];
 
+
     tramitemigratorios: TramiteMigratorio[];
 
     tramitegenerals: TramiteGeneral[];
-
+    date: Date;
     tiposervicios: TipoServicio[];
     fechaDp: any;
 
@@ -43,12 +45,13 @@ export class FechasServicioDialogComponent implements OnInit {
         private tramiteMigratorioService: TramiteMigratorioService,
         private tramiteGeneralService: TramiteGeneralService,
         private tipoServicioService: TipoServicioService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,        
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.date =new Date();
         this.expedienteService.query()
             .subscribe((res: HttpResponse<Expediente[]>) => { this.expedientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.tramiteMigratorioService.query()

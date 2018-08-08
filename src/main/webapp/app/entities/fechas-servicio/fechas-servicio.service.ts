@@ -95,6 +95,7 @@ export class FechasServicioService {
      */
     private convert(fechasServicio: FechasServicio): FechasServicio {
         const copy: FechasServicio = Object.assign({}, fechasServicio);
+        copy.fecha = this.dateUtils.toDate(fechasServicio.fecha);
        // copy.fecha = this.dateUtils.convertLocalDateToServer(fechasServicio.fecha);
         return copy;
     }

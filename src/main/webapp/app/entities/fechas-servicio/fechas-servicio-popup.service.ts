@@ -4,6 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
 import { FechasServicio } from './fechas-servicio.model';
 import { FechasServicioService } from './fechas-servicio.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class FechasServicioPopupService {
@@ -12,7 +13,8 @@ export class FechasServicioPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private fechasServicioService: FechasServicioService
+        private fechasServicioService: FechasServicioService,
+        private datePipe: DatePipe,
 
     ) {
         this.ngbModalRef = null;
@@ -29,6 +31,15 @@ export class FechasServicioPopupService {
                 this.fechasServicioService.find(id)
                     .subscribe((fechasServicioResponse: HttpResponse<FechasServicio>) => {
                         const fechasServicio: FechasServicio = fechasServicioResponse.body;
+                        fechasServicio.fecha = this.datePipe
+                        .transform(fechasServicio.fecha, 'yyyy-MM-ddTHH:mm:ss');
+                       /* if (fechasServicio.hora) {
+                            fechasServicio.hora = {
+                                year: fechasServicio.hora.getFullYear(),
+                                month: fechasServicio.hora.getMonth() + 1,
+                                day: fechasServicio.hora.getDate()
+                            };
+                        }*/
                        /* if (fechasServicio.fecha) {
                             fechasServicio.fecha = {
                                 year: fechasServicio.fecha.getFullYear(),
