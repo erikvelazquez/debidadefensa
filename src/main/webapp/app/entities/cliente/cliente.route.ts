@@ -11,7 +11,7 @@ export const clienteRoute: Routes = [
         path: 'cliente',
         component: ClienteComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR'],
             pageTitle: 'debidadefensaApp.cliente.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const clienteRoute: Routes = [
         path: 'cliente/:id',
         component: ClienteDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR'],
             pageTitle: 'debidadefensaApp.cliente.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const clientePopupRoute: Routes = [
         path: 'cliente-new',
         component: ClientePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR'],
             pageTitle: 'debidadefensaApp.cliente.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const clientePopupRoute: Routes = [
         path: 'cliente/:id/edit',
         component: ClientePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR'],
             pageTitle: 'debidadefensaApp.cliente.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const clientePopupRoute: Routes = [
         path: 'cliente/:id/delete',
         component: ClienteDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR'],
             pageTitle: 'debidadefensaApp.cliente.home.title'
         },
         canActivate: [UserRouteAccessService],
