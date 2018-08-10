@@ -169,4 +169,17 @@ public class FechasServicioServiceImpl implements FechasServicioService {
        return fechasServicioRepository.findByTramiteGeneral_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<FechasServicioDTO> findByDate(Long month, Long year) {
+        log.debug("Request to get all Expedientes by month"); 
+       return fechasServicioRepository.findByDate(month, year).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));      
+    }
 }

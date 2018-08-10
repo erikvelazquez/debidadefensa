@@ -50,6 +50,11 @@ export class FechasServicioService {
             .map((res: HttpResponse<FechasServicio[]>) => this.convertArrayResponse(res));
     }
 
+    findByMonth(month: number, year: number): Observable<HttpResponse<FechasServicio[]>> {
+        return this.http.get<FechasServicio[]>(SERVER_API_URL + 'api/fechas-servicios/month/' + month + '/' + year, { observe: 'response' })
+            .map((res: HttpResponse<FechasServicio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<FechasServicio[]>> {
         const options = createRequestOption(req);
         return this.http.get<FechasServicio[]>(this.resourceUrl, { params: options, observe: 'response' })

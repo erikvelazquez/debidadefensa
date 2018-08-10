@@ -7,15 +7,15 @@ import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import {
   CalendarEvent,
-  CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { FechasServicio } from './fechas-servicio.model';
 import { FechasServicioPopupService } from './fechas-servicio-popup.service';
 import { FechasServicioService } from './fechas-servicio.service';
+import { HttpResponse, HttpErrorResponse } from '../../../../../../node_modules/@angular/common/http';
 
 
 const colors: any = {
@@ -41,81 +41,30 @@ const colors: any = {
 export class AgendaComponent {
 
     fechasServicio: FechasServicio;
-
-    @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
-    view: string = 'month';
-  
-    viewDate: Date = new Date();
-  
-    modalData: {
-      action: string;
-      event: CalendarEvent;
-    };
-  
-    actions: CalendarEventAction[] = [
-      {
-        label: '<i class="fa fa-fw fa-pencil"></i>',
-        onClick: ({ event }: { event: CalendarEvent }): void => {
-          this.handleEvent('Edited', event);
-        }
-      },
-      {
-        label: '<i class="fa fa-fw fa-times"></i>',
-        onClick: ({ event }: { event: CalendarEvent }): void => {
-          this.events = this.events.filter(iEvent => iEvent !== event);
-          this.handleEvent('Deleted', event);
-        }
-      }
-    ];
-  
+    view: string = 'month';  
+    viewDate: Date = new Date();  
     refresh: Subject<any> = new Subject();
-  
-    events: CalendarEvent[] = [
-      {
-        start: subDays(startOfDay(new Date()), 1),
-        end: addDays(new Date(), 1),
-        title: 'A 3 day event',
-        color: colors.red,
-        actions: this.actions
-      },
-      {
-        start: startOfDay(new Date()),
-        title: 'An event with no end date',
-        color: colors.yellow,
-        actions: this.actions
-      },
-      {
-        start: subDays(endOfMonth(new Date()), 3),
-        end: addDays(endOfMonth(new Date()), 3),
-        title: 'A long event that spans 2 months',
-        color: colors.blue
-      },
-      {
-        start: addHours(startOfDay(new Date()), 2),
-        end: new Date(),
-        title: 'A draggable and resizable event',
-        color: colors.yellow,
-        actions: this.actions,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        },
-        draggable: true
-      }
-    ];
+    fechasServicios: FechasServicio[];
+
+    events: CalendarEvent[] = [];
   
     activeDayIsOpen: boolean = true;
   
     constructor(
+        private jhiAlertService: JhiAlertService,
         private fechasServicioService: FechasServicioService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager,
         private modal: NgbModal
-    ) {}
-
+    ) {
+      this.cargaFechas();
+    }
+    
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
       if (isSameMonth(date, this.viewDate)) {
+
+       // this.cargaFechas(2);
+    
         if (
           (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
           events.length === 0
@@ -135,43 +84,44 @@ export class AgendaComponent {
     }: CalendarEventTimesChangedEvent): void {
       event.start = newStart;
       event.end = newEnd;
-      this.handleEvent('Dropped or resized', event);
+     // this.handleEvent('Dropped or resized', event);
       this.refresh.next();
     }
   
-    handleEvent(action: string, event: CalendarEvent): void {
-      this.modalData = { event, action };
-      this.modal.open(this.modalContent, { size: 'lg' });
+    cargaFechas(){
+      let month = this.viewDate.getMonth();
+      let year = this.viewDate.getFullYear();
+      this.fechasServicioService.findByMonth(month + 1, year).subscribe(        
+          (res: HttpResponse<FechasServicio[]>) => this.onSuccess(res.body),
+          (res: HttpErrorResponse) => this.onError(res.message)
+      );
     }
-  
-    addEvent(): void {
-      this.events.push({
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        }
-      });
+
+    private onSuccess(fechas: FechasServicio[]){
+      this.fechasServicios = fechas;
+      this.events = new Array<CalendarEvent>();
+
+      for(let i of this.fechasServicios){
+        let fec = new Date(i.fecha);
+        this.events.push({
+          start: fec,
+          title: fec.getHours() + ':' + (fec.getMinutes()<10?'0':'') + fec.getMinutes() + ' ' + i.descripcion,
+          color: colors.blue,
+
+        });
+      }
+      
+
       this.refresh.next();
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
     }
 
     clear() {
         this.activeModal.dismiss('cancel');
-    }
-
-    confirmDelete(id: number) {
-        this.fechasServicioService.delete(id).subscribe((response) => {
-            this.eventManager.broadcast({
-                name: 'tramiteMigratorioListModification',
-                content: 'Deleted an fechasServicio'
-            });
-            this.activeModal.dismiss(true);
-        });
-    }
+    } 
 }
 
 @Component({

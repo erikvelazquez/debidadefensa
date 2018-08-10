@@ -70,4 +70,12 @@ public interface FechasServicioService {
      * @return the list of entities
      */
     List<FechasServicioDTO> findByGeneral(Long id);
+
+    /**
+     * Get all the expedientes by month.
+     *
+     * @param month
+     * @return the list of entities
+     */
+    List<FechasServicioDTO> findByDate(Long month, Long year);
 }

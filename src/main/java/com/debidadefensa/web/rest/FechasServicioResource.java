@@ -179,6 +179,21 @@ public class FechasServicioResource {
         return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }
 
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/fechas-servicios/month/{month}/{year}")
+    @Timed
+    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByMonth(@PathVariable Long month, @PathVariable Long year) {
+        log.debug("REST request to get a page of Expedientes");
+        List<FechasServicioDTO> ls = fechasServicioService.findByDate(month, year);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
 
 
 }

@@ -11,6 +11,7 @@
         <div class="col-md-4">
           <div class="btn-group">
             <div
+              (click)="cargaFechas()"
               class="btn btn-primary"
               mwlCalendarPreviousView
               [view]="view"
@@ -19,12 +20,14 @@
               Anterior
             </div>
             <div
+              (click)="cargaFechas()"
               class="btn btn-outline-secondary"
               mwlCalendarToday
               [(viewDate)]="viewDate">
-              Hoy
+              Actual
             </div>
             <div
+              (click)="cargaFechas()"
               class="btn btn-primary"
               mwlCalendarNextView
               [view]="view"
