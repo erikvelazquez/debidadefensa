@@ -46,4 +46,13 @@ public interface ExpedienteAsociadoService {
      * @return the list of entities
      */
     List<ExpedienteAsociadoDTO> search(String query);
+
+    /**
+     * Search for the expedienteAsociado corresponding to the query.
+     *
+     * @param query the query of the search
+     * 
+     * @return the list of entities
+     */
+    List<ExpedienteAsociadoDTO> findByExpediente_id(Long id);
 }

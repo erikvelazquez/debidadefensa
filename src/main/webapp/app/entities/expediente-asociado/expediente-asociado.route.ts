@@ -38,6 +38,16 @@ export const expedienteAsociadoPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'expediente-asociado-new/:idExpediente',
+        component: ExpedienteAsociadoPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'debidadefensaApp.expedienteAsociado.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
         path: 'expediente-asociado/:id/edit',
         component: ExpedienteAsociadoPopupComponent,
         data: {

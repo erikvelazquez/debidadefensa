@@ -14,6 +14,7 @@ import { Pagos, PagosService } from '../pagos';
 import { Observable } from '../../../../../../node_modules/rxjs';
 import { Parte, ParteService } from '../parte';
 import { Principal } from '../../shared';
+import { ExpedienteAsociadoService, ExpedienteAsociado } from '../expediente-asociado';
 
 @Component({
     selector: 'jhi-expediente-detail',
@@ -28,6 +29,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     isSaving: boolean;
     clientes: Cliente[];
     estatusexpedientes: Estatus[];
+    expedienteAsociados: ExpedienteAsociado[];
     fechasServicios: FechasServicio[];
     fechaAltaDp: any;
     fechaSentenciaDp: any;
@@ -45,6 +47,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     constructor(
         private jhiAlertService: JhiAlertService,
         private expedienteService: ExpedienteService,
+        private expedienteAsociadoService: ExpedienteAsociadoService,
         private route: ActivatedRoute,
         private clienteService: ClienteService,
         private estatusService: EstatusService,
@@ -112,6 +115,13 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (res: HttpResponse<Parte[]>) => {
                         this.partes = res.body;                                      
+                },(res: HttpErrorResponse) => this.onError(res.message));
+                this.encuentraFechas(id);
+
+                this.expedienteAsociadoService.findByExpediente(id)
+                .subscribe(
+                    (res: HttpResponse<ExpedienteAsociado[]>) => {
+                        this.expedienteAsociados = res.body;                                      
                 },(res: HttpErrorResponse) => this.onError(res.message));
                 this.encuentraFechas(id);
 

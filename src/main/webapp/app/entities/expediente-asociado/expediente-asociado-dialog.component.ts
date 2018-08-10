@@ -14,7 +14,10 @@ import { Estatus, EstatusService } from '../estatus';
 
 @Component({
     selector: 'jhi-expediente-asociado-dialog',
-    templateUrl: './expediente-asociado-dialog.component.html'
+    templateUrl: './expediente-asociado-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class ExpedienteAsociadoDialogComponent implements OnInit {
 
@@ -76,7 +79,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: ExpedienteAsociado) {
-        this.eventManager.broadcast({ name: 'expedienteAsociadoListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -115,10 +118,10 @@ export class ExpedienteAsociadoPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.expedienteAsociadoPopupService
-                    .open(ExpedienteAsociadoDialogComponent as Component, params['id']);
+                    .open(ExpedienteAsociadoDialogComponent as Component, params['idExpediente'], params['id']);
             } else {
                 this.expedienteAsociadoPopupService
-                    .open(ExpedienteAsociadoDialogComponent as Component);
+                    .open(ExpedienteAsociadoDialogComponent as Component, params['idExpediente']);
             }
         });
     }

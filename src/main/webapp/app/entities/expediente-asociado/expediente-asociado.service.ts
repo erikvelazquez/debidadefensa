@@ -35,6 +35,11 @@ export class ExpedienteAsociadoService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByExpediente(req: number): Observable<HttpResponse<ExpedienteAsociado   []>> {
+        return this.http.get<ExpedienteAsociado[]>(SERVER_API_URL + 'api/expediente-asociados/expediente/' + req, { observe: 'response' })
+            .map((res: HttpResponse<ExpedienteAsociado[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<ExpedienteAsociado[]>> {
         const options = createRequestOption(req);
         return this.http.get<ExpedienteAsociado[]>(this.resourceUrl, { params: options, observe: 'response' })

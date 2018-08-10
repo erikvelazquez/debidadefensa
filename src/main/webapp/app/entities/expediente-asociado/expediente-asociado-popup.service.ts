@@ -18,7 +18,7 @@ export class ExpedienteAsociadoPopupService {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, idExpediente?: number, id?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -42,7 +42,9 @@ export class ExpedienteAsociadoPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.expedienteAsociadoModalRef(component, new ExpedienteAsociado());
+                    let expedienteAsociado = new ExpedienteAsociado();
+                    expedienteAsociado.expedienteId = +idExpediente;
+                    this.ngbModalRef = this.expedienteAsociadoModalRef(component, expedienteAsociado);
                     resolve(this.ngbModalRef);
                 }, 0);
             }

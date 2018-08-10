@@ -110,4 +110,13 @@ public class ExpedienteAsociadoServiceImpl implements ExpedienteAsociadoService 
             .map(expedienteAsociadoMapper::toDto)
             .collect(Collectors.toList());
     }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ExpedienteAsociadoDTO> findByExpediente_id(Long id) {
+        log.debug("Request to get all Expedientes by user"); 
+       return expedienteAsociadoRepository.findByExpediente_id(id).stream().map(expedienteAsociadoMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
 }

@@ -8,6 +8,7 @@ import com.debidadefensa.service.dto.ExpedienteAsociadoDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -131,6 +132,22 @@ public class ExpedienteAsociadoResource {
     public List<ExpedienteAsociadoDTO> searchExpedienteAsociados(@RequestParam String query) {
         log.debug("REST request to search ExpedienteAsociados for query {}", query);
         return expedienteAsociadoService.search(query);
+    }
+
+
+    /**
+     * GET  /expedientes : get all by expedientes id.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/expediente-asociados/expediente/{id}")
+    @Timed
+    public ResponseEntity<List<ExpedienteAsociadoDTO>> getAllCostosGeneralById(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<ExpedienteAsociadoDTO> ls = expedienteAsociadoService.findByExpediente_id(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }
 
 }
