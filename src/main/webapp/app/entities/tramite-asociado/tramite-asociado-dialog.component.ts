@@ -9,6 +9,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { TramiteAsociado } from './tramite-asociado.model';
 import { TramiteAsociadoPopupService } from './tramite-asociado-popup.service';
 import { TramiteAsociadoService } from './tramite-asociado.service';
+import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
 
 @Component({
     selector: 'jhi-tramite-asociado-dialog',
@@ -17,17 +18,20 @@ import { TramiteAsociadoService } from './tramite-asociado.service';
 export class TramiteAsociadoDialogComponent implements OnInit {
 
     tramiteAsociado: TramiteAsociado;
-    isSaving: boolean;
-
+    tramiteGenerals: TramiteGeneral[];
+    tramiteG: TramiteGeneral;
+    isSaving: boolean;    
+    tramitesA: TramiteAsociado[];
     constructor(
         public activeModal: NgbActiveModal,
         private tramiteAsociadoService: TramiteAsociadoService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        
     }
 
     clear() {
@@ -36,13 +40,23 @@ export class TramiteAsociadoDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.tramiteAsociado.id !== undefined) {
+        this.tramitesA = Array<TramiteAsociado>();
+        this.tramiteGenerals.forEach((entry) => {
+            if (entry.seleccionado == true){                
+                this.tramitesA.push(new TramiteAsociado(null, this.tramiteG.id, entry.id, 1003, 1003));
+            } 
+        });
+
+
+        this.subscribeToSaveResponse(
+            this.tramiteAsociadoService.create(this.tramitesA));
+       /* if (this.tramiteAsociado.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.tramiteAsociadoService.update(this.tramiteAsociado));
         } else {
             this.subscribeToSaveResponse(
                 this.tramiteAsociadoService.create(this.tramiteAsociado));
-        }
+        }*/
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<TramiteAsociado>>) {
@@ -51,7 +65,7 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: TramiteAsociado) {
-        this.eventManager.broadcast({ name: 'tramiteAsociadoListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }

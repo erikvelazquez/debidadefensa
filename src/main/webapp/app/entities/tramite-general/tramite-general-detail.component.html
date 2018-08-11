@@ -124,11 +124,11 @@
             
             <!-- Asociaciones y Fechas -->
         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
-                <!--<div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
+                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                     <div class="col-md-12" style="height: 40px;">
-                        <span class="col-md-12 text-center label-title">Trámites generales asociados</span>       
-                        <button class="btn btn-secondary btn-sm"                                
-                                [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + tramiteGeneral.id + '/' + tipoServicio } }]">
+                        <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites generales asociados</span>       
+                        <button class="btn btn-secondary btn-sm"  
+                                [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/edit'} }]" >
                             <span class="fa fa-plus"></span>
                             
                         </button>
@@ -137,37 +137,23 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
-                                <tr>
-                                <th><span jhiTranslate="global.field.id">ID</span></th>
-                                <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.tipoTramite">Tipo Tramite</span></th>
-                                <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.idTramite">Id Tramite</span></th>
-                                <th></th>
-                                </tr>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+                                        <th><span >Cliente</span> </th>                        
+                                        <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> </th>                       
+                                        
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let tramiteAsociado of tramiteAsociados ;trackBy: trackId">
-                                    <td><a [routerLink]="['../tramite-asociado', tramiteAsociado.id ]">{{tramiteAsociado.id}}</a></td>
-                                    <td>{{tramiteAsociado.tipoTramite}}</td>
-                                    <td>{{tramiteAsociado.idTramite}}</td>
-                                    <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">                                        
-                                            <button type="submit"
-                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteAsociado.id + '/delete'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                    class="btn btn-danger btn-sm">
-                                                <span class="fa fa-remove"></span>
-                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
+                                        <td>{{tramiteGeneral.clienteNombre}}</td> 
+                                        <td>{{tramiteGeneral.titular}}</td> 
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>-->
-                <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
+                </div>
+                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title" style="font-weight: bold">Fechas</span>
                         <button class="btn btn-secondary btn-sm" 

@@ -58,4 +58,8 @@ public interface TramiteGeneralService {
      * @return the list of entities
      */
     List<TramiteGeneralDTO> findByIdUser(Long idUser);
+
+    List<TramiteGeneralDTO> findByFaltantes(Long id);
+
+    List<TramiteGeneralDTO> findByAsociados(Long id);
 }

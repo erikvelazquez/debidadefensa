@@ -30,6 +30,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     fechaIngresoDp: any;
     fechaNotificacionDp: any;
     fechaResolucionDp: any;
+    tramiteGenerals: TramiteGeneral[];
 
     costoServicios: CostoServicio[];
     pagos: Pagos[];
@@ -114,6 +115,12 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
                 },(res: HttpErrorResponse) => this.onError(res.message));
 
                 this.encuentraFechas(id);
+
+                this.tramiteGeneralService.findByAsociados(id)
+                .subscribe(
+                    (res: HttpResponse<TramiteGeneral[]>) => {
+                        this.tramiteGenerals = res.body;                        
+                });
 
                 this.estatusService
                 .query({filter: 'tramitegeneral-is-null'})                

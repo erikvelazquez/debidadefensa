@@ -22,4 +22,25 @@ public interface TramiteGeneralRepository extends JpaRepository<TramiteGeneral, 
    // @Query("SELECT p FROM Expediente p WHERE p.cliente_id = :cliente_id")
     // List<Expediente> findByCliente_id(@Param("cliente_id") long cliente_id);
     List<TramiteGeneral> findByCliente_id(long cliente_id);
+
+    @Query(value = "SELECT * FROM tramite_general "
+                + " WHERE id NOT IN ( SELECT id_tramiteasociado "  
+                + " FROM tramite_asociado "           
+                + " WHERE id_tramite = :id)",
+                nativeQuery = true)
+    List<TramiteGeneral> findByFaltantes(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM tramite_general "
+                + " WHERE id IN ( SELECT id_tramiteasociado "  
+                + " FROM tramite_asociado "           
+                + " WHERE id_tramite = :id)",
+                nativeQuery = true)
+    List<TramiteGeneral> findByAsociados(@Param("id") Long id);
+
+
+    
+
+    
+    
+    
 }

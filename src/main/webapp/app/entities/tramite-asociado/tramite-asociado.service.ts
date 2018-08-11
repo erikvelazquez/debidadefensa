@@ -16,10 +16,8 @@ export class TramiteAsociadoService {
 
     constructor(private http: HttpClient) { }
 
-    create(tramiteAsociado: TramiteAsociado): Observable<EntityResponseType> {
-        const copy = this.convert(tramiteAsociado);
-        return this.http.post<TramiteAsociado>(this.resourceUrl, copy, { observe: 'response' })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+    create(tramiteAsociado: TramiteAsociado[]): Observable<any> {        
+        return this.http.post<any>(this.resourceUrl, tramiteAsociado, { observe: 'response' });
     }
 
     update(tramiteAsociado: TramiteAsociado): Observable<EntityResponseType> {

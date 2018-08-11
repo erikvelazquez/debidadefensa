@@ -22,16 +22,19 @@ public class TramiteAsociado implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
    
+    @Column(name = "tipo_tramite")
+    private String tipoTramite;
+
     @Column(name = "id_tramite")
     private Long idTramite;
 
-    @Column(name = "id_tramiteAsociado")
+    @Column(name = "id_tramiteasociado")
     private Long idTramiteAsociado;
 
     @Column(name = "tipo_servicio_id")
     private Long tipoServicioId;
 
-    @Column(name = "tipo_servicio_idAsociado")
+    @Column(name = "tipo_servicio_idasociado")
     private Long tipoServicioIdAsociado;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -39,7 +42,18 @@ public class TramiteAsociado implements Serializable {
         return id;
     }
 
-    
+    public String getTipoTramite() {
+        return tipoTramite;
+    }
+
+    public TramiteAsociado tipoTramite(String tipoTramite) {
+        this.tipoTramite = tipoTramite;
+        return this;
+    }
+
+    public void setTipoTramite(String tipoTramite) {
+        this.tipoTramite = tipoTramite;
+    }
 
 	/**
 	 * @return the idTramiteAsociado

@@ -19,7 +19,8 @@ export class FechasServicioDeleteDialogComponent {
     constructor(
         private fechasServicioService: FechasServicioService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private eventManager2: JhiEventManager
     ) {
     }
 
@@ -31,6 +32,11 @@ export class FechasServicioDeleteDialogComponent {
         this.fechasServicioService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'tramiteMigratorioListModification',
+                content: 'Deleted an fechasServicio'
+            });
+
+            this.eventManager2.broadcast({
+                name: 'fechasServicioListModification',
                 content: 'Deleted an fechasServicio'
             });
             this.activeModal.dismiss(true);

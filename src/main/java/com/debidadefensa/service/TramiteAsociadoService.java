@@ -14,7 +14,7 @@ public interface TramiteAsociadoService {
      * @param tramiteAsociadoDTO the entity to save
      * @return the persisted entity
      */
-    TramiteAsociadoDTO save(TramiteAsociadoDTO tramiteAsociadoDTO);
+    TramiteAsociadoDTO save(TramiteAsociadoDTO[] tramiteAsociadoDTO);
 
     /**
      * Get all the tramiteAsociados.

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,13 +47,19 @@ public class TramiteAsociadoServiceImpl implements TramiteAsociadoService {
      * @return the persisted entity
      */
     @Override
-    public TramiteAsociadoDTO save(TramiteAsociadoDTO tramiteAsociadoDTO) {
-        log.debug("Request to save TramiteAsociado : {}", tramiteAsociadoDTO);
-        TramiteAsociado tramiteAsociado = tramiteAsociadoMapper.toEntity(tramiteAsociadoDTO);
-        tramiteAsociado = tramiteAsociadoRepository.save(tramiteAsociado);
-        TramiteAsociadoDTO result = tramiteAsociadoMapper.toDto(tramiteAsociado);
-        tramiteAsociadoSearchRepository.save(tramiteAsociado);
-        return result;
+    public TramiteAsociadoDTO save(TramiteAsociadoDTO[] tramiteAsociadoDTO) {
+        // log.debug("Request to save TramiteAsociado : {}", tramiteAsociadoDTO);
+
+        for (TramiteAsociadoDTO item: tramiteAsociadoDTO) {
+ 
+            TramiteAsociado tramiteAsociado = tramiteAsociadoMapper.toEntity(item);        
+            tramiteAsociado = tramiteAsociadoRepository.save(tramiteAsociado);
+            TramiteAsociadoDTO result = tramiteAsociadoMapper.toDto(tramiteAsociado);
+            tramiteAsociadoSearchRepository.save(tramiteAsociado);
+ 
+        }      
+
+        return new TramiteAsociadoDTO();
     }
 
     /**

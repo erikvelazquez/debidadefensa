@@ -55,6 +55,8 @@ export class FechasServicioPopupService {
                 setTimeout(() => {
                     let fechas = new FechasServicio();
                     fechas.tipoServicioId = +tiposervicio;
+                    fechas.fecha = this.datePipe
+                    .transform(new Date(), 'yyyy-MM-ddTHH:mm:ss');
                     switch(fechas.tipoServicioId) { 
                         case 1001: { 
                            //Expediente; 

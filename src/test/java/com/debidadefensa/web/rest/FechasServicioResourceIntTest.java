@@ -27,6 +27,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static com.debidadefensa.web.rest.TestUtil.createFormattingConversionService;
@@ -44,8 +46,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DebidadefensaApp.class)
 public class FechasServicioResourceIntTest {
 
-    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    /* private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());*/ 
 
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
@@ -105,7 +110,7 @@ public class FechasServicioResourceIntTest {
         FechasServicio fechasServicio = new FechasServicio()
             .fecha(DEFAULT_FECHA)
             .descripcion(DEFAULT_DESCRIPCION)
-            .hora(DEFAULT_HORA)
+            // .hora(DEFAULT_HORA)
             .observaciones(DEFAULT_OBSERVACIONES);
         return fechasServicio;
     }
@@ -134,7 +139,7 @@ public class FechasServicioResourceIntTest {
         FechasServicio testFechasServicio = fechasServicioList.get(fechasServicioList.size() - 1);
         assertThat(testFechasServicio.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testFechasServicio.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
-        assertThat(testFechasServicio.getHora()).isEqualTo(DEFAULT_HORA);
+        // assertThat(testFechasServicio.getHora()).isEqualTo(DEFAULT_HORA);
         assertThat(testFechasServicio.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
 
         // Validate the FechasServicio in Elasticsearch
@@ -219,7 +224,7 @@ public class FechasServicioResourceIntTest {
         updatedFechasServicio
             .fecha(UPDATED_FECHA)
             .descripcion(UPDATED_DESCRIPCION)
-            .hora(UPDATED_HORA)
+            // .hora(UPDATED_HORA)
             .observaciones(UPDATED_OBSERVACIONES);
         FechasServicioDTO fechasServicioDTO = fechasServicioMapper.toDto(updatedFechasServicio);
 
@@ -234,7 +239,7 @@ public class FechasServicioResourceIntTest {
         FechasServicio testFechasServicio = fechasServicioList.get(fechasServicioList.size() - 1);
         assertThat(testFechasServicio.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testFechasServicio.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
-        assertThat(testFechasServicio.getHora()).isEqualTo(UPDATED_HORA);
+        // assertThat(testFechasServicio.getHora()).isEqualTo(UPDATED_HORA);
         assertThat(testFechasServicio.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
 
         // Validate the FechasServicio in Elasticsearch

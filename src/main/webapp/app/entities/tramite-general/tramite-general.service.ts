@@ -40,6 +40,16 @@ export class TramiteGeneralService {
             .map((res: HttpResponse<TramiteGeneral[]>) => this.convertArrayResponse(res));
     }
 
+    findByFaltantes(req: number): Observable<HttpResponse<TramiteGeneral[]>> {
+        return this.http.get<TramiteGeneral[]>(SERVER_API_URL + 'api/tramite-generals/faltante/' + req, { observe: 'response' })
+            .map((res: HttpResponse<TramiteGeneral[]>) => this.convertArrayResponse(res));
+    }
+
+    findByAsociados(req: number): Observable<HttpResponse<TramiteGeneral[]>> {
+        return this.http.get<TramiteGeneral[]>(SERVER_API_URL + 'api/tramite-generals/asociado/' + req, { observe: 'response' })
+            .map((res: HttpResponse<TramiteGeneral[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<TramiteGeneral[]>> {
         const options = createRequestOption(req);
         return this.http.get<TramiteGeneral[]>(this.resourceUrl, { params: options, observe: 'response' })

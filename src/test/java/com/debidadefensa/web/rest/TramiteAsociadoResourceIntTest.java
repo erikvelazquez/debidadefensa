@@ -95,7 +95,7 @@ public class TramiteAsociadoResourceIntTest {
      */
     public static TramiteAsociado createEntity(EntityManager em) {
         TramiteAsociado tramiteAsociado = new TramiteAsociado()
-            .tipoTramite(DEFAULT_TIPO_TRAMITE)
+            // .tipoTramite(DEFAULT_TIPO_TRAMITE)
             .idTramite(DEFAULT_ID_TRAMITE);
         return tramiteAsociado;
     }
@@ -122,7 +122,7 @@ public class TramiteAsociadoResourceIntTest {
         List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
         assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeCreate + 1);
         TramiteAsociado testTramiteAsociado = tramiteAsociadoList.get(tramiteAsociadoList.size() - 1);
-        assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(DEFAULT_TIPO_TRAMITE);
+        // assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(DEFAULT_TIPO_TRAMITE);
         assertThat(testTramiteAsociado.getIdTramite()).isEqualTo(DEFAULT_ID_TRAMITE);
 
         // Validate the TramiteAsociado in Elasticsearch
@@ -201,7 +201,7 @@ public class TramiteAsociadoResourceIntTest {
         // Disconnect from session so that the updates on updatedTramiteAsociado are not directly saved in db
         em.detach(updatedTramiteAsociado);
         updatedTramiteAsociado
-            .tipoTramite(UPDATED_TIPO_TRAMITE)
+            // .tipoTramite(UPDATED_TIPO_TRAMITE)
             .idTramite(UPDATED_ID_TRAMITE);
         TramiteAsociadoDTO tramiteAsociadoDTO = tramiteAsociadoMapper.toDto(updatedTramiteAsociado);
 
@@ -214,7 +214,7 @@ public class TramiteAsociadoResourceIntTest {
         List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
         assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeUpdate);
         TramiteAsociado testTramiteAsociado = tramiteAsociadoList.get(tramiteAsociadoList.size() - 1);
-        assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(UPDATED_TIPO_TRAMITE);
+        // assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(UPDATED_TIPO_TRAMITE);
         assertThat(testTramiteAsociado.getIdTramite()).isEqualTo(UPDATED_ID_TRAMITE);
 
         // Validate the TramiteAsociado in Elasticsearch

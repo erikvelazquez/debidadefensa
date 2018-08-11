@@ -127,4 +127,20 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
        return tramiteGeneralRepository.findByCliente_id(idUser).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
+
+      @Override
+      @Transactional(readOnly = true)
+      public List<TramiteGeneralDTO> findByFaltantes(Long id) {
+          log.debug("Request to get all Expedientes by user");       
+        
+         return tramiteGeneralRepository.findByFaltantes(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    @Override
+      @Transactional(readOnly = true)
+      public List<TramiteGeneralDTO> findByAsociados(Long id) {
+          log.debug("Request to get all Expedientes by user");       
+        
+         return tramiteGeneralRepository.findByAsociados(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }
 }

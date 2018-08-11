@@ -46,14 +46,12 @@ public class TramiteAsociadoResource {
      */
     @PostMapping("/tramite-asociados")
     @Timed
-    public ResponseEntity<TramiteAsociadoDTO> createTramiteAsociado(@RequestBody TramiteAsociadoDTO tramiteAsociadoDTO) throws URISyntaxException {
-        log.debug("REST request to save TramiteAsociado : {}", tramiteAsociadoDTO);
-        if (tramiteAsociadoDTO.getId() != null) {
-            throw new BadRequestAlertException("A new tramiteAsociado cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+    public ResponseEntity<TramiteAsociadoDTO> createTramiteAsociado(@RequestBody TramiteAsociadoDTO[] tramiteAsociadoDTO) throws URISyntaxException {
+        // log.debug("REST request to save TramiteAsociado : {}", tramiteAsociadoDTO);
+        
         TramiteAsociadoDTO result = tramiteAsociadoService.save(tramiteAsociadoDTO);
-        return ResponseEntity.created(new URI("/api/tramite-asociados/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+        return ResponseEntity.created(new URI("/api/tramite-asociados/0"))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "0"))
             .body(result);
     }
 
@@ -66,7 +64,7 @@ public class TramiteAsociadoResource {
      * or with status 500 (Internal Server Error) if the tramiteAsociadoDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/tramite-asociados")
+    /*@PutMapping("/tramite-asociados")
     @Timed
     public ResponseEntity<TramiteAsociadoDTO> updateTramiteAsociado(@RequestBody TramiteAsociadoDTO tramiteAsociadoDTO) throws URISyntaxException {
         log.debug("REST request to update TramiteAsociado : {}", tramiteAsociadoDTO);
@@ -77,7 +75,7 @@ public class TramiteAsociadoResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, tramiteAsociadoDTO.getId().toString()))
             .body(result);
-    }
+    }*/
 
     /**
      * GET  /tramite-asociados : get all the tramiteAsociados.

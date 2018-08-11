@@ -28,7 +28,7 @@ export class FechasServicioDialogComponent implements OnInit {
     isSaving: boolean;
 
     expedientes: Expediente[];
-
+    isGeneral: boolean;
 
     tramitemigratorios: TramiteMigratorio[];
 
@@ -47,11 +47,13 @@ export class FechasServicioDialogComponent implements OnInit {
         private tipoServicioService: TipoServicioService,
         private eventManager: JhiEventManager,        
     ) {
+        
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.date =new Date();
+        this.isGeneral = isNaN(this.fechasServicio.tipoServicioId) ? true : false;
         this.expedienteService.query()
             .subscribe((res: HttpResponse<Expediente[]>) => { this.expedientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.tramiteMigratorioService.query()
@@ -68,7 +70,7 @@ export class FechasServicioDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.fechasServicio.id !== undefined) {
+        if (this.fechasServicio.id !== null) {
             this.subscribeToSaveResponse(
                 this.fechasServicioService.update(this.fechasServicio));
         } else {
@@ -83,27 +85,31 @@ export class FechasServicioDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: FechasServicio) {
-        switch(result.tipoServicioId) { 
-            case 1001: { 
-               //Expediente; 
-               this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
-               break; 
-            } 
-            case 1002: { 
-               //Migratorio; 
-               this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
-               break; 
-            } 
-            case 1003: { 
-                //General; 
-                this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+        if(!this.isGeneral){
+            switch(result.tipoServicioId) { 
+                case 1001: { 
+                //Expediente; 
+                this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
                 break; 
-             } 
-            default: { 
-               //statements; 
-               break; 
+                } 
+                case 1002: { 
+                //Migratorio; 
+                this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+                break; 
+                } 
+                case 1003: { 
+                    //General; 
+                    this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+                    break; 
+                } 
+                default: { 
+                //statements; 
+                break; 
+                } 
             } 
-        } 
+        } else {
+            this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+        }
 
         this.isSaving = false;
         this.activeModal.dismiss(result);

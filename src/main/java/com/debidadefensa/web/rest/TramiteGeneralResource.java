@@ -159,4 +159,34 @@ public class TramiteGeneralResource {
         return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
     }
 
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/tramite-generals/faltante/{id}")
+    @Timed
+    public ResponseEntity<List<TramiteGeneralDTO>> getAllTramitesGeneralesByFaltantes(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<TramiteGeneralDTO> ls = tramiteGeneralService.findByFaltantes(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/tramite-generals/asociado/{id}")
+    @Timed
+    public ResponseEntity<List<TramiteGeneralDTO>> getAllTramitesGeneralesByAsociados(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<TramiteGeneralDTO> ls = tramiteGeneralService.findByAsociados(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    }
+
 }
