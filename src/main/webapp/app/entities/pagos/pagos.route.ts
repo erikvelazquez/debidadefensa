@@ -11,7 +11,7 @@ export const pagosRoute: Routes = [
         path: 'pagos',
         component: PagosComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.pagos.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const pagosRoute: Routes = [
         path: 'pagos/:id',
         component: PagosDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.pagos.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const pagosPopupRoute: Routes = [
         path: 'pagos-new/:idTramite/:tiposervicio',
         component: PagosPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.pagos.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const pagosPopupRoute: Routes = [
         path: 'pagos/:id/edit',
         component: PagosPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.pagos.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const pagosPopupRoute: Routes = [
         path: 'pagos/:id/delete',
         component: PagosDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.pagos.home.title'
         },
         canActivate: [UserRouteAccessService],

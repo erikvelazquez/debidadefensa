@@ -31,7 +31,8 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
-                    <li>
+                                            
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR', 'ROLE_ABOGADO']">
                         <a class="dropdown-item" routerLink="cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.cliente">Cliente</span>

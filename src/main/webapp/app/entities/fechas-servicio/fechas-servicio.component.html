@@ -1,17 +1,18 @@
 <div>
     <h2>
-        <span jhiTranslate="debidadefensaApp.fechasServicio.home.title">Fechas Servicios</span>
+        <span style="font-weight: bold" >Agenda</span>
         <button class="btn btn-primary float-right jh-create-entity create-fechas-servicio" 
+        style="padding-left: 5px !important; margin-left: 5px !important"
         [routerLink]="['/', { outlets: { popup: ['fechas-servicio-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="debidadefensaApp.fechasServicio.home.createLabel">
-            Create new Fechas Servicio
+            <span class="hidden-sm-down" >
+            Nueva Fecha
             </span>
         </button>
 
         <button class="btn btn-primary float-right jh-create-entity create-fechas-servicio" 
         [routerLink]="['/', { outlets: { popup: 'agenda/'+ 0} }]">
-            <span class="fa fa-plus"></span>
+            <span class="fa fa-calendar"></span>
             <span class="hidden-sm-down">
                 Agenda
             </span>
@@ -66,7 +67,7 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR', 'ROLE_ABOGADO']"
                                 [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

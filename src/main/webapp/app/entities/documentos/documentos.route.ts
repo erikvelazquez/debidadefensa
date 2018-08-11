@@ -11,7 +11,7 @@ export const documentosRoute: Routes = [
         path: 'documentos',
         component: DocumentosComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.documentos.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const documentosRoute: Routes = [
         path: 'documentos/:id',
         component: DocumentosDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.documentos.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const documentosPopupRoute: Routes = [
         path: 'documentos-new',
         component: DocumentosPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.documentos.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const documentosPopupRoute: Routes = [
         path: 'documentos/:id/edit',
         component: DocumentosPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.documentos.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const documentosPopupRoute: Routes = [
         path: 'documentos/:id/delete',
         component: DocumentosDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.documentos.home.title'
         },
         canActivate: [UserRouteAccessService],

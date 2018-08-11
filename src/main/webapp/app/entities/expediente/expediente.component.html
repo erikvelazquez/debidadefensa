@@ -82,7 +82,7 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>-->
-                        <button type="submit"
+                        <button type="submit" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
                                 [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

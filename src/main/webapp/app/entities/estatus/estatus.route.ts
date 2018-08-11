@@ -11,7 +11,7 @@ export const estatusRoute: Routes = [
         path: 'estatus',
         component: EstatusComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.estatus.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const estatusRoute: Routes = [
         path: 'estatus/:id',
         component: EstatusDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.estatus.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const estatusPopupRoute: Routes = [
         path: 'estatus-new',
         component: EstatusPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.estatus.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const estatusPopupRoute: Routes = [
         path: 'estatus/:id/edit',
         component: EstatusPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.estatus.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const estatusPopupRoute: Routes = [
         path: 'estatus/:id/delete',
         component: EstatusDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.estatus.home.title'
         },
         canActivate: [UserRouteAccessService],

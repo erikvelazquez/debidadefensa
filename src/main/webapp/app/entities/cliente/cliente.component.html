@@ -4,8 +4,8 @@
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
-        <div class="col-sm-7">
-            <button class="btn btn-primary jh-create-entity create-cliente" [routerLink]="['/', { outlets: { popup: ['cliente-new'] } }]">
+        <div class="col-sm-7" >
+            <button *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']" class="btn btn-primary jh-create-entity create-cliente" [routerLink]="['/', { outlets: { popup: ['cliente-new'] } }]">
                 <span class="fa fa-plus"></span>
                 <!--<span class="hidden-sm-down"  jhiTranslate="debidadefensaApp.cliente.home.createLabel">
                 Create new Cliente
@@ -41,7 +41,7 @@
             <th jhiSortBy="totalExpediente"><span >Tramites Migratorios</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="totalExpediente"><span >Tramites Generales</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="totalExpediente"><span >Expedientes</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+            <th  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
@@ -57,7 +57,7 @@
                 <td><a [routerLink]="['../tramite-general-usuario', cliente.id ]"><span class="fa fa-align-justify"></span>  </a></td>
                 <td><a [routerLink]="['../expediente-usuario', cliente.id ]"><span class="fa fa-align-justify"></span> </a></td>
                 <!--<td>{{cliente.totalExpediente}}</td>-->
-                <td class="text-right">
+                <td class="text-right"  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']">
                     <div class="btn-group flex-btn-group-container">
                         <!--<button type="submit"
                                 [routerLink]="['../cliente', cliente.id ]"

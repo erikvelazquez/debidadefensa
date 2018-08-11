@@ -11,7 +11,7 @@ export const tipoParteRoute: Routes = [
         path: 'tipo-parte',
         component: TipoParteComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tipoParte.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const tipoParteRoute: Routes = [
         path: 'tipo-parte/:id',
         component: TipoParteDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tipoParte.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const tipoPartePopupRoute: Routes = [
         path: 'tipo-parte-new',
         component: TipoPartePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tipoParte.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const tipoPartePopupRoute: Routes = [
         path: 'tipo-parte/:id/edit',
         component: TipoPartePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tipoParte.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const tipoPartePopupRoute: Routes = [
         path: 'tipo-parte/:id/delete',
         component: TipoParteDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tipoParte.home.title'
         },
         canActivate: [UserRouteAccessService],

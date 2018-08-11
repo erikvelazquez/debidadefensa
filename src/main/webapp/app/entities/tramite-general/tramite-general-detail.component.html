@@ -95,7 +95,7 @@
             </div>-->
 
             <!-- COSTOS Y PAGOS -->
-            <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">
+            <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']" class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px">
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title" style="font-weight: bold">COSTOS Y PAGOS</span>                    

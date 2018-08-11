@@ -12,7 +12,7 @@ export const fechasServicioRoute: Routes = [
         path: 'fechas-servicio',
         component: FechasServicioComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.fechasServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -20,7 +20,7 @@ export const fechasServicioRoute: Routes = [
         path: 'fechas-servicio/:id',
         component: FechasServicioDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.fechasServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -32,7 +32,7 @@ export const fechasServicioPopupRoute: Routes = [
         path: 'fechas-servicio-new',
         component: FechasServicioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.fechasServicio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const fechasServicioPopupRoute: Routes = [
         path: 'fechas-servicio-newby/:idTramite/:tiposervicio',
         component: FechasServicioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const fechasServicioPopupRoute: Routes = [
         path: 'fechas-servicio/:id/edit',
         component: FechasServicioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.fechasServicio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -61,7 +61,7 @@ export const fechasServicioPopupRoute: Routes = [
         path: 'agenda/:id',
         component: AgendaPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'Agenda'
         },
         canActivate: [UserRouteAccessService],
@@ -70,7 +70,7 @@ export const fechasServicioPopupRoute: Routes = [
         path: 'fechas-servicio/:id/delete',
         component: FechasServicioDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.fechasServicio.home.title'
         },
         canActivate: [UserRouteAccessService],

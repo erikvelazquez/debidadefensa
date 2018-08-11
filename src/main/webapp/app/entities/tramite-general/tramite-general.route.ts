@@ -32,7 +32,7 @@ export const tramiteGeneralRoute: Routes = [
             'pagingParams': TramiteGeneralResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -43,7 +43,7 @@ export const tramiteGeneralRoute: Routes = [
             'pagingParams': TramiteGeneralResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const tramiteGeneralRoute: Routes = [
         path: 'tramite-general/:id',
         component: TramiteGeneralDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -63,7 +63,7 @@ export const tramiteGeneralPopupRoute: Routes = [
         path: 'tramite-general-new',
         component: TramiteGeneralPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const tramiteGeneralPopupRoute: Routes = [
         path: 'tramite-general/:id/edit',
         component: TramiteGeneralPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -83,7 +83,7 @@ export const tramiteGeneralPopupRoute: Routes = [
         path: 'tramite-general/:id/delete',
         component: TramiteGeneralDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteGeneral.home.title'
         },
         canActivate: [UserRouteAccessService],

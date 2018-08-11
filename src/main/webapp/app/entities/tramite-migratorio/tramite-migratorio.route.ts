@@ -32,7 +32,7 @@ export const tramiteMigratorioRoute: Routes = [
             'pagingParams': TramiteMigratorioResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -43,7 +43,7 @@ export const tramiteMigratorioRoute: Routes = [
             'pagingParams': TramiteMigratorioResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const tramiteMigratorioRoute: Routes = [
         path: 'tramite-migratorio/:id',
         component: TramiteMigratorioDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -59,7 +59,7 @@ export const tramiteMigratorioRoute: Routes = [
         path: 'tramite-migratorio-usuario/tramite-migratorio/:id',
         component: TramiteMigratorioDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -71,7 +71,7 @@ export const tramiteMigratorioPopupRoute: Routes = [
         path: 'tramite-migratorio-new',
         component: TramiteMigratorioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -81,7 +81,7 @@ export const tramiteMigratorioPopupRoute: Routes = [
         path: 'tramite-migratorio/:id/edit',
         component: TramiteMigratorioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -91,7 +91,7 @@ export const tramiteMigratorioPopupRoute: Routes = [
         path: 'tramite-migratorio/:id/delete',
         component: TramiteMigratorioDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.tramiteMigratorio.home.title'
         },
         canActivate: [UserRouteAccessService],

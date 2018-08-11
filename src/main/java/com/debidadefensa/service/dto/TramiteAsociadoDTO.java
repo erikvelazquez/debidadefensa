@@ -11,26 +11,65 @@ public class TramiteAsociadoDTO implements Serializable {
 
     private Long id;
 
-    private String tipoTramite;
-
     private Long idTramite;
+
+    private Long idTramiteAsociado;
+    
+    private Long tipoServicioId;
+
+    private Long tipoServicioIdAsociado;
+
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the tipoServicioIdAsociado
+	 */
+	public Long getTipoServicioIdAsociado() {
+		return tipoServicioIdAsociado;
+	}
+
+	/**
+	 * @param tipoServicioIdAsociado the tipoServicioIdAsociado to set
+	 */
+	public void setTipoServicioIdAsociado(Long tipoServicioIdAsociado) {
+		this.tipoServicioIdAsociado = tipoServicioIdAsociado;
+	}
+
+	/**
+	 * @return the tipoServicioId
+	 */
+	public Long getTipoServicioId() {
+		return tipoServicioId;
+	}
+
+	/**
+	 * @param tipoServicioId the tipoServicioId to set
+	 */
+	public void setTipoServicioId(Long tipoServicioId) {
+		this.tipoServicioId = tipoServicioId;
+	}
+
+	/**
+	 * @return the idTramiteAsociado
+	 */
+	public Long getIdTramiteAsociado() {
+		return idTramiteAsociado;
+	}
+
+	/**
+	 * @param idTramiteAsociado the idTramiteAsociado to set
+	 */
+	public void setIdTramiteAsociado(Long idTramiteAsociado) {
+		this.idTramiteAsociado = idTramiteAsociado;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
-
-    public String getTipoTramite() {
-        return tipoTramite;
-    }
-
-    public void setTipoTramite(String tipoTramite) {
-        this.tipoTramite = tipoTramite;
-    }
-
+    
     public Long getIdTramite() {
         return idTramite;
     }
@@ -63,8 +102,7 @@ public class TramiteAsociadoDTO implements Serializable {
     @Override
     public String toString() {
         return "TramiteAsociadoDTO{" +
-            "id=" + getId() +
-            ", tipoTramite='" + getTipoTramite() + "'" +
+            "id=" + getId() +      
             ", idTramite=" + getIdTramite() +
             "}";
     }

@@ -11,7 +11,7 @@ export const costoServicioRoute: Routes = [
         path: 'expediente/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const costoServicioRoute: Routes = [
         path: 'tramite-migratorio/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -27,7 +27,7 @@ export const costoServicioRoute: Routes = [
         path: 'tramite-general/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -35,7 +35,7 @@ export const costoServicioRoute: Routes = [
         path: 'costo-servicio',
         component: CostoServicioComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -43,7 +43,7 @@ export const costoServicioRoute: Routes = [
         path: 'costo-servicio/:id',
         component: CostoServicioDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -55,7 +55,7 @@ export const costoServicioPopupRoute: Routes = [
         path: 'costo-servicio-view',
         component: CostoServicioComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const costoServicioPopupRoute: Routes = [
         path: 'costo-servicio-new/:idTramite/:tiposervicio',
         component: CostoServicioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -74,7 +74,7 @@ export const costoServicioPopupRoute: Routes = [
         path: 'costo-servicio/:id/edit',
         component: CostoServicioPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -84,7 +84,7 @@ export const costoServicioPopupRoute: Routes = [
         path: 'costo-servicio/:id/delete',
         component: CostoServicioDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService],

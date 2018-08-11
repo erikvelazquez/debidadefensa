@@ -6,7 +6,7 @@
                 "title": "Expedientes",
                 "createLabel": "Crear nuevo Expediente",
                 "createOrEditLabel": "Crear o editar Expediente",
-                "search": "Search for Expediente"
+                "search": "Búsqueda"
             },
             "created": "Un nuevo Expediente ha sido creado con el identificador {{ param }}",
             "updated": "Un Expediente ha sido actualizado con el identificador {{ param }}",

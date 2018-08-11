@@ -6,7 +6,7 @@
                 "title": "Tramite Generals",
                 "createLabel": "Crear nuevo Tramite General",
                 "createOrEditLabel": "Crear o editar Tramite General",
-                "search": "Search for Tramite General"
+                "search": "Búsqueda"
             },
             "created": "Un nuevo Tramite General ha sido creado con el identificador {{ param }}",
             "updated": "Un Tramite General ha sido actualizado con el identificador {{ param }}",

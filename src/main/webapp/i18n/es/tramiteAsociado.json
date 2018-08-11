@@ -6,7 +6,7 @@
                 "title": "Tramite Asociados",
                 "createLabel": "Crear nuevo Tramite Asociado",
                 "createOrEditLabel": "Crear o editar Tramite Asociado",
-                "search": "Search for Tramite Asociado"
+                "search": "Búsqueda"
             },
             "created": "Un nuevo Tramite Asociado ha sido creado con el identificador {{ param }}",
             "updated": "Un Tramite Asociado ha sido actualizado con el identificador {{ param }}",

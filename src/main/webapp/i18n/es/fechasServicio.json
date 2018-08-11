@@ -6,7 +6,7 @@
                 "title": "Fechas Servicios",
                 "createLabel": "Crear nuevo Fechas Servicio",
                 "createOrEditLabel": "Crear o editar Fechas Servicio",
-                "search": "Search for Fechas Servicio"
+                "search": "Búsqueda"
             },
             "created": "Un nuevo Fechas Servicio ha sido creado con el identificador {{ param }}",
             "updated": "Un Fechas Servicio ha sido actualizado con el identificador {{ param }}",

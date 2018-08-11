@@ -21,34 +21,66 @@ public class TramiteAsociado implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @Column(name = "tipo_tramite")
-    private String tipoTramite;
-
+   
     @Column(name = "id_tramite")
     private Long idTramite;
+
+    @Column(name = "id_tramiteAsociado")
+    private Long idTramiteAsociado;
+
+    @Column(name = "tipo_servicio_id")
+    private Long tipoServicioId;
+
+    @Column(name = "tipo_servicio_idAsociado")
+    private Long tipoServicioIdAsociado;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    
+
+	/**
+	 * @return the idTramiteAsociado
+	 */
+	public Long getIdTramiteAsociado() {
+		return idTramiteAsociado;
+	}
+
+
+
+	/**
+	 * @param idTramiteAsociado the idTramiteAsociado to set
+	 */
+	public void setIdTramiteAsociado(Long idTramiteAsociado) {
+		this.idTramiteAsociado = idTramiteAsociado;
+	}
+
+
+
+	/**
+	 * @return the tipoServicioId
+	 */
+	public Long getTipoServicioId() {
+		return tipoServicioId;
+	}
+
+
+
+	/**
+	 * @param tipoServicioId the tipoServicioId to set
+	 */
+	public void setTipoServicioId(Long tipoServicioId) {
+		this.tipoServicioId = tipoServicioId;
+	}
+
+
+
+	public void setId(Long id) {
         this.id = id;
     }
-
-    public String getTipoTramite() {
-        return tipoTramite;
-    }
-
-    public TramiteAsociado tipoTramite(String tipoTramite) {
-        this.tipoTramite = tipoTramite;
-        return this;
-    }
-
-    public void setTipoTramite(String tipoTramite) {
-        this.tipoTramite = tipoTramite;
-    }
+   
 
     public Long getIdTramite() {
         return idTramite;
@@ -62,6 +94,21 @@ public class TramiteAsociado implements Serializable {
     public void setIdTramite(Long idTramite) {
         this.idTramite = idTramite;
     }
+
+    /**
+	 * @return the tipoServicioIdAsociado
+	 */
+	public Long getTipoServicioIdAsociado() {
+		return tipoServicioIdAsociado;
+	}
+
+	/**
+	 * @param tipoServicioIdAsociado the tipoServicioIdAsociado to set
+	 */
+	public void setTipoServicioIdAsociado(Long tipoServicioIdAsociado) {
+		this.tipoServicioIdAsociado = tipoServicioIdAsociado;
+	}
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -87,9 +134,11 @@ public class TramiteAsociado implements Serializable {
     @Override
     public String toString() {
         return "TramiteAsociado{" +
-            "id=" + getId() +
-            ", tipoTramite='" + getTipoTramite() + "'" +
+            "id=" + getId() +           
             ", idTramite=" + getIdTramite() +
+            ", idTramiteAsociado=" + getIdTramiteAsociado() +
+            ", tipoServicioId=" + getTipoServicioId() +
+            ", tipoServicioIdAsociado=" + getTipoServicioIdAsociado() +
             "}";
     }
 }

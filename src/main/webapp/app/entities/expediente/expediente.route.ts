@@ -11,7 +11,7 @@ export const expedienteRoute: Routes = [
         path: 'expediente',
         component: ExpedienteComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.expediente.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const expedienteRoute: Routes = [
         path: 'expediente-usuario/:id',
         component: ExpedienteComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.expediente.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -27,7 +27,7 @@ export const expedienteRoute: Routes = [
         path: 'expediente/:id',
         component: ExpedienteDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.expediente.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -39,7 +39,7 @@ export const expedientePopupRoute: Routes = [
         path: 'expediente-new',
         component: ExpedientePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.expediente.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -49,7 +49,7 @@ export const expedientePopupRoute: Routes = [
         path: 'expediente/:id/edit',
         component: ExpedientePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.expediente.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -59,7 +59,7 @@ export const expedientePopupRoute: Routes = [
         path: 'expediente/:id/delete',
         component: ExpedienteDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.expediente.home.title'
         },
         canActivate: [UserRouteAccessService],
