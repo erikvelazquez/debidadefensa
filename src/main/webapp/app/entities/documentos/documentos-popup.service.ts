@@ -18,7 +18,7 @@ export class DocumentosPopupService {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, idTramite?: number, tiposervicio?: number, id?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -42,7 +42,32 @@ export class DocumentosPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.documentosModalRef(component, new Documentos());
+                    let documentos = new Documentos();
+                    documentos.tipoServicioId = +tiposervicio;
+
+                    switch(documentos.tipoServicioId) { 
+                        case 1001: { 
+                           //Expediente; 
+                           documentos.expedienteId = +idTramite;
+                           break; 
+                        } 
+                        case 1002: { 
+                           //Migratorio; 
+                           documentos.tramiteMigratorioId = +idTramite;
+                           break; 
+                        } 
+                        case 1003: { 
+                            //General; 
+                            documentos.tramiteGeneralId = +idTramite;
+                            break; 
+                         } 
+                        default: { 
+                           //statements; 
+                           break; 
+                        } 
+                     } 
+
+                    this.ngbModalRef = this.documentosModalRef(component, documentos);
                     resolve(this.ngbModalRef);
                 }, 0);
             }

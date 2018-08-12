@@ -58,4 +58,8 @@ public interface TramiteMigratorioService {
      * @return the list of entities
      */
     List<TramiteMigratorioDTO> findByIdUser(Long idUser);
+
+    List<TramiteMigratorioDTO> findByFaltantes(Long id);
+
+    List<TramiteMigratorioDTO> findByAsociados(Long id);
 }

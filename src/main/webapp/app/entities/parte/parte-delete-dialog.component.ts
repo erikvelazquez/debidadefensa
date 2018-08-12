@@ -54,7 +54,7 @@ export class ParteDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.partePopupService
-                .open(ParteDeleteDialogComponent as Component, params['id']);
+                .open(ParteDeleteDialogComponent as Component, params['idTramite'], params['id']);
         });
     }
 

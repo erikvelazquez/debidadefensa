@@ -90,6 +90,54 @@
                 [(ngModel)]="tramiteMigratorio.observaciones" />
         </div>
 
+
+         <!--ARCHIVOS-->
+         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
+                <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;"> 
+                    <div class="col-md-12" style="height: 40px;">
+                        <span class="col-md-12 text-center label-title">DOCUMENTOS</span>       
+                        <button class="btn btn-secondary btn-sm"                                 
+                            [routerLink]="['/', { outlets: { popup: 'documentos-new/' + tramiteMigratorio.id + '/' + tipoServicio } }]">
+                            <span class="fa fa-plus"></span>
+                            
+                        </button>
+                    </div>
+                </div>
+                <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
+                    <div class="table-responsive" *ngIf="documentos">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>                            
+                            <th><span >Nombre</span></th>
+                            <th><span jhiTranslate="debidadefensaApp.documentos.fecha">Fecha</span></th>
+                            <th><span jhiTranslate="debidadefensaApp.documentos.descripcion">Descripción</span></th>                            
+                            <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let documentos of documentos ;trackBy: trackId">                                
+                                <td>{{documentos.nombreDocumento}}</td>
+                                <td>{{documentos.fecha | date:'mediumDate'}}</td>
+                                <td>{{documentos.descripcion}}</td>                                
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">                                  
+                                        <button type="submit"
+                                                [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/delete'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-danger btn-sm">
+                                            <span class="fa fa-remove"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
         <!-- <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.tramitesMigraAsociados" for="field_tramitesMigraAsociados">Tramites Migra Asociados</label>
             <select class="form-control col-md-10" id="field_tramitesMigraAsociados" multiple name="tramitesMigraAsociados" [(ngModel)]="tramiteMigratorio.tramitesMigraAsociados">
@@ -126,50 +174,50 @@
 
         <!-- Asociaciones y Fechas -->
         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
-            <!-- <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
+            <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                 <div class="col-md-12" style="height: 40px;">
                     <span class="col-md-12 text-center label-title">Trámites migratorios asociados</span>       
-                    <button class="btn btn-secondary btn-sm"                                
-                            [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + tramiteMigratorio.id + '/' + tipoServicio } }]">
-                        <span class="fa fa-plus"></span>
-                        
+                    <button class="btn btn-secondary btn-sm"  
+                        [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/edit'} }]" >
+                        <span class="fa fa-plus"></span>                        
                     </button>
                 </div>
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
-                            <tr>
-                            <th><span jhiTranslate="global.field.id">ID</span></th>
-                            <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.tipoTramite">Tipo Tramite</span></th>
-                            <th><span jhiTranslate="debidadefensaApp.tramiteAsociado.idTramite">Id Tramite</span></th>
+                            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >
+                            
+                            <th jhiSortBy="nombreExtranjero"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa fa-sort"></span></th>                            
+                            <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
+                            <th jhiSortBy="estatusTramiteMigratorioId"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa fa-sort"></span></th>
                             <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let tramiteAsociado of tramiteAsociados ;trackBy: trackId">
-                                <td><a [routerLink]="['../tramite-asociado', tramiteAsociado.id ]">{{tramiteAsociado.id}}</a></td>
-                                <td>{{tramiteAsociado.tipoTramite}}</td>
-                                <td>{{tramiteAsociado.idTramite}}</td>
+                            <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">                                
+                                <td>{{tramiteMigratorio.nombreExtranjero}}</td>                                
+                                <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>
+                                <td>{{tramiteMigratorio.estatusDescripcion}}</td>                                                            
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">                                        
-                                        <button type="submit"
-                                                [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteAsociado.id + '/delete'} }]"
+                                    <!--<div class="btn-group flex-btn-group-container">                                      
+                                        <button type="submit" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/delete'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                                 class="btn btn-danger btn-sm">
                                             <span class="fa fa-remove"></span>
                                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>-->
-            <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
+            </div>
+            <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                 <div class="col-md-12" style="height: 40px;">
                     <span class="text-center label-title">Fechas</span>
                     <button class="btn btn-secondary btn-sm" 

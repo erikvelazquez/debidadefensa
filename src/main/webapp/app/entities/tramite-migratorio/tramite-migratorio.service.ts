@@ -40,6 +40,16 @@ export class TramiteMigratorioService {
             .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
     }
 
+    findByFaltantes(req: number): Observable<HttpResponse<TramiteMigratorio[]>> {
+        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + 'api/tramite-migratorios/faltante/' + req, { observe: 'response' })
+            .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
+    }
+
+    findByAsociados(req: number): Observable<HttpResponse<TramiteMigratorio[]>> {
+        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + 'api/tramite-migratorios/asociado/' + req, { observe: 'response' })
+            .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<TramiteMigratorio[]>> {
         const options = createRequestOption(req);
         return this.http.get<TramiteMigratorio[]>(this.resourceUrl, { params: options, observe: 'response' })

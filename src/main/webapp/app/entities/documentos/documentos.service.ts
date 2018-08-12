@@ -35,6 +35,21 @@ export class DocumentosService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByMigratorioId(id: number): Observable<HttpResponse<Documentos[]>> {
+        return this.http.get<Documentos[]>(SERVER_API_URL + 'api/documentos/migratorio/' + id, { observe: 'response' })
+            .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
+    }
+
+    findByGeneralId(id: number): Observable<HttpResponse<Documentos[]>> {
+        return this.http.get<Documentos[]>(SERVER_API_URL + 'api/documentos/general/' + id, { observe: 'response' })
+            .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
+    }
+
+    findByExpedienteId(id: number): Observable<HttpResponse<Documentos[]>> {
+        return this.http.get<Documentos[]>(SERVER_API_URL + 'api/documentos/expediente/' + id, { observe: 'response' })
+            .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Documentos[]>> {
         const options = createRequestOption(req);
         return this.http.get<Documentos[]>(this.resourceUrl, { params: options, observe: 'response' })
@@ -50,6 +65,16 @@ export class DocumentosService {
         return this.http.get<Documentos[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
             .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
     }
+
+   /* postFile(fileToUpload: File): Observable<boolean> {
+        const endpoint = 'your-destination-url';
+        const formData: FormData = new FormData();
+        formData.append('fileKey', fileToUpload, fileToUpload.name);
+        return this.httpClient
+          .post(endpoint, formData, { headers: yourHeadersConfig })
+          .map(() => { return true; })
+          .catch((e) => this.handleError(e));
+    }*/
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Documentos = this.convertItemFromServer(res.body);

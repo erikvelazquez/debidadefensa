@@ -17,7 +17,10 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 
 @Component({
     selector: 'jhi-documentos-dialog',
-    templateUrl: './documentos-dialog.component.html'
+    templateUrl: './documentos-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class DocumentosDialogComponent implements OnInit {
 
@@ -34,6 +37,7 @@ export class DocumentosDialogComponent implements OnInit {
 
     tiposervicios: TipoServicio[];
     fechaDp: any;
+    fileToUpload: File = null;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -62,6 +66,19 @@ export class DocumentosDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<TipoServicio[]>) => { this.tiposervicios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
+    handleFileInput(files: FileList) {
+        this.fileToUpload = files.item(0);
+        this.documentos.nombreDocumento = this.fileToUpload.name;
+    }
+
+    uploadFileToActivity() {
+       /* this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
+          // do something, if upload success
+          }, error => {
+            console.log(error);
+          });*/
+    }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -83,7 +100,28 @@ export class DocumentosDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Documentos) {
-        this.eventManager.broadcast({ name: 'documentosListModification', content: 'OK'});
+        switch(result.tipoServicioId) { 
+            case 1001: { 
+            //Expediente; 
+            this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
+            break; 
+            } 
+            case 1002: { 
+            //Migratorio; 
+            this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+            break; 
+            } 
+            case 1003: { 
+                //General; 
+                this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+                break; 
+            } 
+            default: { 
+            //statements; 
+            break; 
+            } 
+        } 
+        
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -134,10 +172,10 @@ export class DocumentosPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.documentosPopupService
-                    .open(DocumentosDialogComponent as Component, params['id']);
+                    .open(DocumentosDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['id']);
             } else {
                 this.documentosPopupService
-                    .open(DocumentosDialogComponent as Component);
+                    .open(DocumentosDialogComponent as Component, params['idTramite'], params['tiposervicio']);
             }
         });
     }

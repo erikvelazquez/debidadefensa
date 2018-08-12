@@ -46,4 +46,28 @@ public interface DocumentosService {
      * @return the list of entities
      */
     List<DocumentosDTO> search(String query);
+
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<DocumentosDTO> findByExpedienteId(Long id);
+
+     /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<DocumentosDTO> findByMigratorio(Long id);
+
+     /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<DocumentosDTO> findByGeneral(Long id);
 }

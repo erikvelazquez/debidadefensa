@@ -19,7 +19,9 @@ export class DocumentosDeleteDialogComponent {
     constructor(
         private documentosService: DocumentosService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private eventManager2: JhiEventManager,
+        private eventManager3: JhiEventManager
     ) {
     }
 
@@ -29,10 +31,9 @@ export class DocumentosDeleteDialogComponent {
 
     confirmDelete(id: number) {
         this.documentosService.delete(id).subscribe((response) => {
-            this.eventManager.broadcast({
-                name: 'documentosListModification',
-                content: 'Deleted an documentos'
-            });
+            this.eventManager.broadcast({name: 'expedienteListModification', content: 'Deleted an documentos'});
+            this.eventManager2.broadcast({name: 'tramiteMigratorioListModification', content: 'Deleted an documentos'});
+            this.eventManager3.broadcast({name: 'tramiteGeneralListModification', content: 'Deleted an documentos'});
             this.activeModal.dismiss(true);
         });
     }
@@ -54,7 +55,7 @@ export class DocumentosDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.documentosPopupService
-                .open(DocumentosDeleteDialogComponent as Component, params['id']);
+                .open(DocumentosDeleteDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['id']);
         });
     }
 

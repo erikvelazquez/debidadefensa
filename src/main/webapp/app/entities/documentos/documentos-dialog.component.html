@@ -1,25 +1,25 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myDocumentosLabel" jhiTranslate="debidadefensaApp.documentos.home.createOrEditLabel">Create or edit a Documentos</h4>
+        <h4 class="modal-title" id="myDocumentosLabel" >Documentos</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!documentos.id">
+        <!--<div class="form-group" [hidden]="!documentos.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="documentos.id" readonly />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.nombreDocumento" for="field_nombreDocumento">Nombre Documento</label>
-            <input type="text" class="form-control" name="nombreDocumento" id="field_nombreDocumento"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.documentos.nombreDocumento" for="field_nombreDocumento">Nombre Documento</label>
+            <input type="text" class="form-control col-md-10" name="nombreDocumento" id="field_nombreDocumento"
                 [(ngModel)]="documentos.nombreDocumento" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.fecha" for="field_fecha">Fecha</label>
-            <div class="input-group">
+        </div>-->
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.documentos.fecha" for="field_fecha">Fecha</label>
+            <div class="input-group col-md-10" style="padding-left: 0px; padding-right: 0px">
                 <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="documentos.fecha"
                 />
                 <span class="input-group-append">
@@ -27,12 +27,24 @@
                 </span>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.descripcion" for="field_descripcion">Descripcion</label>
-            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.documentos.descripcion" for="field_descripcion">Descripción</label>
+            <input type="text" class="form-control col-md-10" name="descripcion" id="field_descripcion"
                 [(ngModel)]="documentos.descripcion" />
         </div>
-        <div class="form-group">
+        <div class="input-group">
+            <label class="input-group-btn col-md-2">
+                <span class="btn btn-primary">
+                    Selecciona archivo <input type="file" id="file"
+                    (change)="handleFileInput($event.target.files)" 
+                    style="display: none;">
+                </span>
+            </label>
+            <input type="text" class="form-control col-md-2" name="nombreDocumento" id="field_nombreDocumento"
+                [(ngModel)]="documentos.nombreDocumento" readonly/>            
+        </div>
+       
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.ruta" for="field_ruta">Ruta</label>
             <input type="text" class="form-control" name="ruta" id="field_ruta"
                 [(ngModel)]="documentos.ruta" />
@@ -72,7 +84,7 @@
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
             </select>
-        </div>
+        </div>-->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

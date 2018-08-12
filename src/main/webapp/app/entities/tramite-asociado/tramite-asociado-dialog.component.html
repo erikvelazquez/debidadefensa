@@ -29,6 +29,33 @@
                 </tbody>
             </table>
         </div>
+        <div class="table-responsive" *ngIf="tramiteMigratorios">
+            <table class="table table-striped">
+                <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+                
+                <th jhiSortBy="nombreExtranjero"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="tipotramite"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite">Tipotramite</span> <span class="fa fa-sort"></span></th>
+                
+                <th jhiSortBy="estatusTramiteMigratorioId"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
+               
+                <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">                    
+                    <td>{{tramiteMigratorio.nombreExtranjero}}</td>
+                    <td>{{tramiteMigratorio.tipotramite}}</td>        
+                    <td>{{tramiteMigratorio.estatusDescripcion}}</td>
+                    <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>                   
+                    <td class="text-right">
+                        <input type="checkbox" [checked]="tramiteMigratorio.seleccionado" (change)="tramiteMigratorio.seleccionado = !tramiteMigratorio.seleccionado" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

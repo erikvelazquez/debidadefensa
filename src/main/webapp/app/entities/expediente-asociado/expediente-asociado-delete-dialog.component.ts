@@ -54,7 +54,7 @@ export class ExpedienteAsociadoDeletePopupComponent implements OnInit, OnDestroy
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.expedienteAsociadoPopupService
-                .open(ExpedienteAsociadoDeleteDialogComponent as Component, params['id']);
+                .open(ExpedienteAsociadoDeleteDialogComponent as Component, params['idExpediente'], params['id']);
         });
     }
 

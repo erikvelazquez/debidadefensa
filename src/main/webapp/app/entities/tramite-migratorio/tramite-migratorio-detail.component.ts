@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { FechasServicioService, FechasServicio} from '../fechas-servicio';
 import { CostoServicioService, CostoServicio } from '../costo-servicio';
 import { PagosService, Pagos } from '../pagos';
+import { DocumentosService, Documentos } from '../documentos';
 
 @Component({
     selector: 'jhi-tramite-migratorio-detail',
@@ -34,7 +35,9 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     fechaNotificacionDp: any;
     fechaResolucionDp: any;
     eventSubscriberFechas: Subscription;
-
+    tramiteMigratorios: TramiteMigratorio[];
+    documentos: Documentos[];
+    
     costoServicios: CostoServicio[];
     pagos: Pagos[];
     totalCostos: number;
@@ -54,6 +57,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private costoServicioService: CostoServicioService,
         private pagosService: PagosService,
+        private documentosService: DocumentosService,
     ) {
     }
 
@@ -117,8 +121,19 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                         },0);                                       
                 },(res: HttpErrorResponse) => this.onError(res.message));
 
+                this.documentosService.findByMigratorioId(id).subscribe(
+                    (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
+                    (res: HttpErrorResponse) => this.onError(res.message)
+                );
+
                 this.encuentraFechas(id);
                 
+                this.tramiteMigratorioService.findByAsociados(id)
+                .subscribe(
+                    (res: HttpResponse<TramiteMigratorio[]>) => {
+                        this.tramiteMigratorios = res.body;                        
+                });
+
                 this.estatusService
                 .query({filter: 'tramitemigratorio-is-null'})
                 .subscribe((res: HttpResponse<Estatus[]>) => {

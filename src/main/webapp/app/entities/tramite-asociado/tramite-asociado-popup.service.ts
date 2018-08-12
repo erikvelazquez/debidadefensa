@@ -6,6 +6,7 @@ import { TramiteAsociado } from './tramite-asociado.model';
 import { TramiteAsociadoService } from './tramite-asociado.service';
 import { TramiteGeneral } from '../tramite-general/tramite-general.model';
 import {TramiteGeneralService } from '../tramite-general/tramite-general.service'
+import { TramiteMigratorioService, TramiteMigratorio } from '../tramite-migratorio';
 
 @Injectable()
 export class TramiteAsociadoPopupService {
@@ -15,16 +16,26 @@ export class TramiteAsociadoPopupService {
     tramiteGenerals: TramiteGeneral[];
     tramiteG: TramiteGeneral;
 
+    tramiteMigratorios: TramiteMigratorio[];
+    tramiteM: TramiteMigratorio;
+
     constructor(
         private modalService: NgbModal,
         private router: Router,
         private tramiteAsociadoService: TramiteAsociadoService,        
         private tramiteGeneralService: TramiteGeneralService,
+        private tramiteMigratorioService: TramiteMigratorioService,
 
     ) {        
         this.ngbModalRef = null;
         this.predicate = 'id';
         this.reverse = true;
+
+        this.tramiteGenerals = new Array<TramiteGeneral>();
+        this.tramiteG = new TramiteGeneral();
+
+        this.tramiteMigratorios = new Array<TramiteGeneral>();
+        this.tramiteM = new TramiteGeneral();
     }
 
     sort() {
@@ -35,59 +46,64 @@ export class TramiteAsociadoPopupService {
         return result;
     }
     
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, id?: number, tiposervicio?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
                 resolve(this.ngbModalRef);
             }
-
-            /*this.tramiteGeneralService.query({
-                page: 0,
-                size: 100,
-                sort: this.sort()
-            }).subscribe((res: HttpResponse<TramiteGeneral[]>) => {
-                    this.tramiteGenerals = res.body;
-                    this.ngbModalRef = this.tramiteAsociadoModalRef(component, this.tramiteGenerals);
-                    resolve(this.ngbModalRef);
-            });*/
-
-            this.tramiteGeneralService.findByFaltantes(id)
-            .subscribe(
-                (res: HttpResponse<TramiteGeneral[]>) => {
-                    this.tramiteGenerals = res.body;
-                    this.tramiteGeneralService.find(id)
-                    .subscribe(
-                        (res: HttpResponse<TramiteGeneral>) => {
-                            this.tramiteG = res.body;
-                            this.ngbModalRef = this.tramiteAsociadoModalRef(component, this.tramiteGenerals, this.tramiteG);
-                            resolve(this.ngbModalRef);
-                    });
-            });
-
+            this.tramiteGenerals = new Array<TramiteGeneral>();
+            this.tramiteG = new TramiteGeneral();
+    
+            this.tramiteMigratorios = new Array<TramiteGeneral>();
+            this.tramiteM = new TramiteGeneral();
             
-
-           /* if (id) {
-                this.tramiteAsociadoService.find(id)
-                    .subscribe((tramiteAsociadoResponse: HttpResponse<TramiteAsociado>) => {
-                        const tramiteAsociado: TramiteAsociado = tramiteAsociadoResponse.body;
-                        this.ngbModalRef = this.tramiteAsociadoModalRef(component, tramiteAsociado);
-                        resolve(this.ngbModalRef);
+            tiposervicio = +tiposervicio
+            switch(+tiposervicio) {               
+                case 1002: { 
+                //Migratorio; 
+                this.tramiteMigratorioService.findByFaltantes(id).subscribe(
+                    (res: HttpResponse<TramiteMigratorio[]>) => {
+                        this.tramiteMigratorios = res.body;
+                        this.tramiteMigratorioService.find(id).subscribe(
+                            (res: HttpResponse<TramiteMigratorio>) => {
+                                this.tramiteM = res.body;
+                                this.ngbModalRef = this.tramiteAsociadoModalRef(component, this.tramiteGenerals, this.tramiteG, this.tramiteMigratorios, this.tramiteM, tiposervicio);
+                                resolve(this.ngbModalRef);
+                        });
+                });
+                break; 
+                } 
+                case 1003: { 
+                    //General; 
+                    this.tramiteGeneralService.findByFaltantes(id).subscribe(
+                        (res: HttpResponse<TramiteGeneral[]>) => {
+                            this.tramiteGenerals = res.body;
+                            this.tramiteGeneralService.find(id).subscribe(
+                                (res: HttpResponse<TramiteGeneral>) => {
+                                    this.tramiteG = res.body;
+                                    this.ngbModalRef = this.tramiteAsociadoModalRef(component, this.tramiteGenerals, this.tramiteG, this.tramiteMigratorios, this.tramiteM, tiposervicio);
+                                    resolve(this.ngbModalRef);
+                            });
                     });
-            } else {
-                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
-                setTimeout(() => {
-                    this.ngbModalRef = this.tramiteAsociadoModalRef(component, new TramiteAsociado());
-                    resolve(this.ngbModalRef);
-                }, 0);
-            }*/
+                    break; 
+                } 
+                default: { 
+                //statements; 
+                break; 
+                } 
+            }
         });
     }
 
-    tramiteAsociadoModalRef(component: Component, tramiteGenerals: TramiteGeneral[], tramiteG: TramiteGeneral): NgbModalRef {
+    tramiteAsociadoModalRef(component: Component, tramiteGenerals: TramiteGeneral[], tramiteG: TramiteGeneral, tramiteMigratorios: TramiteMigratorio[], tramiteM: TramiteMigratorio, tiposervicio: number): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.tramiteGenerals = tramiteGenerals;
         modalRef.componentInstance.tramiteG = tramiteG;
+        modalRef.componentInstance.tramiteMigratorios = tramiteMigratorios;
+        modalRef.componentInstance.tramiteM = tramiteM;
+        modalRef.componentInstance.tiposervicio = tiposervicio;
+        
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;

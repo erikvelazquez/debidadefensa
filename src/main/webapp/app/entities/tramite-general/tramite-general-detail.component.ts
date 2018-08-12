@@ -13,6 +13,7 @@ import { TramiteAsociado, TramiteAsociadoService } from '../tramite-asociado';
 import { CostoServicio, CostoServicioService } from '../costo-servicio';
 import { Pagos, PagosService } from '../pagos';
 import { Observable } from '../../../../../../node_modules/rxjs';
+import { DocumentosService, Documentos } from '../documentos';
 
 @Component({
     selector: 'jhi-tramite-general-detail',
@@ -31,7 +32,8 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     fechaNotificacionDp: any;
     fechaResolucionDp: any;
     tramiteGenerals: TramiteGeneral[];
-
+    documentos: Documentos[];
+    
     costoServicios: CostoServicio[];
     pagos: Pagos[];
     totalCostos: number;
@@ -51,6 +53,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private costoServicioService: CostoServicioService,
         private pagosService: PagosService,
+        private documentosService: DocumentosService,
     ) {
     }
 
@@ -113,6 +116,11 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
                             return prev + cur.cantidad;
                         },0);                                       
                 },(res: HttpErrorResponse) => this.onError(res.message));
+
+                this.documentosService.findByGeneralId(id).subscribe(
+                    (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
+                    (res: HttpErrorResponse) => this.onError(res.message)
+                );
 
                 this.encuentraFechas(id);
 

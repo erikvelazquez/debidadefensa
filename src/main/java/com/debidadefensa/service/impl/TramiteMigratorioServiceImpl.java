@@ -129,4 +129,23 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
         return result.stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TramiteMigratorioDTO> findByFaltantes(Long id) {
+        log.debug("Request to get all tramites generales not in asociados");       
+    
+        return tramiteMigratorioRepository.findByFaltantes(id).stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TramiteMigratorioDTO> findByAsociados(Long id) {
+        log.debug("Request to get all tramites generales not in asociados");       
+    
+        return tramiteMigratorioRepository.findByAsociados(id).stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+
 }

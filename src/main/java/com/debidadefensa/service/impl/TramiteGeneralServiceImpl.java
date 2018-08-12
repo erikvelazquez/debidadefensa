@@ -128,19 +128,19 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
       //  return result.map(expedienteMapper::toDto);
     }
 
-      @Override
-      @Transactional(readOnly = true)
-      public List<TramiteGeneralDTO> findByFaltantes(Long id) {
-          log.debug("Request to get all Expedientes by user");       
-        
-         return tramiteGeneralRepository.findByFaltantes(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    @Override
+    @Transactional(readOnly = true)
+    public List<TramiteGeneralDTO> findByFaltantes(Long id) {
+        log.debug("Request to get all tramites generales not in asociados");       
+    
+        return tramiteGeneralRepository.findByFaltantes(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override
-      @Transactional(readOnly = true)
-      public List<TramiteGeneralDTO> findByAsociados(Long id) {
-          log.debug("Request to get all Expedientes by user");       
-        
-         return tramiteGeneralRepository.findByAsociados(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    @Transactional(readOnly = true)
+    public List<TramiteGeneralDTO> findByAsociados(Long id) {
+        log.debug("Request to get all tramites generales not in asociados");       
+    
+        return tramiteGeneralRepository.findByAsociados(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 }

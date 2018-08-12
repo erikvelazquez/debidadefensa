@@ -54,7 +54,7 @@ export class CostoServicioDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.costoServicioPopupService
-                .open(CostoServicioDeleteDialogComponent as Component, params['id']);
+                .open(CostoServicioDeleteDialogComponent as Component,  params['idTramite'],  params['tiposervicio'], params['id']);
         });
     }
 

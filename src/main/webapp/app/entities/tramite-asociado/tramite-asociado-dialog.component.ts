@@ -10,6 +10,7 @@ import { TramiteAsociado } from './tramite-asociado.model';
 import { TramiteAsociadoPopupService } from './tramite-asociado-popup.service';
 import { TramiteAsociadoService } from './tramite-asociado.service';
 import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
+import { TramiteMigratorio } from '../tramite-migratorio';
 
 @Component({
     selector: 'jhi-tramite-asociado-dialog',
@@ -20,12 +21,17 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     tramiteAsociado: TramiteAsociado;
     tramiteGenerals: TramiteGeneral[];
     tramiteG: TramiteGeneral;
+    tramiteMigratorios: TramiteMigratorio[];
+    tramiteM: TramiteMigratorio;
+    tiposervicio: number;
+    
     isSaving: boolean;    
     tramitesA: TramiteAsociado[];
     constructor(
         public activeModal: NgbActiveModal,
         private tramiteAsociadoService: TramiteAsociadoService,
         private eventManager: JhiEventManager,
+        private eventManager2: JhiEventManager,
     ) {
     }
 
@@ -41,22 +47,34 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.tramitesA = Array<TramiteAsociado>();
-        this.tramiteGenerals.forEach((entry) => {
-            if (entry.seleccionado == true){                
-                this.tramitesA.push(new TramiteAsociado(null, this.tramiteG.id, entry.id, 1003, 1003));
+        
+        switch(this.tiposervicio) {               
+            case 1002: { 
+            //Migratorio; 
+                this.tramiteMigratorios.forEach((entry) => {
+                    if (entry.seleccionado == true){                
+                        this.tramitesA.push(new TramiteAsociado(null, this.tramiteM.id, entry.id, this.tiposervicio, this.tiposervicio));
+                    } 
+                });
+                break; 
             } 
-        });
+            case 1003: { 
+                //General; 
+                this.tramiteGenerals.forEach((entry) => {
+                    if (entry.seleccionado == true){                
+                        this.tramitesA.push(new TramiteAsociado(null, this.tramiteG.id, entry.id, this.tiposervicio, this.tiposervicio));
+                    } 
+                });
+                break; 
+            } 
+            default: { 
+            //statements; 
+            break; 
+            } 
+        }
 
-
-        this.subscribeToSaveResponse(
-            this.tramiteAsociadoService.create(this.tramitesA));
-       /* if (this.tramiteAsociado.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.tramiteAsociadoService.update(this.tramiteAsociado));
-        } else {
-            this.subscribeToSaveResponse(
-                this.tramiteAsociadoService.create(this.tramiteAsociado));
-        }*/
+        this.subscribeToSaveResponse(this.tramiteAsociadoService.create(this.tramitesA));
+      
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<TramiteAsociado>>) {
@@ -66,6 +84,7 @@ export class TramiteAsociadoDialogComponent implements OnInit {
 
     private onSaveSuccess(result: TramiteAsociado) {
         this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+        this.eventManager2.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -92,7 +111,7 @@ export class TramiteAsociadoPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.tramiteAsociadoPopupService
-                    .open(TramiteAsociadoDialogComponent as Component, params['id']);
+                    .open(TramiteAsociadoDialogComponent as Component, params['id'], params['tiposervicio']);
             } else {
                 this.tramiteAsociadoPopupService
                     .open(TramiteAsociadoDialogComponent as Component);

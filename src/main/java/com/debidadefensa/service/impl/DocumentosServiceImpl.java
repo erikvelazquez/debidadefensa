@@ -110,4 +110,63 @@ public class DocumentosServiceImpl implements DocumentosService {
             .map(documentosMapper::toDto)
             .collect(Collectors.toList());
     }
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<DocumentosDTO> findByExpedienteId(Long id) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return documentosRepository.findByExpediente_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<DocumentosDTO> findByMigratorio(Long id) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return documentosRepository.findByTramiteMigratorio_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<DocumentosDTO> findByGeneral(Long id) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return documentosRepository.findByTramiteGeneral_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
+
 }

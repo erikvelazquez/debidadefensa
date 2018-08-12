@@ -54,7 +54,7 @@ export class PagosDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.pagosPopupService
-                .open(PagosDeleteDialogComponent as Component, params['id']);
+                .open(PagosDeleteDialogComponent as Component, params['idTramite'],  params['tiposervicio'], params['id']);
         });
     }
 
