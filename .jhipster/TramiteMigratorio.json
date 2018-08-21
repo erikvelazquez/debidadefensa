@@ -8,14 +8,6 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "estatusTramiteMigratorio",
-            "otherEntityName": "estatus",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "tramiteMigratorio"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "tramitteMigratorioCosto",
             "otherEntityName": "costoServicio",
@@ -46,6 +38,15 @@
             "otherEntityName": "tramiteAsociado",
             "otherEntityField": "id",
             "ownerSide": true
+        },
+        {
+            "relationshipName": "estatusTramiteMigratorio",
+            "otherEntityName": "estatus",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -91,9 +92,9 @@
         }
     ],
     "changelogDate": "20180610211046",
-    "entityTableName": "tramite_migratorio",
     "dto": "mapstruct",
-    "pagination": "pagination",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "tramite_migratorio",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
 }

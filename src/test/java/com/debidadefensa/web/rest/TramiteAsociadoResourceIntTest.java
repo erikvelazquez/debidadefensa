@@ -48,6 +48,15 @@ public class TramiteAsociadoResourceIntTest {
     private static final Long DEFAULT_ID_TRAMITE = 1L;
     private static final Long UPDATED_ID_TRAMITE = 2L;
 
+    private static final Long DEFAULT_ID_TRAMITEASOCIADO = 1L;
+    private static final Long UPDATED_ID_TRAMITEASOCIADO = 2L;
+
+    private static final Long DEFAULT_TIPO_SERVICIO_ID = 1L;
+    private static final Long UPDATED_TIPO_SERVICIO_ID = 2L;
+
+    private static final Long DEFAULT_TIPO_SERVICIO_ID_ASOCIADO = 1L;
+    private static final Long UPDATED_TIPO_SERVICIO_ID_ASOCIADO = 2L;
+
     @Autowired
     private TramiteAsociadoRepository tramiteAsociadoRepository;
 
@@ -95,8 +104,11 @@ public class TramiteAsociadoResourceIntTest {
      */
     public static TramiteAsociado createEntity(EntityManager em) {
         TramiteAsociado tramiteAsociado = new TramiteAsociado()
-            // .tipoTramite(DEFAULT_TIPO_TRAMITE)
-            .idTramite(DEFAULT_ID_TRAMITE);
+            .tipoTramite(DEFAULT_TIPO_TRAMITE)
+            .idTramite(DEFAULT_ID_TRAMITE)
+            .idTramiteasociado(DEFAULT_ID_TRAMITEASOCIADO)
+            .tipoServicioId(DEFAULT_TIPO_SERVICIO_ID)
+            .tipoServicioIdAsociado(DEFAULT_TIPO_SERVICIO_ID_ASOCIADO);
         return tramiteAsociado;
     }
 
@@ -122,8 +134,11 @@ public class TramiteAsociadoResourceIntTest {
         List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
         assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeCreate + 1);
         TramiteAsociado testTramiteAsociado = tramiteAsociadoList.get(tramiteAsociadoList.size() - 1);
-        // assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(DEFAULT_TIPO_TRAMITE);
+        assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(DEFAULT_TIPO_TRAMITE);
         assertThat(testTramiteAsociado.getIdTramite()).isEqualTo(DEFAULT_ID_TRAMITE);
+        assertThat(testTramiteAsociado.getIdTramiteasociado()).isEqualTo(DEFAULT_ID_TRAMITEASOCIADO);
+        assertThat(testTramiteAsociado.getTipoServicioId()).isEqualTo(DEFAULT_TIPO_SERVICIO_ID);
+        assertThat(testTramiteAsociado.getTipoServicioIdAsociado()).isEqualTo(DEFAULT_TIPO_SERVICIO_ID_ASOCIADO);
 
         // Validate the TramiteAsociado in Elasticsearch
         TramiteAsociado tramiteAsociadoEs = tramiteAsociadoSearchRepository.findOne(testTramiteAsociado.getId());
@@ -152,6 +167,63 @@ public class TramiteAsociadoResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIdTramiteasociadoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = tramiteAsociadoRepository.findAll().size();
+        // set the field null
+        tramiteAsociado.setIdTramiteasociado(null);
+
+        // Create the TramiteAsociado, which fails.
+        TramiteAsociadoDTO tramiteAsociadoDTO = tramiteAsociadoMapper.toDto(tramiteAsociado);
+
+        restTramiteAsociadoMockMvc.perform(post("/api/tramite-asociados")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tramiteAsociadoDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
+        assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkTipoServicioIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = tramiteAsociadoRepository.findAll().size();
+        // set the field null
+        tramiteAsociado.setTipoServicioId(null);
+
+        // Create the TramiteAsociado, which fails.
+        TramiteAsociadoDTO tramiteAsociadoDTO = tramiteAsociadoMapper.toDto(tramiteAsociado);
+
+        restTramiteAsociadoMockMvc.perform(post("/api/tramite-asociados")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tramiteAsociadoDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
+        assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkTipoServicioIdAsociadoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = tramiteAsociadoRepository.findAll().size();
+        // set the field null
+        tramiteAsociado.setTipoServicioIdAsociado(null);
+
+        // Create the TramiteAsociado, which fails.
+        TramiteAsociadoDTO tramiteAsociadoDTO = tramiteAsociadoMapper.toDto(tramiteAsociado);
+
+        restTramiteAsociadoMockMvc.perform(post("/api/tramite-asociados")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tramiteAsociadoDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
+        assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTramiteAsociados() throws Exception {
         // Initialize the database
         tramiteAsociadoRepository.saveAndFlush(tramiteAsociado);
@@ -162,7 +234,10 @@ public class TramiteAsociadoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tramiteAsociado.getId().intValue())))
             .andExpect(jsonPath("$.[*].tipoTramite").value(hasItem(DEFAULT_TIPO_TRAMITE.toString())))
-            .andExpect(jsonPath("$.[*].idTramite").value(hasItem(DEFAULT_ID_TRAMITE.intValue())));
+            .andExpect(jsonPath("$.[*].idTramite").value(hasItem(DEFAULT_ID_TRAMITE.intValue())))
+            .andExpect(jsonPath("$.[*].idTramiteasociado").value(hasItem(DEFAULT_ID_TRAMITEASOCIADO.intValue())))
+            .andExpect(jsonPath("$.[*].tipoServicioId").value(hasItem(DEFAULT_TIPO_SERVICIO_ID.intValue())))
+            .andExpect(jsonPath("$.[*].tipoServicioIdAsociado").value(hasItem(DEFAULT_TIPO_SERVICIO_ID_ASOCIADO.intValue())));
     }
 
     @Test
@@ -177,7 +252,10 @@ public class TramiteAsociadoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(tramiteAsociado.getId().intValue()))
             .andExpect(jsonPath("$.tipoTramite").value(DEFAULT_TIPO_TRAMITE.toString()))
-            .andExpect(jsonPath("$.idTramite").value(DEFAULT_ID_TRAMITE.intValue()));
+            .andExpect(jsonPath("$.idTramite").value(DEFAULT_ID_TRAMITE.intValue()))
+            .andExpect(jsonPath("$.idTramiteasociado").value(DEFAULT_ID_TRAMITEASOCIADO.intValue()))
+            .andExpect(jsonPath("$.tipoServicioId").value(DEFAULT_TIPO_SERVICIO_ID.intValue()))
+            .andExpect(jsonPath("$.tipoServicioIdAsociado").value(DEFAULT_TIPO_SERVICIO_ID_ASOCIADO.intValue()));
     }
 
     @Test
@@ -201,8 +279,11 @@ public class TramiteAsociadoResourceIntTest {
         // Disconnect from session so that the updates on updatedTramiteAsociado are not directly saved in db
         em.detach(updatedTramiteAsociado);
         updatedTramiteAsociado
-            // .tipoTramite(UPDATED_TIPO_TRAMITE)
-            .idTramite(UPDATED_ID_TRAMITE);
+            .tipoTramite(UPDATED_TIPO_TRAMITE)
+            .idTramite(UPDATED_ID_TRAMITE)
+            .idTramiteasociado(UPDATED_ID_TRAMITEASOCIADO)
+            .tipoServicioId(UPDATED_TIPO_SERVICIO_ID)
+            .tipoServicioIdAsociado(UPDATED_TIPO_SERVICIO_ID_ASOCIADO);
         TramiteAsociadoDTO tramiteAsociadoDTO = tramiteAsociadoMapper.toDto(updatedTramiteAsociado);
 
         restTramiteAsociadoMockMvc.perform(put("/api/tramite-asociados")
@@ -214,8 +295,11 @@ public class TramiteAsociadoResourceIntTest {
         List<TramiteAsociado> tramiteAsociadoList = tramiteAsociadoRepository.findAll();
         assertThat(tramiteAsociadoList).hasSize(databaseSizeBeforeUpdate);
         TramiteAsociado testTramiteAsociado = tramiteAsociadoList.get(tramiteAsociadoList.size() - 1);
-        // assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(UPDATED_TIPO_TRAMITE);
+        assertThat(testTramiteAsociado.getTipoTramite()).isEqualTo(UPDATED_TIPO_TRAMITE);
         assertThat(testTramiteAsociado.getIdTramite()).isEqualTo(UPDATED_ID_TRAMITE);
+        assertThat(testTramiteAsociado.getIdTramiteasociado()).isEqualTo(UPDATED_ID_TRAMITEASOCIADO);
+        assertThat(testTramiteAsociado.getTipoServicioId()).isEqualTo(UPDATED_TIPO_SERVICIO_ID);
+        assertThat(testTramiteAsociado.getTipoServicioIdAsociado()).isEqualTo(UPDATED_TIPO_SERVICIO_ID_ASOCIADO);
 
         // Validate the TramiteAsociado in Elasticsearch
         TramiteAsociado tramiteAsociadoEs = tramiteAsociadoSearchRepository.findOne(testTramiteAsociado.getId());
@@ -276,7 +360,10 @@ public class TramiteAsociadoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tramiteAsociado.getId().intValue())))
             .andExpect(jsonPath("$.[*].tipoTramite").value(hasItem(DEFAULT_TIPO_TRAMITE.toString())))
-            .andExpect(jsonPath("$.[*].idTramite").value(hasItem(DEFAULT_ID_TRAMITE.intValue())));
+            .andExpect(jsonPath("$.[*].idTramite").value(hasItem(DEFAULT_ID_TRAMITE.intValue())))
+            .andExpect(jsonPath("$.[*].idTramiteasociado").value(hasItem(DEFAULT_ID_TRAMITEASOCIADO.intValue())))
+            .andExpect(jsonPath("$.[*].tipoServicioId").value(hasItem(DEFAULT_TIPO_SERVICIO_ID.intValue())))
+            .andExpect(jsonPath("$.[*].tipoServicioIdAsociado").value(hasItem(DEFAULT_TIPO_SERVICIO_ID_ASOCIADO.intValue())));
     }
 
     @Test

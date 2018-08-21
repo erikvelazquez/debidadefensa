@@ -3,6 +3,7 @@ package com.debidadefensa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -59,10 +60,6 @@ public class TramiteMigratorio implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Estatus estatusTramiteMigratorio;
-
     @OneToMany(mappedBy = "tramiteMigratorio")
     @JsonIgnore
     private Set<CostoServicio> tramitteMigratorioCostos = new HashSet<>();
@@ -84,6 +81,10 @@ public class TramiteMigratorio implements Serializable {
                joinColumns = @JoinColumn(name="tramite_migratorios_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="tramites_migra_asociados_id", referencedColumnName="id"))
     private Set<TramiteAsociado> tramitesMigraAsociados = new HashSet<>();
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Estatus estatusTramiteMigratorio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -237,19 +238,6 @@ public class TramiteMigratorio implements Serializable {
         this.cliente = cliente;
     }
 
-    public Estatus getEstatusTramiteMigratorio() {
-        return estatusTramiteMigratorio;
-    }
-
-    public TramiteMigratorio estatusTramiteMigratorio(Estatus estatus) {
-        this.estatusTramiteMigratorio = estatus;
-        return this;
-    }
-
-    public void setEstatusTramiteMigratorio(Estatus estatus) {
-        this.estatusTramiteMigratorio = estatus;
-    }
-
     public Set<CostoServicio> getTramitteMigratorioCostos() {
         return tramitteMigratorioCostos;
     }
@@ -371,6 +359,19 @@ public class TramiteMigratorio implements Serializable {
 
     public void setTramitesMigraAsociados(Set<TramiteAsociado> tramiteAsociados) {
         this.tramitesMigraAsociados = tramiteAsociados;
+    }
+
+    public Estatus getEstatusTramiteMigratorio() {
+        return estatusTramiteMigratorio;
+    }
+
+    public TramiteMigratorio estatusTramiteMigratorio(Estatus estatus) {
+        this.estatusTramiteMigratorio = estatus;
+        return this;
+    }
+
+    public void setEstatusTramiteMigratorio(Estatus estatus) {
+        this.estatusTramiteMigratorio = estatus;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

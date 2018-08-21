@@ -3,6 +3,7 @@ package com.debidadefensa.web.rest;
 import com.debidadefensa.DebidadefensaApp;
 
 import com.debidadefensa.domain.TramiteGeneral;
+import com.debidadefensa.domain.Estatus;
 import com.debidadefensa.repository.TramiteGeneralRepository;
 import com.debidadefensa.service.TramiteGeneralService;
 import com.debidadefensa.repository.search.TramiteGeneralSearchRepository;
@@ -127,6 +128,11 @@ public class TramiteGeneralResourceIntTest {
             .fechaNotificacion(DEFAULT_FECHA_NOTIFICACION)
             .archivo(DEFAULT_ARCHIVO)
             .observaciones(DEFAULT_OBSERVACIONES);
+        // Add required entity
+        Estatus estatusTramiteGeneral = EstatusResourceIntTest.createEntity(em);
+        em.persist(estatusTramiteGeneral);
+        em.flush();
+        tramiteGeneral.setEstatusTramiteGeneral(estatusTramiteGeneral);
         return tramiteGeneral;
     }
 

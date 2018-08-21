@@ -8,14 +8,6 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "estatusTramiteGeneral",
-            "otherEntityName": "estatus",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "tramiteGeneral"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "tramiteGralPagos",
             "otherEntityName": "pagos",
@@ -46,6 +38,15 @@
             "otherEntityName": "tramiteAsociado",
             "otherEntityField": "id",
             "ownerSide": true
+        },
+        {
+            "relationshipName": "estatusTramiteGeneral",
+            "otherEntityName": "estatus",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -87,9 +88,9 @@
         }
     ],
     "changelogDate": "20180610211047",
-    "entityTableName": "tramite_general",
     "dto": "mapstruct",
-    "pagination": "pagination",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "tramite_general",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
 }

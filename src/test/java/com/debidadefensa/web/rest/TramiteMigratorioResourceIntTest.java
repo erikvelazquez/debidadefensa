@@ -3,6 +3,7 @@ package com.debidadefensa.web.rest;
 import com.debidadefensa.DebidadefensaApp;
 
 import com.debidadefensa.domain.TramiteMigratorio;
+import com.debidadefensa.domain.Estatus;
 import com.debidadefensa.repository.TramiteMigratorioRepository;
 import com.debidadefensa.service.TramiteMigratorioService;
 import com.debidadefensa.repository.search.TramiteMigratorioSearchRepository;
@@ -131,6 +132,11 @@ public class TramiteMigratorioResourceIntTest {
             .fechaResolucion(DEFAULT_FECHA_RESOLUCION)
             .archivo(DEFAULT_ARCHIVO)
             .observaciones(DEFAULT_OBSERVACIONES);
+        // Add required entity
+        Estatus estatusTramiteMigratorio = EstatusResourceIntTest.createEntity(em);
+        em.persist(estatusTramiteMigratorio);
+        em.flush();
+        tramiteMigratorio.setEstatusTramiteMigratorio(estatusTramiteMigratorio);
         return tramiteMigratorio;
     }
 

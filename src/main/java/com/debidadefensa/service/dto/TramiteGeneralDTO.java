@@ -2,6 +2,7 @@ package com.debidadefensa.service.dto;
 
 
 import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,13 +35,11 @@ public class TramiteGeneralDTO implements Serializable {
 
     private Long clienteId;
 
-    private String clienteNombre;
+    private Set<TramiteAsociadoDTO> tramiteGeneralAsociados = new HashSet<>();
 
     private Long estatusTramiteGeneralId;
 
     private String estatusDescripcion;
-
-    private Set<TramiteAsociadoDTO> tramiteGeneralAsociados = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -58,20 +57,6 @@ public class TramiteGeneralDTO implements Serializable {
 	 */
 	public void setEstatusDescripcion(String estatusDescripcion) {
 		this.estatusDescripcion = estatusDescripcion;
-	}
-
-	/**
-	 * @return the clienteNombre
-	 */
-	public String getClienteNombre() {
-		return clienteNombre;
-	}
-
-	/**
-	 * @param clienteNombre the clienteNombre to set
-	 */
-	public void setClienteNombre(String clienteNombre) {
-		this.clienteNombre = clienteNombre;
 	}
 
 	public void setId(Long id) {
@@ -158,20 +143,20 @@ public class TramiteGeneralDTO implements Serializable {
         this.clienteId = clienteId;
     }
 
-    public Long getEstatusTramiteGeneralId() {
-        return estatusTramiteGeneralId;
-    }
-
-    public void setEstatusTramiteGeneralId(Long estatusId) {
-        this.estatusTramiteGeneralId = estatusId;
-    }
-
     public Set<TramiteAsociadoDTO> getTramiteGeneralAsociados() {
         return tramiteGeneralAsociados;
     }
 
     public void setTramiteGeneralAsociados(Set<TramiteAsociadoDTO> tramiteAsociados) {
         this.tramiteGeneralAsociados = tramiteAsociados;
+    }
+
+    public Long getEstatusTramiteGeneralId() {
+        return estatusTramiteGeneralId;
+    }
+
+    public void setEstatusTramiteGeneralId(Long estatusId) {
+        this.estatusTramiteGeneralId = estatusId;
     }
 
     @Override

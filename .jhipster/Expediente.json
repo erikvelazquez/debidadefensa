@@ -8,14 +8,6 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "estatusExpediente",
-            "otherEntityName": "estatus",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "expediente"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "parte",
             "otherEntityName": "parte",
@@ -56,6 +48,15 @@
             "otherEntityName": "tipoServicio",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "estatusExpediente",
+            "otherEntityName": "estatus",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
         }
     ],
     "fields": [
@@ -89,9 +90,9 @@
         }
     ],
     "changelogDate": "20180610211043",
-    "entityTableName": "expediente",
     "dto": "mapstruct",
-    "pagination": "infinite-scroll",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "expediente",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
 }

@@ -2,6 +2,7 @@ package com.debidadefensa.service.dto;
 
 
 import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,14 +36,12 @@ public class TramiteMigratorioDTO implements Serializable {
     private String observaciones;
 
     private Long clienteId;
-    
-    private String clienteNombre;
+
+    private Set<TramiteAsociadoDTO> tramitesMigraAsociados = new HashSet<>();
 
     private Long estatusTramiteMigratorioId;
 
     private String estatusDescripcion;
-
-    private Set<TramiteAsociadoDTO> tramitesMigraAsociados = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -60,20 +59,6 @@ public class TramiteMigratorioDTO implements Serializable {
 	 */
 	public void setEstatusDescripcion(String estatusDescripcion) {
 		this.estatusDescripcion = estatusDescripcion;
-	}
-
-	/**
-	 * @return the clienteNombre
-	 */
-	public String getClienteNombre() {
-		return clienteNombre;
-	}
-
-	/**
-	 * @param clienteNombre the clienteNombre to set
-	 */
-	public void setClienteNombre(String clienteNombre) {
-		this.clienteNombre = clienteNombre;
 	}
 
 	public void setId(Long id) {
@@ -168,20 +153,20 @@ public class TramiteMigratorioDTO implements Serializable {
         this.clienteId = clienteId;
     }
 
-    public Long getEstatusTramiteMigratorioId() {
-        return estatusTramiteMigratorioId;
-    }
-
-    public void setEstatusTramiteMigratorioId(Long estatusId) {
-        this.estatusTramiteMigratorioId = estatusId;
-    }
-
     public Set<TramiteAsociadoDTO> getTramitesMigraAsociados() {
         return tramitesMigraAsociados;
     }
 
     public void setTramitesMigraAsociados(Set<TramiteAsociadoDTO> tramiteAsociados) {
         this.tramitesMigraAsociados = tramiteAsociados;
+    }
+
+    public Long getEstatusTramiteMigratorioId() {
+        return estatusTramiteMigratorioId;
+    }
+
+    public void setEstatusTramiteMigratorioId(Long estatusId) {
+        this.estatusTramiteMigratorioId = estatusId;
     }
 
     @Override

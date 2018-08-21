@@ -9,12 +9,33 @@
         {
             "fieldName": "idTramite",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "idTramiteasociado",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipoServicioId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipoServicioIdAsociado",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180610211048",
-    "entityTableName": "tramite_asociado",
     "dto": "mapstruct",
-    "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "tramite_asociado",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
 }

@@ -3,6 +3,7 @@ package com.debidadefensa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -56,10 +57,6 @@ public class TramiteGeneral implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Estatus estatusTramiteGeneral;
-
     @OneToMany(mappedBy = "tramiteGeneral")
     @JsonIgnore
     private Set<Pagos> tramiteGralPagos = new HashSet<>();
@@ -81,6 +78,10 @@ public class TramiteGeneral implements Serializable {
                joinColumns = @JoinColumn(name="tramite_generals_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="tramite_general_asociados_id", referencedColumnName="id"))
     private Set<TramiteAsociado> tramiteGeneralAsociados = new HashSet<>();
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Estatus estatusTramiteGeneral;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -221,19 +222,6 @@ public class TramiteGeneral implements Serializable {
         this.cliente = cliente;
     }
 
-    public Estatus getEstatusTramiteGeneral() {
-        return estatusTramiteGeneral;
-    }
-
-    public TramiteGeneral estatusTramiteGeneral(Estatus estatus) {
-        this.estatusTramiteGeneral = estatus;
-        return this;
-    }
-
-    public void setEstatusTramiteGeneral(Estatus estatus) {
-        this.estatusTramiteGeneral = estatus;
-    }
-
     public Set<Pagos> getTramiteGralPagos() {
         return tramiteGralPagos;
     }
@@ -355,6 +343,19 @@ public class TramiteGeneral implements Serializable {
 
     public void setTramiteGeneralAsociados(Set<TramiteAsociado> tramiteAsociados) {
         this.tramiteGeneralAsociados = tramiteAsociados;
+    }
+
+    public Estatus getEstatusTramiteGeneral() {
+        return estatusTramiteGeneral;
+    }
+
+    public TramiteGeneral estatusTramiteGeneral(Estatus estatus) {
+        this.estatusTramiteGeneral = estatus;
+        return this;
+    }
+
+    public void setEstatusTramiteGeneral(Estatus estatus) {
+        this.estatusTramiteGeneral = estatus;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

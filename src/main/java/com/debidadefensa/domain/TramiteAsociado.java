@@ -2,6 +2,7 @@ package com.debidadefensa.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -21,25 +22,32 @@ public class TramiteAsociado implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-   
+
     @Column(name = "tipo_tramite")
     private String tipoTramite;
 
     @Column(name = "id_tramite")
     private Long idTramite;
 
-    @Column(name = "id_tramiteasociado")
-    private Long idTramiteAsociado;
+    @NotNull
+    @Column(name = "id_tramiteasociado", nullable = false)
+    private Long idTramiteasociado;
 
-    @Column(name = "tipo_servicio_id")
+    @NotNull
+    @Column(name = "tipo_servicio_id", nullable = false)
     private Long tipoServicioId;
 
-    @Column(name = "tipo_servicio_idasociado")
+    @NotNull
+    @Column(name = "tipo_servicio_id_asociado", nullable = false)
     private Long tipoServicioIdAsociado;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTipoTramite() {
@@ -55,47 +63,6 @@ public class TramiteAsociado implements Serializable {
         this.tipoTramite = tipoTramite;
     }
 
-	/**
-	 * @return the idTramiteAsociado
-	 */
-	public Long getIdTramiteAsociado() {
-		return idTramiteAsociado;
-	}
-
-
-
-	/**
-	 * @param idTramiteAsociado the idTramiteAsociado to set
-	 */
-	public void setIdTramiteAsociado(Long idTramiteAsociado) {
-		this.idTramiteAsociado = idTramiteAsociado;
-	}
-
-
-
-	/**
-	 * @return the tipoServicioId
-	 */
-	public Long getTipoServicioId() {
-		return tipoServicioId;
-	}
-
-
-
-	/**
-	 * @param tipoServicioId the tipoServicioId to set
-	 */
-	public void setTipoServicioId(Long tipoServicioId) {
-		this.tipoServicioId = tipoServicioId;
-	}
-
-
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-   
-
     public Long getIdTramite() {
         return idTramite;
     }
@@ -109,20 +76,44 @@ public class TramiteAsociado implements Serializable {
         this.idTramite = idTramite;
     }
 
-    /**
-	 * @return the tipoServicioIdAsociado
-	 */
-	public Long getTipoServicioIdAsociado() {
-		return tipoServicioIdAsociado;
-	}
+    public Long getIdTramiteasociado() {
+        return idTramiteasociado;
+    }
 
-	/**
-	 * @param tipoServicioIdAsociado the tipoServicioIdAsociado to set
-	 */
-	public void setTipoServicioIdAsociado(Long tipoServicioIdAsociado) {
-		this.tipoServicioIdAsociado = tipoServicioIdAsociado;
-	}
+    public TramiteAsociado idTramiteasociado(Long idTramiteasociado) {
+        this.idTramiteasociado = idTramiteasociado;
+        return this;
+    }
 
+    public void setIdTramiteasociado(Long idTramiteasociado) {
+        this.idTramiteasociado = idTramiteasociado;
+    }
+
+    public Long getTipoServicioId() {
+        return tipoServicioId;
+    }
+
+    public TramiteAsociado tipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
+        return this;
+    }
+
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
+    }
+
+    public Long getTipoServicioIdAsociado() {
+        return tipoServicioIdAsociado;
+    }
+
+    public TramiteAsociado tipoServicioIdAsociado(Long tipoServicioIdAsociado) {
+        this.tipoServicioIdAsociado = tipoServicioIdAsociado;
+        return this;
+    }
+
+    public void setTipoServicioIdAsociado(Long tipoServicioIdAsociado) {
+        this.tipoServicioIdAsociado = tipoServicioIdAsociado;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -148,9 +139,10 @@ public class TramiteAsociado implements Serializable {
     @Override
     public String toString() {
         return "TramiteAsociado{" +
-            "id=" + getId() +           
+            "id=" + getId() +
+            ", tipoTramite='" + getTipoTramite() + "'" +
             ", idTramite=" + getIdTramite() +
-            ", idTramiteAsociado=" + getIdTramiteAsociado() +
+            ", idTramiteasociado=" + getIdTramiteasociado() +
             ", tipoServicioId=" + getTipoServicioId() +
             ", tipoServicioIdAsociado=" + getTipoServicioIdAsociado() +
             "}";

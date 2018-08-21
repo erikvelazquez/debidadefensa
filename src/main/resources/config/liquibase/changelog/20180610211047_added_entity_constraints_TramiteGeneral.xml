@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="cliente"/>
 
-        <addForeignKeyConstraint baseColumnNames="estatus_tramite_general_id"
-                                 baseTableName="tramite_general"
-                                 constraintName="fk_tramite_general_estatus_tramite_general_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="estatus"/>
-
         <addForeignKeyConstraint baseColumnNames="tramite_generals_id"
                                  baseTableName="tramite_general_tramite_general_asociados"
                                  constraintName="fk_tramite_general_tramite_general_asociados_tramite_generals_id"
@@ -31,5 +25,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="tramite_asociado"/>
         
+        <addForeignKeyConstraint baseColumnNames="estatus_tramite_general_id"
+                                 baseTableName="tramite_general"
+                                 constraintName="fk_tramite_general_estatus_tramite_general_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus"/>
+
     </changeSet>
 </databaseChangeLog>

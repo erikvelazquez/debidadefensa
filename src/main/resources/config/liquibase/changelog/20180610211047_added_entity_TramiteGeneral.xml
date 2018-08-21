@@ -60,9 +60,11 @@
             <column name="cliente_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+
             <column name="estatus_tramite_general_id" type="bigint">
-                <constraints unique="true" nullable="true" />
+                <constraints nullable="false" />
             </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="cliente"/>
 
-        <addForeignKeyConstraint baseColumnNames="estatus_tramite_migratorio_id"
-                                 baseTableName="tramite_migratorio"
-                                 constraintName="fk_tramite_migratorio_estatus_tramite_migratorio_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="estatus"/>
-
         <addForeignKeyConstraint baseColumnNames="tramite_migratorios_id"
                                  baseTableName="tramite_migratorio_tramites_migra_asociados"
                                  constraintName="fk_tramite_migratorio_tramites_migra_asociados_tramite_migratorios_id"
@@ -31,5 +25,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="tramite_asociado"/>
         
+        <addForeignKeyConstraint baseColumnNames="estatus_tramite_migratorio_id"
+                                 baseTableName="tramite_migratorio"
+                                 constraintName="fk_tramite_migratorio_estatus_tramite_migratorio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus"/>
+
     </changeSet>
 </databaseChangeLog>

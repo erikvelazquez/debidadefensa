@@ -14,17 +14,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="cliente"/>
 
-        <addForeignKeyConstraint baseColumnNames="estatus_expediente_id"
-                                 baseTableName="expediente"
-                                 constraintName="fk_expediente_estatus_expediente_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="estatus"/>
-
         <addForeignKeyConstraint baseColumnNames="tipo_servicio_id"
                                  baseTableName="expediente"
                                  constraintName="fk_expediente_tipo_servicio_id"
                                  referencedColumnNames="id"
                                  referencedTableName="tipo_servicio"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_expediente_id"
+                                 baseTableName="expediente"
+                                 constraintName="fk_expediente_estatus_expediente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus"/>
 
     </changeSet>
 </databaseChangeLog>

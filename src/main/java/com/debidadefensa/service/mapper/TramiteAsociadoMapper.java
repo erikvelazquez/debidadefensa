@@ -11,6 +11,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface TramiteAsociadoMapper extends EntityMapper<TramiteAsociadoDTO, TramiteAsociado> {
 
+
+
     default TramiteAsociado fromId(Long id) {
         if (id == null) {
             return null;
