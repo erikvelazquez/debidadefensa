@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import { DebidadefensaSharedModule } from '../../shared';
 import {
     CostoServicioService,
@@ -23,7 +23,8 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         DebidadefensaSharedModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
+        CurrencyMaskModule
     ],
     declarations: [
         CostoServicioComponent,

@@ -37,6 +37,7 @@ export class CostoServicioPopupService {
                 setTimeout(() => {
                     let costo = new CostoServicio();
                     costo.tipoServicioId = +tiposervicio;
+                    costo.costo = 0;
                     switch(costo.tipoServicioId) { 
                         case 1001: { 
                            //Expediente; 

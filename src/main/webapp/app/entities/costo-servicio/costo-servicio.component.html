@@ -64,7 +64,7 @@
                 <tr *ngFor="let costoServicio of costoServicios ;trackBy: trackId">                
                     <td>{{costoServicio.tipoCosto}}</td>
                     <td>{{costoServicio.concepto}}</td>
-                    <td>{{costoServicio.costo}}</td>
+                    <td>{{costoServicio.costo | currency}}</td>
                 
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">                    
@@ -148,15 +148,15 @@
     <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
         <div class="row col-md-4">
             <h5 class="form-control-label col-md-8 text-right" style="font-weight: bold">Costos Totales</h5>
-            <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
+            <h4 class="form-control-label col-md-4 text-left">{{totalCostos | currency}}</h4>
         </div>
         <div class="row col-md-4">
             <h5 class="form-control-label col-md-8 text-right" style="font-weight: bold">Pagos Totales</h5>
-            <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
+            <h4 class="form-control-label col-md-4 text-left" >{{totalPagos | currency}}</h4>
         </div>
         <div class="row col-md-4">
             <h5 class="form-control-label col-md-8 text-right" style="font-weight: bold" >Deuda Total</h5>
-            <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
+            <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos | currency}}</h4>
         </div> 
     </div>    
 </div>

@@ -54,8 +54,8 @@
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.costo" for="field_costo">Costo</label>
-            <input type="number" class="form-control col-md-10" name="costo" id="field_costo"
-                [(ngModel)]="costoServicio.costo" />
+            <!--<input class="form-control col-md-10" currencyMask [(ngModel)]="costoServicio.costo" />-->
+            <input class="form-control col-md-10" currencyMask name="costo" id="field_costo" [(ngModel)]="costoServicio.costo" />
         </div>
 
         

@@ -44,6 +44,7 @@ export class PagosPopupService {
                 setTimeout(() => {
                     let pago = new Pagos();
                     pago.tipoServicioId = +tiposervicio;
+                    pago.cantidad = 0;
                     switch(pago.tipoServicioId) { 
                         case 1001: { 
                            //Expediente; 

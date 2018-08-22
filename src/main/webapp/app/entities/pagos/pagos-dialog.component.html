@@ -43,14 +43,12 @@
 
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.pagos.cantidad" for="field_cantidad">Cantidad</label>
-            <input type="number" class="form-control col-md-10" name="cantidad" id="field_cantidad"
-                [(ngModel)]="pagos.cantidad" />
-        </div>
-        <div class="form-group row">
+            <input class="form-control col-md-4" name="cantidad" id="field_cantidad" currencyMask [(ngModel)]="pagos.cantidad" />
+        
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.pagos.fecha" for="field_fecha">Fecha</label>
-            <div class="input-group  col-md-10">
-                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="pagos.fecha"
-                />
+            <div class="input-group  col-md-4">
+                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  
+                       #fechaDp="ngbDatepicker" [(ngModel)]="pagos.fecha"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
