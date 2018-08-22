@@ -60,7 +60,7 @@ export const tramiteGeneralRoute: Routes = [
 
 export const tramiteGeneralPopupRoute: Routes = [
     {
-        path: 'tramite-general-new',
+        path: 'tramite-general-new/:idCliente',
         component: TramiteGeneralPopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

@@ -1,7 +1,8 @@
 <div>
     <h2>
         <span  style="font-weight: bold">Tramites Generales</span>
-        <button class="btn btn-primary float-right jh-create-entity create-tramite-general" [routerLink]="['/', { outlets: { popup: ['tramite-general-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-tramite-general" 
+            [routerLink]="['/', { outlets: { popup: 'tramite-general-new/'+ cliente.id } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  >
             Nuevo Tramite General

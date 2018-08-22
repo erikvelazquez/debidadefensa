@@ -150,10 +150,10 @@ export class TramiteMigratorioPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.tramiteMigratorioPopupService
-                    .open(TramiteMigratorioDialogComponent as Component, params['id']);
+                    .open(TramiteMigratorioDialogComponent as Component, params['idCliente'], params['id']);
             } else {
                 this.tramiteMigratorioPopupService
-                    .open(TramiteMigratorioDialogComponent as Component);
+                    .open(TramiteMigratorioDialogComponent as Component, params['idCliente']);
             }
         });
     }

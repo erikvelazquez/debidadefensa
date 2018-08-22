@@ -136,10 +136,10 @@ export class ExpedientePopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.expedientePopupService
-                    .open(ExpedienteDialogComponent as Component, params['id']);
+                    .open(ExpedienteDialogComponent as Component, params['idCliente'], params['id']);
             } else {
                 this.expedientePopupService
-                    .open(ExpedienteDialogComponent as Component);
+                    .open(ExpedienteDialogComponent as Component, params['idCliente']);
             }
         });
     }

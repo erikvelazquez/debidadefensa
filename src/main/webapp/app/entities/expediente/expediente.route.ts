@@ -36,7 +36,7 @@ export const expedienteRoute: Routes = [
 
 export const expedientePopupRoute: Routes = [
     {
-        path: 'expediente-new',
+        path: 'expediente-new/:idCliente',
         component: ExpedientePopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

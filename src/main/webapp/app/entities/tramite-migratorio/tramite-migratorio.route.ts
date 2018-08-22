@@ -68,7 +68,7 @@ export const tramiteMigratorioRoute: Routes = [
 
 export const tramiteMigratorioPopupRoute: Routes = [
     {
-        path: 'tramite-migratorio-new',
+        path: 'tramite-migratorio-new/:idCliente',
         component: TramiteMigratorioPopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

@@ -18,7 +18,7 @@ export class TramiteMigratorioPopupService {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, idCliente?: number, id?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -56,7 +56,9 @@ export class TramiteMigratorioPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.tramiteMigratorioModalRef(component, new TramiteMigratorio());
+                    let migratorio = new TramiteMigratorio();
+                    migratorio.clienteId = +idCliente;
+                    this.ngbModalRef = this.tramiteMigratorioModalRef(component, migratorio);
                     resolve(this.ngbModalRef);
                 }, 0);
             }

@@ -149,10 +149,10 @@ export class TramiteGeneralPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.tramiteGeneralPopupService
-                    .open(TramiteGeneralDialogComponent as Component, params['id']);
+                    .open(TramiteGeneralDialogComponent as Component, params['idCliente'], params['id']);
             } else {
                 this.tramiteGeneralPopupService
-                    .open(TramiteGeneralDialogComponent as Component);
+                    .open(TramiteGeneralDialogComponent as Component, params['idCliente']);
             }
         });
     }

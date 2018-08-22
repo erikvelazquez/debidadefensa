@@ -1,7 +1,8 @@
 <div>
     <h2>
         <span jhiTranslate="debidadefensaApp.tramiteMigratorio.home.title" style="font-weight: bold">Tramite Migratorios</span>
-        <button class="btn btn-primary float-right jh-create-entity create-tramite-migratorio" [routerLink]="['/', { outlets: { popup: ['tramite-migratorio-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-tramite-migratorio" 
+            [routerLink]="['/', { outlets: { popup: 'tramite-migratorio-new/'+ cliente.id } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
             Nuevo Tramite Migratorio
