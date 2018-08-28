@@ -25,8 +25,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -46,20 +44,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DebidadefensaApp.class)
 public class FechasServicioResourceIntTest {
 
-    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
-
-    /* private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());*/ 
-
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_HORA = 1L;
-    private static final Long UPDATED_HORA = 2L;
-
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
+
+    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private FechasServicioRepository fechasServicioRepository;
@@ -108,10 +100,9 @@ public class FechasServicioResourceIntTest {
      */
     public static FechasServicio createEntity(EntityManager em) {
         FechasServicio fechasServicio = new FechasServicio()
-            .fecha(DEFAULT_FECHA)
             .descripcion(DEFAULT_DESCRIPCION)
-            // .hora(DEFAULT_HORA)
-            .observaciones(DEFAULT_OBSERVACIONES);
+            .observaciones(DEFAULT_OBSERVACIONES)
+            .fecha(DEFAULT_FECHA);
         return fechasServicio;
     }
 
@@ -137,10 +128,9 @@ public class FechasServicioResourceIntTest {
         List<FechasServicio> fechasServicioList = fechasServicioRepository.findAll();
         assertThat(fechasServicioList).hasSize(databaseSizeBeforeCreate + 1);
         FechasServicio testFechasServicio = fechasServicioList.get(fechasServicioList.size() - 1);
-        assertThat(testFechasServicio.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testFechasServicio.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
-        // assertThat(testFechasServicio.getHora()).isEqualTo(DEFAULT_HORA);
         assertThat(testFechasServicio.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
+        assertThat(testFechasServicio.getFecha()).isEqualTo(DEFAULT_FECHA);
 
         // Validate the FechasServicio in Elasticsearch
         FechasServicio fechasServicioEs = fechasServicioSearchRepository.findOne(testFechasServicio.getId());
@@ -169,6 +159,25 @@ public class FechasServicioResourceIntTest {
 
     @Test
     @Transactional
+    public void checkFechaIsRequired() throws Exception {
+        int databaseSizeBeforeTest = fechasServicioRepository.findAll().size();
+        // set the field null
+        fechasServicio.setFecha(null);
+
+        // Create the FechasServicio, which fails.
+        FechasServicioDTO fechasServicioDTO = fechasServicioMapper.toDto(fechasServicio);
+
+        restFechasServicioMockMvc.perform(post("/api/fechas-servicios")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(fechasServicioDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<FechasServicio> fechasServicioList = fechasServicioRepository.findAll();
+        assertThat(fechasServicioList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllFechasServicios() throws Exception {
         // Initialize the database
         fechasServicioRepository.saveAndFlush(fechasServicio);
@@ -178,10 +187,9 @@ public class FechasServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fechasServicio.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].hora").value(hasItem(DEFAULT_HORA.intValue())))
-            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+            .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())));
     }
 
     @Test
@@ -195,10 +203,9 @@ public class FechasServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(fechasServicio.getId().intValue()))
-            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
             .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
-            .andExpect(jsonPath("$.hora").value(DEFAULT_HORA.intValue()))
-            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
+            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
+            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()));
     }
 
     @Test
@@ -222,10 +229,9 @@ public class FechasServicioResourceIntTest {
         // Disconnect from session so that the updates on updatedFechasServicio are not directly saved in db
         em.detach(updatedFechasServicio);
         updatedFechasServicio
-            .fecha(UPDATED_FECHA)
             .descripcion(UPDATED_DESCRIPCION)
-            // .hora(UPDATED_HORA)
-            .observaciones(UPDATED_OBSERVACIONES);
+            .observaciones(UPDATED_OBSERVACIONES)
+            .fecha(UPDATED_FECHA);
         FechasServicioDTO fechasServicioDTO = fechasServicioMapper.toDto(updatedFechasServicio);
 
         restFechasServicioMockMvc.perform(put("/api/fechas-servicios")
@@ -237,10 +243,9 @@ public class FechasServicioResourceIntTest {
         List<FechasServicio> fechasServicioList = fechasServicioRepository.findAll();
         assertThat(fechasServicioList).hasSize(databaseSizeBeforeUpdate);
         FechasServicio testFechasServicio = fechasServicioList.get(fechasServicioList.size() - 1);
-        assertThat(testFechasServicio.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testFechasServicio.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
-        // assertThat(testFechasServicio.getHora()).isEqualTo(UPDATED_HORA);
         assertThat(testFechasServicio.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
+        assertThat(testFechasServicio.getFecha()).isEqualTo(UPDATED_FECHA);
 
         // Validate the FechasServicio in Elasticsearch
         FechasServicio fechasServicioEs = fechasServicioSearchRepository.findOne(testFechasServicio.getId());
@@ -300,10 +305,9 @@ public class FechasServicioResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fechasServicio.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].hora").value(hasItem(DEFAULT_HORA.intValue())))
-            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+            .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())));
     }
 
     @Test

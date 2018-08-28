@@ -28,26 +28,25 @@
     ],
     "fields": [
         {
-            "fieldName": "fecha",
-            "fieldType": "LocalDate"
-        },
-        {
             "fieldName": "descripcion",
             "fieldType": "String"
         },
         {
-            "fieldName": "hora",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "observaciones",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180610211051",
-    "entityTableName": "fechas_servicio",
     "dto": "mapstruct",
-    "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "fechas_servicio",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
 }

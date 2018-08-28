@@ -2,6 +2,7 @@ package com.debidadefensa.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -23,14 +24,15 @@ public class FechasServicio implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "fecha")
-    private Instant fecha;
-
     @Column(name = "descripcion")
     private String descripcion;
 
     @Column(name = "observaciones")
     private String observaciones;
+
+    @NotNull
+    @Column(name = "fecha", nullable = false)
+    private Instant fecha;
 
     @ManyToOne
     private Expediente expediente;
@@ -53,19 +55,6 @@ public class FechasServicio implements Serializable {
         this.id = id;
     }
 
-    public Instant getFecha() {
-        return fecha;
-    }
-
-    public FechasServicio fecha(Instant fecha) {
-        this.fecha = fecha;
-        return this;
-    }
-
-    public void setFecha(Instant fecha) {
-        this.fecha = fecha;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -77,7 +66,7 @@ public class FechasServicio implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }   
+    }
 
     public String getObservaciones() {
         return observaciones;
@@ -90,6 +79,19 @@ public class FechasServicio implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public Instant getFecha() {
+        return fecha;
+    }
+
+    public FechasServicio fecha(Instant fecha) {
+        this.fecha = fecha;
+        return this;
+    }
+
+    public void setFecha(Instant fecha) {
+        this.fecha = fecha;
     }
 
     public Expediente getExpediente() {
@@ -169,9 +171,9 @@ public class FechasServicio implements Serializable {
     public String toString() {
         return "FechasServicio{" +
             "id=" + getId() +
-            ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
+            ", fecha='" + getFecha() + "'" +
             "}";
     }
 }

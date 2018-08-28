@@ -1,10 +1,12 @@
 package com.debidadefensa.service.dto;
 
+
+import java.time.Instant;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
-import java.time.Instant;;
 
 /**
  * A DTO for the FechasServicio entity.
@@ -13,11 +15,12 @@ public class FechasServicioDTO implements Serializable {
 
     private Long id;
 
-    private Instant fecha;
-
     private String descripcion;
 
     private String observaciones;
+
+    @NotNull
+    private Instant fecha;
 
     private Long expedienteId;
 
@@ -35,21 +38,13 @@ public class FechasServicioDTO implements Serializable {
         this.id = id;
     }
 
-    public Instant getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Instant fecha) {
-        this.fecha = fecha;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }    
+    }
 
     public String getObservaciones() {
         return observaciones;
@@ -57,6 +52,14 @@ public class FechasServicioDTO implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public Instant getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Instant fecha) {
+        this.fecha = fecha;
     }
 
     public Long getExpedienteId() {
@@ -116,9 +119,9 @@ public class FechasServicioDTO implements Serializable {
     public String toString() {
         return "FechasServicioDTO{" +
             "id=" + getId() +
-            ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
+            ", fecha='" + getFecha() + "'" +
             "}";
     }
 }
