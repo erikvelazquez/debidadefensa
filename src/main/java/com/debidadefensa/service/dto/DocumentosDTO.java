@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Objects;
 
 /**
@@ -32,11 +35,27 @@ public class DocumentosDTO implements Serializable {
 
     private Long tipoServicioId;
 
+    private MultipartFile file;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the file
+	 */
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	/**
+	 * @param file the file to set
+	 */
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

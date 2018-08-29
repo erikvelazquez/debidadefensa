@@ -12,6 +12,7 @@ export class Documentos implements BaseEntity {
         public tramiteMigratorioId?: number,
         public tramiteGeneralId?: number,
         public tipoServicioId?: number,
+        public file?: File
     ) {
     }
 }

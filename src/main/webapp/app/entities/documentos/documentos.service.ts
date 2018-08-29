@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
@@ -18,10 +18,29 @@ export class DocumentosService {
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
-    create(documentos: Documentos): Observable<EntityResponseType> {
+    create(documentos: Documentos): Observable<EntityResponseType> {      
+        
         const copy = this.convert(documentos);
         return this.http.post<Documentos>(this.resourceUrl, copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    postFile(fileToUpload: File): Observable<HttpEvent<{}>> {
+        const formData: FormData = new FormData();
+        formData.append('file', fileToUpload);
+
+
+        const req = new HttpRequest('POST', this.resourceUrl + '/upload' , formData, {
+            reportProgress: true,
+            responseType: 'text'
+          }
+          );
+          return this.http.request(req);
+
+        
+       /* return this.http.post(this.resourceUrl + '/upload', formData, {reportProgress: true, responseType: 'text'})
+        .map((res) => { return res; }); */
+
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {

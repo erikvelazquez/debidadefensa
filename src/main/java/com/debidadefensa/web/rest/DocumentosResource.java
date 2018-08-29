@@ -19,6 +19,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.springframework.http.MediaType;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -36,6 +48,27 @@ public class DocumentosResource {
 
     public DocumentosResource(DocumentosService documentosService) {
         this.documentosService = documentosService;
+    }
+
+
+    //@Autowired
+    //FileService fileservice;
+    // @CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
+    @PostMapping("/documentos/upload")
+    public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+        String message = "";
+        try {
+            File convertFile = new File("C:\\archivos\\"+ file.getOriginalFilename());		
+            convertFile.createNewFile();		
+            FileOutputStream fout = new FileOutputStream(convertFile);		
+            fout.write(file.getBytes());		
+            fout.close();	
+            message = "You successfully uploaded " + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.OK).body(message);
+        } catch (Exception e) {
+            message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+        }
     }
 
     /**

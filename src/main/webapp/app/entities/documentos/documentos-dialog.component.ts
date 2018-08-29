@@ -37,7 +37,7 @@ export class DocumentosDialogComponent implements OnInit {
 
     tiposervicios: TipoServicio[];
     fechaDp: any;
-    fileToUpload: File = null;
+    // fileToUpload: File = null;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -67,8 +67,8 @@ export class DocumentosDialogComponent implements OnInit {
     }
 
     handleFileInput(files: FileList) {
-        this.fileToUpload = files.item(0);
-        this.documentos.nombreDocumento = this.fileToUpload.name;
+        this.documentos.file= files.item(0);
+        this.documentos.nombreDocumento = this.documentos.file.name;
     }
 
     uploadFileToActivity() {
@@ -84,14 +84,15 @@ export class DocumentosDialogComponent implements OnInit {
     }
 
     save() {
-        this.isSaving = true;
+        /*this.isSaving = true;
         if (this.documentos.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.documentosService.update(this.documentos));
         } else {
             this.subscribeToSaveResponse(
                 this.documentosService.create(this.documentos));
-        }
+        }*/
+        this.documentosService.postFile(this.documentos.file);
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<Documentos>>) {
