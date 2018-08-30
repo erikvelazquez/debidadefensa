@@ -71,32 +71,28 @@ export class DocumentosDialogComponent implements OnInit {
         this.documentos.nombreDocumento = this.fileToUpload.name;
     }
 
-    uploadFileToActivity() {
-       /* this.fileUploadService.postFile(this.fileToUpload).subscribe(data => {
-          // do something, if upload success
-          }, error => {
-            console.log(error);
-          });*/
-    }
-
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
     save() {
-        /*this.isSaving = true;
+       /* this.isSaving = true;
         if (this.documentos.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.documentosService.update(this.documentos));
         } else {
             this.subscribeToSaveResponse(
                 this.documentosService.create(this.documentos));
-        }*/
-        this.documentosService.postFile(this.fileToUpload, this.documentos).subscribe(
-            data => {
-                console.log(data);
-            }
-        ); ;
+        }
+        this.documentosService.postFile(this.fileToUpload)
+        .subscribe(event => {
+            if (event instanceof HttpResponse) {
+               console.log(event.body);
+             }
+        });*/
+
+
+        this.subscribeToSaveResponse(this.documentosService.create(this.fileToUpload, this.documentos));
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<Documentos>>) {

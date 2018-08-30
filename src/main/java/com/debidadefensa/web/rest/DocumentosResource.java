@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.core.io.Resource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -30,6 +30,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.net.MalformedURLException;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -70,6 +75,30 @@ public class DocumentosResource {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
     }
+
+    @GetMapping("/documentos/download/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+		Resource file = loadFile(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
+    }
+
+    private final Path rootLocation = Paths.get("C:\\archivos\\");
+    public Resource loadFile(String filename) {
+		try {          
+			Path file = Paths.get("C:\\archivos\\" + filename );
+			Resource resource = new UrlResource(   file.toUri());
+			if (resource.exists() || resource.isReadable()) {
+				return resource;
+			} else {
+				throw new RuntimeException("FAIL!");
+			}
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("FAIL!");
+		}
+	}
 
     /**
      * POST  /documentos : Create a new documentos.
