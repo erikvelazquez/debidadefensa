@@ -25,22 +25,14 @@ export class DocumentosService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    postFile(fileToUpload: File): Observable<HttpEvent<{}>> {
+    postFile(fileToUpload: File, documentos: Documentos): Observable<String> {
         const formData: FormData = new FormData();
-        formData.append('file', fileToUpload);
-
-
-        const req = new HttpRequest('POST', this.resourceUrl + '/upload' , formData, {
-            reportProgress: true,
-            responseType: 'text'
-          }
-          );
-          return this.http.request(req);
-
-        
-       /* return this.http.post(this.resourceUrl + '/upload', formData, {reportProgress: true, responseType: 'text'})
-        .map((res) => { return res; }); */
-
+        formData.append('file', fileToUpload, fileToUpload.name);      
+        formData.append('datos', 'documentos');  
+         return this.http.post<String>(this.resourceUrl + '/upload', formData)
+         .map((res: String) => { 
+             return res; 
+        });
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {

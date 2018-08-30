@@ -34,7 +34,7 @@ import {MatSidenavModule,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, CalendarCommonModule, CalendarDayModule, CalendarMonthModule, CalendarWeekModule} from 'angular-calendar';
 
-import { FormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { NgxDateTimePickerModule } from  'ngx-date-time-picker';
 // import { FlatpickrModule } from 'flatpickr';
@@ -57,6 +57,7 @@ import { NgxDateTimePickerModule } from  'ngx-date-time-picker';
         CalendarModule.forRoot(),
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         NgbModalModule.forRoot(),
         CalendarCommonModule,
         CalendarModule,
