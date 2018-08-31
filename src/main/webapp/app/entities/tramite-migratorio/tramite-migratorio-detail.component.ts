@@ -4,7 +4,6 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { TramiteMigratorio } from './tramite-migratorio.model';
-import { TramiteMigratorioPopupService } from './tramite-migratorio-popup.service';
 import { TramiteMigratorioService } from './tramite-migratorio.service';
 import { Cliente, ClienteService } from '../cliente';
 import { Estatus, EstatusService } from '../estatus';
@@ -37,22 +36,20 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     eventSubscriberFechas: Subscription;
     tramiteMigratorios: TramiteMigratorio[];
     documentos: Documentos[];
-    
     costoServicios: CostoServicio[];
     pagos: Pagos[];
     totalCostos: number;
     totalPagos: number;
-    
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
-    constructor(      
+    constructor(
         private jhiAlertService: JhiAlertService,
         private tramiteMigratorioService: TramiteMigratorioService,
         private route: ActivatedRoute,
         private clienteService: ClienteService,
         private estatusService: EstatusService,
-        private tramiteAsociadoService: TramiteAsociadoService,        
+        private tramiteAsociadoService: TramiteAsociadoService,
         private fechasServicioService: FechasServicioService,
         private eventManager: JhiEventManager,
         private costoServicioService: CostoServicioService,
@@ -66,9 +63,9 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
         this.isSaving = false;
         this.clienteService.query()
             .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-         
+
         this.tramiteAsociadoService.query()
-            .subscribe((res: HttpResponse<TramiteAsociado[]>) => { this.tramiteasociados = res.body; }, (res: HttpErrorResponse) => this.onError(res.message)); 
+            .subscribe((res: HttpResponse<TramiteAsociado[]>) => { this.tramiteasociados = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
@@ -102,24 +99,24 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                 }
 
                 this.totalCostos = 0;
-                this.totalPagos = 0;  
+                this.totalPagos = 0;
 
                 this.costoServicioService.findByMigratorio(id)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
-                    this.costoServicios = res.body;    
+                    this.costoServicios = res.body;
                     this.totalCostos = this.costoServicios.reduce(function(prev, cur){
                         return prev + cur.costo;
-                    },0);                                 
-                },(res: HttpErrorResponse) => this.onError(res.message));                
+                    }, 0);
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.pagosService.findByMigratorio(id)
                 .subscribe(
                     (res: HttpResponse<Pagos[]>) => {
-                        this.pagos = res.body;   
+                        this.pagos = res.body;
                         this.totalPagos = this.pagos.reduce(function(prev, cur){
                             return prev + cur.cantidad;
-                        },0);                                       
-                },(res: HttpErrorResponse) => this.onError(res.message));
+                        }, 0);
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.documentosService.findByMigratorioId(id).subscribe(
                     (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
@@ -127,11 +124,10 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                 );
 
                 this.encuentraFechas(id);
-                
                 this.tramiteMigratorioService.findByAsociados(id)
                 .subscribe(
                     (res: HttpResponse<TramiteMigratorio[]>) => {
-                        this.tramiteMigratorios = res.body;                        
+                        this.tramiteMigratorios = res.body;
                 });
 
                 this.estatusService
@@ -142,7 +138,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                         this.estatustramitemigratorios = this.estatustramitemigratorios.filter((s) => {
                             return s.tipoServicioId === this.tipoServicio;
                         });
-    
+
                     } else {
                         this.estatusService
                             .find(this.tramiteMigratorio.estatusTramiteMigratorioId)
@@ -158,7 +154,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
             });
     }
 
-    encuentraFechas(id){
+    encuentraFechas(id) {
         this.fechasServicioService.findByMigratorioId(id).subscribe(
             (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -171,13 +167,13 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
-        this.eventManager.destroy(this.eventSubscriber);        
+        this.eventManager.destroy(this.eventSubscriber);
     }
 
     registerChangeInTramiteMigratorios() {
         this.eventSubscriber = this.eventManager.subscribe('tramiteMigratorioListModification', (response) => this.load(this.tramiteMigratorio.id));
     }
-  
+
     save() {
         this.isSaving = true;
         if (this.tramiteMigratorio.id !== undefined) {
@@ -197,7 +193,6 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     private onSaveSuccess(result: TramiteMigratorio) {
         this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
         this.isSaving = false;
-       
     }
 
     private onSaveError() {

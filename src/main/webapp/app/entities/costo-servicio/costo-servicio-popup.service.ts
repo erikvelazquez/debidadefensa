@@ -35,30 +35,30 @@ export class CostoServicioPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let costo = new CostoServicio();
+                    const costo = new CostoServicio();
                     costo.tipoServicioId = +tiposervicio;
                     costo.costo = 0;
-                    switch(costo.tipoServicioId) { 
-                        case 1001: { 
-                           //Expediente; 
+                    switch (costo.tipoServicioId) {
+                        case 1001: {
+                           // Expediente
                            costo.expedienteId = +idTramite;
-                           break; 
-                        } 
-                        case 1002: { 
-                           //Migratorio; 
+                           break;
+                        }
+                        case 1002: {
+                           // Migratorio
                            costo.tramiteMigratorioId = +idTramite;
-                           break; 
-                        } 
-                        case 1003: { 
-                            //General; 
+                           break;
+                        }
+                        case 1003: {
+                            // General
                             costo.tramiteGeneralId = +idTramite;
-                            break; 
-                         } 
-                        default: { 
-                           //statements; 
-                           break; 
-                        } 
-                     } 
+                            break;
+                         }
+                        default: {
+                           // statements
+                           break;
+                        }
+                     }
                     this.ngbModalRef = this.costoServicioModalRef(component, costo);
                     resolve(this.ngbModalRef);
                 }, 0);

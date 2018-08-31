@@ -16,7 +16,7 @@ export class TramiteAsociadoService {
 
     constructor(private http: HttpClient) { }
 
-    create(tramiteAsociado: TramiteAsociado[]): Observable<any> {        
+    create(tramiteAsociado: TramiteAsociado[]): Observable<any> {
         return this.http.post<any>(this.resourceUrl, tramiteAsociado, { observe: 'response' });
     }
 

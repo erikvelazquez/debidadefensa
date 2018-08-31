@@ -90,8 +90,6 @@ export class DocumentosDialogComponent implements OnInit {
                console.log(event.body);
              }
         });*/
-
-
         this.subscribeToSaveResponse(this.documentosService.create(this.fileToUpload, this.documentos));
     }
 
@@ -101,28 +99,27 @@ export class DocumentosDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Documentos) {
-        switch(result.tipoServicioId) { 
-            case 1001: { 
-            //Expediente; 
+        switch (result.tipoServicioId) {
+            case 1001: {
+            // Expediente;
             this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
-            break; 
-            } 
-            case 1002: { 
-            //Migratorio; 
+            break;
+            }
+            case 1002: {
+            // Migratorio;
             this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
-            break; 
-            } 
-            case 1003: { 
-                //General; 
+            break;
+            }
+            case 1003: {
+                // General;
                 this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
-                break; 
-            } 
-            default: { 
-            //statements; 
-            break; 
-            } 
-        } 
-        
+                break;
+            }
+            default: {
+            // statements;
+            break;
+            }
+        }
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }

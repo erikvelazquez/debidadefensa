@@ -105,7 +105,6 @@ public class Cliente implements Serializable {
 	/**
 	 * @return the totalExpediente
 	 */
-    @Transient
 	public Long getTotalExpediente() {
 		return totalExpediente;
 	}
@@ -113,7 +112,6 @@ public class Cliente implements Serializable {
 	/**
 	 * @param totalExpediente the totalExpediente to set
 	 */
-    @Transient
 	public void setTotalExpediente(Long totalExpediente) {
 		this.totalExpediente = totalExpediente;
 	}

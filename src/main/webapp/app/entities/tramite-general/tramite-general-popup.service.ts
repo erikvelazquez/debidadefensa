@@ -56,8 +56,8 @@ export class TramiteGeneralPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let general = new TramiteGeneral();
-                    general.clienteId = +idCliente;                    
+                    const general = new TramiteGeneral();
+                    general.clienteId = +idCliente;
                     this.ngbModalRef = this.tramiteGeneralModalRef(component, general);
                     resolve(this.ngbModalRef);
                 }, 0);

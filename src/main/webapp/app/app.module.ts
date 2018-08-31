@@ -36,7 +36,7 @@ import { CalendarModule, CalendarCommonModule, CalendarDayModule, CalendarMonthM
 
 import {  FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
-import { NgxDateTimePickerModule } from  'ngx-date-time-picker';
+import { NgxDateTimePickerModule } from 'ngx-date-time-picker';
 // import { FlatpickrModule } from 'flatpickr';
 @NgModule({
     imports: [
@@ -74,7 +74,7 @@ import { NgxDateTimePickerModule } from  'ngx-date-time-picker';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent
-    ],   
+    ],
     providers: [
         ProfileService,
         PaginationConfig,

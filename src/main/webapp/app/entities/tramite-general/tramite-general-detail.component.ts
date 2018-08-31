@@ -20,7 +20,7 @@ import { DocumentosService, Documentos } from '../documentos';
     templateUrl: './tramite-general-detail.component.html'
 })
 export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
-    
+
     tipoServicio: number;
     tramiteGeneral: TramiteGeneral;
     isSaving: boolean;
@@ -33,12 +33,10 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     fechaResolucionDp: any;
     tramiteGenerals: TramiteGeneral[];
     documentos: Documentos[];
-    
     costoServicios: CostoServicio[];
     pagos: Pagos[];
     totalCostos: number;
     totalPagos: number;
-    
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -48,7 +46,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private clienteService: ClienteService,
         private estatusService: EstatusService,
-        private tramiteAsociadoService: TramiteAsociadoService,        
+        private tramiteAsociadoService: TramiteAsociadoService,
         private fechasServicioService: FechasServicioService,
         private eventManager: JhiEventManager,
         private costoServicioService: CostoServicioService,
@@ -62,9 +60,9 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
         this.isSaving = false;
         this.clienteService.query()
             .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        
+
         this.tramiteAsociadoService.query()
-            .subscribe((res: HttpResponse<TramiteAsociado[]>) => { this.tramiteasociados = res.body; }, (res: HttpErrorResponse) => this.onError(res.message)); 
+            .subscribe((res: HttpResponse<TramiteAsociado[]>) => { this.tramiteasociados = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
@@ -102,20 +100,20 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
 
                 this.costoServicioService.findByGeneral(id)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
-                    this.costoServicios = res.body;    
+                    this.costoServicios = res.body;
                     this.totalCostos = this.costoServicios.reduce(function(prev, cur){
                         return prev + cur.costo;
-                    },0);                                 
-                },(res: HttpErrorResponse) => this.onError(res.message));                
+                    }, 0);
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.pagosService.findByGeneral(id)
                 .subscribe(
                     (res: HttpResponse<Pagos[]>) => {
-                        this.pagos = res.body;   
+                        this.pagos = res.body;
                         this.totalPagos = this.pagos.reduce(function(prev, cur){
                             return prev + cur.cantidad;
-                        },0);                                       
-                },(res: HttpErrorResponse) => this.onError(res.message));
+                        }, 0);
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.documentosService.findByGeneralId(id).subscribe(
                     (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
@@ -127,22 +125,22 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
                 this.tramiteGeneralService.findByAsociados(id)
                 .subscribe(
                     (res: HttpResponse<TramiteGeneral[]>) => {
-                        this.tramiteGenerals = res.body;                        
+                        this.tramiteGenerals = res.body;
                 });
 
                 this.estatusService
-                .query({filter: 'tramitegeneral-is-null'})                
+                .query({filter: 'tramitegeneral-is-null'})
                 .subscribe((res: HttpResponse<Estatus[]>) => {
                     if (!this.tramiteGeneral.estatusTramiteGeneralId) {
                         this.estatustramitegenerals = res.body;
                         this.estatustramitegenerals = this.estatustramitegenerals.filter((s) => {
                             return s.tipoServicioId === this.tipoServicio;
                         });
-    
+
                     } else {
                         this.estatusService
                             .find(this.tramiteGeneral.estatusTramiteGeneralId)
-                            .subscribe((subRes: HttpResponse<Estatus>) => {                               
+                            .subscribe((subRes: HttpResponse<Estatus>) => {
                                this.estatustramitegenerals = res.body;
                                 this.estatustramitegenerals = this.estatustramitegenerals.filter((s) => {
                                     return s.tipoServicioId === this.tipoServicio;
@@ -153,7 +151,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
             });
     }
 
-    encuentraFechas(id){
+    encuentraFechas(id) {
         this.fechasServicioService.findByGeneralId(id).subscribe(
             (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -188,9 +186,9 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: TramiteGeneral) {        
+    private onSaveSuccess(result: TramiteGeneral) {
         this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
-        this.isSaving = false;      
+        this.isSaving = false;
     }
 
     private onSaveError() {

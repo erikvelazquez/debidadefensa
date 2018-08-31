@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
@@ -8,7 +7,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { CostoServicio } from './costo-servicio.model';
 import { CostoServicioService } from './costo-servicio.service';
 import { Principal } from '../../shared';
-import { Cliente, ClienteService } from '../cliente';
+import { Cliente } from '../cliente';
 import { Pagos, PagosService } from '../pagos';
 import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
 import { TramiteGeneralService, TramiteGeneral } from '../tramite-general';
@@ -37,8 +36,6 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
     tramiteGeneral: TramiteGeneral;
     expediente: Expediente;
 
-    private subscription: Subscription;
-
     constructor(
         private costoServicioService: CostoServicioService,
         private jhiAlertService: JhiAlertService,
@@ -60,103 +57,103 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
 
     loadAll() {
         this.totalCostos = 0;
-        this.totalPagos = 0;    
+        this.totalPagos = 0;
 
-        switch(this.tiposervicio) { 
-            case "1001": { 
-               //Expediente; 
+        switch (this.tiposervicio) {
+            case '1001': {
+               // Expediente;
                this.expedienteService.find(this.idTramite )
                .subscribe((expedienteResponse: HttpResponse<Expediente>) => {
                     this.expediente = expedienteResponse.body;
                });
 
-               this.nombreTipoServicio = "Expediente";
+               this.nombreTipoServicio = 'Expediente';
 
                this.costoServicioService.findByExpediente(this.idTramite)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
-                    this.costoServicios = res.body;  
-                    this.calculaTotles();                  
-                },(res: HttpErrorResponse) => this.onError(res.message));                
+                    this.costoServicios = res.body;
+                    this.calculaTotles();
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.pagosService.findByExpediente(this.idTramite)
                 .subscribe(
                     (res: HttpResponse<Pagos[]>) => {
-                        this.pagos = res.body;    
-                        this.calculaTotles();                                         
-                },(res: HttpErrorResponse) => this.onError(res.message));
-               break; 
-            } 
-            case "1002": { 
-               //Migratorio; 
+                        this.pagos = res.body;
+                        this.calculaTotles();
+                }, (res: HttpErrorResponse) => this.onError(res.message));
+               break;
+            }
+            case '1002': {
+               // Migratorio
                this.tramiteMigratorioService.find(this.idTramite )
                .subscribe((tramiteMigratorioResponse: HttpResponse<TramiteMigratorio>) => {
                     this.tramiteMigratorio = tramiteMigratorioResponse.body;
                });
 
-               this.nombreTipoServicio = "Tramite Migratorio";
+               this.nombreTipoServicio = 'Tramite Migratorio';
 
                this.costoServicioService.findByMigratorio(this.idTramite)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
-                    this.costoServicios = res.body;    
-                    this.calculaTotles();                                  
-                },(res: HttpErrorResponse) => this.onError(res.message));                
+                    this.costoServicios = res.body;
+                    this.calculaTotles();
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.pagosService.findByMigratorio(this.idTramite)
                 .subscribe(
                     (res: HttpResponse<Pagos[]>) => {
-                        this.pagos = res.body;   
-                        this.calculaTotles();                                          
-                },(res: HttpErrorResponse) => this.onError(res.message));
-               break; 
-            } 
-            case "1003": { 
-                //General; 
+                        this.pagos = res.body;
+                        this.calculaTotles();
+                }, (res: HttpErrorResponse) => this.onError(res.message));
+               break;
+            }
+            case '1003': {
+                // General
 
                 this.tramiteGeneralService.find(this.idTramite )
                 .subscribe((tramiteGeneralResponse: HttpResponse<TramiteGeneral>) => {
                      this.tramiteGeneral = tramiteGeneralResponse.body;
                 });
 
-                this.nombreTipoServicio = "Tramite General";
+                this.nombreTipoServicio = 'Tramite General';
                 this.costoServicioService.findByGeneral(this.idTramite).subscribe((res: HttpResponse<CostoServicio[]>) => {
-                    this.costoServicios = res.body; 
-                    this.calculaTotles();                                     
-                },(res: HttpErrorResponse) => this.onError(res.message));                
-                
+                    this.costoServicios = res.body;
+                    this.calculaTotles();
+                }, (res: HttpErrorResponse) => this.onError(res.message));
+
                 this.pagosService.findByGeneral(this.idTramite).subscribe(
                     (res: HttpResponse<Pagos[]>) => {
-                        this.pagos = res.body;   
-                        this.calculaTotles();                                          
-                },(res: HttpErrorResponse) => this.onError(res.message));
-                break; 
-             } 
-            default: { 
-               //statements; 
-               break; 
-            } 
-        } 
+                        this.pagos = res.body;
+                        this.calculaTotles();
+                }, (res: HttpErrorResponse) => this.onError(res.message));
+                break;
+             }
+            default: {
+               // statements;
+               break;
+            }
+        }
     }
 
     calculaTotles() {
         this.totalCostos = this.costoServicios.reduce(function(prev, cur){
             return prev + cur.costo;
-        },0);
+        }, 0);
 
         this.totalPagos = this.pagos.reduce(function(prev, cur){
             return prev + cur.cantidad;
-        },0);
+        }, 0);
     }
-   
+
     clear() {
         this.currentSearch = '';
         this.loadAll();
     }
     ngOnInit() {
-        this.subscription = this.route.params.subscribe((params) => {
-            this.idTramite = params["id"];
-            this.tiposervicio = params["tiposervicio"];
+        this.eventSubscriber = this.route.params.subscribe((params) => {
+            this.idTramite = params['id'];
+            this.tiposervicio = params['tiposervicio'];
         });
-        
+
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
@@ -179,7 +176,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
     registerChangeInCostoServicios() {
         this.eventSubscriber = this.eventManager.subscribe('costoServicioListModification', (response) => this.loadAll());
     }
-    
+
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }

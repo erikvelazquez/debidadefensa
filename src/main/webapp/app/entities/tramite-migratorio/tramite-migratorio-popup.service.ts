@@ -56,7 +56,7 @@ export class TramiteMigratorioPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let migratorio = new TramiteMigratorio();
+                    const migratorio = new TramiteMigratorio();
                     migratorio.clienteId = +idCliente;
                     this.ngbModalRef = this.tramiteMigratorioModalRef(component, migratorio);
                     resolve(this.ngbModalRef);

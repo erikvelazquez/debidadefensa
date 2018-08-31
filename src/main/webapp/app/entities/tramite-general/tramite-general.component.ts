@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { TramiteGeneral } from './tramite-general.model';
 import { TramiteGeneralService } from './tramite-general.service';
@@ -33,12 +33,11 @@ currentAccount: any;
     page: any;
     predicate: any;
     previousPage: any;
-    reverse: any;    
+    reverse: any;
     private subscription: Subscription;
 
     constructor(
         private tramiteGeneralService: TramiteGeneralService,
-        private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
@@ -135,7 +134,7 @@ currentAccount: any;
     }
     ngOnInit() {
         this.subscription = this.route.params.subscribe((params) => {
-            this.cliente.id = params["id"];
+            this.cliente.id = params['id'];
         });
         this.loadAll();
         this.principal.identity().then((account) => {

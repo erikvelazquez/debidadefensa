@@ -7,7 +7,7 @@ import { CostoServicioPopupComponent } from './costo-servicio-dialog.component';
 import { CostoServicioDeletePopupComponent } from './costo-servicio-delete-dialog.component';
 
 export const costoServicioRoute: Routes = [
-    {      
+    {
         path: 'expediente/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {
@@ -15,7 +15,7 @@ export const costoServicioRoute: Routes = [
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
-    },{      
+    }, {
         path: 'tramite-migratorio/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {
@@ -23,7 +23,7 @@ export const costoServicioRoute: Routes = [
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
-    },{      
+    }, {
         path: 'tramite-general/costo-servicio/:id/:tiposervicio',
         component: CostoServicioComponent,
         data: {
@@ -31,7 +31,7 @@ export const costoServicioRoute: Routes = [
             pageTitle: 'debidadefensaApp.costoServicio.home.title'
         },
         canActivate: [UserRouteAccessService]
-    },{
+    }, {
         path: 'costo-servicio',
         component: CostoServicioComponent,
         data: {
@@ -60,7 +60,7 @@ export const costoServicioPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },{
+    }, {
         path: 'costo-servicio-new/:idTramite/:tiposervicio',
         component: CostoServicioPopupComponent,
         data: {
@@ -69,8 +69,7 @@ export const costoServicioPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },
-    {
+    }, {
         path: 'costo-servicio/:id/edit',
         component: CostoServicioPopupComponent,
         data: {

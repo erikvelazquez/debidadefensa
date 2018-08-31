@@ -42,30 +42,30 @@ export class DocumentosPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let documentos = new Documentos();
+                    const documentos = new Documentos();
                     documentos.tipoServicioId = +tiposervicio;
 
-                    switch(documentos.tipoServicioId) { 
-                        case 1001: { 
-                           //Expediente; 
+                    switch (documentos.tipoServicioId) {
+                        case 1001: {
+                           // Expediente
                            documentos.expedienteId = +idTramite;
-                           break; 
-                        } 
-                        case 1002: { 
-                           //Migratorio; 
+                           break;
+                        }
+                        case 1002: {
+                           // Migratorio;
                            documentos.tramiteMigratorioId = +idTramite;
-                           break; 
-                        } 
-                        case 1003: { 
-                            //General; 
+                           break;
+                        }
+                        case 1003: {
+                            // General;
                             documentos.tramiteGeneralId = +idTramite;
-                            break; 
-                         } 
-                        default: { 
-                           //statements; 
-                           break; 
-                        } 
-                     } 
+                            break;
+                         }
+                        default: {
+                           // statements
+                           break;
+                        }
+                     }
 
                     this.ngbModalRef = this.documentosModalRef(component, documentos);
                     resolve(this.ngbModalRef);
