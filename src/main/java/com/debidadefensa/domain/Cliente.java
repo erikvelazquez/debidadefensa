@@ -45,13 +45,15 @@ public class Cliente implements Serializable {
     private String referencia;
    
     @Column(name = "total_expediente", updatable = false, insertable = false)
-    
+    @Transient
     private Long totalExpediente = null;
 
     @Column(name = "total_migratorios", updatable = false, insertable = false)
+    @Transient
     private Long totalMigratorios = null;
 
     @Column(name = "total_generales", updatable = false, insertable = false)
+    @Transient
     private Long totalGenerales = null;
 
     

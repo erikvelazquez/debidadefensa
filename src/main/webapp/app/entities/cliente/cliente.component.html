@@ -53,9 +53,9 @@
                 
                 <td>{{cliente.rfc}}</td>
                 <td>{{cliente.referencia}}</td>
-                <td><a [routerLink]="['../tramite-migratorio-usuario', cliente.id ]"><span class="fa fa-align-justify"></span>  </a></td>
-                <td><a [routerLink]="['../tramite-general-usuario', cliente.id ]"><span class="fa fa-align-justify"></span>  </a></td>
-                <td><a [routerLink]="['../expediente-usuario', cliente.id ]"><span class="fa fa-align-justify"></span> </a></td>
+                <td><a [routerLink]="['../tramite-migratorio-usuario', cliente.id ]"><span>{{cliente.totalMigratorios}}</span>  </a></td>
+                <td><a [routerLink]="['../tramite-general-usuario', cliente.id ]"><span>{{cliente.totalGenerales}}</span>  </a></td>
+                <td><a [routerLink]="['../expediente-usuario', cliente.id ]"><span>{{cliente.totalExpediente}}</span> </a></td>
                 <!--<td>{{cliente.totalExpediente}}</td>-->
                 <td class="text-right"  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']">
                     <div class="btn-group flex-btn-group-container">
