@@ -16,27 +16,36 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
      
-     @Query(value = "SELECT c.id, c.nombre, c.telefonos, c.correo_electronico, c.domicilio, c.rfc, c.referencia, p.total_expediente FROM cliente c"
-     + " LEFT OUTER JOIN (select count(a.cliente_id) as total_expediente, a.cliente_id "
-     + " from expediente a "
-     + " group by a.cliente_id) p "
-     + " ON (c.id = p.cliente_id) ORDER BY ?#{#pageable}",
-countQuery = "SELECT count(c.id) FROM cliente c"
-         + " LEFT OUTER JOIN (select count(a.cliente_id) as total_expediente, a.cliente_id "
-         + " from expediente a "
-         + " group by a.cliente_id) p "
-         + " ON (c.id = p.cliente_id)",
-nativeQuery = true)
-Page<Cliente> findClientes(Pageable pageable);
+     @Query(value = "SELECT c.id, c.nombre, c.telefonos, c.correo_electronico, c.domicilio, c.rfc, c.referencia, p.total_expediente, g.total_generales, m.total_migratorios FROM cliente c"
+                + " LEFT OUTER JOIN (select count(a.cliente_id) as total_expediente, a.cliente_id from expediente a group by a.cliente_id) p "
+                + " ON (c.id = p.cliente_id)"
+                + " LEFT OUTER JOIN (select count(a.cliente_id) as total_generales, a.cliente_id from tramite_general a group by a.cliente_id) g "
+                + " ON (c.id = g.cliente_id)"
+                + " LEFT OUTER JOIN (select count(a.cliente_id) as total_migratorios, a.cliente_id from tramite_migratorio a group by a.cliente_id) m "
+                + " ON (c.id = m.cliente_id)"
+                + " ORDER BY ?#{#pageable}",
+            countQuery = "SELECT count(c.id) FROM cliente c"
+                    + " LEFT OUTER JOIN (select count(a.cliente_id) as total_expediente, a.cliente_id from expediente a group by a.cliente_id) p "
+                    + " ON (c.id = p.cliente_id)"
+                    + " LEFT OUTER JOIN (select count(a.cliente_id) as total_generales, a.cliente_id from tramite_general a group by a.cliente_id) g "
+                    + " ON (c.id = g.cliente_id)"
+                    + " LEFT OUTER JOIN (select count(a.cliente_id) as total_migratorios, a.cliente_id from tramite_migratorio a group by a.cliente_id) m "
+                    + " ON (c.id = m.cliente_id)"
+                    + "  ORDER BY ?#{#pageable}",
+            nativeQuery = true)
+    Page<Cliente> findClientes(Pageable pageable);
     
 
      // @Query("select u.*,  from cliente u where u.id = ?1")
      // @Param("lastname") String lastname
-     @Query(value = "SELECT c.*, p.total_expediente FROM cliente c"
-                + " LEFT OUTER JOIN (select count(a.*) as total_expediente, a.cliente_id "
-                + " from expediente a "
-                + " group by a.cliente_id) p "
-                + " ON (c.id = p.cliente_id) where c.id = :id",
+     @Query(value = "SELECT c.*, p.total_expediente, g.total_generales, m.total_migratorios FROM cliente c"
+                + " LEFT OUTER JOIN (select count(a.*) as total_expediente, a.cliente_id from expediente a group by a.cliente_id) p "
+                + " ON (c.id = p.cliente_id) " 
+                + " LEFT OUTER JOIN (select count(a.cliente_id) as total_generales, a.cliente_id from tramite_general a group by a.cliente_id) g "
+                + " ON (c.id = g.cliente_id)"
+                + " LEFT OUTER JOIN (select count(a.cliente_id) as total_migratorios, a.cliente_id from tramite_migratorio a group by a.cliente_id) m "
+                + " ON (c.id = m.cliente_id)"
+                + " where c.id = :id",
                 nativeQuery = true)
      Cliente findCliente(@Param("id") Long id);
    

@@ -45,8 +45,14 @@ public class Cliente implements Serializable {
     private String referencia;
    
     @Column(name = "total_expediente", updatable = false, insertable = false)
-    @Transient
+    
     private Long totalExpediente = null;
+
+    @Column(name = "total_migratorios", updatable = false, insertable = false)
+    private Long totalMigratorios = null;
+
+    @Column(name = "total_generales", updatable = false, insertable = false)
+    private Long totalGenerales = null;
 
     
     @OneToMany(mappedBy = "cliente")
@@ -65,6 +71,34 @@ public class Cliente implements Serializable {
     public Long getId() {
         return id;
     }    
+
+	/**
+	 * @return the totalGenerales
+	 */
+	public Long getTotalGenerales() {
+		return totalGenerales;
+	}
+
+	/**
+	 * @param totalGenerales the totalGenerales to set
+	 */
+	public void setTotalGenerales(Long totalGenerales) {
+		this.totalGenerales = totalGenerales;
+	}
+
+	/**
+	 * @return the totalMigratorios
+	 */
+	public Long getTotalMigratorios() {
+		return totalMigratorios;
+	}
+
+	/**
+	 * @param totalMigratorios the totalMigratorios to set
+	 */
+	public void setTotalMigratorios(Long totalMigratorios) {
+		this.totalMigratorios = totalMigratorios;
+	}
 
 	/**
 	 * @return the totalExpediente

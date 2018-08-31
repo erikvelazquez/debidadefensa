@@ -27,25 +27,61 @@ public class ClienteDTO implements Serializable {
 
     private Long totalExpediente;
 
+    private Long totalMigratorios;
+
+    private Long totalGenerales;
+
     public ClienteDTO() {
     }
 
-    public ClienteDTO (Long _id, 
+    /**
+	 * @return the totalGenerales
+	 */
+	public Long getTotalGenerales() {
+		return totalGenerales;
+	}
+
+	/**
+	 * @param totalGenerales the totalGenerales to set
+	 */
+	public void setTotalGenerales(Long totalGenerales) {
+		this.totalGenerales = totalGenerales;
+	}
+
+	/**
+	 * @return the totalMigratorios
+	 */
+	public Long getTotalMigratorios() {
+		return totalMigratorios;
+	}
+
+	/**
+	 * @param totalMigratorios the totalMigratorios to set
+	 */
+	public void setTotalMigratorios(Long totalMigratorios) {
+		this.totalMigratorios = totalMigratorios;
+	}
+
+	public ClienteDTO (Long _id, 
                         String _nombre, 
                         String _telefonos, 
                         String _correoElectronico, 
                         String _domicilio, 
                         String _rfc, 
                         String _referencia, 
-                        Long _totalExpediente) {
-    this.id = _id;
-    this.nombre = _nombre;
-    this.telefonos = _telefonos;
-    this.correoElectronico = _correoElectronico;
-    this.domicilio = _domicilio;
-    this.rfc = _rfc;
-    this.referencia = _referencia;
-    this.totalExpediente = _totalExpediente;
+                        Long _totalExpediente,
+                        Long _totalMigratorios,
+                        Long _totalGenerales) {
+            this.id = _id;
+            this.nombre = _nombre;
+            this.telefonos = _telefonos;
+            this.correoElectronico = _correoElectronico;
+            this.domicilio = _domicilio;
+            this.rfc = _rfc;
+            this.referencia = _referencia;
+            this.totalExpediente = _totalExpediente;
+            this.totalMigratorios = _totalMigratorios;
+            this.totalGenerales = _totalGenerales;
     }
 
     public Long getId() {
