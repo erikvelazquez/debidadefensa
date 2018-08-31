@@ -10,7 +10,10 @@ import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-fechas-servicio',
-    templateUrl: './fechas-servicio.component.html'
+    templateUrl: './fechas-servicio.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class FechasServicioComponent implements OnInit, OnDestroy {
 fechasServicios: FechasServicio[];
@@ -39,7 +42,9 @@ fechasServicios: FechasServicio[];
                 );
             return;
        }
-        this.fechasServicioService.query().subscribe(
+
+        const viewDate = new Date(); 
+        this.fechasServicioService.findByMonth(viewDate.getMonth() + 1, viewDate.getFullYear() ).subscribe(
             (res: HttpResponse<FechasServicio[]>) => {
                 this.fechasServicios = res.body;
                 this.currentSearch = '';

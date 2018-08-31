@@ -11,7 +11,10 @@ import { Cliente, ClienteService } from '../cliente';
 
 @Component({
     selector: 'jhi-tramite-general',
-    templateUrl: './tramite-general.component.html'
+    templateUrl: './tramite-general.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class TramiteGeneralComponent implements OnInit, OnDestroy {
 

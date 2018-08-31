@@ -43,9 +43,9 @@ public class Cliente implements Serializable {
     @Column(name = "referencia")
     private String referencia;
    
-    @OneToMany(mappedBy = "cliente")
-    @JsonIgnore
-    private Set<Expediente> expedientes = new HashSet<>();
+    @OneToMany
+    
+    private Set<Expediente> expedientes;
 
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore

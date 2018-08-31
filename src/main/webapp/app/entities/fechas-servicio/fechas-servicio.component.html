@@ -1,25 +1,27 @@
 <div>
-    <h2>
-        <span style="font-weight: bold" >Agenda</span>
-        <button class="btn btn-primary float-right jh-create-entity create-fechas-servicio" 
-        style="padding-left: 5px !important; margin-left: 5px !important"
-        [routerLink]="['/', { outlets: { popup: ['fechas-servicio-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down" >
-            Nueva Fecha
-            </span>
-        </button>
-
-        <button class="btn btn-primary float-right jh-create-entity create-fechas-servicio" 
-        [routerLink]="['/', { outlets: { popup: 'agenda/'+ 0} }]">
-            <span class="fa fa-calendar"></span>
-            <span class="hidden-sm-down">
-                Agenda
-            </span>
-        </button>
-    </h2>
-    <!--<jhi-alert></jhi-alert>
+    <h2 class="text-center header-debida">
+        <span >Agenda</span>        
+    </h2>    
+    <!--<jhi-alert></jhi-alert>-->
     <div class="row">
+        <div class="col-sm-12">
+                <button class="btn btn-primary float-right jh-create-entity create-fechas-servicio" 
+                style="padding-left: 5px !important; margin-left: 5px !important"
+                [routerLink]="['/', { outlets: { popup: ['fechas-servicio-new'] } }]">
+                    <span class="fa fa-plus"></span>
+                    <span class="hidden-sm-down" >
+                    Nueva Fecha
+                    </span>
+                </button>
+        
+                <button class="btn btn-primary float-right jh-create-entity create-fechas-servicio" 
+                [routerLink]="['/', { outlets: { popup: 'agenda/'+ 0} }]">
+                    <span class="fa fa-calendar"></span>
+                    <span class="hidden-sm-down">
+                        Agenda
+                    </span>
+                </button>
+        </div>
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
@@ -33,7 +35,7 @@
                 </div>
             </form>
         </div>
-    </div>-->
+    </div>
     <br/>
     <div class="table-responsive" *ngIf="fechasServicios">
         <table class="table table-striped">

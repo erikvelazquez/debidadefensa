@@ -11,7 +11,10 @@ import { Cliente, ClienteService } from '../cliente';
 
 @Component({
     selector: 'jhi-tramite-migratorio',
-    templateUrl: './tramite-migratorio.component.html'
+    templateUrl: './tramite-migratorio.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class TramiteMigratorioComponent implements OnInit, OnDestroy {
 
