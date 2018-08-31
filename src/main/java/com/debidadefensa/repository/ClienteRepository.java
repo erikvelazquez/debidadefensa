@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
      
-     @Query(value = "SELECT new com.debidadefensa.service.dto.ClienteDTO(c.id, c.nombre, c.telefonos, c.correo_electronico, c.domicilio, c.rfc, c.referencia, p.total_expediente) FROM cliente c"
+     @Query(value = "SELECT c.id, c.nombre, c.telefonos, c.correo_electronico, c.domicilio, c.rfc, c.referencia, p.total_expediente FROM cliente c"
      + " LEFT OUTER JOIN (select count(a.cliente_id) as total_expediente, a.cliente_id "
      + " from expediente a "
      + " group by a.cliente_id) p "
@@ -27,7 +27,7 @@ countQuery = "SELECT count(c.id) FROM cliente c"
          + " group by a.cliente_id) p "
          + " ON (c.id = p.cliente_id)",
 nativeQuery = true)
-Page<ClienteDTO> findClientes(Pageable pageable);
+Page<Cliente> findClientes(Pageable pageable);
     
 
      // @Query("select u.*,  from cliente u where u.id = ?1")

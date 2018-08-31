@@ -65,7 +65,7 @@ public class ClienteServiceImpl implements ClienteService {
         log.debug("Request to get all Clientes");
         //return clienteRepository.findClientes(pageable);
        // .map(clienteMapper::toDto);
-       Page<Cliente> page = clienteRepository.findAll(pageable);
+       Page<Cliente> page = clienteRepository.findClientes(pageable);
        return page.map(clienteMapper::toDto);
     }
 
@@ -79,7 +79,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional(readOnly = true)
     public ClienteDTO findOne(Long id) {
         log.debug("Request to get Cliente : {}", id);
-        Cliente cliente = clienteRepository.findOne(id);
+        Cliente cliente = clienteRepository.findCliente(id);
         return clienteMapper.toDto(cliente);
     }
 

@@ -3,6 +3,7 @@ package com.debidadefensa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -43,9 +44,14 @@ public class Cliente implements Serializable {
     @Column(name = "referencia")
     private String referencia;
    
-    @OneToMany
+    @Column(name = "total_expediente", updatable = false, insertable = false)
+    @Transient
+    private Long totalExpediente = null;
+
     
-    private Set<Expediente> expedientes;
+    @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
+    private Set<Expediente> expedientes = new HashSet<>();
 
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
@@ -59,6 +65,22 @@ public class Cliente implements Serializable {
     public Long getId() {
         return id;
     }    
+
+	/**
+	 * @return the totalExpediente
+	 */
+    @Transient
+	public Long getTotalExpediente() {
+		return totalExpediente;
+	}
+
+	/**
+	 * @param totalExpediente the totalExpediente to set
+	 */
+    @Transient
+	public void setTotalExpediente(Long totalExpediente) {
+		this.totalExpediente = totalExpediente;
+	}
 
 	public void setId(Long id) {
         this.id = id;
