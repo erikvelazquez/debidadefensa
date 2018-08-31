@@ -9,7 +9,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { TramiteAsociado } from './tramite-asociado.model';
 import { TramiteAsociadoPopupService } from './tramite-asociado-popup.service';
 import { TramiteAsociadoService } from './tramite-asociado.service';
-import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
+import { TramiteGeneral } from '../tramite-general';
 import { TramiteMigratorio } from '../tramite-migratorio';
 
 @Component({
@@ -24,8 +24,8 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     tramiteMigratorios: TramiteMigratorio[];
     tramiteM: TramiteMigratorio;
     tiposervicio: number;
-    
-    isSaving: boolean;    
+
+    isSaving: boolean;
     tramitesA: TramiteAsociado[];
     constructor(
         public activeModal: NgbActiveModal,
@@ -37,7 +37,6 @@ export class TramiteAsociadoDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        
     }
 
     clear() {
@@ -47,34 +46,32 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.tramitesA = Array<TramiteAsociado>();
-        
-        switch(this.tiposervicio) {               
-            case 1002: { 
-            //Migratorio; 
+        switch (this.tiposervicio) {
+            case 1002: {
+            // Migratorio
                 this.tramiteMigratorios.forEach((entry) => {
-                    if (entry.seleccionado == true){                
+                    if (entry.seleccionado === true) {
                         this.tramitesA.push(new TramiteAsociado(null, this.tramiteM.id, entry.id, this.tiposervicio, this.tiposervicio));
-                    } 
+                    }
                 });
-                break; 
-            } 
-            case 1003: { 
-                //General; 
+                break;
+            }
+            case 1003: {
+                // General
                 this.tramiteGenerals.forEach((entry) => {
-                    if (entry.seleccionado == true){                
+                    if (entry.seleccionado === true) {
                         this.tramitesA.push(new TramiteAsociado(null, this.tramiteG.id, entry.id, this.tiposervicio, this.tiposervicio));
-                    } 
+                    }
                 });
-                break; 
-            } 
-            default: { 
-            //statements; 
-            break; 
-            } 
+                break;
+            }
+            default: {
+            // statements;
+            break;
+            }
         }
 
         this.subscribeToSaveResponse(this.tramiteAsociadoService.create(this.tramitesA));
-      
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<TramiteAsociado>>) {

@@ -9,7 +9,7 @@ import {
     FechasServicioDetailComponent,
     FechasServicioDialogComponent,
     FechasServicioPopupComponent,
-    FechasServicioDeletePopupComponent,    
+    FechasServicioDeletePopupComponent,
     FechasServicioDeleteDialogComponent,
     fechasServicioRoute,
     fechasServicioPopupRoute,
@@ -29,7 +29,7 @@ const ENTITY_STATES = [
         RouterModule.forChild(ENTITY_STATES),
         BrowserAnimationsModule, CalendarModule.forRoot()
     ],
-    declarations: [        
+    declarations: [
         FechasServicioComponent,
         FechasServicioDetailComponent,
         FechasServicioDialogComponent,

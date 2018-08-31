@@ -42,7 +42,7 @@ export class ExpedienteAsociadoPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let expedienteAsociado = new ExpedienteAsociado();
+                    const expedienteAsociado = new ExpedienteAsociado();
                     expedienteAsociado.expedienteId = +idExpediente;
                     this.ngbModalRef = this.expedienteAsociadoModalRef(component, expedienteAsociado);
                     resolve(this.ngbModalRef);

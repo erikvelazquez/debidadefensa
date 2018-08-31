@@ -35,7 +35,7 @@ export class PartePopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let parte = new Parte();
+                    const parte = new Parte();
                     parte.expedienteId = +idTramite;
                     this.ngbModalRef = this.parteModalRef(component, parte);
                     resolve(this.ngbModalRef);

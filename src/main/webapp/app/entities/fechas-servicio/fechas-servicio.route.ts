@@ -5,7 +5,7 @@ import { FechasServicioComponent } from './fechas-servicio.component';
 import { FechasServicioDetailComponent } from './fechas-servicio-detail.component';
 import { FechasServicioPopupComponent } from './fechas-servicio-dialog.component';
 import { FechasServicioDeletePopupComponent } from './fechas-servicio-delete-dialog.component';
-import { AgendaComponent, AgendaPopupComponent } from './agenda.component';
+import { AgendaPopupComponent } from './agenda.component';
 
 export const fechasServicioRoute: Routes = [
     {
@@ -37,7 +37,7 @@ export const fechasServicioPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },{
+    }, {
         path: 'fechas-servicio-newby/:idTramite/:tiposervicio',
         component: FechasServicioPopupComponent,
         data: {
@@ -46,8 +46,7 @@ export const fechasServicioPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },
-    {
+    }, {
         path: 'fechas-servicio/:id/edit',
         component: FechasServicioPopupComponent,
         data: {
@@ -66,7 +65,7 @@ export const fechasServicioPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    },{
+    }, {
         path: 'fechas-servicio/:id/delete',
         component: FechasServicioDeletePopupComponent,
         data: {

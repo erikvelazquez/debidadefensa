@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { TramiteMigratorio } from './tramite-migratorio.model';
 import { TramiteMigratorioService } from './tramite-migratorio.service';
@@ -23,7 +23,7 @@ currentAccount: any;
     tramiteMigratorios: TramiteMigratorio[];
     error: any;
     success: any;
-    eventSubscriber: Subscription;    
+    eventSubscriber: Subscription;
     currentSearch: string;
     routeData: any;
     links: any;
@@ -33,12 +33,11 @@ currentAccount: any;
     page: any;
     predicate: any;
     previousPage: any;
-    reverse: any;    
+    reverse: any;
     private subscription: Subscription;
 
     constructor(
         private tramiteMigratorioService: TramiteMigratorioService,
-        private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
@@ -134,11 +133,9 @@ currentAccount: any;
         this.loadAll();
     }
     ngOnInit() {
-        
         this.subscription = this.route.params.subscribe((params) => {
-            this.cliente.id = params["id"];
+            this.cliente.id = params['id'];
         });
-        
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;

@@ -12,7 +12,6 @@ import { TramiteMigratorioService } from './tramite-migratorio.service';
 import { Cliente, ClienteService } from '../cliente';
 import { Estatus, EstatusService } from '../estatus';
 import { TramiteAsociado, TramiteAsociadoService } from '../tramite-asociado';
-import { FechasServicioService } from '../fechas-servicio';
 
 @Component({
     selector: 'jhi-tramite-migratorio-dialog',

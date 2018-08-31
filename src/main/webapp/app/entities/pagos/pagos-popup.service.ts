@@ -42,30 +42,30 @@ export class PagosPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let pago = new Pagos();
+                    const pago = new Pagos();
                     pago.tipoServicioId = +tiposervicio;
                     pago.cantidad = 0;
-                    switch(pago.tipoServicioId) { 
-                        case 1001: { 
-                           //Expediente; 
+                    switch (pago.tipoServicioId) {
+                        case 1001: {
+                           // Expediente
                            pago.expedienteId = +idTramite;
-                           break; 
-                        } 
-                        case 1002: { 
-                           //Migratorio; 
+                           break;
+                        }
+                        case 1002: {
+                           // Migratorio
                            pago.tramiteMigratorioId = +idTramite;
-                           break; 
-                        } 
-                        case 1003: { 
-                            //General; 
+                           break;
+                        }
+                        case 1003: {
+                            // General
                             pago.tramiteGeneralId = +idTramite;
-                            break; 
-                         } 
-                        default: { 
-                           //statements; 
-                           break; 
-                        } 
-                     } 
+                            break;
+                         }
+                        default: {
+                           // statements
+                           break;
+                        }
+                     }
                     this.ngbModalRef = this.pagosModalRef(component, pago);
                     resolve(this.ngbModalRef);
                 }, 0);

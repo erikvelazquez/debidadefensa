@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Expediente } from './expediente.model';
 import { ExpedienteService } from './expediente.service';
@@ -36,7 +36,6 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         private expedienteService: ExpedienteService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private principal: Principal,
         private route: ActivatedRoute,
@@ -74,7 +73,6 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
             .subscribe((clienteResponse: HttpResponse<Cliente>) => {
                 this.cliente = clienteResponse.body;
             });
-
 
             this.expedienteService.findByUser(this.cliente.id)
             .subscribe(
@@ -134,11 +132,11 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.subscription = this.route.params.subscribe((params) => {
-            this.cliente.id = params["id"];
+            this.cliente.id = params['id'];
         });
 
         this.loadAll();
-        this.principal.identity().then((account) => {   
+        this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
         this.registerChangeInExpedientes();

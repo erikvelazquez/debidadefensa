@@ -1,22 +1,19 @@
 import { Component, OnInit, OnDestroy,
-        ChangeDetectionStrategy,
-        ViewChild,
-        TemplateRef } from '@angular/core';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
+        ChangeDetectionStrategy } from '@angular/core';
+import { isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { FechasServicio } from './fechas-servicio.model';
 import { FechasServicioPopupService } from './fechas-servicio-popup.service';
 import { FechasServicioService } from './fechas-servicio.service';
 import { HttpResponse, HttpErrorResponse } from '../../../../../../node_modules/@angular/common/http';
-
 
 const colors: any = {
   red: {
@@ -41,31 +38,25 @@ const colors: any = {
 export class AgendaComponent {
 
     fechasServicio: FechasServicio;
-    view: string = 'month';  
-    viewDate: Date = new Date();  
+    view = 'month';
+    viewDate: Date = new Date();
     refresh: Subject<any> = new Subject();
     fechasServicios: FechasServicio[];
-
     events: CalendarEvent[] = [];
-  
-    activeDayIsOpen: boolean = true;
-  
+    activeDayIsOpen = true;
     constructor(
         private jhiAlertService: JhiAlertService,
         private fechasServicioService: FechasServicioService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager,
-        private modal: NgbModal
     ) {
       this.cargaFechas();
     }
-    
+
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
       if (isSameMonth(date, this.viewDate)) {
 
        // this.cargaFechas(2);
-    
-        if (
+       if (
           (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
           events.length === 0
         ) {
@@ -76,7 +67,7 @@ export class AgendaComponent {
         }
       }
     }
-  
+
     eventTimesChanged({
       event,
       newStart,
@@ -87,30 +78,28 @@ export class AgendaComponent {
      // this.handleEvent('Dropped or resized', event);
       this.refresh.next();
     }
-  
-    cargaFechas(){
-      let month = this.viewDate.getMonth();
-      let year = this.viewDate.getFullYear();
-      this.fechasServicioService.findByMonth(month + 1, year).subscribe(        
+
+    cargaFechas() {
+      const month = this.viewDate.getMonth();
+      const year = this.viewDate.getFullYear();
+      this.fechasServicioService.findByMonth(month + 1, year).subscribe(
           (res: HttpResponse<FechasServicio[]>) => this.onSuccess(res.body),
           (res: HttpErrorResponse) => this.onError(res.message)
       );
     }
 
-    private onSuccess(fechas: FechasServicio[]){
+    private onSuccess(fechas: FechasServicio[]) {
       this.fechasServicios = fechas;
       this.events = new Array<CalendarEvent>();
 
-      for(let i of this.fechasServicios){
-        let fec = new Date(i.fecha);
-        this.events.push({
-          start: fec,
-          title: fec.getHours() + ':' + (fec.getMinutes()<10?'0':'') + fec.getMinutes() + ' ' + i.descripcion,
-          color: colors.blue,
-
-        });
+      for (const i of this.fechasServicios) {
+          const fec = new Date(i.fecha);
+          this.events.push({
+            start: fec,
+            title: fec.getHours() + ':' + (fec.getMinutes() < 10 ? '0' : '') + fec.getMinutes() + ' ' + i.descripcion,
+            color: colors.blue
+          });
       }
-      
 
       this.refresh.next();
     }
@@ -121,7 +110,7 @@ export class AgendaComponent {
 
     clear() {
         this.activeModal.dismiss('cancel');
-    } 
+    }
 }
 
 @Component({

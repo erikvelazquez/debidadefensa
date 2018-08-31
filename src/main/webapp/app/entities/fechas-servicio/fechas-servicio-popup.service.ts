@@ -53,31 +53,30 @@ export class FechasServicioPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    let fechas = new FechasServicio();
+                    const fechas = new FechasServicio();
                     fechas.tipoServicioId = +tiposervicio;
                     fechas.fecha = this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss');
-                    
-                    switch(fechas.tipoServicioId) { 
-                        case 1001: { 
-                           //Expediente; 
+                    switch (fechas.tipoServicioId) {
+                        case 1001: {
+                           // Expediente;
                            fechas.expedienteId = +idTramite;
-                           break; 
-                        } 
-                        case 1002: { 
-                           //Migratorio; 
+                           break;
+                        }
+                        case 1002: {
+                           // Migratorio;
                            fechas.tramiteMigratorioId = +idTramite;
-                           break; 
-                        } 
-                        case 1003: { 
-                            //General; 
+                           break;
+                        }
+                        case 1003: {
+                            // General;
                             fechas.tramiteGeneralId = +idTramite;
-                            break; 
-                         } 
-                        default: { 
-                           //statements; 
-                           break; 
-                        } 
-                     } 
+                            break;
+                         }
+                        default: {
+                           // statements;
+                           break;
+                        }
+                     }
                     this.ngbModalRef = this.fechasServicioModalRef(component, fechas);
                     resolve(this.ngbModalRef);
                 }, 0);

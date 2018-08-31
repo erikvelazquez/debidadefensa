@@ -13,7 +13,6 @@ import { CostoServicio, CostoServicioService } from '../costo-servicio';
 import { Pagos, PagosService } from '../pagos';
 import { Observable } from '../../../../../../node_modules/rxjs';
 import { Parte, ParteService } from '../parte';
-import { Principal } from '../../shared';
 import { ExpedienteAsociadoService, ExpedienteAsociado } from '../expediente-asociado';
 import { Documentos, DocumentosService } from '../documentos';
 
@@ -42,7 +41,6 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     pagos: Pagos[];
     totalCostos: number;
     totalPagos: number;
-    
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -59,7 +57,6 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         private costoServicioService: CostoServicioService,
         private pagosService: PagosService,
         private parteService: ParteService,
-        private principal: Principal
     ) {
     }
 
@@ -68,8 +65,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         this.isSaving = false;
         this.clienteService.query()
             .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        
-        this.subscription = this.route.params.subscribe((params) => {
+                this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
         this.registerChangeInExpedientes();
@@ -95,37 +91,37 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
                 }
 
                 this.totalCostos = 0;
-                this.totalPagos = 0;  
+                this.totalPagos = 0;
 
                 this.costoServicioService.findByExpediente(id)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
-                    this.costoServicios = res.body;    
+                    this.costoServicios = res.body;
                     this.totalCostos = this.costoServicios.reduce(function(prev, cur){
                         return prev + cur.costo;
-                    },0);                                 
-                },(res: HttpErrorResponse) => this.onError(res.message));                
+                    }, 0);
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.pagosService.findByExpediente(id)
                 .subscribe(
                     (res: HttpResponse<Pagos[]>) => {
-                        this.pagos = res.body;   
+                        this.pagos = res.body;
                         this.totalPagos = this.pagos.reduce(function(prev, cur){
                             return prev + cur.cantidad;
-                        },0);                                       
-                },(res: HttpErrorResponse) => this.onError(res.message));
+                        }, 0);
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.parteService.findByExpediente(id)
                 .subscribe(
                     (res: HttpResponse<Parte[]>) => {
-                        this.partes = res.body;                                      
-                },(res: HttpErrorResponse) => this.onError(res.message));
+                        this.partes = res.body;
+                }, (res: HttpErrorResponse) => this.onError(res.message));
                 this.encuentraFechas(id);
 
                 this.expedienteAsociadoService.findByExpediente(id)
                 .subscribe(
                     (res: HttpResponse<ExpedienteAsociado[]>) => {
-                        this.expedienteAsociados = res.body;                                      
-                },(res: HttpErrorResponse) => this.onError(res.message));
+                        this.expedienteAsociados = res.body;
+                }, (res: HttpErrorResponse) => this.onError(res.message));
 
                 this.documentosService.findByExpedienteId(id).subscribe(
                     (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
@@ -142,7 +138,6 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
                         this.estatusexpedientes = this.estatusexpedientes.filter((s) => {
                             return s.tipoServicioId === this.tipoServicio;
                         });
-    
                     } else {
                         this.estatusService
                             .find(this.expediente.estatusExpedienteId)
@@ -158,7 +153,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
             });
     }
 
-    encuentraFechas(id){
+    encuentraFechas(id) {
         this.fechasServicioService.findByExpedienteId(id).subscribe(
             (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -200,7 +195,6 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     private onSaveSuccess(result: Expediente) {
         this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
         this.isSaving = false;
-       
     }
 
     private onSaveError() {

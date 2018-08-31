@@ -23,7 +23,6 @@ import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 })
 export class FechasServicioDialogComponent implements OnInit {
 
-   
     fechasServicio: FechasServicio;
     isSaving: boolean;
 
@@ -45,14 +44,12 @@ export class FechasServicioDialogComponent implements OnInit {
         private tramiteMigratorioService: TramiteMigratorioService,
         private tramiteGeneralService: TramiteGeneralService,
         private tipoServicioService: TipoServicioService,
-        private eventManager: JhiEventManager,        
-    ) {
-        
-    }
+        private eventManager: JhiEventManager,
+    ) { }
 
     ngOnInit() {
         this.isSaving = false;
-        this.date =new Date();
+        this.date = new Date();
         this.isGeneral = isNaN(this.fechasServicio.tipoServicioId) ? true : false;
         this.expedienteService.query()
             .subscribe((res: HttpResponse<Expediente[]>) => { this.expedientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
@@ -85,28 +82,28 @@ export class FechasServicioDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: FechasServicio) {
-        if(!this.isGeneral){
-            switch(result.tipoServicioId) { 
-                case 1001: { 
-                //Expediente; 
+        if (!this.isGeneral) {
+            switch (result.tipoServicioId) {
+                case 1001: {
+                // Expediente
                 this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
-                break; 
-                } 
-                case 1002: { 
-                //Migratorio; 
+                break;
+                }
+                case 1002: {
+                // Migratorio
                 this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
-                break; 
-                } 
-                case 1003: { 
-                    //General; 
+                break;
+                }
+                case 1003: {
+                    // General
                     this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
-                    break; 
-                } 
-                default: { 
-                //statements; 
-                break; 
-                } 
-            } 
+                    break;
+                }
+                default: {
+                // statements
+                break;
+                }
+            }
         } else {
             this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
         }

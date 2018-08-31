@@ -64,7 +64,7 @@ export class CostoServicioDialogComponent implements OnInit {
     }
 
     save() {
-        this.isSaving = true;       
+        this.isSaving = true;
         if (this.costoServicio.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.costoServicioService.update(this.costoServicio));
@@ -140,13 +140,12 @@ export class CostoServicioPopupComponent implements OnInit, OnDestroy {
     }
 }
 
-
 @Directive({
     selector: '[appZero]'
 })
 export class AppZeroDirective {
 
-    private _restStage: boolean = false;
+    private _restStage = false;
 
     constructor(
         private _model: NgModel,
@@ -165,4 +164,3 @@ export class AppZeroDirective {
 
     }
 }
-

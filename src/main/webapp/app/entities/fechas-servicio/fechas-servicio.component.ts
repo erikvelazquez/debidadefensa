@@ -43,7 +43,7 @@ fechasServicios: FechasServicio[];
             return;
        }
 
-        const viewDate = new Date(); 
+        const viewDate = new Date();
         this.fechasServicioService.findByMonth(viewDate.getMonth() + 1, viewDate.getFullYear() ).subscribe(
             (res: HttpResponse<FechasServicio[]>) => {
                 this.fechasServicios = res.body;

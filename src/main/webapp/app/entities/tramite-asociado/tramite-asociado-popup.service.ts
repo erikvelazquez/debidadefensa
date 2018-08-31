@@ -2,15 +2,13 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { TramiteAsociado } from './tramite-asociado.model';
-import { TramiteAsociadoService } from './tramite-asociado.service';
 import { TramiteGeneral } from '../tramite-general/tramite-general.model';
-import {TramiteGeneralService } from '../tramite-general/tramite-general.service'
+import {TramiteGeneralService } from '../tramite-general/tramite-general.service';
 import { TramiteMigratorioService, TramiteMigratorio } from '../tramite-migratorio';
 
 @Injectable()
 export class TramiteAsociadoPopupService {
-    private ngbModalRef: NgbModalRef;
+    ngbModalRef: NgbModalRef;
     predicate: any;
     reverse: any;
     tramiteGenerals: TramiteGeneral[];
@@ -22,11 +20,10 @@ export class TramiteAsociadoPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private tramiteAsociadoService: TramiteAsociadoService,        
         private tramiteGeneralService: TramiteGeneralService,
         private tramiteMigratorioService: TramiteMigratorioService,
 
-    ) {        
+    ) {
         this.ngbModalRef = null;
         this.predicate = 'id';
         this.reverse = true;
@@ -45,7 +42,7 @@ export class TramiteAsociadoPopupService {
         }
         return result;
     }
-    
+
     open(component: Component, id?: number, tiposervicio?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
@@ -54,44 +51,41 @@ export class TramiteAsociadoPopupService {
             }
             this.tramiteGenerals = new Array<TramiteGeneral>();
             this.tramiteG = new TramiteGeneral();
-    
             this.tramiteMigratorios = new Array<TramiteGeneral>();
             this.tramiteM = new TramiteGeneral();
-            
-            tiposervicio = +tiposervicio
-            switch(+tiposervicio) {               
-                case 1002: { 
-                //Migratorio; 
+            tiposervicio = +tiposervicio;
+            switch (tiposervicio) {
+                case 1002: {
+                // Migratorio
                 this.tramiteMigratorioService.findByFaltantes(id).subscribe(
                     (res: HttpResponse<TramiteMigratorio[]>) => {
                         this.tramiteMigratorios = res.body;
                         this.tramiteMigratorioService.find(id).subscribe(
-                            (res: HttpResponse<TramiteMigratorio>) => {
-                                this.tramiteM = res.body;
+                            (ress: HttpResponse<TramiteMigratorio> ) => {
+                                this.tramiteM = ress.body;
                                 this.ngbModalRef = this.tramiteAsociadoModalRef(component, this.tramiteGenerals, this.tramiteG, this.tramiteMigratorios, this.tramiteM, tiposervicio);
                                 resolve(this.ngbModalRef);
                         });
                 });
-                break; 
-                } 
-                case 1003: { 
-                    //General; 
+                break;
+                }
+                case 1003: {
+                    // General
                     this.tramiteGeneralService.findByFaltantes(id).subscribe(
                         (res: HttpResponse<TramiteGeneral[]>) => {
                             this.tramiteGenerals = res.body;
                             this.tramiteGeneralService.find(id).subscribe(
-                                (res: HttpResponse<TramiteGeneral>) => {
-                                    this.tramiteG = res.body;
+                                (ress: HttpResponse<TramiteGeneral>) => {
+                                    this.tramiteG = ress.body;
                                     this.ngbModalRef = this.tramiteAsociadoModalRef(component, this.tramiteGenerals, this.tramiteG, this.tramiteMigratorios, this.tramiteM, tiposervicio);
                                     resolve(this.ngbModalRef);
                             });
                     });
-                    break; 
-                } 
-                default: { 
-                //statements; 
-                break; 
-                } 
+                    break;
+                }
+                default: {
+                // statements;
+                }
             }
         });
     }
@@ -103,7 +97,7 @@ export class TramiteAsociadoPopupService {
         modalRef.componentInstance.tramiteMigratorios = tramiteMigratorios;
         modalRef.componentInstance.tramiteM = tramiteM;
         modalRef.componentInstance.tiposervicio = tiposervicio;
-        
+
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;
