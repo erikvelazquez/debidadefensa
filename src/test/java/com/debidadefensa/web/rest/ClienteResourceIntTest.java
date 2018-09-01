@@ -60,6 +60,15 @@ public class ClienteResourceIntTest {
     private static final String DEFAULT_REFERENCIA = "AAAAAAAAAA";
     private static final String UPDATED_REFERENCIA = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_TOTAL_EXPEDIENTE = 1L;
+    private static final Long UPDATED_TOTAL_EXPEDIENTE = 2L;
+
+    private static final Long DEFAULT_TOTAL_MIGRATORIOS = 1L;
+    private static final Long UPDATED_TOTAL_MIGRATORIOS = 2L;
+
+    private static final Long DEFAULT_TOTAL_GENERALES = 1L;
+    private static final Long UPDATED_TOTAL_GENERALES = 2L;
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -112,7 +121,10 @@ public class ClienteResourceIntTest {
             .correoElectronico(DEFAULT_CORREO_ELECTRONICO)
             .domicilio(DEFAULT_DOMICILIO)
             .rfc(DEFAULT_RFC)
-            .referencia(DEFAULT_REFERENCIA);
+            .referencia(DEFAULT_REFERENCIA)
+            .totalExpediente(DEFAULT_TOTAL_EXPEDIENTE)
+            .totalMigratorios(DEFAULT_TOTAL_MIGRATORIOS)
+            .totalGenerales(DEFAULT_TOTAL_GENERALES);
         return cliente;
     }
 
@@ -144,6 +156,9 @@ public class ClienteResourceIntTest {
         assertThat(testCliente.getDomicilio()).isEqualTo(DEFAULT_DOMICILIO);
         assertThat(testCliente.getRfc()).isEqualTo(DEFAULT_RFC);
         assertThat(testCliente.getReferencia()).isEqualTo(DEFAULT_REFERENCIA);
+        assertThat(testCliente.getTotalExpediente()).isEqualTo(DEFAULT_TOTAL_EXPEDIENTE);
+        assertThat(testCliente.getTotalMigratorios()).isEqualTo(DEFAULT_TOTAL_MIGRATORIOS);
+        assertThat(testCliente.getTotalGenerales()).isEqualTo(DEFAULT_TOTAL_GENERALES);
 
         // Validate the Cliente in Elasticsearch
         Cliente clienteEs = clienteSearchRepository.findOne(testCliente.getId());
@@ -186,7 +201,10 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.[*].correoElectronico").value(hasItem(DEFAULT_CORREO_ELECTRONICO.toString())))
             .andExpect(jsonPath("$.[*].domicilio").value(hasItem(DEFAULT_DOMICILIO.toString())))
             .andExpect(jsonPath("$.[*].rfc").value(hasItem(DEFAULT_RFC.toString())))
-            .andExpect(jsonPath("$.[*].referencia").value(hasItem(DEFAULT_REFERENCIA.toString())));
+            .andExpect(jsonPath("$.[*].referencia").value(hasItem(DEFAULT_REFERENCIA.toString())))
+            .andExpect(jsonPath("$.[*].totalExpediente").value(hasItem(DEFAULT_TOTAL_EXPEDIENTE.intValue())))
+            .andExpect(jsonPath("$.[*].totalMigratorios").value(hasItem(DEFAULT_TOTAL_MIGRATORIOS.intValue())))
+            .andExpect(jsonPath("$.[*].totalGenerales").value(hasItem(DEFAULT_TOTAL_GENERALES.intValue())));
     }
 
     @Test
@@ -205,7 +223,10 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.correoElectronico").value(DEFAULT_CORREO_ELECTRONICO.toString()))
             .andExpect(jsonPath("$.domicilio").value(DEFAULT_DOMICILIO.toString()))
             .andExpect(jsonPath("$.rfc").value(DEFAULT_RFC.toString()))
-            .andExpect(jsonPath("$.referencia").value(DEFAULT_REFERENCIA.toString()));
+            .andExpect(jsonPath("$.referencia").value(DEFAULT_REFERENCIA.toString()))
+            .andExpect(jsonPath("$.totalExpediente").value(DEFAULT_TOTAL_EXPEDIENTE.intValue()))
+            .andExpect(jsonPath("$.totalMigratorios").value(DEFAULT_TOTAL_MIGRATORIOS.intValue()))
+            .andExpect(jsonPath("$.totalGenerales").value(DEFAULT_TOTAL_GENERALES.intValue()));
     }
 
     @Test
@@ -234,7 +255,10 @@ public class ClienteResourceIntTest {
             .correoElectronico(UPDATED_CORREO_ELECTRONICO)
             .domicilio(UPDATED_DOMICILIO)
             .rfc(UPDATED_RFC)
-            .referencia(UPDATED_REFERENCIA);
+            .referencia(UPDATED_REFERENCIA)
+            .totalExpediente(UPDATED_TOTAL_EXPEDIENTE)
+            .totalMigratorios(UPDATED_TOTAL_MIGRATORIOS)
+            .totalGenerales(UPDATED_TOTAL_GENERALES);
         ClienteDTO clienteDTO = clienteMapper.toDto(updatedCliente);
 
         restClienteMockMvc.perform(put("/api/clientes")
@@ -252,6 +276,9 @@ public class ClienteResourceIntTest {
         assertThat(testCliente.getDomicilio()).isEqualTo(UPDATED_DOMICILIO);
         assertThat(testCliente.getRfc()).isEqualTo(UPDATED_RFC);
         assertThat(testCliente.getReferencia()).isEqualTo(UPDATED_REFERENCIA);
+        assertThat(testCliente.getTotalExpediente()).isEqualTo(UPDATED_TOTAL_EXPEDIENTE);
+        assertThat(testCliente.getTotalMigratorios()).isEqualTo(UPDATED_TOTAL_MIGRATORIOS);
+        assertThat(testCliente.getTotalGenerales()).isEqualTo(UPDATED_TOTAL_GENERALES);
 
         // Validate the Cliente in Elasticsearch
         Cliente clienteEs = clienteSearchRepository.findOne(testCliente.getId());
@@ -316,7 +343,10 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.[*].correoElectronico").value(hasItem(DEFAULT_CORREO_ELECTRONICO.toString())))
             .andExpect(jsonPath("$.[*].domicilio").value(hasItem(DEFAULT_DOMICILIO.toString())))
             .andExpect(jsonPath("$.[*].rfc").value(hasItem(DEFAULT_RFC.toString())))
-            .andExpect(jsonPath("$.[*].referencia").value(hasItem(DEFAULT_REFERENCIA.toString())));
+            .andExpect(jsonPath("$.[*].referencia").value(hasItem(DEFAULT_REFERENCIA.toString())))
+            .andExpect(jsonPath("$.[*].totalExpediente").value(hasItem(DEFAULT_TOTAL_EXPEDIENTE.intValue())))
+            .andExpect(jsonPath("$.[*].totalMigratorios").value(hasItem(DEFAULT_TOTAL_MIGRATORIOS.intValue())))
+            .andExpect(jsonPath("$.[*].totalGenerales").value(hasItem(DEFAULT_TOTAL_GENERALES.intValue())));
     }
 
     @Test

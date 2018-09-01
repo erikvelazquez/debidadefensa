@@ -44,12 +44,25 @@
         {
             "fieldName": "referencia",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "totalExpediente",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "totalMigratorios",
+            "fieldType": "Long",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "totalGenerales",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20180610211041",
-    "entityTableName": "cliente",
     "dto": "mapstruct",
-    "pagination": "infinite-scroll",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "cliente",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
 }

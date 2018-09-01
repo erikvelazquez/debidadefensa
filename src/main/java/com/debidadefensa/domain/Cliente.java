@@ -3,7 +3,6 @@ package com.debidadefensa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -43,20 +42,16 @@ public class Cliente implements Serializable {
 
     @Column(name = "referencia")
     private String referencia;
-   
-    @Column(name = "total_expediente", updatable = false, insertable = false)
-    @Transient
-    private Long totalExpediente = null;
 
-    @Column(name = "total_migratorios", updatable = false, insertable = false)
-    @Transient
-    private Long totalMigratorios = null;
+    @Column(name = "total_expediente")
+    private Long totalExpediente;
 
-    @Column(name = "total_generales", updatable = false, insertable = false)
-    @Transient
-    private Long totalGenerales = null;
+    @Column(name = "total_migratorios")
+    private Long totalMigratorios;
 
-    
+    @Column(name = "total_generales")
+    private Long totalGenerales;
+
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private Set<Expediente> expedientes = new HashSet<>();
@@ -72,51 +67,9 @@ public class Cliente implements Serializable {
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
-    }    
+    }
 
-	/**
-	 * @return the totalGenerales
-	 */
-	public Long getTotalGenerales() {
-		return totalGenerales;
-	}
-
-	/**
-	 * @param totalGenerales the totalGenerales to set
-	 */
-	public void setTotalGenerales(Long totalGenerales) {
-		this.totalGenerales = totalGenerales;
-	}
-
-	/**
-	 * @return the totalMigratorios
-	 */
-	public Long getTotalMigratorios() {
-		return totalMigratorios;
-	}
-
-	/**
-	 * @param totalMigratorios the totalMigratorios to set
-	 */
-	public void setTotalMigratorios(Long totalMigratorios) {
-		this.totalMigratorios = totalMigratorios;
-	}
-
-	/**
-	 * @return the totalExpediente
-	 */
-	public Long getTotalExpediente() {
-		return totalExpediente;
-	}
-
-	/**
-	 * @param totalExpediente the totalExpediente to set
-	 */
-	public void setTotalExpediente(Long totalExpediente) {
-		this.totalExpediente = totalExpediente;
-	}
-
-	public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -196,7 +149,46 @@ public class Cliente implements Serializable {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
-    }    
+    }
+
+    public Long getTotalExpediente() {
+        return totalExpediente;
+    }
+
+    public Cliente totalExpediente(Long totalExpediente) {
+        this.totalExpediente = totalExpediente;
+        return this;
+    }
+
+    public void setTotalExpediente(Long totalExpediente) {
+        this.totalExpediente = totalExpediente;
+    }
+
+    public Long getTotalMigratorios() {
+        return totalMigratorios;
+    }
+
+    public Cliente totalMigratorios(Long totalMigratorios) {
+        this.totalMigratorios = totalMigratorios;
+        return this;
+    }
+
+    public void setTotalMigratorios(Long totalMigratorios) {
+        this.totalMigratorios = totalMigratorios;
+    }
+
+    public Long getTotalGenerales() {
+        return totalGenerales;
+    }
+
+    public Cliente totalGenerales(Long totalGenerales) {
+        this.totalGenerales = totalGenerales;
+        return this;
+    }
+
+    public void setTotalGenerales(Long totalGenerales) {
+        this.totalGenerales = totalGenerales;
+    }
 
     public Set<Expediente> getExpedientes() {
         return expedientes;
@@ -221,12 +213,12 @@ public class Cliente implements Serializable {
 
     public void setExpedientes(Set<Expediente> expedientes) {
         this.expedientes = expedientes;
-    }    
+    }
 
     public Set<TramiteMigratorio> getTramiteMigras() {
         return tramiteMigras;
-    }    
-    
+    }
+
     public Cliente tramiteMigras(Set<TramiteMigratorio> tramiteMigratorios) {
         this.tramiteMigras = tramiteMigratorios;
         return this;
@@ -304,7 +296,9 @@ public class Cliente implements Serializable {
             ", domicilio='" + getDomicilio() + "'" +
             ", rfc='" + getRfc() + "'" +
             ", referencia='" + getReferencia() + "'" +
-         //   ", totalExpediente='" + getTotalExpediente() + "'" +            
+            ", totalExpediente=" + getTotalExpediente() +
+            ", totalMigratorios=" + getTotalMigratorios() +
+            ", totalGenerales=" + getTotalGenerales() +
             "}";
     }
 }

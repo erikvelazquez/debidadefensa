@@ -68,6 +68,9 @@ export class ClienteService {
      */
     private convertItemFromServer(cliente: Cliente): Cliente {
         const copy: Cliente = Object.assign({}, cliente);
+        copy.totalExpediente = copy.totalExpediente ? copy.totalExpediente : 0;
+        copy.totalGenerales = copy.totalGenerales ? copy.totalGenerales : 0;
+        copy.totalMigratorios = copy.totalMigratorios ? copy.totalMigratorios : 0;
         return copy;
     }
 

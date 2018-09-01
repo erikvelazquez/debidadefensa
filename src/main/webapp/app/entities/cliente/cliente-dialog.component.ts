@@ -9,6 +9,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { Cliente } from './cliente.model';
 import { ClientePopupService } from './cliente-popup.service';
 import { ClienteService } from './cliente.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-cliente-dialog',
@@ -25,7 +26,8 @@ export class ClienteDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private clienteService: ClienteService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private router: Router
     ) {
     }
 
@@ -61,6 +63,37 @@ export class ClienteDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+    
+    goPlaces(clienid: number, tipo: number) {       
+        let url = '';
+
+        switch (+tipo) {            
+            case 1: {
+               // Migratorio;
+               url = '../tramite-migratorio-usuario';
+               break;
+            }
+            case 2: {
+                // General;
+                url = '../tramite-general-usuario';
+                break;
+            }
+            case 3: {
+                // Expediente;
+                url = '../expediente-usuario';
+                break;
+             }
+            default: {
+               // statements;
+               break;
+            }
+         }
+        
+        this.router.navigate([url, clienid ]).then(res => {
+            this.clear();
+        });
+        
     }
 }
 

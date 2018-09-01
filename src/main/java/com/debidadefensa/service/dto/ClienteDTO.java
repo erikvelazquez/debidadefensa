@@ -25,70 +25,17 @@ public class ClienteDTO implements Serializable {
 
     private String referencia;
 
-    private Long totalExpediente;
+    private Long totalExpediente = (long)0;
 
-    private Long totalMigratorios;
+    private Long totalMigratorios = (long)0;
 
-    private Long totalGenerales;
-
-    public ClienteDTO() {
-    }
-
-    /**
-	 * @return the totalGenerales
-	 */
-	public Long getTotalGenerales() {
-		return totalGenerales;
-	}
-
-	/**
-	 * @param totalGenerales the totalGenerales to set
-	 */
-	public void setTotalGenerales(Long totalGenerales) {
-		this.totalGenerales = totalGenerales;
-	}
-
-	/**
-	 * @return the totalMigratorios
-	 */
-	public Long getTotalMigratorios() {
-		return totalMigratorios;
-	}
-
-	/**
-	 * @param totalMigratorios the totalMigratorios to set
-	 */
-	public void setTotalMigratorios(Long totalMigratorios) {
-		this.totalMigratorios = totalMigratorios;
-	}
-
-	public ClienteDTO (Long _id, 
-                        String _nombre, 
-                        String _telefonos, 
-                        String _correoElectronico, 
-                        String _domicilio, 
-                        String _rfc, 
-                        String _referencia, 
-                        Long _totalExpediente,
-                        Long _totalMigratorios,
-                        Long _totalGenerales) {
-            this.id = _id;
-            this.nombre = _nombre;
-            this.telefonos = _telefonos;
-            this.correoElectronico = _correoElectronico;
-            this.domicilio = _domicilio;
-            this.rfc = _rfc;
-            this.referencia = _referencia;
-            this.totalExpediente = _totalExpediente;
-            this.totalMigratorios = _totalMigratorios;
-            this.totalGenerales = _totalGenerales;
-    }
+    private Long totalGenerales = (long)0;
 
     public Long getId() {
         return id;
     }
 
-	public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -140,19 +87,29 @@ public class ClienteDTO implements Serializable {
         this.referencia = referencia;
     }
 
-    /**
-	 * @return the totalExpediente
-	 */
-	public Long getTotalExpediente() {
-		return totalExpediente;
-	}
+    public Long getTotalExpediente() {
+        return totalExpediente;
+    }
 
-	/**
-	 * @param totalExpediente the totalExpediente to set
-	 */
-	public void setTotalExpediente(Long totalExpediente) {
-		this.totalExpediente = totalExpediente;
-	}
+    public void setTotalExpediente(Long totalExpediente) {
+        this.totalExpediente = totalExpediente;
+    }
+
+    public Long getTotalMigratorios() {
+        return totalMigratorios;
+    }
+
+    public void setTotalMigratorios(Long totalMigratorios) {
+        this.totalMigratorios = totalMigratorios;
+    }
+
+    public Long getTotalGenerales() {
+        return totalGenerales;
+    }
+
+    public void setTotalGenerales(Long totalGenerales) {
+        this.totalGenerales = totalGenerales;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -185,7 +142,9 @@ public class ClienteDTO implements Serializable {
             ", domicilio='" + getDomicilio() + "'" +
             ", rfc='" + getRfc() + "'" +
             ", referencia='" + getReferencia() + "'" +
-            ", totalExpediente='" + getTotalExpediente() + "'" +
+            ", totalExpediente=" + getTotalExpediente() +
+            ", totalMigratorios=" + getTotalMigratorios() +
+            ", totalGenerales=" + getTotalGenerales() +
             "}";
     }
 }
