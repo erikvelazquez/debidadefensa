@@ -3,6 +3,7 @@ package com.debidadefensa.web.rest;
 import com.debidadefensa.DebidadefensaApp;
 
 import com.debidadefensa.domain.Expediente;
+import com.debidadefensa.domain.Estatus;
 import com.debidadefensa.repository.ExpedienteRepository;
 import com.debidadefensa.service.ExpedienteService;
 import com.debidadefensa.repository.search.ExpedienteSearchRepository;
@@ -65,6 +66,9 @@ public class ExpedienteResourceIntTest {
     private static final LocalDate DEFAULT_FECHA_SENTENCIA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA_SENTENCIA = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Long DEFAULT_TOTAL_DOCUMENTOS = 1L;
+    private static final Long UPDATED_TOTAL_DOCUMENTOS = 2L;
+
     @Autowired
     private ExpedienteRepository expedienteRepository;
 
@@ -118,7 +122,13 @@ public class ExpedienteResourceIntTest {
             .responsable(DEFAULT_RESPONSABLE)
             .observaciones(DEFAULT_OBSERVACIONES)
             .fechaAlta(DEFAULT_FECHA_ALTA)
-            .fechaSentencia(DEFAULT_FECHA_SENTENCIA);
+            .fechaSentencia(DEFAULT_FECHA_SENTENCIA)
+            .totalDocumentos(DEFAULT_TOTAL_DOCUMENTOS);
+        // Add required entity
+        Estatus estatusExpediente = EstatusResourceIntTest.createEntity(em);
+        em.persist(estatusExpediente);
+        em.flush();
+        expediente.setEstatusExpediente(estatusExpediente);
         return expediente;
     }
 
@@ -151,6 +161,7 @@ public class ExpedienteResourceIntTest {
         assertThat(testExpediente.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
         assertThat(testExpediente.getFechaAlta()).isEqualTo(DEFAULT_FECHA_ALTA);
         assertThat(testExpediente.getFechaSentencia()).isEqualTo(DEFAULT_FECHA_SENTENCIA);
+        assertThat(testExpediente.getTotalDocumentos()).isEqualTo(DEFAULT_TOTAL_DOCUMENTOS);
 
         // Validate the Expediente in Elasticsearch
         Expediente expedienteEs = expedienteSearchRepository.findOne(testExpediente.getId());
@@ -194,7 +205,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.[*].responsable").value(hasItem(DEFAULT_RESPONSABLE.toString())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
-            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())));
+            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())))
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
     }
 
     @Test
@@ -214,7 +226,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.responsable").value(DEFAULT_RESPONSABLE.toString()))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
             .andExpect(jsonPath("$.fechaAlta").value(DEFAULT_FECHA_ALTA.toString()))
-            .andExpect(jsonPath("$.fechaSentencia").value(DEFAULT_FECHA_SENTENCIA.toString()));
+            .andExpect(jsonPath("$.fechaSentencia").value(DEFAULT_FECHA_SENTENCIA.toString()))
+            .andExpect(jsonPath("$.totalDocumentos").value(DEFAULT_TOTAL_DOCUMENTOS.intValue()));
     }
 
     @Test
@@ -244,7 +257,8 @@ public class ExpedienteResourceIntTest {
             .responsable(UPDATED_RESPONSABLE)
             .observaciones(UPDATED_OBSERVACIONES)
             .fechaAlta(UPDATED_FECHA_ALTA)
-            .fechaSentencia(UPDATED_FECHA_SENTENCIA);
+            .fechaSentencia(UPDATED_FECHA_SENTENCIA)
+            .totalDocumentos(UPDATED_TOTAL_DOCUMENTOS);
         ExpedienteDTO expedienteDTO = expedienteMapper.toDto(updatedExpediente);
 
         restExpedienteMockMvc.perform(put("/api/expedientes")
@@ -263,6 +277,7 @@ public class ExpedienteResourceIntTest {
         assertThat(testExpediente.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
         assertThat(testExpediente.getFechaAlta()).isEqualTo(UPDATED_FECHA_ALTA);
         assertThat(testExpediente.getFechaSentencia()).isEqualTo(UPDATED_FECHA_SENTENCIA);
+        assertThat(testExpediente.getTotalDocumentos()).isEqualTo(UPDATED_TOTAL_DOCUMENTOS);
 
         // Validate the Expediente in Elasticsearch
         Expediente expedienteEs = expedienteSearchRepository.findOne(testExpediente.getId());
@@ -328,7 +343,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.[*].responsable").value(hasItem(DEFAULT_RESPONSABLE.toString())))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
-            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())));
+            .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())))
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
     }
 
     @Test

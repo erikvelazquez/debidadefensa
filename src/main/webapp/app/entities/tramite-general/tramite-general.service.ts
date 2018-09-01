@@ -91,6 +91,8 @@ export class TramiteGeneralService {
             .convertLocalDateFromServer(tramiteGeneral.fechaResolucion);
         copy.fechaNotificacion = this.dateUtils
             .convertLocalDateFromServer(tramiteGeneral.fechaNotificacion);
+
+        copy.totalDocumentos = copy.totalDocumentos ? copy.totalDocumentos : 0;
         return copy;
     }
 

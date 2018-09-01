@@ -43,11 +43,27 @@ public class TramiteMigratorioDTO implements Serializable {
 
     private String estatusDescripcion;
 
+    private Long totalDocumentos;
+
     public Long getId() {
         return id;
     }
 
     /**
+	 * @return the totalDocumentos
+	 */
+	public Long getTotalDocumentos() {
+		return totalDocumentos;
+	}
+
+	/**
+	 * @param totalDocumentos the totalDocumentos to set
+	 */
+	public void setTotalDocumentos(Long totalDocumentos) {
+		this.totalDocumentos = totalDocumentos;
+	}
+
+	/**
 	 * @return the estatusDescripcion
 	 */
 	public String getEstatusDescripcion() {

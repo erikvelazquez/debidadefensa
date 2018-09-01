@@ -91,6 +91,8 @@ export class TramiteMigratorioService {
             .convertLocalDateFromServer(tramiteMigratorio.fechaNotificacion);
         copy.fechaResolucion = this.dateUtils
             .convertLocalDateFromServer(tramiteMigratorio.fechaResolucion);
+
+        copy.totalDocumentos = copy.totalDocumentos ? copy.totalDocumentos : 0;
         return copy;
     }
 

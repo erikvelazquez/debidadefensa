@@ -3,6 +3,7 @@ package com.debidadefensa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -47,12 +48,11 @@ public class Expediente implements Serializable {
     @Column(name = "fecha_sentencia")
     private LocalDate fechaSentencia;
 
+    @Column(name = "total_documentos")
+    private Long totalDocumentos;
+
     @ManyToOne
     private Cliente cliente;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Estatus estatusExpediente;
 
     @OneToMany(mappedBy = "expediente")
     @JsonIgnore
@@ -80,6 +80,10 @@ public class Expediente implements Serializable {
 
     @ManyToOne
     private TipoServicio tipoServicio;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Estatus estatusExpediente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -181,6 +185,19 @@ public class Expediente implements Serializable {
         this.fechaSentencia = fechaSentencia;
     }
 
+    public Long getTotalDocumentos() {
+        return totalDocumentos;
+    }
+
+    public Expediente totalDocumentos(Long totalDocumentos) {
+        this.totalDocumentos = totalDocumentos;
+        return this;
+    }
+
+    public void setTotalDocumentos(Long totalDocumentos) {
+        this.totalDocumentos = totalDocumentos;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -192,19 +209,6 @@ public class Expediente implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public Estatus getEstatusExpediente() {
-        return estatusExpediente;
-    }
-
-    public Expediente estatusExpediente(Estatus estatus) {
-        this.estatusExpediente = estatus;
-        return this;
-    }
-
-    public void setEstatusExpediente(Estatus estatus) {
-        this.estatusExpediente = estatus;
     }
 
     public Set<Parte> getPartes() {
@@ -369,6 +373,19 @@ public class Expediente implements Serializable {
     public void setTipoServicio(TipoServicio tipoServicio) {
         this.tipoServicio = tipoServicio;
     }
+
+    public Estatus getEstatusExpediente() {
+        return estatusExpediente;
+    }
+
+    public Expediente estatusExpediente(Estatus estatus) {
+        this.estatusExpediente = estatus;
+        return this;
+    }
+
+    public void setEstatusExpediente(Estatus estatus) {
+        this.estatusExpediente = estatus;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -402,6 +419,7 @@ public class Expediente implements Serializable {
             ", observaciones='" + getObservaciones() + "'" +
             ", fechaAlta='" + getFechaAlta() + "'" +
             ", fechaSentencia='" + getFechaSentencia() + "'" +
+            ", totalDocumentos=" + getTotalDocumentos() +
             "}";
     }
 }

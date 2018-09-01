@@ -65,7 +65,7 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
     @Transactional(readOnly = true)
     public Page<TramiteMigratorioDTO> findAll(Pageable pageable) {
         log.debug("Request to get all TramiteMigratorios");
-        return tramiteMigratorioRepository.findAll(pageable)
+        return tramiteMigratorioRepository.findAllItems(pageable)
             .map(tramiteMigratorioMapper::toDto);
     }
 

@@ -73,8 +73,8 @@ public class ExpedienteServiceImpl implements ExpedienteService {
     @Transactional(readOnly = true)
     public Page<ExpedienteDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Expedientes");
-        return expedienteRepository.findAll(pageable)
-            .map(expedienteMapper::toDto);
+        Page<Expediente> expedientes = expedienteRepository.findAllItems(pageable);
+        return expedientes.map(expedienteMapper::toDto);
     }
 
     /**
@@ -87,12 +87,8 @@ public class ExpedienteServiceImpl implements ExpedienteService {
     @Transactional(readOnly = true)
     public List<ExpedienteDTO> findByIdUser(Long idUser) {
         log.debug("Request to get all Expedientes by user");       
-       /*  Cliente cliente = new Cliente();
-        cliente.setId(idUser);
-        Expediente exp = new Expediente();
-        exp.setCliente(cliente);
-        Example<Expediente> expediente = Example.of(exp);*/
-       return expedienteRepository.findByCliente_id(idUser).stream().map(expedienteMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        List<Expediente>  lsExpedientes = expedienteRepository.findByCliente_id(idUser);
+        return lsExpedientes.stream().map(expedienteMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 

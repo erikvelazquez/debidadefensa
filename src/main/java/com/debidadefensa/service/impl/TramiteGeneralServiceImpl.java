@@ -64,7 +64,7 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
     @Transactional(readOnly = true)
     public Page<TramiteGeneralDTO> findAll(Pageable pageable) {
         log.debug("Request to get all TramiteGenerals");
-        return tramiteGeneralRepository.findAll(pageable)
+        return tramiteGeneralRepository.findAllItems(pageable)
             .map(tramiteGeneralMapper::toDto);
     }
 

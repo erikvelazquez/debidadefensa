@@ -38,11 +38,27 @@ public class ExpedienteDTO implements Serializable {
 
     private Long tipoServicioId;
 
+    private Long totalDocumentos;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the totalDocumentos
+	 */
+	public Long getTotalDocumentos() {
+		return totalDocumentos;
+	}
+
+	/**
+	 * @param totalDocumentos the totalDocumentos to set
+	 */
+	public void setTotalDocumentos(Long totalDocumentos) {
+		this.totalDocumentos = totalDocumentos;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

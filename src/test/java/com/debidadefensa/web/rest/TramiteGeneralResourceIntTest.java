@@ -72,6 +72,9 @@ public class TramiteGeneralResourceIntTest {
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_TOTAL_DOCUMENTOS = 1L;
+    private static final Long UPDATED_TOTAL_DOCUMENTOS = 2L;
+
     @Autowired
     private TramiteGeneralRepository tramiteGeneralRepository;
 
@@ -127,7 +130,8 @@ public class TramiteGeneralResourceIntTest {
             .fechaResolucion(DEFAULT_FECHA_RESOLUCION)
             .fechaNotificacion(DEFAULT_FECHA_NOTIFICACION)
             .archivo(DEFAULT_ARCHIVO)
-            .observaciones(DEFAULT_OBSERVACIONES);
+            .observaciones(DEFAULT_OBSERVACIONES)
+            .totalDocumentos(DEFAULT_TOTAL_DOCUMENTOS);
         // Add required entity
         Estatus estatusTramiteGeneral = EstatusResourceIntTest.createEntity(em);
         em.persist(estatusTramiteGeneral);
@@ -167,6 +171,7 @@ public class TramiteGeneralResourceIntTest {
         assertThat(testTramiteGeneral.getFechaNotificacion()).isEqualTo(DEFAULT_FECHA_NOTIFICACION);
         assertThat(testTramiteGeneral.getArchivo()).isEqualTo(DEFAULT_ARCHIVO);
         assertThat(testTramiteGeneral.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
+        assertThat(testTramiteGeneral.getTotalDocumentos()).isEqualTo(DEFAULT_TOTAL_DOCUMENTOS);
 
         // Validate the TramiteGeneral in Elasticsearch
         TramiteGeneral tramiteGeneralEs = tramiteGeneralSearchRepository.findOne(testTramiteGeneral.getId());
@@ -212,7 +217,8 @@ public class TramiteGeneralResourceIntTest {
             .andExpect(jsonPath("$.[*].fechaResolucion").value(hasItem(DEFAULT_FECHA_RESOLUCION.toString())))
             .andExpect(jsonPath("$.[*].fechaNotificacion").value(hasItem(DEFAULT_FECHA_NOTIFICACION.toString())))
             .andExpect(jsonPath("$.[*].archivo").value(hasItem(DEFAULT_ARCHIVO.toString())))
-            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
     }
 
     @Test
@@ -234,7 +240,8 @@ public class TramiteGeneralResourceIntTest {
             .andExpect(jsonPath("$.fechaResolucion").value(DEFAULT_FECHA_RESOLUCION.toString()))
             .andExpect(jsonPath("$.fechaNotificacion").value(DEFAULT_FECHA_NOTIFICACION.toString()))
             .andExpect(jsonPath("$.archivo").value(DEFAULT_ARCHIVO.toString()))
-            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
+            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
+            .andExpect(jsonPath("$.totalDocumentos").value(DEFAULT_TOTAL_DOCUMENTOS.intValue()));
     }
 
     @Test
@@ -266,7 +273,8 @@ public class TramiteGeneralResourceIntTest {
             .fechaResolucion(UPDATED_FECHA_RESOLUCION)
             .fechaNotificacion(UPDATED_FECHA_NOTIFICACION)
             .archivo(UPDATED_ARCHIVO)
-            .observaciones(UPDATED_OBSERVACIONES);
+            .observaciones(UPDATED_OBSERVACIONES)
+            .totalDocumentos(UPDATED_TOTAL_DOCUMENTOS);
         TramiteGeneralDTO tramiteGeneralDTO = tramiteGeneralMapper.toDto(updatedTramiteGeneral);
 
         restTramiteGeneralMockMvc.perform(put("/api/tramite-generals")
@@ -287,6 +295,7 @@ public class TramiteGeneralResourceIntTest {
         assertThat(testTramiteGeneral.getFechaNotificacion()).isEqualTo(UPDATED_FECHA_NOTIFICACION);
         assertThat(testTramiteGeneral.getArchivo()).isEqualTo(UPDATED_ARCHIVO);
         assertThat(testTramiteGeneral.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
+        assertThat(testTramiteGeneral.getTotalDocumentos()).isEqualTo(UPDATED_TOTAL_DOCUMENTOS);
 
         // Validate the TramiteGeneral in Elasticsearch
         TramiteGeneral tramiteGeneralEs = tramiteGeneralSearchRepository.findOne(testTramiteGeneral.getId());
@@ -354,7 +363,8 @@ public class TramiteGeneralResourceIntTest {
             .andExpect(jsonPath("$.[*].fechaResolucion").value(hasItem(DEFAULT_FECHA_RESOLUCION.toString())))
             .andExpect(jsonPath("$.[*].fechaNotificacion").value(hasItem(DEFAULT_FECHA_NOTIFICACION.toString())))
             .andExpect(jsonPath("$.[*].archivo").value(hasItem(DEFAULT_ARCHIVO.toString())))
-            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
     }
 
     @Test

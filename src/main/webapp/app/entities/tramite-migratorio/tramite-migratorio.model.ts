@@ -21,6 +21,7 @@ export class TramiteMigratorio implements BaseEntity {
         public fechasServicioTramiteMigratorios?: BaseEntity[],
         public tramitesMigraAsociados?: BaseEntity[],
         public seleccionado?: boolean,
+        public totalDocumentos?: number,
     ) {
     }
 }

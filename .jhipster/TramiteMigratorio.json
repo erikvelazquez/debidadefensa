@@ -89,6 +89,10 @@
         {
             "fieldName": "observaciones",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "totalDocumentos",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20180610211046",

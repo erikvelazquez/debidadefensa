@@ -87,6 +87,10 @@
         {
             "fieldName": "fechaSentencia",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "totalDocumentos",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20180610211043",

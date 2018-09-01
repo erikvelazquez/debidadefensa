@@ -75,6 +75,9 @@ public class TramiteMigratorioResourceIntTest {
     private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_TOTAL_DOCUMENTOS = 1L;
+    private static final Long UPDATED_TOTAL_DOCUMENTOS = 2L;
+
     @Autowired
     private TramiteMigratorioRepository tramiteMigratorioRepository;
 
@@ -131,7 +134,8 @@ public class TramiteMigratorioResourceIntTest {
             .fechaNotificacion(DEFAULT_FECHA_NOTIFICACION)
             .fechaResolucion(DEFAULT_FECHA_RESOLUCION)
             .archivo(DEFAULT_ARCHIVO)
-            .observaciones(DEFAULT_OBSERVACIONES);
+            .observaciones(DEFAULT_OBSERVACIONES)
+            .totalDocumentos(DEFAULT_TOTAL_DOCUMENTOS);
         // Add required entity
         Estatus estatusTramiteMigratorio = EstatusResourceIntTest.createEntity(em);
         em.persist(estatusTramiteMigratorio);
@@ -172,6 +176,7 @@ public class TramiteMigratorioResourceIntTest {
         assertThat(testTramiteMigratorio.getFechaResolucion()).isEqualTo(DEFAULT_FECHA_RESOLUCION);
         assertThat(testTramiteMigratorio.getArchivo()).isEqualTo(DEFAULT_ARCHIVO);
         assertThat(testTramiteMigratorio.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
+        assertThat(testTramiteMigratorio.getTotalDocumentos()).isEqualTo(DEFAULT_TOTAL_DOCUMENTOS);
 
         // Validate the TramiteMigratorio in Elasticsearch
         TramiteMigratorio tramiteMigratorioEs = tramiteMigratorioSearchRepository.findOne(testTramiteMigratorio.getId());
@@ -218,7 +223,8 @@ public class TramiteMigratorioResourceIntTest {
             .andExpect(jsonPath("$.[*].fechaNotificacion").value(hasItem(DEFAULT_FECHA_NOTIFICACION.toString())))
             .andExpect(jsonPath("$.[*].fechaResolucion").value(hasItem(DEFAULT_FECHA_RESOLUCION.toString())))
             .andExpect(jsonPath("$.[*].archivo").value(hasItem(DEFAULT_ARCHIVO.toString())))
-            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
     }
 
     @Test
@@ -241,7 +247,8 @@ public class TramiteMigratorioResourceIntTest {
             .andExpect(jsonPath("$.fechaNotificacion").value(DEFAULT_FECHA_NOTIFICACION.toString()))
             .andExpect(jsonPath("$.fechaResolucion").value(DEFAULT_FECHA_RESOLUCION.toString()))
             .andExpect(jsonPath("$.archivo").value(DEFAULT_ARCHIVO.toString()))
-            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
+            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
+            .andExpect(jsonPath("$.totalDocumentos").value(DEFAULT_TOTAL_DOCUMENTOS.intValue()));
     }
 
     @Test
@@ -274,7 +281,8 @@ public class TramiteMigratorioResourceIntTest {
             .fechaNotificacion(UPDATED_FECHA_NOTIFICACION)
             .fechaResolucion(UPDATED_FECHA_RESOLUCION)
             .archivo(UPDATED_ARCHIVO)
-            .observaciones(UPDATED_OBSERVACIONES);
+            .observaciones(UPDATED_OBSERVACIONES)
+            .totalDocumentos(UPDATED_TOTAL_DOCUMENTOS);
         TramiteMigratorioDTO tramiteMigratorioDTO = tramiteMigratorioMapper.toDto(updatedTramiteMigratorio);
 
         restTramiteMigratorioMockMvc.perform(put("/api/tramite-migratorios")
@@ -296,6 +304,7 @@ public class TramiteMigratorioResourceIntTest {
         assertThat(testTramiteMigratorio.getFechaResolucion()).isEqualTo(UPDATED_FECHA_RESOLUCION);
         assertThat(testTramiteMigratorio.getArchivo()).isEqualTo(UPDATED_ARCHIVO);
         assertThat(testTramiteMigratorio.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
+        assertThat(testTramiteMigratorio.getTotalDocumentos()).isEqualTo(UPDATED_TOTAL_DOCUMENTOS);
 
         // Validate the TramiteMigratorio in Elasticsearch
         TramiteMigratorio tramiteMigratorioEs = tramiteMigratorioSearchRepository.findOne(testTramiteMigratorio.getId());
@@ -364,7 +373,8 @@ public class TramiteMigratorioResourceIntTest {
             .andExpect(jsonPath("$.[*].fechaNotificacion").value(hasItem(DEFAULT_FECHA_NOTIFICACION.toString())))
             .andExpect(jsonPath("$.[*].fechaResolucion").value(hasItem(DEFAULT_FECHA_RESOLUCION.toString())))
             .andExpect(jsonPath("$.[*].archivo").value(hasItem(DEFAULT_ARCHIVO.toString())))
-            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
     }
 
     @Test

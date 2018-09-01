@@ -44,7 +44,7 @@
             <th jhiSortBy="estatusTramiteGeneralId"><span >Estatus</span> <span class="fa fa-sort"></span></th>
 
             <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteGeneral.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
-            
+            <th ><span >Documentos</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -58,7 +58,7 @@
                 <td>{{tramiteGeneral.estatusDescripcion}}</td>
 
                 <td>{{tramiteGeneral.fechaIngreso | date:'mediumDate'}}</td>
-                
+                <td>{{tramiteGeneral.totalDocumentos}}</td>
                 <td class="text-right">
                         <button type="submit"
                                 [routerLink]="['/tramite-general', tramiteGeneral.id ]"

@@ -20,6 +20,7 @@ export class TramiteGeneral implements BaseEntity {
         public fechasServicioTramiteGenerals?: BaseEntity[],
         public tramiteGeneralAsociados?: BaseEntity[],
         public seleccionado?: boolean,
+        public totalDocumentos?: number,
     ) {
     }
 }

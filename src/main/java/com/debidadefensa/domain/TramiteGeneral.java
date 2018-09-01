@@ -54,6 +54,9 @@ public class TramiteGeneral implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
 
+    @Column(name = "total_documentos")
+    private Long totalDocumentos;
+
     @ManyToOne
     private Cliente cliente;
 
@@ -207,6 +210,19 @@ public class TramiteGeneral implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public Long getTotalDocumentos() {
+        return totalDocumentos;
+    }
+
+    public TramiteGeneral totalDocumentos(Long totalDocumentos) {
+        this.totalDocumentos = totalDocumentos;
+        return this;
+    }
+
+    public void setTotalDocumentos(Long totalDocumentos) {
+        this.totalDocumentos = totalDocumentos;
     }
 
     public Cliente getCliente() {
@@ -392,6 +408,7 @@ public class TramiteGeneral implements Serializable {
             ", fechaNotificacion='" + getFechaNotificacion() + "'" +
             ", archivo='" + getArchivo() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
+            ", totalDocumentos=" + getTotalDocumentos() +
             "}";
     }
 }
