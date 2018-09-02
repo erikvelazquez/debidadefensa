@@ -15,6 +15,7 @@ import { Observable } from '../../../../../../node_modules/rxjs';
 import { Parte, ParteService } from '../parte';
 import { ExpedienteAsociadoService, ExpedienteAsociado } from '../expediente-asociado';
 import { Documentos, DocumentosService } from '../documentos';
+import { saveAs } from 'file-saver/FileSaver';
 
 @Component({
     selector: 'jhi-expediente-detail',
@@ -228,7 +229,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     getFile(fileName: String){
         this.documentosService.getFile(fileName).subscribe(data => {
             const blob = new Blob([data], { type: 'application/octet-stream' });
-            //saveAs(blob, fileName);
+            saveAs(blob, fileName);
         }, error => {            
             console.log(error);
         });
