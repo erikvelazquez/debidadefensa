@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.core.io.Resource;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+import java.util.stream.Collectors;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,8 +36,18 @@ import java.nio.file.Paths;
 import java.net.MalformedURLException;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
-
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import static org.elasticsearch.index.query.QueryBuilders.*;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.nio.file.Files;
+import java.io.FileInputStream;
+import org.springframework.core.io.ByteArrayResource;
 
 /**
  * REST controller for managing Documentos.
@@ -55,6 +66,7 @@ public class DocumentosResource {
         this.documentosService = documentosService;
     }
 
+    List<String> files = new ArrayList<String>();
 
     //@Autowired
     //FileService fileservice;
@@ -75,17 +87,8 @@ public class DocumentosResource {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
     }
-
-    @GetMapping("/documentos/download/{filename:.+}")
-	@ResponseBody
-	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-		Resource file = loadFile(filename);
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
-				.body(file);
-    }
-
-    private final Path rootLocation = Paths.get("C:\\archivos\\");
+   
+    private final Path rootLocation = Paths.get("C:/archivos/");
     public Resource loadFile(String filename) {
 		try {          
 			Path file = Paths.get("C:\\archivos\\" + filename );
@@ -98,7 +101,53 @@ public class DocumentosResource {
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("FAIL!");
 		}
-	}
+    }
+
+    private static final String DIRECTORY = "C:/archivos/";
+    private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
+ 
+    @Autowired
+    private ServletContext servletContext;
+
+    // http://localhost:8080/download2?fileName=abc.zip
+    // Using ResponseEntity<ByteArrayResource>
+    @GetMapping("/documentos/download")
+    public ResponseEntity<ByteArrayResource> downloadFile2(
+            @RequestParam(defaultValue = DEFAULT_FILE_NAME) String fileName) throws IOException {
+ 
+        MediaType mediaType = getMediaTypeForFileName(this.servletContext, fileName);
+        System.out.println("fileName: " + fileName);
+        System.out.println("mediaType: " + mediaType);
+ 
+        Path path = Paths.get(DIRECTORY + "/" + fileName);
+        byte[] data = Files.readAllBytes(path);
+        ByteArrayResource resource = new ByteArrayResource(data);
+ 
+        return ResponseEntity.ok()
+                // Content-Disposition
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
+                // Content-Type
+                .contentType(mediaType) //
+                // Content-Lengh
+                .contentLength(data.length) //
+                .body(resource);
+    }
+ 
+    // abc.zip
+    // abc.pdf,..
+    public static MediaType getMediaTypeForFileName(ServletContext servletContext, String fileName) {
+        // application/pdf
+        // application/xml
+        // image/gif, ...
+        String mineType = servletContext.getMimeType(fileName);
+        try {
+            MediaType mediaType = MediaType.parseMediaType(mineType);
+            return mediaType;
+        } catch (Exception e) {
+            return MediaType.APPLICATION_OCTET_STREAM;
+        }
+    }
+    
 
     /**
      * POST  /documentos : Create a new documentos.

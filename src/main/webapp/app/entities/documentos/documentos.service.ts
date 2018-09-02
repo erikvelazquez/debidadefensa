@@ -35,11 +35,11 @@ export class DocumentosService {
         formData.append('file', fileToUpload, fileToUpload.name);
 
         const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, { reportProgress: true,  responseType: 'text' });
-        return this.http.request(req);
-       /* return this.http.post<String>(this.resourceUrl + '/upload', formData)
-         .map((res: String) => {
-             return res;
-        });*/
+        return this.http.request(req);      
+    }
+
+    getFile(fileName: String): Observable<Blob> {
+        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName , { responseType:'blob'});
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {

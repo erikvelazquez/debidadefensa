@@ -108,6 +108,11 @@
                                 <td>{{documentos.descripcion}}</td>                                
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">                                  
+                                        <button type="button" (click)="getFile(documentos.nombreDocumento)"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="fa fa-download"></span>
+                                            <span class="d-none d-md-inline" >Descargar</span>
+                                        </button>
                                         <button type="submit"
                                                 [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/delete'} }]"
                                                 replaceUrl="true"
