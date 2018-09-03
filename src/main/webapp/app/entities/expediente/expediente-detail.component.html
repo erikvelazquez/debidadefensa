@@ -9,7 +9,7 @@
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.cliente" for="field_cliente">Cliente</label>
                 <select  [disabled]="expediente.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="expediente.clienteId" >
                     <option [ngValue]="null"></option>
-                    <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
+                    <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; let i = index">{{clienteOption.nombre}}</option>
                 </select>
             </div>
                 
@@ -102,7 +102,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let documentos of documentos ;trackBy: trackId">                                
+                            <tr *ngFor="let documentos of documentos ;let i = index">                                
                                 <td>{{documentos.nombreDocumento}}</td>
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
@@ -152,7 +152,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let parte of partes ;trackBy: trackId">                                    
+                                <tr *ngFor="let parte of partes ;let i = index">                                    
                                     <td>{{parte.tipoParteNombre}}</td>
                                     <td>{{parte.nombre}}</td>                                   
                                     <td class="text-right">
@@ -226,7 +226,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr *ngFor="let expedienteAsociado of expedienteAsociados ;trackBy: trackId">                                            
+                                        <tr *ngFor="let expedienteAsociado of expedienteAsociados ;let i = index">                                            
                                             <td>{{expedienteAsociado.numeroExpediente}}</td>
                                             <td>{{expedienteAsociado.instancia}}</td>
                                             <td>{{expedienteAsociado.organocompetente}}</td>
@@ -274,7 +274,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">
+                                <tr *ngFor="let fechasServicio of fechasServicios ;let i = index">
                                     <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
                                     <td>{{fechasServicio.descripcion}}</td>                                
                                     <td class="text-right">

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Directive, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -13,7 +13,7 @@ import { Expediente, ExpedienteService } from '../expediente';
 import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
 import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
 import { TipoServicio, TipoServicioService } from '../tipo-servicio';
-import { NgModel } from '@angular/forms';
+// import { NgModel } from '@angular/forms';
 
 @Component({
     selector: 'jhi-costo-servicio-dialog',
@@ -140,8 +140,8 @@ export class CostoServicioPopupComponent implements OnInit, OnDestroy {
     }
 }
 
-@Directive({
-    selector: '[appZero]'
+/* @Directive({
+    selector: '[jhiAppZero]'
 })
 export class AppZeroDirective {
 
@@ -163,4 +163,4 @@ export class AppZeroDirective {
         });
 
     }
-}
+}*/

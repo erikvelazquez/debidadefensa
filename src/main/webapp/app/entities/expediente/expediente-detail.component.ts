@@ -45,6 +45,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
     private eventSubscriber: Subscription;
     fileUploads: Observable<string[]>;
+    imageToShow: any;
 
     constructor(
         private documentosService: DocumentosService,
@@ -225,14 +226,13 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         }
         return option;
     }
-    
-    getFile(fileName: String){
-        this.documentosService.getFile(fileName).subscribe(data => {
+
+    getFile(fileName: String) {
+        this.documentosService.getFile(fileName).subscribe((data) => {
             const blob = new Blob([data], { type: 'application/octet-stream' });
             saveAs(blob, fileName);
-        }, error => {            
+        }, (error) => {
             console.log(error);
         });
     }
-    imageToShow: any;   
 }

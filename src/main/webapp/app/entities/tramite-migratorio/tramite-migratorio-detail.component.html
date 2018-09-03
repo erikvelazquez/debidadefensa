@@ -1,9 +1,10 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm" >
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
         <h4 class="modal-title" style="font-weight: bold" id="myTramiteMigratorioLabel" jhiTranslate="debidadefensaApp.tramiteMigratorio.home.createOrEditLabel">Create or edit a Tramite Migratorio</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button> -->
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
     </div>
     <div class="modal-body">
         <!-- <jhi-alert-error></jhi-alert-error>-->
@@ -115,7 +116,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let documentos of documentos ;trackBy: trackId">                                
+                            <tr *ngFor="let documentos of documentos ; let i = index">                                
                                 <td>{{documentos.nombreDocumento}}</td>
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
@@ -195,7 +196,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">                                
+                            <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ; let i = index">                                
                                 <td>{{tramiteMigratorio.nombreExtranjero}}</td>                                
                                 <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>
                                 <td>{{tramiteMigratorio.estatusDescripcion}}</td>                                                            
@@ -235,7 +236,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">
+                            <tr *ngFor="let fechasServicio of fechasServicios ; let i = index">
                                 <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
                                 <td>{{fechasServicio.descripcion}}</td>                                
                                 <td class="text-right">

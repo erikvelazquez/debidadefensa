@@ -20,11 +20,11 @@ export class DocumentosService {
 
     create(fileToUpload: File, documentos: Documentos): Observable<EntityResponseType> {
         this.postFile(fileToUpload)
-        .subscribe((event => {
+        .subscribe((event) => {
             if (event instanceof HttpResponse) {
                // console.log(event.body);
              }
-        }));
+        });
         const copy = this.convert(documentos);
         return this.http.post<Documentos>(this.resourceUrl, copy, { observe: 'response' })
         .map((res: EntityResponseType) => this.convertResponse(res));
@@ -35,11 +35,11 @@ export class DocumentosService {
         formData.append('file', fileToUpload, fileToUpload.name);
 
         const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, { reportProgress: true,  responseType: 'text' });
-        return this.http.request(req);      
+        return this.http.request(req);
     }
 
     getFile(fileName: String): Observable<Blob> {
-        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName , { responseType:'blob'});
+        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName , { responseType: 'blob' });
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {

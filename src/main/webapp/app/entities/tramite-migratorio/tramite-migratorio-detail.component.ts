@@ -42,6 +42,8 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     totalPagos: number;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
+    predicate: any;
+    reverse: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,

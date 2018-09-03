@@ -13,6 +13,8 @@ import {
     CostoServicioDeleteDialogComponent,
     costoServicioRoute,
     costoServicioPopupRoute,
+    CostosPagosDialogComponent,
+    CostosPagosPopupComponent,
 } from './';
 
 const ENTITY_STATES = [
@@ -33,6 +35,8 @@ const ENTITY_STATES = [
         CostoServicioDeleteDialogComponent,
         CostoServicioPopupComponent,
         CostoServicioDeletePopupComponent,
+        CostosPagosDialogComponent,
+        CostosPagosPopupComponent,
     ],
     entryComponents: [
         CostoServicioComponent,
@@ -40,6 +44,8 @@ const ENTITY_STATES = [
         CostoServicioPopupComponent,
         CostoServicioDeleteDialogComponent,
         CostoServicioDeletePopupComponent,
+        CostosPagosDialogComponent,
+        CostosPagosPopupComponent,
     ],
     providers: [
         CostoServicioService,

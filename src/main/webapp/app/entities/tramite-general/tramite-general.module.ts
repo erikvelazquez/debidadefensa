@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgxDateTimePickerModule } from 'ngx-date-time-picker';
 
 import { DebidadefensaSharedModule } from '../../shared';
 import {
@@ -25,7 +24,6 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         DebidadefensaSharedModule,
-        NgxDateTimePickerModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

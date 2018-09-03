@@ -64,11 +64,11 @@ export class ClienteDialogComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
-    
-    goPlaces(clienid: number, tipo: number) {       
+
+    goPlaces(clienid: number, tipo: number) {
         let url = '';
 
-        switch (+tipo) {            
+        switch (+tipo) {
             case 1: {
                // Migratorio;
                url = '../tramite-migratorio-usuario';
@@ -89,11 +89,9 @@ export class ClienteDialogComponent implements OnInit {
                break;
             }
          }
-        
-        this.router.navigate([url, clienid ]).then(res => {
+        this.router.navigate([url, clienid ]).then((res) => {
             this.clear();
         });
-        
     }
 }
 

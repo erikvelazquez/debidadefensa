@@ -80,7 +80,6 @@ export class ExpedienteService {
             .convertLocalDateFromServer(expediente.fechaAlta);
         copy.fechaSentencia = this.dateUtils
             .convertLocalDateFromServer(expediente.fechaSentencia);
-        
         copy.totalDocumentos = copy.totalDocumentos ? copy.totalDocumentos : 0;
         return copy;
     }
