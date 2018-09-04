@@ -1,0 +1,20 @@
+version: '2'
+services:
+    debidadefensa-app:
+        restart: always
+        image: github.com/erikvelazquez/debidadefensa:latest
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://debidadefensa-postgresql:5432/debidadefensa
+            - JHIPSTER_SLEEP=10
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=debidadefensa-elasticsearch:9300
+        ports:
+            - 8080:8080
+    debidadefensa-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=debidadefensa
+            - POSTGRES_PASSWORD=
+    debidadefensa-elasticsearch:
+        image: elasticsearch:2.4.6
+    
