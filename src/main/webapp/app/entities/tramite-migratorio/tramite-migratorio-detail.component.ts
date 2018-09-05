@@ -13,6 +13,7 @@ import { FechasServicioService, FechasServicio} from '../fechas-servicio';
 import { CostoServicioService, CostoServicio } from '../costo-servicio';
 import { PagosService, Pagos } from '../pagos';
 import { DocumentosService, Documentos } from '../documentos';
+import { saveAs } from 'file-saver/FileSaver';
 
 @Component({
     selector: 'jhi-tramite-migratorio-detail',
@@ -72,6 +73,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInTramiteMigratorios();
+        this.tramiteMigratorio = new TramiteMigratorio();
     }
 
     load(id) {
@@ -226,5 +228,14 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
             }
         }
         return option;
+    }
+
+    getFile(fileName: String) {
+        this.documentosService.getFile(fileName).subscribe((data) => {
+            const blob = new Blob([data], { type: 'application/octet-stream' });
+            saveAs(blob, fileName);
+        }, (error) => {
+            console.log(error);
+        });
     }
 }

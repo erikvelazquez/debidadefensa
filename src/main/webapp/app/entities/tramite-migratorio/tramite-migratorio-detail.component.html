@@ -121,7 +121,12 @@
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">                                  
+                                    <div class="btn-group flex-btn-group-container">   
+                                        <button type="button" (click)="getFile(documentos.nombreDocumento)"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="fa fa-download"></span>
+                                            <span class="d-none d-md-inline" >Descargar</span>
+                                        </button>                               
                                         <button type="submit"
                                                 [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/delete'} }]"
                                                 replaceUrl="true"
@@ -187,11 +192,10 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
-                            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >
-                            
-                            <th jhiSortBy="nombreExtranjero"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa fa-sort"></span></th>                            
-                            <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
-                            <th jhiSortBy="estatusTramiteMigratorioId"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa fa-sort"></span></th>
+                            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >                            
+                            <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>                            
+                            <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa"></span></th>
+                            <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
                             <th></th>
                             </tr>
                             </thead>

@@ -3,7 +3,7 @@
             <h4 class="modal-title" id="myTramiteGeneralLabel" style="font-weight: bold" jhiTranslate="debidadefensaApp.tramiteGeneral.home.createOrEditLabel">Create or edit a Tramite General</h4>
             <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                     (click)="clear()">&times;</button> -->
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            
         </div>
         <div class="modal-body">
             <jhi-alert-error></jhi-alert-error>
@@ -123,7 +123,12 @@
                                     <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                     <td>{{documentos.descripcion}}</td>                                
                                     <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">                                  
+                                        <div class="btn-group flex-btn-group-container">  
+                                            <button type="button" (click)="getFile(documentos.nombreDocumento)"
+                                                    class="btn btn-primary btn-sm">
+                                                <span class="fa fa-download"></span>
+                                                <span class="d-none d-md-inline" >Descargar</span>
+                                            </button>                                
                                             <button type="submit"
                                                     [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/delete'} }]"
                                                     replaceUrl="true"

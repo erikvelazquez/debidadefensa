@@ -14,6 +14,7 @@ import { CostoServicio, CostoServicioService } from '../costo-servicio';
 import { Pagos, PagosService } from '../pagos';
 import { Observable } from '../../../../../../node_modules/rxjs';
 import { DocumentosService, Documentos } from '../documentos';
+import { saveAs } from 'file-saver/FileSaver';
 
 @Component({
     selector: 'jhi-tramite-general-detail',
@@ -69,6 +70,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInTramiteGenerals();
+        this.tramiteGeneral = new TramiteGeneral();
     }
 
     load(id) {
@@ -222,5 +224,14 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
             }
         }
         return option;
+    }
+
+    getFile(fileName: String) {
+        this.documentosService.getFile(fileName).subscribe((data) => {
+            const blob = new Blob([data], { type: 'application/octet-stream' });
+            saveAs(blob, fileName);
+        }, (error) => {
+            console.log(error);
+        });
     }
 }

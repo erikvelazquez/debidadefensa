@@ -72,6 +72,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInExpedientes();
+        this.expediente = new Expediente();
     }
 
     load(id) {
