@@ -19,7 +19,7 @@ export class DocumentosService {
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
     create(fileToUpload: File, documentos: Documentos): Observable<EntityResponseType> {
-        this.postFile(fileToUpload)
+        this.postFile(fileToUpload, documentos)
         .subscribe((event) => {
             if (event instanceof HttpResponse) {
                // console.log(event.body);
@@ -30,11 +30,14 @@ export class DocumentosService {
         .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    postFile(fileToUpload: File): Observable<HttpEvent<{}>> {
+    postFile(fileToUpload: File, documentos: Documentos ): Observable<HttpEvent<{}>> {
         const formData: FormData = new FormData();
         formData.append('file', fileToUpload, fileToUpload.name);
-
-        const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, { reportProgress: true,  responseType: 'text' });
+        formData.append('fecha', String(documentos.fecha));
+        formData.append('descripcion', documentos.descripcion);
+        formData.append('idCliente', String(documentos.idCliente));
+        const options = createRequestOption('Hola Mundo');
+        const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, {reportProgress: true,  responseType: 'text' });
         return this.http.request(req);
     }
 

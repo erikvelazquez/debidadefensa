@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.core.io.Resource;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-import java.util.stream.Collectors;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,7 +24,6 @@ import java.io.IOException;
 import org.springframework.http.MediaType;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,17 +32,9 @@ import java.nio.file.Paths;
 import java.net.MalformedURLException;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.elasticsearch.index.query.QueryBuilders.*;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
 import java.nio.file.Files;
-import java.io.FileInputStream;
 import org.springframework.core.io.ByteArrayResource;
 
 /**
@@ -66,16 +54,17 @@ public class DocumentosResource {
         this.documentosService = documentosService;
     }
 
-    List<String> files = new ArrayList<String>();
+    private static final String DIRECTORY = "C:/archivos/";
+    private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 
-    //@Autowired
-    //FileService fileservice;
-    // @CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
     @PostMapping("/documentos/upload")
-    public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file, 
+                                                    @RequestParam("fecha") String fecha,
+                                                    @RequestParam("descripcion") String descripcion,
+                                                    @RequestParam("idCliente") String idCliente) {
         String message = "";
-        try {
-            File convertFile = new File("C:\\archivos\\"+ file.getOriginalFilename());		
+        try {            
+            File convertFile = new File(DIRECTORY + file.getOriginalFilename());		
             convertFile.createNewFile();		
             FileOutputStream fout = new FileOutputStream(convertFile);		
             fout.write(file.getBytes());		
@@ -86,31 +75,11 @@ public class DocumentosResource {
             message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
-    }
-   
-    private final Path rootLocation = Paths.get("C:/archivos/");
-    public Resource loadFile(String filename) {
-		try {          
-			Path file = Paths.get("C:\\archivos\\" + filename );
-			Resource resource = new UrlResource(   file.toUri());
-			if (resource.exists() || resource.isReadable()) {
-				return resource;
-			} else {
-				throw new RuntimeException("FAIL!");
-			}
-		} catch (MalformedURLException e) {
-			throw new RuntimeException("FAIL!");
-		}
-    }
-
-    private static final String DIRECTORY = "C:/archivos/";
-    private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
+    }    
  
     @Autowired
     private ServletContext servletContext;
 
-    // http://localhost:8080/download2?fileName=abc.zip
-    // Using ResponseEntity<ByteArrayResource>
     @GetMapping("/documentos/download")
     public ResponseEntity<ByteArrayResource> downloadFile2(
             @RequestParam(defaultValue = DEFAULT_FILE_NAME) String fileName) throws IOException {

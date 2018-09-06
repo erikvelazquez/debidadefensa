@@ -15,7 +15,7 @@ export class ExpedienteService {
 
     private resourceUrl =  SERVER_API_URL + 'api/expedientes';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/expedientes';
-    private resourceURLbyUser = SERVER_API_URL + 'api/expedientes/user/';
+    private resourceURLbyUser = SERVER_API_URL + 'api/expedientes/user';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
