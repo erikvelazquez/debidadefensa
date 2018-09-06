@@ -36,13 +36,19 @@ export class DocumentosService {
         formData.append('fecha', String(documentos.fecha));
         formData.append('descripcion', documentos.descripcion);
         formData.append('idCliente', String(documentos.idCliente));
-        const options = createRequestOption('Hola Mundo');
+        formData.append('tipoServicioId', String(documentos.tipoServicioId));
+
+        formData.append('expedienteId', String(documentos.expedienteId));
+        formData.append('expedienteAsociadoId', String(documentos.expedienteAsociadoId));
+        formData.append('tramiteMigratorioId', String(documentos.tramiteMigratorioId));
+        formData.append('tramiteGeneralId', String(documentos.tramiteGeneralId));
+
         const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, {reportProgress: true,  responseType: 'text' });
         return this.http.request(req);
     }
 
-    getFile(fileName: String): Observable<Blob> {
-        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName , { responseType: 'blob' });
+    getFile(fileName: String, idCliente: string, tipoServicioId: string): Observable<Blob> {
+        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName + '&idCliente=' + idCliente + '&tipoServicioId=' + tipoServicioId, { responseType: 'blob' });
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {

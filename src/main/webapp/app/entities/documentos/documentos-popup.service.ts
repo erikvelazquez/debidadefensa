@@ -18,7 +18,7 @@ export class DocumentosPopupService {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, idTramite?: number, tiposervicio?: number, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, idTramite?: number, tiposervicio?: number, idCliente?: number, id?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -44,7 +44,7 @@ export class DocumentosPopupService {
                 setTimeout(() => {
                     const documentos = new Documentos();
                     documentos.tipoServicioId = +tiposervicio;
-
+                    documentos.idCliente = +idCliente;
                     switch (documentos.tipoServicioId) {
                         case 1001: {
                            // Expediente

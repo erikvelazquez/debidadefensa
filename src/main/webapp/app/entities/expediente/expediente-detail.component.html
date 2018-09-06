@@ -84,7 +84,7 @@
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title">DOCUMENTOS</span>       
                         <button class="btn btn-secondary btn-sm"                                 
-                            [routerLink]="['/', { outlets: { popup: 'documentos-new/' + expediente.id + '/' + tipoServicio } }]">
+                            [routerLink]="['/', { outlets: { popup: 'documentos-new/' + expediente.id + '/' + tipoServicio + '/' + expediente.clienteId } }]">
                             <span class="fa fa-plus"></span>
                             
                         </button>
@@ -108,7 +108,7 @@
                                 <td>{{documentos.descripcion}}</td>                                
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">                                  
-                                        <button type="button" (click)="getFile(documentos.nombreDocumento)"
+                                        <button type="button" (click)="getFile(documentos.nombreDocumento, expediente.clienteId, tipoServicio)"
                                                 class="btn btn-primary btn-sm">
                                             <span class="fa fa-download"></span>
                                             <span class="d-none d-md-inline" >Descargar</span>

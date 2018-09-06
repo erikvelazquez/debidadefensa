@@ -28,7 +28,7 @@ export const documentosRoute: Routes = [
 
 export const documentosPopupRoute: Routes = [
     {
-        path: 'documentos-new/:idTramite/:tiposervicio',
+        path: 'documentos-new/:idTramite/:tiposervicio/:idCliente',
         component: DocumentosPopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

@@ -170,10 +170,10 @@ export class DocumentosPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.documentosPopupService
-                    .open(DocumentosDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['id']);
+                    .open(DocumentosDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['idCliente'], params['id']);
             } else {
                 this.documentosPopupService
-                    .open(DocumentosDialogComponent as Component, params['idTramite'], params['tiposervicio']);
+                    .open(DocumentosDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['idCliente']);
             }
         });
     }

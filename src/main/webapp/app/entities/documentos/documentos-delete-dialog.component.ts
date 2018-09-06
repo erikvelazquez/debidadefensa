@@ -55,7 +55,7 @@ export class DocumentosDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.documentosPopupService
-                .open(DocumentosDeleteDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['id']);
+                .open(DocumentosDeleteDialogComponent as Component, params['idTramite'], params['tiposervicio'], params['idCliente'], params['id']);
         });
     }
 

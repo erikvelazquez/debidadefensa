@@ -4,7 +4,7 @@ export class TramiteAsociado implements BaseEntity {
     constructor(
         public id?: number,
         public idTramite?: number,
-        public idTramiteAsociado?: number,
+        public idTramiteasociado?: number,
         public tipoServicioId?: number,
         public tipoServicioIdAsociado?: number,
     ) {

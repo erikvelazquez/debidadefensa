@@ -230,8 +230,8 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
         return option;
     }
 
-    getFile(fileName: String) {
-        this.documentosService.getFile(fileName).subscribe((data) => {
+    getFile(fileName: String, idCliente: string, tipoServicioId: string) {
+        this.documentosService.getFile(fileName, idCliente, tipoServicioId).subscribe((data) => {
             const blob = new Blob([data], { type: 'application/octet-stream' });
             saveAs(blob, fileName);
         }, (error) => {

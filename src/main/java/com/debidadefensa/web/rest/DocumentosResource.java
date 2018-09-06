@@ -54,17 +54,29 @@ public class DocumentosResource {
         this.documentosService = documentosService;
     }
 
-    private static final String DIRECTORY = "C:/archivos/";
+    //private static final String DIRECTORY = "C:/archivos/";
+    private static final String DIRECTORY = "\\Documents\\";
+    
     private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 
     @PostMapping("/documentos/upload")
     public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file, 
                                                     @RequestParam("fecha") String fecha,
                                                     @RequestParam("descripcion") String descripcion,
-                                                    @RequestParam("idCliente") String idCliente) {
+                                                    @RequestParam("idCliente") String idCliente,
+                                                    @RequestParam("tipoServicioId") String tipoServicioId,
+                                                    @RequestParam("expedienteId") String expedienteId,
+                                                    @RequestParam("expedienteAsociadoId") String expedienteAsociadoId,
+                                                    @RequestParam("tramiteMigratorioId") String tramiteMigratorioId,
+                                                    @RequestParam("tramiteGeneralId") String tramiteGeneralId) {
         String message = "";
         try {            
-            File convertFile = new File(DIRECTORY + file.getOriginalFilename());		
+            File convertFile = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + file.getOriginalFilename());		
+
+            if(!convertFile.exists()) {
+                convertFile.getParentFile().mkdirs();
+            }
+            
             convertFile.createNewFile();		
             FileOutputStream fout = new FileOutputStream(convertFile);		
             fout.write(file.getBytes());		
@@ -81,14 +93,15 @@ public class DocumentosResource {
     private ServletContext servletContext;
 
     @GetMapping("/documentos/download")
-    public ResponseEntity<ByteArrayResource> downloadFile2(
-            @RequestParam(defaultValue = DEFAULT_FILE_NAME) String fileName) throws IOException {
+    public ResponseEntity<ByteArrayResource> downloadFile2(@RequestParam(defaultValue = DEFAULT_FILE_NAME) String fileName,
+                                                           @RequestParam String idCliente,
+                                                           @RequestParam String tipoServicioId) throws IOException {
  
         MediaType mediaType = getMediaTypeForFileName(this.servletContext, fileName);
         System.out.println("fileName: " + fileName);
         System.out.println("mediaType: " + mediaType);
  
-        Path path = Paths.get(DIRECTORY + "/" + fileName);
+        Path path = Paths.get(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + fileName);
         byte[] data = Files.readAllBytes(path);
         ByteArrayResource resource = new ByteArrayResource(data);
  
