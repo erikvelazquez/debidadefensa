@@ -59,7 +59,7 @@ public class DocumentosResource {
     
     private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 
-    @PostMapping("/documentos/upload")
+     @PostMapping("/documentos/upload")
     public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file, 
                                                     @RequestParam("fecha") String fecha,
                                                     @RequestParam("descripcion") String descripcion,
@@ -68,10 +68,11 @@ public class DocumentosResource {
                                                     @RequestParam("expedienteId") String expedienteId,
                                                     @RequestParam("expedienteAsociadoId") String expedienteAsociadoId,
                                                     @RequestParam("tramiteMigratorioId") String tramiteMigratorioId,
-                                                    @RequestParam("tramiteGeneralId") String tramiteGeneralId) {
+                                                    @RequestParam("tramiteGeneralId") String tramiteGeneralId,
+                                                    @RequestParam("idDocumento") String idDocumento) {
         String message = "";
         try {            
-            File convertFile = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + file.getOriginalFilename());		
+            File convertFile = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + idDocumento + "/" + file.getOriginalFilename());		
 
             if(!convertFile.exists()) {
                 convertFile.getParentFile().mkdirs();
@@ -95,13 +96,14 @@ public class DocumentosResource {
     @GetMapping("/documentos/download")
     public ResponseEntity<ByteArrayResource> downloadFile2(@RequestParam(defaultValue = DEFAULT_FILE_NAME) String fileName,
                                                            @RequestParam String idCliente,
-                                                           @RequestParam String tipoServicioId) throws IOException {
+                                                           @RequestParam String tipoServicioId,
+                                                           @RequestParam String idDocumento) throws IOException {
  
         MediaType mediaType = getMediaTypeForFileName(this.servletContext, fileName);
         System.out.println("fileName: " + fileName);
         System.out.println("mediaType: " + mediaType);
  
-        Path path = Paths.get(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + fileName);
+        Path path = Paths.get(DIRECTORY + idCliente + "/" + tipoServicioId + "/" + idDocumento  + "/" + fileName );
         byte[] data = Files.readAllBytes(path);
         ByteArrayResource resource = new ByteArrayResource(data);
  

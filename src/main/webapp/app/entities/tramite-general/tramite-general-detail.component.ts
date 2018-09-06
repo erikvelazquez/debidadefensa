@@ -227,7 +227,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     }
 
     getFile(fileName: String, idCliente: string, tipoServicioId: string) {
-        this.documentosService.getFile(fileName, idCliente, tipoServicioId).subscribe((data) => {
+        this.documentosService.getFile(fileName, idCliente, tipoServicioId, String(this.tramiteGeneral.id)).subscribe((data) => {
             const blob = new Blob([data], { type: 'application/octet-stream' });
             saveAs(blob, fileName);
         }, (error) => {

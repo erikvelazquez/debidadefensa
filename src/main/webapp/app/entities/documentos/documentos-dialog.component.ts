@@ -90,6 +90,27 @@ export class DocumentosDialogComponent implements OnInit {
                console.log(event.body);
              }
         });*/
+        switch (this.documentos.tipoServicioId) {
+            case 1001: {
+            // Expediente;
+                this.documentos.idDocumento = this.documentos.expedienteId;
+                break;
+            }
+            case 1002: {
+            // Migratorio;
+                this.documentos.idDocumento = this.documentos.tramiteMigratorioId;
+                break;
+            }
+            case 1003: {
+                // General;
+                this.documentos.idDocumento = this.documentos.tramiteGeneralId;
+                break;
+            }
+            default: {
+            // statements;
+            break;
+            }
+        }
         this.subscribeToSaveResponse(this.documentosService.create(this.fileToUpload, this.documentos));
     }
 

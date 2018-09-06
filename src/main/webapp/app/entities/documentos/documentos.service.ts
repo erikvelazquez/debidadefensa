@@ -42,13 +42,17 @@ export class DocumentosService {
         formData.append('expedienteAsociadoId', String(documentos.expedienteAsociadoId));
         formData.append('tramiteMigratorioId', String(documentos.tramiteMigratorioId));
         formData.append('tramiteGeneralId', String(documentos.tramiteGeneralId));
+        formData.append('idDocumento', String(documentos.idDocumento));
 
         const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, {reportProgress: true,  responseType: 'text' });
         return this.http.request(req);
     }
 
-    getFile(fileName: String, idCliente: string, tipoServicioId: string): Observable<Blob> {
-        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName + '&idCliente=' + idCliente + '&tipoServicioId=' + tipoServicioId, { responseType: 'blob' });
+    getFile(fileName: String, idCliente: string, tipoServicioId: string, idDocumento: string): Observable<Blob> {
+        return this.http.get(this.resourceUrl + '/download?fileName=' + fileName
+                                              + '&idCliente=' + idCliente
+                                              + '&tipoServicioId=' + tipoServicioId
+                                              + '&idDocumento=' + idDocumento, { responseType: 'blob' });
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {
