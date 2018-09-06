@@ -14,37 +14,37 @@
         </div>-->
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.cliente" for="field_cliente">Cliente</label>
-            <select [disabled]="tramiteGeneral.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="tramiteGeneral.clienteId" >
+            <select [disabled]="tramiteGeneral.id" class="form-control col-md-10" id="field_cliente" name="cliente" maxlength="250" required [(ngModel)]="tramiteGeneral.clienteId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
             </select>
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.numeroTramite" for="field_numeroTramite">Numero Tramite</label>
-            <input type="text" class="form-control col-md-10" name="numeroTramite" id="field_numeroTramite"
+            <input type="text" class="form-control col-md-10" name="numeroTramite" id="field_numeroTramite" required maxlength="250"
                 [(ngModel)]="tramiteGeneral.numeroTramite" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.titular" for="field_titular">Titular</label>
-            <input type="text" class="form-control col-md-10" name="titular" id="field_titular"
+            <input type="text" class="form-control col-md-10" name="titular" id="field_titular" required maxlength="250"
                 [(ngModel)]="tramiteGeneral.titular" />
         </div>        
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.estatusTramiteGeneral" for="field_estatusTramiteGeneral">Estatus Tramite General</label>
-            <select class="form-control col-md-10" id="field_estatusTramiteGeneral" name="estatusTramiteGeneral" [(ngModel)]="tramiteGeneral.estatusTramiteGeneralId">
+            <label class="form-control-label col-md-2 text-right"  for="field_estatusTramiteGeneral">Estatus</label>
+            <select class="form-control col-md-10" id="field_estatusTramiteGeneral" name="estatusTramiteGeneral" [(ngModel)]="tramiteGeneral.estatusTramiteGeneralId" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatustramitegenerals; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
             </select>
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia" for="field_dependencia">Dependencia</label>
-            <input type="text" class="form-control col-md-10" name="dependencia" id="field_dependencia"
+            <input type="text" class="form-control col-md-10" name="dependencia" id="field_dependencia" maxlength="250"
                 [(ngModel)]="tramiteGeneral.dependencia" />
         </div>
        
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.tipoTramite" for="field_tipoTramite">Tipo Tramite</label>
-            <input type="text" class="form-control col-md-10" name="tipoTramite" id="field_tipoTramite"
+            <input type="text" class="form-control col-md-10" name="tipoTramite" id="field_tipoTramite" maxlength="250"
                 [(ngModel)]="tramiteGeneral.tipoTramite" />
         </div>
         <div class="form-group row">            
@@ -67,8 +67,7 @@
         
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
             <div class="input-group col-md-2">
-                <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaNotificacion"
-                />
+                <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaNotificacion"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaNotificacionDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
@@ -82,7 +81,7 @@
         </div>-->
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.observaciones" for="field_observaciones">Observaciones</label>
-            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
+            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" maxlength="250"
                 [(ngModel)]="tramiteGeneral.observaciones" />
         </div>
 

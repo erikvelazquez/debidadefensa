@@ -13,33 +13,33 @@
                    [(ngModel)]="cliente.id" readonly />
         </div>-->
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.nombre" for="field_nombre">Nombre</label>
-            <input type="text" class="form-control col-md-10" name="nombre" id="field_nombre"
+            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.nombre" for="field_nombre" >Nombre</label>
+            <input type="text" class="form-control col-md-10" name="nombre" maxlength="250" id="field_nombre" required
                 [(ngModel)]="cliente.nombre" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.telefonos" for="field_telefonos">Telefonos</label>
-            <input type="text" class="form-control col-md-10" name="telefonos" id="field_telefonos"
+            <input type="tel" class="form-control col-md-10" name="telefonos" maxlength="250"  id="field_telefonos" required
                 [(ngModel)]="cliente.telefonos" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.correoElectronico" for="field_correoElectronico">Correo Electronico</label>
-            <input type="text" class="form-control col-md-10" name="correoElectronico" id="field_correoElectronico"
+            <input type="email" class="form-control col-md-10" name="correoElectronico" maxlength="250"  id="field_correoElectronico"
                 [(ngModel)]="cliente.correoElectronico" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.domicilio" for="field_domicilio">Domicilio</label>
-            <input type="text" class="form-control col-md-10" name="domicilio" id="field_domicilio" style="min-height: 100px !important"
+            <input type="text" class="form-control col-md-10" name="domicilio" maxlength="250"  id="field_domicilio" style="min-height: 100px !important"
                 [(ngModel)]="cliente.domicilio" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.rfc" for="field_rfc">Rfc</label>
-            <input type="text" class="form-control col-md-10" name="rfc" id="field_rfc"
+            <input type="text" class="form-control col-md-10" name="rfc" maxlength="250"  id="field_rfc"
                 [(ngModel)]="cliente.rfc" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.referencia" for="field_referencia">Referencia</label>
-            <input type="text" class="form-control col-md-10" name="referencia" id="field_referencia"
+            <input type="text" class="form-control col-md-10" name="referencia" maxlength="250"  id="field_referencia"
                 [(ngModel)]="cliente.referencia" />
         </div>
 
@@ -53,6 +53,7 @@
         </div>
 
     </div>
+    
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

@@ -14,7 +14,7 @@
         </div>-->
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.cliente" for="field_cliente">Cliente</label>
-            <select [disabled]="tramiteMigratorio.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="tramiteMigratorio.clienteId" >
+            <select [disabled]="tramiteMigratorio.id" class="form-control col-md-10" id="field_cliente" name="cliente" [(ngModel)]="tramiteMigratorio.clienteId" required >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
             </select>
@@ -22,35 +22,35 @@
 
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero" for="field_nombreExtranjero">Nombre Extranjero</label>
-            <input type="text" class="form-control col-md-10" name="nombreExtranjero" id="field_nombreExtranjero"
+            <input type="text" class="form-control col-md-10" name="nombreExtranjero" id="field_nombreExtranjero" required maxlength="250"
                 [(ngModel)]="tramiteMigratorio.nombreExtranjero" />
         </div>
         
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio" for="field_estatusTramiteMigratorio">Estatus Tramite Migratorio</label>
-            <select class="form-control col-md-10" id="field_estatusTramiteMigratorio" name="estatusTramiteMigratorio" [(ngModel)]="tramiteMigratorio.estatusTramiteMigratorioId">
+            <select class="form-control col-md-10" id="field_estatusTramiteMigratorio" name="estatusTramiteMigratorio" [(ngModel)]="tramiteMigratorio.estatusTramiteMigratorioId" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatustramitemigratorios; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
             </select>
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite" for="field_tipotramite">Tipotramite</label>
-            <input type="text" class="form-control col-md-10" name="tipotramite" id="field_tipotramite"
+            <input type="text" class="form-control col-md-10" name="tipotramite" id="field_tipotramite" maxlength="250"
                 [(ngModel)]="tramiteMigratorio.tipotramite" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad" for="field_entidad">Entidad</label>
-            <input type="text" class="form-control col-md-10" name="entidad" id="field_entidad"
+            <input type="text" class="form-control col-md-10" name="entidad" id="field_entidad" maxlength="250"
                 [(ngModel)]="tramiteMigratorio.entidad" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.nut" for="field_nut">Nut</label>
-            <input type="number" class="form-control col-md-10" name="nut" id="field_nut"
+            <input type="number" class="form-control col-md-10" name="nut" id="field_nut" maxlength="250"
                 [(ngModel)]="tramiteMigratorio.nut" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.contraseniaNUT" for="field_contraseniaNUT">Contrasenia NUT</label>
-            <input type="text" class="form-control col-md-10" name="contraseniaNUT" id="field_contraseniaNUT"
+            <input type="text" class="form-control col-md-10" name="contraseniaNUT" id="field_contraseniaNUT" maxlength="250"
                 [(ngModel)]="tramiteMigratorio.contraseniaNUT" />
         </div>
         <div class="form-group row">
@@ -85,7 +85,7 @@
         </div>-->
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.observaciones" for="field_observaciones">Observaciones</label>
-            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
+            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" maxlength="250"
                 [(ngModel)]="tramiteMigratorio.observaciones" />
         </div>
 
