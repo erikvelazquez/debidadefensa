@@ -33,13 +33,13 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>-->
             <th><span jhiTranslate="debidadefensaApp.cliente.nombre">Nombre</span> <span class="fa"></span></th>
-            <th><span jhiTranslate="debidadefensaApp.cliente.telefonos">Telefonos</span> <span class="fa"></span></th>
-            <th><span jhiTranslate="debidadefensaApp.cliente.correoElectronico">Correo Electronico</span> <span class="fa "></span></th>
+            <th><span >Teléfono(s)</span> <span class="fa"></span></th>
+            <th><span >Correo Electrónico</span> <span class="fa "></span></th>
             
-            <th><span>RFC</span> <span class="fa"></span></th>
+            <th><span>R.F.C.</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.cliente.referencia">Referencia</span> <span class="fa"></span></th>
-            <th><span >Tramites Migratorios</span> <span class="fa"></span></th>
-            <th><span >Tramites Generales</span> <span class="fa"></span></th>
+            <th><span >Trámites Migratorios</span> <span class="fa"></span></th>
+            <th><span >Trámites Generales</span> <span class="fa"></span></th>
             <th><span >Expedientes</span> <span class="fa"></span></th>
             <th  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"></th>
             </tr>

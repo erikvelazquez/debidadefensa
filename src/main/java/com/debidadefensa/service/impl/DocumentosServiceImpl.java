@@ -89,10 +89,12 @@ public class DocumentosServiceImpl implements DocumentosService {
      * @param id the id of the entity
      */
     @Override
-    public void delete(Long id) {
+    public DocumentosDTO delete(Long id) {
         log.debug("Request to delete Documentos : {}", id);
+        DocumentosDTO documento = findOne(id);
         documentosRepository.delete(id);
         documentosSearchRepository.delete(id);
+        return documento;
     }
 
     /**

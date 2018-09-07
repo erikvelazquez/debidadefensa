@@ -29,6 +29,8 @@ export class DocumentosPopupService {
                 this.documentosService.find(id)
                     .subscribe((documentosResponse: HttpResponse<Documentos>) => {
                         const documentos: Documentos = documentosResponse.body;
+                        documentos.idCliente = idCliente;
+                        documentos.idDocumento = idTramite;
                         if (documentos.fecha) {
                             documentos.fecha = {
                                 year: documentos.fecha.getFullYear(),

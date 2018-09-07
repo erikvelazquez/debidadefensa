@@ -207,11 +207,21 @@ public class DocumentosResource {
      * @param id the id of the documentosDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/documentos/{id}")
+    @DeleteMapping("/documentos/{idCliente}/{id}/{tipoServicioId}/{idDocumento}")
     @Timed
-    public ResponseEntity<Void> deleteDocumentos(@PathVariable Long id) {
-        log.debug("REST request to delete Documentos : {}", id);
-        documentosService.delete(id);
+    public ResponseEntity<Void> deleteDocumentos(@PathVariable Long idCliente,
+                                                 @PathVariable Long id,
+                                                 @PathVariable Long tipoServicioId,
+                                                 @PathVariable Long idDocumento) {        
+        log.debug("REST request to delete Documentos : {}", id);  
+        DocumentosDTO documento = documentosService.delete(id);   
+        File file = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + idDocumento + "/" + documento.getNombreDocumento());		
+        if(file.delete()){
+            System.out.println(file.getName() + " is deleted!");
+            
+        }else{
+            System.out.println("Delete operation is failed.");
+        }
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

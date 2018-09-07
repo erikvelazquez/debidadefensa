@@ -54,7 +54,7 @@ export class TramiteMigratorioDeletePopupComponent implements OnInit, OnDestroy 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.tramiteMigratorioPopupService
-                .open(TramiteMigratorioDeleteDialogComponent as Component, params['id']);
+                .open(TramiteMigratorioDeleteDialogComponent as Component, params['idCliente'], params['id']);
         });
     }
 

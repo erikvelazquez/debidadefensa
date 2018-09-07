@@ -54,7 +54,7 @@ export class TramiteGeneralDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.tramiteGeneralPopupService
-                .open(TramiteGeneralDeleteDialogComponent as Component, params['id']);
+                .open(TramiteGeneralDeleteDialogComponent as Component, params['idCliente'], params['id']);
         });
     }
 

@@ -87,8 +87,8 @@ export class DocumentosService {
             .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
     }
 
-    delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+    delete(idCliente: number, id: number, tipoServicioId: number, idDocumento: number): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.resourceUrl}/${idCliente}/${id}/${tipoServicioId}/${idDocumento}`, { observe: 'response'});
     }
 
     search(req?: any): Observable<HttpResponse<Documentos[]>> {

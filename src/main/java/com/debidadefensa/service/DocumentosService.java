@@ -36,7 +36,7 @@ public interface DocumentosService {
      *
      * @param id the id of the entity
      */
-    void delete(Long id);
+    DocumentosDTO delete(Long id);
 
     /**
      * Search for the documentos corresponding to the query.

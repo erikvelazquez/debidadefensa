@@ -30,7 +30,7 @@ export class DocumentosDeleteDialogComponent {
     }
 
     confirmDelete(id: number) {
-        this.documentosService.delete(id).subscribe((response) => {
+        this.documentosService.delete(this.documentos.idCliente, id, this.documentos.tipoServicioId, this.documentos.idDocumento).subscribe((response) => {
             this.eventManager.broadcast({name: 'expedienteListModification', content: 'Deleted an documentos'});
             this.eventManager2.broadcast({name: 'tramiteMigratorioListModification', content: 'Deleted an documentos'});
             this.eventManager3.broadcast({name: 'tramiteGeneralListModification', content: 'Deleted an documentos'});

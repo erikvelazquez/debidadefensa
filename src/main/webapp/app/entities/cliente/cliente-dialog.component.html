@@ -18,12 +18,12 @@
                 [(ngModel)]="cliente.nombre" />
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.telefonos" for="field_telefonos">Telefonos</label>
+            <label class="form-control-label col-md-2 text-right" for="field_telefonos">Teléfono(s)</label>
             <input type="tel" class="form-control col-md-10" name="telefonos" maxlength="250"  id="field_telefonos" required
                 [(ngModel)]="cliente.telefonos" />
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.correoElectronico" for="field_correoElectronico">Correo Electronico</label>
+            <label class="form-control-label col-md-2 text-right" for="field_correoElectronico">Correo Electrónico</label>
             <input type="email" class="form-control col-md-10" name="correoElectronico" maxlength="250"  id="field_correoElectronico"
                 [(ngModel)]="cliente.correoElectronico" />
         </div>
@@ -33,7 +33,7 @@
                 [(ngModel)]="cliente.domicilio" />
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.cliente.rfc" for="field_rfc">Rfc</label>
+            <label class="form-control-label col-md-2 text-right" for="field_rfc">R.F.C.</label>
             <input type="text" class="form-control col-md-10" name="rfc" maxlength="250"  id="field_rfc"
                 [(ngModel)]="cliente.rfc" />
         </div>
@@ -44,9 +44,9 @@
         </div>
 
         <div class="form-group row" [hidden]="!cliente.id">            
-            <label class="form-control-label col-2 text-right" for="field_referencia">Tramites Migratorios</label>
+            <label class="form-control-label col-2 text-right" for="field_referencia">Trámites Migratorios</label>
             <td class="form-control-label col-2 text-left"><a (click)="goPlaces(cliente.id, 1)"><span>{{cliente.totalMigratorios}}</span>  </a></td>
-            <label class="form-control-label col-2 text-right" for="field_referencia">Tramites Generales</label>
+            <label class="form-control-label col-2 text-right" for="field_referencia">Trámites Generales</label>
             <td class="form-control-label col-2 text-left"><a (click)="goPlaces(cliente.id, 2)"><span>{{cliente.totalGenerales}}</span>  </a></td>
             <label class="form-control-label col-2 text-right" for="field_referencia">Expedientes</label>
             <td class="form-control-label col-2 text-left"><a (click)="goPlaces(cliente.id, 3)"><span>{{cliente.totalExpediente}}</span> </a></td> 
