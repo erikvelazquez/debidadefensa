@@ -58,6 +58,7 @@ export class TramiteMigratorioPopupService {
                 setTimeout(() => {
                     const migratorio = new TramiteMigratorio();
                     migratorio.clienteId = +idCliente;
+                    migratorio.clienteId = Number.isNaN(migratorio.clienteId) ? null : migratorio.clienteId;
                     this.ngbModalRef = this.tramiteMigratorioModalRef(component, migratorio);
                     resolve(this.ngbModalRef);
                 }, 0);

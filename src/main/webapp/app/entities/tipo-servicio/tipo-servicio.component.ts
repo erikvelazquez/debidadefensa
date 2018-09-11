@@ -10,7 +10,10 @@ import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-tipo-servicio',
-    templateUrl: './tipo-servicio.component.html'
+    templateUrl: './tipo-servicio.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class TipoServicioComponent implements OnInit, OnDestroy {
 tipoServicios: TipoServicio[];

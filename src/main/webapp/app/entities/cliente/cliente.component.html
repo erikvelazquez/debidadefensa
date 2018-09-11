@@ -1,15 +1,15 @@
 <div>
     <h2 class="text-center header-debida">
-        <span jhiTranslate="debidadefensaApp.cliente.home.title" >Clientes</span>        
+        <span jhiTranslate="debidadefensaApp.cliente.home.title" >CLIENTES</span>        
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
         <div class="col-sm-7" >
             <button *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']" class="btn btn-primary jh-create-entity create-cliente" [routerLink]="['/', { outlets: { popup: ['cliente-new'] } }]">
                 <span class="fa fa-plus"></span>
-                <!--<span class="hidden-sm-down"  jhiTranslate="debidadefensaApp.cliente.home.createLabel">
-                Create new Cliente
-                </span>-->
+                <span class="hidden-sm-down">
+                Nuevo Clientes
+                </span>
             </button>
         </div>
         <div class="col-sm-5 text-right">

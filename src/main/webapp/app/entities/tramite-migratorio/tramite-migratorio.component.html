@@ -1,13 +1,13 @@
 <div>
     <h2 class="text-center header-debida">
-        <span >TRAMITES MIGRATORIOS</span>        
+        <span >TRÁMITES MIGRATORIOS</span>        
     </h2>
     <h2>        
         <button class="btn btn-primary float-right jh-create-entity create-tramite-migratorio" 
             [routerLink]="['/', { outlets: { popup: 'tramite-migratorio-new/'+ cliente.id } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Nuevo Tramite Migratorio
+            Nuevo Trámite Migratorio
             </span>
         </button>
         <br>
@@ -36,12 +36,12 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             
             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>
-            <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite">Tipotramite</span> <span class="fa"></span></th>
+            <th><span>Tipo de Trámite</span> <span class="fa"></span></th>
             <!--<th jhiSortBy="entidad"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad">Entidad</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nut"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nut">Nut</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="contraseniaNUT"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.contraseniaNUT">Contrasenia NUT</span> <span class="fa fa-sort"></span></th>-->
             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
-            <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa"></span></th>
+            <th><span>Fecha de Ingreso</span> <span class="fa"></span></th>
             <!--<th jhiSortBy="fechaNotificacion"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion">Fecha Notificacion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaResolucion"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion">Fecha Resolucion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.archivo">Archivo</span> <span class="fa fa-sort"></span></th>

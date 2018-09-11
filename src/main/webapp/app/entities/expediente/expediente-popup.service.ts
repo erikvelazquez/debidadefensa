@@ -51,6 +51,7 @@ export class ExpedientePopupService {
                 setTimeout(() => {
                     const expediente = new Expediente();
                     expediente.clienteId = + idCliente;
+                    expediente.clienteId = Number.isNaN(expediente.clienteId) ? null : expediente.clienteId;
                     this.ngbModalRef = this.expedienteModalRef(component, expediente);
                     resolve(this.ngbModalRef);
                 }, 0);

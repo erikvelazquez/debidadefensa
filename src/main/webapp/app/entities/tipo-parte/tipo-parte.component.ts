@@ -10,7 +10,10 @@ import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-tipo-parte',
-    templateUrl: './tipo-parte.component.html'
+    templateUrl: './tipo-parte.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class TipoParteComponent implements OnInit, OnDestroy {
 tipoPartes: TipoParte[];

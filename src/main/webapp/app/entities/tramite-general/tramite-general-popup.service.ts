@@ -58,6 +58,7 @@ export class TramiteGeneralPopupService {
                 setTimeout(() => {
                     const general = new TramiteGeneral();
                     general.clienteId = +idCliente;
+                    general.clienteId = Number.isNaN(general.clienteId) ? null : general.clienteId;
                     this.ngbModalRef = this.tramiteGeneralModalRef(component, general);
                     resolve(this.ngbModalRef);
                 }, 0);
