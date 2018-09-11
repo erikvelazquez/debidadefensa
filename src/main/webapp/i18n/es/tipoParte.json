@@ -5,7 +5,7 @@
             "home": {
                 "title": "Tipo Partes",
                 "createLabel": "Crear nuevo Tipo Parte",
-                "createOrEditLabel": "Crear o editar Tipo Parte",
+                "createOrEditLabel": "Crear o editar Tipo de Parte",
                 "search": "Search for Tipo Parte"
             },
             "created": "Un nuevo Tipo Parte ha sido creado con el identificador {{ param }}",
@@ -15,9 +15,9 @@
                 "question": "¿Seguro que quiere eliminar Tipo Parte {{ id }}?"
             },
             "detail": {
-                "title": "Tipo Parte"
+                "title": "Tipo de Parte"
             },
-            "descripcion": "Descripcion"
+            "descripcion": "Descripción"
         }
     }
 }

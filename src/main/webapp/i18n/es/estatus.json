@@ -17,8 +17,8 @@
             "detail": {
                 "title": "Estatus"
             },
-            "descripcion": "Descripcion",
-            "tipoServicio": "Tipo Servicio"
+            "descripcion": "Descripción",
+            "tipoServicio": "Tipo de Servicio"
         }
     }
 }

@@ -12,13 +12,16 @@ import { TramiteGeneralService } from './tramite-general.service';
 import { Cliente, ClienteService } from '../cliente';
 import { Estatus, EstatusService } from '../estatus';
 import { TramiteAsociado, TramiteAsociadoService } from '../tramite-asociado';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-tramite-general-dialog',
     templateUrl: './tramite-general-dialog.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class TramiteGeneralDialogComponent implements OnInit {
 

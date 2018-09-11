@@ -35,7 +35,7 @@
             </select>
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite" for="field_tipotramite">Tipotramite</label>
+            <label class="form-control-label col-md-2 text-right" for="field_tipotramite">Tipo de Trámite</label>
             <input type="text" class="form-control col-md-10" name="tipotramite" id="field_tipotramite"
                 [(ngModel)]="tramiteMigratorio.tipotramite" />
         </div>
@@ -45,24 +45,24 @@
                 [(ngModel)]="tramiteMigratorio.entidad" />
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.nut" for="field_nut">Nut</label>
+            <label class="form-control-label col-md-2 text-right" for="field_nut">NUT</label>
             <input type="number" class="form-control col-md-10" name="nut" id="field_nut"
                 [(ngModel)]="tramiteMigratorio.nut" />
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.contraseniaNUT" for="field_contraseniaNUT">Contrasenia NUT</label>
+            <label class="form-control-label col-md-2 text-right" for="field_contraseniaNUT">Contraseña NUT</label>
             <input type="text" class="form-control col-md-10" name="contraseniaNUT" id="field_contraseniaNUT"
                 [(ngModel)]="tramiteMigratorio.contraseniaNUT" />
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso" for="field_fechaIngreso">Fecha Ingreso</label>
+            <label class="form-control-label col-md-2 text-right" for="field_fechaIngreso">Fecha de Ingreso</label>
             <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
                 <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaIngreso"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaIngresoDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
+            <label class="form-control-label col-md-2 text-right" for="field_fechaNotificacion">Fecha de Notificación</label>
             <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
                 <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaNotificacion"
                 />
@@ -70,7 +70,7 @@
                     <button type="button" class="btn btn-secondary" (click)="fechaNotificacionDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
+            <label class="form-control-label col-md-2 text-right" for="field_fechaResolucion">Fecha de Resolución</label>
             <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
                 <input id="field_fechaResolucion" type="text" class="form-control" name="fechaResolucion" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaResolucion"
                 />

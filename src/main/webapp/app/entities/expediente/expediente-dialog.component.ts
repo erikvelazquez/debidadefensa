@@ -12,13 +12,16 @@ import { ExpedienteService } from './expediente.service';
 import { Cliente, ClienteService } from '../cliente';
 import { Estatus, EstatusService } from '../estatus';
 import { TipoServicio, TipoServicioService } from '../tipo-servicio';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-expediente-dialog',
     templateUrl: './expediente-dialog.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class ExpedienteDialogComponent implements OnInit {
 

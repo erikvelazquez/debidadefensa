@@ -5,7 +5,7 @@
             "home": {
                 "title": "Fechas Servicios",
                 "createLabel": "Crear nuevo Fechas Servicio",
-                "createOrEditLabel": "Crear o editar Fechas Servicio",
+                "createOrEditLabel": "Crear o editar Fechas de Servicio",
                 "search": "Búsqueda"
             },
             "created": "Un nuevo Fechas Servicio ha sido creado con el identificador {{ param }}",
@@ -15,16 +15,16 @@
                 "question": "¿Seguro que quiere eliminar Fechas Servicio {{ id }}?"
             },
             "detail": {
-                "title": "Fechas Servicio"
+                "title": "Fechas de Servicio"
             },
             "fecha": "Fecha",
-            "descripcion": "Descripcion",
+            "descripcion": "Descripción",
             "hora": "Hora",
             "observaciones": "Observaciones",
             "expediente": "Expediente",
             "tramiteMigratorio": "Tramite Migratorio",
             "tramiteGeneral": "Tramite General",
-            "tipoServicio": "Tipo Servicio"
+            "tipoServicio": "Tipo de Servicio"
         }
     }
 }
