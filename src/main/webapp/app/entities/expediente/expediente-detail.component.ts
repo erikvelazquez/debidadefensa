@@ -16,13 +16,16 @@ import { Parte, ParteService } from '../parte';
 import { ExpedienteAsociadoService, ExpedienteAsociado } from '../expediente-asociado';
 import { Documentos, DocumentosService } from '../documentos';
 import { saveAs } from 'file-saver/FileSaver';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-expediente-detail',
     templateUrl: './expediente-detail.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     tipoServicio: number;

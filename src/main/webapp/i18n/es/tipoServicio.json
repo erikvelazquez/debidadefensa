@@ -3,9 +3,9 @@
     "debidadefensaApp": {
         "tipoServicio" : {
             "home": {
-                "title": "Tipo Servicios",
+                "title": "Tipo de Servicios",
                 "createLabel": "Crear nuevo Tipo Servicio",
-                "createOrEditLabel": "Crear o editar Tipo Servicio",
+                "createOrEditLabel": "Crear o editar Tipo de Servicio",
                 "search": "Search for Tipo Servicio"
             },
             "created": "Un nuevo Tipo Servicio ha sido creado con el identificador {{ param }}",
@@ -15,9 +15,9 @@
                 "question": "¿Seguro que quiere eliminar Tipo Servicio {{ id }}?"
             },
             "detail": {
-                "title": "Tipo Servicio"
+                "title": "Tipo de Servicio"
             },
-            "descripcion": "Descripcion",
+            "descripcion": "Descripción",
             "tipoServicioEstatus": "Tipo Servicio Estatus",
             "tipoServicioExpediente": "Tipo Servicio Expediente"
         }

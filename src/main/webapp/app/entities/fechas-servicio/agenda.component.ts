@@ -5,7 +5,8 @@ import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import {
   CalendarEvent,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent,
+  CalendarDateFormatter
 } from 'angular-calendar';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiAlertService } from 'ng-jhipster';
@@ -14,6 +15,7 @@ import { FechasServicio } from './fechas-servicio.model';
 import { FechasServicioPopupService } from './fechas-servicio-popup.service';
 import { FechasServicioService } from './fechas-servicio.service';
 import { HttpResponse, HttpErrorResponse } from '../../../../../../node_modules/@angular/common/http';
+import { CustomDateFormatter } from '../../services/fecha.service';
 
 const colors: any = {
   red: {
@@ -33,7 +35,13 @@ const colors: any = {
 @Component({
     selector: 'jhi-agenda',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './agenda.component.html'
+    templateUrl: './agenda.component.html',
+    providers: [
+      {
+        provide: CalendarDateFormatter,
+        useClass: CustomDateFormatter
+      }
+    ]
 })
 export class AgendaComponent {
 

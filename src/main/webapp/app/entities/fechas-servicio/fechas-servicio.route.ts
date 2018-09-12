@@ -13,7 +13,7 @@ export const fechasServicioRoute: Routes = [
         component: FechasServicioComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
-            pageTitle: 'debidadefensaApp.fechasServicio.home.title'
+            pageTitle: 'debidadefensaApp.fechasServicio.home.titleGeneral'
         },
         canActivate: [UserRouteAccessService]
     }, {

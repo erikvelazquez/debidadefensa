@@ -3,7 +3,7 @@
     "debidadefensaApp": {
         "tramiteGeneral" : {
             "home": {
-                "title": "Tramite Generals",
+                "title": "Trámites Generales",
                 "createLabel": "Crear nuevo Tramite General",
                 "createOrEditLabel": "Crear o editar Tramite General",
                 "search": "Búsqueda"
@@ -19,11 +19,11 @@
             },
             "titular": "Titular",
             "dependencia": "Dependencia",
-            "numeroTramite": "Numero Tramite",
-            "tipoTramite": "Tipo Tramite",
-            "fechaIngreso": "Fecha Ingreso",
-            "fechaResolucion": "Fecha Resolucion",
-            "fechaNotificacion": "Fecha Notificacion",
+            "numeroTramite": "Número de Trámite",
+            "tipoTramite": "Tipo de Trámite",
+            "fechaIngreso": "Fecha de Ingreso",
+            "fechaResolucion": "Fecha de Resolución",
+            "fechaNotificacion": "Fecha de Notificación",
             "archivo": "Archivo",
             "observaciones": "Observaciones",
             "cliente": "Cliente",

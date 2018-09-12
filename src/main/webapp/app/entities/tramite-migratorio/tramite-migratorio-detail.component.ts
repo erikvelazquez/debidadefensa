@@ -14,13 +14,16 @@ import { CostoServicioService, CostoServicio } from '../costo-servicio';
 import { PagosService, Pagos } from '../pagos';
 import { DocumentosService, Documentos } from '../documentos';
 import { saveAs } from 'file-saver/FileSaver';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-tramite-migratorio-detail',
     templateUrl: './tramite-migratorio-detail.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
 

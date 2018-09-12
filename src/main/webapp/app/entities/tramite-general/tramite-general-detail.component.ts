@@ -15,10 +15,16 @@ import { Pagos, PagosService } from '../pagos';
 import { Observable } from '../../../../../../node_modules/rxjs';
 import { DocumentosService, Documentos } from '../documentos';
 import { saveAs } from 'file-saver/FileSaver';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-tramite-general-detail',
-    templateUrl: './tramite-general-detail.component.html'
+    templateUrl: './tramite-general-detail.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
 
