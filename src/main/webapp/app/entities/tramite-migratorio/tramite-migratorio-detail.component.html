@@ -111,7 +111,7 @@
                             <tr>                            
                             <th><span >Nombre</span></th>
                             <th><span jhiTranslate="debidadefensaApp.documentos.fecha">Fecha</span></th>
-                            <th><span jhiTranslate="debidadefensaApp.documentos.descripcion">Descripción</span></th>                            
+                            <th><span >Descripción</span></th>                            
                             <th></th>
                             </tr>
                             </thead>
@@ -154,7 +154,14 @@
         <!-- COSTOS Y PAGOS -->
         <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']" class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                 <div class="col-md-12" style="height: 40px;">
-                    <span class="text-center label-title">COSTOS Y PAGOS</span>                    
+                    <span class="text-center label-title">COSTOS Y PAGOS</span>         
+                    <button type="submit" 
+                            [routerLink]="['../costo-servicio', tramiteMigratorio.id, tipoServicio  ]"      
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-secondary btn-sm">
+                        <span class="fa fa-credit-card"></span>                
+                    </button>            
                 </div>                 
                 <div class="row col-md-4">
                     <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
@@ -168,13 +175,7 @@
                     <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
                     <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
                 </div> 
-                <button type="submit" 
-                        [routerLink]="['../costo-servicio', tramiteMigratorio.id, tipoServicio  ]"      
-                        replaceUrl="true"
-                        queryParamsHandling="merge"
-                        class="btn btn-secondary btn-sm">
-                    <span class="fa fa-eye"></span>                
-                </button> 
+                
             </div>
         </div>          
 
@@ -194,7 +195,7 @@
                             <thead>
                             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >                            
                             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>                            
-                            <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa"></span></th>
+                            <th><span>Fecha de Ingreso</span> <span class="fa"></span></th>
                             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
                             <th></th>
                             </tr>
@@ -235,7 +236,7 @@
                             <thead>
                             <tr>                                
                                 <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
-                                <th><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripcion</span></th>                            
+                                <th><span>Descripción</span></th>                            
                                 <th></th>
                             </tr>
                             </thead>

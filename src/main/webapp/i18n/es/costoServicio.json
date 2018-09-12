@@ -12,7 +12,7 @@
             "updated": "Un Costo Servicio ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Costo Servicio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Costo Servicio {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Costo Servicio?"
             },
             "detail": {
                 "title": "Costo Servicio"

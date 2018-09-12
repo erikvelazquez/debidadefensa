@@ -8,6 +8,7 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="table-responsive" *ngIf="tramiteGenerals">
+            <h5 class="modal-title col-md-12 text-center" id="myTramiteAsociadoLabel" >Trámites Generales</h5>
             <table class="table table-striped">
                 <thead>
                     <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
@@ -30,6 +31,7 @@
             </table>
         </div>
         <div class="table-responsive" *ngIf="tramiteMigratorios">
+            <h5 class="modal-title col-md-12 text-center" id="myTramiteAsociadoLabel" >Trámites Migratorios</h5>
             <table class="table table-striped">
                 <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">

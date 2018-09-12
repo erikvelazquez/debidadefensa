@@ -151,6 +151,13 @@
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title" style="font-weight: bold">COSTOS Y PAGOS</span>                    
+                        <button type="submit" 
+                                [routerLink]="['../costo-servicio', tramiteGeneral.id, tipoServicio  ]"      
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-secondary btn-sm">
+                            <span class="fa fa-credit-card"></span>                
+                        </button>
                     </div>                 
                     <div class="row col-md-4">
                         <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
@@ -164,13 +171,7 @@
                         <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
                         <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
                     </div> 
-                    <button type="submit" 
-                            [routerLink]="['../costo-servicio', tramiteGeneral.id, tipoServicio  ]"      
-                            replaceUrl="true"
-                            queryParamsHandling="merge"
-                            class="btn btn-secondary btn-sm">
-                        <span class="fa fa-eye"></span>                
-                    </button> 
+                     
                 </div>
             </div>    
             

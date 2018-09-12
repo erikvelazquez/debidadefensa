@@ -20,7 +20,7 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.documentos.fecha" for="field_fecha">Fecha</label>
             <div class="input-group col-md-10" style="padding-left: 0px; padding-right: 0px">
-                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="documentos.fecha"
+                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="documentos.fecha" required
                 />
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>
@@ -28,20 +28,20 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.documentos.descripcion" for="field_descripcion">Descripción</label>
-            <input type="text" class="form-control col-md-10" name="descripcion" id="field_descripcion"
+            <label class="form-control-label col-md-2 text-right" for="field_descripcion">Descripción</label>
+            <input type="text" class="form-control col-md-10" name="descripcion" id="field_descripcion" required
                 [(ngModel)]="documentos.descripcion" />
         </div>
         <div class="input-group">
             <label class="input-group-btn col-md-2">
                 <span class="btn btn-primary">
-                    Selecciona archivo <input type="file" id="file"
+                    Seleccionar archivo <input type="file" id="file"
                     (change)="handleFileInput($event.target.files)" 
                     style="display: none;">
                 </span>
             </label>
-            <input type="text" class="form-control col-md-2" name="nombreDocumento" id="field_nombreDocumento"
-                [(ngModel)]="documentos.nombreDocumento" readonly/>            
+            <input type="text" class="form-control col-md-6" name="nombreDocumento" id="field_nombreDocumento"
+                [(ngModel)]="documentos.nombreDocumento" readonly required/>            
         </div>
        
         <!--<div class="form-group">
