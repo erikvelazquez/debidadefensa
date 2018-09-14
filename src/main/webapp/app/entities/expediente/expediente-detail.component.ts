@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
@@ -63,6 +63,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         private costoServicioService: CostoServicioService,
         private pagosService: PagosService,
         private parteService: ParteService,
+        private router: Router
     ) {
     }
 
@@ -188,6 +189,9 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         if (this.expediente.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.expedienteService.update(this.expediente));
+                this.router.navigate(['/expediente-usuario', this.expediente.clienteId]).then((res) => {
+                    // this.clear();
+                });
         } else {
             this.subscribeToSaveResponse(
                 this.expedienteService.create(this.expediente));

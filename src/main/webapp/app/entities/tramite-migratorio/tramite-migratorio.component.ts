@@ -65,7 +65,7 @@ currentAccount: any;
                 query: this.currentSearch,
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
-                    (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body, res.headers),
+                    (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body),
                     (res: HttpErrorResponse) => this.onError(res.message)
                 );
             return;
@@ -79,7 +79,7 @@ currentAccount: any;
 
             this.tramiteMigratorioService.findByUser(this.cliente.id)
             .subscribe(
-                (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body, res.headers),
+                (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
         } else {
@@ -87,7 +87,7 @@ currentAccount: any;
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
-                    (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body, res.headers),
+                    (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body),
                     (res: HttpErrorResponse) => this.onError(res.message)
             );
         }
@@ -164,14 +164,15 @@ currentAccount: any;
         return result;
     }
 
-    private onSuccess(data, headers) {
+    private onSuccess(data) {
         /* this.links = this.parseLinks.parse(headers.get('link'));
+        private onSuccess(data, headers) {
         this.totalItems = headers.get('X-Total-Count');*/
         this.links = 100; // this.parseLinks.parse(headers.get('link'));
         this.totalItems = data.length; // headers.get('X-Total-Count');
 
         this.queryCount = this.totalItems;
-        // this.page = pagingParams.page;
+        this.page = 1; // pagingParams.page;
         this.tramiteMigratorios = data;
     }
     private onError(error) {

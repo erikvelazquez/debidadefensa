@@ -117,14 +117,20 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<TramiteGeneralDTO> findByIdUser(Long idUser) {
-        log.debug("Request to get all Expedientes by user");       
+    public Page<TramiteGeneralDTO> findByIdUser(Pageable pageable, Long idUser) {
+
+        log.debug("Request to get all TramiteGenerals");
+        return tramiteGeneralRepository.findByCliente_id(pageable, idUser)
+            .map(tramiteGeneralMapper::toDto);
+
+
+        //log.debug("Request to get all Expedientes by user");       
        /*  Cliente cliente = new Cliente();
         cliente.setId(idUser);
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return tramiteGeneralRepository.findByCliente_id(idUser).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+     //  return tramiteGeneralRepository.findByCliente_id(idUser).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 

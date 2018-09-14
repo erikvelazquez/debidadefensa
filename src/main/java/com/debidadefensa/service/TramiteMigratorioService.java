@@ -57,7 +57,7 @@ public interface TramiteMigratorioService {
      * @param idUser the id of user
      * @return the list of entities
      */
-    List<TramiteMigratorioDTO> findByIdUser(Long idUser);
+    Page<TramiteMigratorioDTO> findByIdUser(Pageable pageable, Long idUser);
 
     List<TramiteMigratorioDTO> findByFaltantes(Long id);
 

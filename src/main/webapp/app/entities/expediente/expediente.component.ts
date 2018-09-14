@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { Expediente } from './expediente.model';
 import { ExpedienteService } from './expediente.service';
@@ -38,6 +38,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private activatedRoute: ActivatedRoute,
         private principal: Principal,
+        private parseLinks: JhiParseLinks,
         private route: ActivatedRoute,
         private clienteService: ClienteService,
     ) {
@@ -163,8 +164,12 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     }
 
     private onSuccess(data, headers) {
-        this.links = 100; // this.parseLinks.parse(headers.get('link'));
-        this.totalItems = data.length; // headers.get('X-Total-Count');
+       // this.links = 100; // this.parseLinks.parse(headers.get('link'));
+       // this.totalItems = data.length; // headers.get('X-Total-Count');
+
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = headers.get('X-Total-Count');
+
         for (let i = 0; i < data.length; i++) {
             this.expedientes.push(data[i]);
         }

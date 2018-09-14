@@ -12,7 +12,7 @@
             "updated": "Un Estatus ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Estatus ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Estatus {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Estatus?"
             },
             "detail": {
                 "title": "Estatus"

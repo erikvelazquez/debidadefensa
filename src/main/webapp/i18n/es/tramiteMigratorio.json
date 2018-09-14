@@ -4,18 +4,18 @@
         "tramiteMigratorio" : {
             "home": {
                 "title": "Trámites Migratorios",
-                "createLabel": "Nuevo Tramite Migratorio",
-                "createOrEditLabel": "Crear o editar Tramite Migratorio",
+                "createLabel": "Nuevo Trámite Migratorio",
+                "createOrEditLabel": "Crear o editar Trámite Migratorio",
                 "search": "Búsqueda"
             },
-            "created": "Un nuevo Tramite Migratorio ha sido creado con el identificador {{ param }}",
-            "updated": "Un Tramite Migratorio ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Tramite Migratorio ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Trámite Migratorio ha sido creado con el identificador",
+            "updated": "Un Trámite Migratorio ha sido actualizado con el identificador",
+            "deleted": "Un Trámite Migratorio ha sido eliminado con el identificador",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Tramite Migratorio {{ id }}?"
+                "question": "¿Seguro que quiere eliminar el trámite migratorio?"
             },
             "detail": {
-                "title": "Tramite Migratorio"
+                "title": "Trámite Migratorio"
             },
             "nombreExtranjero": "Nombre Extranjero",
             "tipotramite": "Tipo trámite",
@@ -32,8 +32,8 @@
             "tramitteMigratorioCosto": "Tramitte Migratorio Costo",
             "tramitteMigratorioPago": "Tramitte Migratorio Pago",
             "tramitteMigratorioDocumentos": "Tramitte Migratorio Documentos",
-            "fechasServicioTramiteMigratorio": "Fechas Servicio Tramite Migratorio",
-            "tramitesMigraAsociados": "Tramites Migra Asociados"
+            "fechasServicioTramiteMigratorio": "Fechas Servicio Trámite Migratorio",
+            "tramitesMigraAsociados": "Tramites Migratorios Asociados"
         }
     }
 }

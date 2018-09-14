@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
@@ -61,6 +61,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
         private costoServicioService: CostoServicioService,
         private pagosService: PagosService,
         private documentosService: DocumentosService,
+        private router: Router
     ) {
     }
 
@@ -185,6 +186,9 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
         if (this.tramiteGeneral.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.tramiteGeneralService.update(this.tramiteGeneral));
+                this.router.navigate(['/tramite-general-usuario', this.tramiteGeneral.clienteId]).then((res) => {
+                    // this.clear();
+                });
         } else {
             this.subscribeToSaveResponse(
                 this.tramiteGeneralService.create(this.tramiteGeneral));

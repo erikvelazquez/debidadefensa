@@ -85,10 +85,14 @@ public class ExpedienteServiceImpl implements ExpedienteService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ExpedienteDTO> findByIdUser(Long idUser) {
-        log.debug("Request to get all Expedientes by user");       
+    public Page<ExpedienteDTO> findByIdUser(Pageable pageable, Long idUser) {
+        log.debug("Request to get all Expedientes");
+        Page<Expediente> expedientes = expedienteRepository.findByCliente_id(pageable, idUser);
+        return expedientes.map(expedienteMapper::toDto);
+
+        /*log.debug("Request to get all Expedientes by user");       
         List<Expediente>  lsExpedientes = expedienteRepository.findByCliente_id(idUser);
-        return lsExpedientes.stream().map(expedienteMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return lsExpedientes.stream().map(expedienteMapper::toDto).collect(Collectors.toCollection(LinkedList::new));*/
       //  return result.map(expedienteMapper::toDto);
     }
 

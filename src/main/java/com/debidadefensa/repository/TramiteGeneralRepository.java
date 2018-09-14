@@ -37,9 +37,10 @@ public interface TramiteGeneralRepository extends JpaRepository<TramiteGeneral, 
             + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_general_id FROM tramite_general c "
             + " LEFT OUTER JOIN (select count(a.tramite_general_id) as total_documentos, a.tramite_general_id from documentos a group by a.tramite_general_id) p "
             + " ON (c.id = p.tramite_general_id) "
-            + " WHERE c.cliente_id = :id",
+            + " WHERE c.cliente_id = :id"
+            + " ORDER BY ?#{#pageable}",
             nativeQuery = true)
-    List<TramiteGeneral> findByCliente_id(@Param("id") long cliente_id);
+    Page<TramiteGeneral> findByCliente_id(Pageable pageable, @Param("id") long cliente_id);
 
     @Query(value = "SELECT * FROM tramite_general "
                 + " WHERE id NOT IN ( SELECT id_tramiteasociado "  

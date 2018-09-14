@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
@@ -61,6 +61,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
         private costoServicioService: CostoServicioService,
         private pagosService: PagosService,
         private documentosService: DocumentosService,
+        private router: Router
     ) {
     }
 
@@ -186,6 +187,9 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
         if (this.tramiteMigratorio.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.tramiteMigratorioService.update(this.tramiteMigratorio));
+                this.router.navigate(['/tramite-migratorio-usuario', this.tramiteMigratorio.clienteId]).then((res) => {
+                    // this.clear();
+                });
         } else {
             this.subscribeToSaveResponse(
                 this.tramiteMigratorioService.create(this.tramiteMigratorio));

@@ -107,11 +107,14 @@ public class ExpedienteResource {
      */
     @GetMapping("/expedientes/user/{iduser}")
     @Timed
-    public ResponseEntity<List<ExpedienteDTO>> getAllExpedientesById(@PathVariable Long iduser) {
-        log.debug("REST request to get a page of Expedientes");
+    public ResponseEntity<List<ExpedienteDTO>> getAllExpedientesById(Pageable pageable, @PathVariable Long iduser) {
+        Page<ExpedienteDTO> page = expedienteService.findByIdUser(pageable, iduser);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/expedientes");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        /*   log.debug("REST request to get a page of Expedientes");
         List<ExpedienteDTO> ls = expedienteService.findByIdUser(iduser);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);    */ 
     }
 
     /**

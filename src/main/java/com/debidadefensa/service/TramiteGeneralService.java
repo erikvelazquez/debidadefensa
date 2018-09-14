@@ -57,7 +57,7 @@ public interface TramiteGeneralService {
      * @param idUser the id of user
      * @return the list of entities
      */
-    List<TramiteGeneralDTO> findByIdUser(Long idUser);
+    Page<TramiteGeneralDTO> findByIdUser( Pageable pageable, Long idUser);
 
     List<TramiteGeneralDTO> findByFaltantes(Long id);
 

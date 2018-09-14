@@ -33,7 +33,7 @@ public interface ExpedienteService {
      * @param idUser the id of user
      * @return the list of entities
      */
-    List<ExpedienteDTO> findByIdUser(Long idUser);
+    Page<ExpedienteDTO> findByIdUser(Pageable pageable, Long idUser);
 
     /**
      * Get the "id" expediente.

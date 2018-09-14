@@ -13,7 +13,7 @@
             "updated": "Un Fechas Servicio ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Fechas Servicio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Fechas Servicio {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Fechas de Servicio?"
             },
             "detail": {
                 "title": "Fechas de Servicio"

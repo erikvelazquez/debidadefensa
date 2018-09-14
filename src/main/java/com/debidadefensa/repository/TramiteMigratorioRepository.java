@@ -38,9 +38,10 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
             + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_migratorio_id FROM tramite_migratorio c "
             + " LEFT OUTER JOIN (select count(a.tramite_migratorio_id) as total_documentos, a.tramite_migratorio_id from documentos a group by a.tramite_migratorio_id) p "
             + " ON (c.id = p.tramite_migratorio_id) "
-            + " WHERE c.cliente_id = :id",
+            + " WHERE c.cliente_id = :id"
+            + " ORDER BY ?#{#pageable}",
             nativeQuery = true)
-    List<TramiteMigratorio> findByCliente_id(@Param("id") long cliente_id);
+    Page<TramiteMigratorio> findByCliente_id(Pageable pageable, @Param("id") long cliente_id);
 
 
     @Query(value = "SELECT * FROM tramite_migratorio "

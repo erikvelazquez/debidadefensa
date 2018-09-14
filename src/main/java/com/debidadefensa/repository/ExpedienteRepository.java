@@ -33,7 +33,8 @@ public interface ExpedienteRepository extends JpaRepository<Expediente, Long> {
             + " p.total_documentos, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
             + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p "
             + " ON (c.id = p.expediente_id) "
-            + " WHERE c.cliente_id = :id",
+            + " WHERE c.cliente_id = :id"
+            + " ORDER BY ?#{#pageable}",
             nativeQuery = true)
-    List<Expediente> findByCliente_id(@Param("id") long cliente_id);
+    Page<Expediente> findByCliente_id(Pageable pageable, @Param("id") long cliente_id);
 }

@@ -118,15 +118,14 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<TramiteMigratorioDTO> findByIdUser(Long idUser) {
+    public Page<TramiteMigratorioDTO> findByIdUser(Pageable pageable, Long idUser) {
         log.debug("Request to get all Expedientes by user");       
-       /*  Cliente cliente = new Cliente();
-        cliente.setId(idUser);
-        Expediente exp = new Expediente();
-        exp.setCliente(cliente);
-        Example<Expediente> expediente = Example.of(exp);*/
-        List<TramiteMigratorio> result = tramiteMigratorioRepository.findByCliente_id(idUser);
-        return result.stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       
+        return tramiteMigratorioRepository.findByCliente_id(pageable, idUser)
+            .map(tramiteMigratorioMapper::toDto);
+            
+        //List<TramiteMigratorio> result = tramiteMigratorioRepository.findByCliente_id(idUser);
+        // return result.stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 

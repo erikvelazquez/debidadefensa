@@ -12,7 +12,7 @@
             "updated": "Un Tipo Parte ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Tipo Parte ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Tipo Parte {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Tipo de Parte?"
             },
             "detail": {
                 "title": "Tipo de Parte"

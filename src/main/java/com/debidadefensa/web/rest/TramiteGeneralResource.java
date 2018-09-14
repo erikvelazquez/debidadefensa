@@ -152,11 +152,11 @@ public class TramiteGeneralResource {
      */
     @GetMapping("/tramite-generals/user/{iduser}")
     @Timed
-    public ResponseEntity<List<TramiteGeneralDTO>> getAllTramitesGeneralesById(@PathVariable Long iduser) {
-        log.debug("REST request to get a page of Expedientes");
-        List<TramiteGeneralDTO> ls = tramiteGeneralService.findByIdUser(iduser);
-//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+    public ResponseEntity<List<TramiteGeneralDTO>> getAllTramitesGeneralesById(Pageable pageable, @PathVariable Long iduser) {
+        log.debug("REST request to get a page of TramiteGenerals");
+        Page<TramiteGeneralDTO> page = tramiteGeneralService.findByIdUser(pageable, iduser);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/tramite-generals");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

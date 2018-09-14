@@ -12,7 +12,7 @@
             "updated": "Un Tipo Servicio ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Tipo Servicio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Tipo Servicio {{ id }}?"
+                "question": "¿Seguro que quiere eliminar Tipo de Servicio?"
             },
             "detail": {
                 "title": "Tipo de Servicio"

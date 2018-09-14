@@ -125,22 +125,25 @@ export class FechasServicioDialogComponent implements OnInit {
         if (!this.isGeneral) {
             switch (result.tipoServicioId) {
                 case 1001: {
-                // Expediente
-                this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
-                break;
+                    // Expediente
+                    this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+                    break;
                 }
                 case 1002: {
-                // Migratorio
-                this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
-                break;
+                    // Migratorio
+                    this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+                    break;
                 }
                 case 1003: {
                     // General
                     this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
                     break;
                 }
                 default: {
-                // statements
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
                 break;
                 }
             }
