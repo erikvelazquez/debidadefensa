@@ -97,7 +97,7 @@
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;"> 
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title">DOCUMENTOS</span>       
-                        <button class="btn btn-secondary btn-sm"                                 
+                        <button class="btn btn-secondary btn-sm" type="button"                    
                             [routerLink]="['/', { outlets: { popup: 'documentos-new/' + tramiteMigratorio.id + '/' + tipoServicio + '/' + tramiteMigratorio.clienteId} }]">
                             <span class="fa fa-plus"></span>
                             
@@ -184,7 +184,7 @@
             <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                 <div class="col-md-12" style="height: 40px;">
                     <span class="col-md-12 text-center label-title">Trámites migratorios asociados</span>       
-                    <button class="btn btn-secondary btn-sm"  
+                    <button class="btn btn-secondary btn-sm" type="button"
                         [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/edit'} }]" >
                         <span class="fa fa-plus"></span>                        
                     </button>
@@ -201,21 +201,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ; let i = index">                                
-                                <td>{{tramiteMigratorio.nombreExtranjero}}</td>                                
-                                <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>
-                                <td>{{tramiteMigratorio.estatusDescripcion}}</td>                                                            
+                            <tr *ngFor="let tramiteMigratorioasoc of tramiteMigratorios ; let i = index">                                
+                                <td>{{tramiteMigratorioasoc.nombreExtranjero}}</td>                                
+                                <td>{{tramiteMigratorioasoc.fechaIngreso | date:'mediumDate'}}</td>
+                                <td>{{tramiteMigratorioasoc.estatusDescripcion}}</td>                                                            
                                 <td class="text-right">
-                                    <!--<div class="btn-group flex-btn-group-container">                                      
-                                        <button type="submit" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
-                                                [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/delete'} }]"
+                                    <div class="btn-group flex-btn-group-container">                                      
+                                        <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/' + tramiteMigratorioasoc.id + '/delete'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                                 class="btn btn-danger btn-sm">
                                             <span class="fa fa-remove"></span>
                                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                                         </button>
-                                    </div>-->
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -226,7 +226,7 @@
             <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                 <div class="col-md-12" style="height: 40px;">
                     <span class="text-center label-title">Fechas</span>
-                    <button class="btn btn-secondary btn-sm" 
+                    <button class="btn btn-secondary btn-sm" type="button"
                             [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + tramiteMigratorio.id + '/' + tipoServicio } }]">
                         <span class="fa fa-plus"></span>                        
                     </button>

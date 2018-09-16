@@ -99,7 +99,7 @@
                     <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;"> 
                         <div class="col-md-12" style="height: 40px;">
                             <span class="col-md-12 text-center label-title">DOCUMENTOS</span>       
-                            <button class="btn btn-secondary btn-sm"                                 
+                            <button class="btn btn-secondary btn-sm" type="button"                          
                                 [routerLink]="['/', { outlets: { popup: 'documentos-new/' + tramiteGeneral.id + '/' + tipoServicio + '/' + tramiteGeneral.clienteId } }]">
                                 <span class="fa fa-plus"></span>
                                 
@@ -180,7 +180,7 @@
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites generales asociados</span>       
-                        <button class="btn btn-secondary btn-sm"  
+                        <button class="btn btn-secondary btn-sm" type="button"
                                 [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/' + tipoServicio + '/edit'} }]" >
                             <span class="fa fa-plus"></span>
                             
@@ -193,13 +193,25 @@
                                     <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
                                         <th><span >Cliente</span> </th>                        
                                         <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> </th>                       
-                                        
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let tramiteGeneral of tramiteGenerals ; let i = index">
-                                        <td>{{tramiteGeneral.clienteNombre}}</td> 
-                                        <td>{{tramiteGeneral.titular}}</td> 
+                                    <tr *ngFor="let tramiteGeneralasoc of tramiteGenerals ; let i = index">
+                                        <td>{{tramiteGeneralasoc.clienteNombre}}</td> 
+                                        <td>{{tramiteGeneralasoc.titular}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">                                      
+                                                <button type="button"
+                                                        [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/' + tipoServicio + '/' + tramiteGeneralasoc.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <span class="fa fa-remove"></span>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -209,7 +221,7 @@
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title" style="font-weight: bold">Fechas</span>
-                        <button class="btn btn-secondary btn-sm" 
+                        <button class="btn btn-secondary btn-sm" type="button"
                                 [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + tramiteGeneral.id + '/' + tipoServicio } }]">
                             <span class="fa fa-plus"></span>                        
                         </button>

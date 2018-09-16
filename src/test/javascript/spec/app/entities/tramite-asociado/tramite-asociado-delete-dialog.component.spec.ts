@@ -45,7 +45,7 @@ describe('Component Tests', () => {
                         spyOn(service, 'delete').and.returnValue(Observable.of({}));
 
                         // WHEN
-                        comp.confirmDelete(123);
+                        comp.confirmDelete();
                         tick();
 
                         // THEN

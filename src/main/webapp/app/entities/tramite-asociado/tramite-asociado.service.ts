@@ -37,8 +37,8 @@ export class TramiteAsociadoService {
             .map((res: HttpResponse<TramiteAsociado[]>) => this.convertArrayResponse(res));
     }
 
-    delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+    delete(id: number, tipoServicio: number, idAsociado): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.resourceUrl}/${id}/${tipoServicio}/${idAsociado}`, { observe: 'response'});
     }
 
     search(req?: any): Observable<HttpResponse<TramiteAsociado[]>> {

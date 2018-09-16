@@ -48,7 +48,7 @@ export const tramiteAsociadoPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'tramite-asociado/:id/delete',
+        path: 'tramite-asociado/:id/:tiposervicio/:idasociado/delete',
         component: TramiteAsociadoDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

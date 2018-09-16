@@ -12,7 +12,7 @@
             "updated": "Un Tramite Asociado ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Tramite Asociado ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Tramite Asociado {{ id }}?"
+                "question": "¿Seguro que quiere eliminar el trámite asociado?"
             },
             "detail": {
                 "title": "Tramite Asociado"

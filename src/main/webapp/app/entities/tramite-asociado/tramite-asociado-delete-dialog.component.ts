@@ -13,13 +13,15 @@ import { TramiteAsociadoService } from './tramite-asociado.service';
     templateUrl: './tramite-asociado-delete-dialog.component.html'
 })
 export class TramiteAsociadoDeleteDialogComponent {
-
-    tramiteAsociado: TramiteAsociado;
+    id: number;
+    tiposervicio: number;
+    idAsociado: number;
 
     constructor(
         private tramiteAsociadoService: TramiteAsociadoService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private eventManager2: JhiEventManager
     ) {
     }
 
@@ -27,12 +29,11 @@ export class TramiteAsociadoDeleteDialogComponent {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number) {
-        this.tramiteAsociadoService.delete(id).subscribe((response) => {
-            this.eventManager.broadcast({
-                name: 'tramiteAsociadoListModification',
-                content: 'Deleted an tramiteAsociado'
-            });
+    confirmDelete() {
+        this.tramiteAsociadoService.delete(this.id, this.tiposervicio, this.idAsociado).subscribe((response) => {
+            this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+            this.eventManager2.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+
             this.activeModal.dismiss(true);
         });
     }
@@ -54,7 +55,7 @@ export class TramiteAsociadoDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.tramiteAsociadoPopupService
-                .open(TramiteAsociadoDeleteDialogComponent as Component, params['id']);
+                .openDelete(TramiteAsociadoDeleteDialogComponent as Component, params['id'], params['tiposervicio'], params['idasociado']);
         });
     }
 

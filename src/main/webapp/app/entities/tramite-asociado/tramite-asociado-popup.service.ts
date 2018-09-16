@@ -43,6 +43,15 @@ export class TramiteAsociadoPopupService {
         return result;
     }
 
+    openDelete(component: Component, id?: number, tiposervicio?: number, idAsociado?: number | any): Promise<NgbModalRef> {
+        return new Promise<NgbModalRef>((resolve, reject) => {
+            setTimeout(() => {
+                this.ngbModalRef = this.tramiteAsociadoDeleteModalRef(component, id, tiposervicio, idAsociado);
+                resolve(this.ngbModalRef);
+            }, 0);
+        });
+    }
+
     open(component: Component, id?: number, tiposervicio?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
@@ -108,6 +117,22 @@ export class TramiteAsociadoPopupService {
         modalRef.componentInstance.tramiteMigratorios = tramiteMigratorios;
         modalRef.componentInstance.tramiteM = tramiteM;
         modalRef.componentInstance.tiposervicio = tiposervicio;
+
+        modalRef.result.then((result) => {
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+            this.ngbModalRef = null;
+        }, (reason) => {
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+            this.ngbModalRef = null;
+        });
+        return modalRef;
+    }
+
+    tramiteAsociadoDeleteModalRef(component: Component, id: number, tiposervicio: number, idAsociado): NgbModalRef {
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        modalRef.componentInstance.id = id;
+        modalRef.componentInstance.tiposervicio = tiposervicio;
+        modalRef.componentInstance.idAsociado = idAsociado;
 
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });

@@ -96,10 +96,11 @@ public class TramiteAsociadoServiceImpl implements TramiteAsociadoService {
      * @param id the id of the entity
      */
     @Override
-    public void delete(Long id) {
+    public void delete(Long id, Long tiposervicio, Long idasociado) {
         log.debug("Request to delete TramiteAsociado : {}", id);
-        tramiteAsociadoRepository.delete(id);
-        tramiteAsociadoSearchRepository.delete(id);
+        TramiteAsociado tramite = tramiteAsociadoRepository.findAsociado(id, tiposervicio, idasociado);
+        tramiteAsociadoRepository.delete(tramite.getId());
+        tramiteAsociadoSearchRepository.delete(tramite.getId());
     }
 
     /**

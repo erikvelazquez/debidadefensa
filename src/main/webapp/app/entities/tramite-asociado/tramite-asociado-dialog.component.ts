@@ -24,9 +24,11 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     tramiteMigratorios: TramiteMigratorio[];
     tramiteM: TramiteMigratorio;
     tiposervicio: number;
-
+    esGeneral: boolean;
+    esMigratorio: boolean;
     isSaving: boolean;
     tramitesA: TramiteAsociado[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private tramiteAsociadoService: TramiteAsociadoService,
@@ -37,6 +39,8 @@ export class TramiteAsociadoDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.esGeneral = this.tiposervicio === 1003 ? true : false;
+        this.esMigratorio = this.tiposervicio === 1002 ? true : false;
     }
 
     clear() {
