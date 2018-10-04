@@ -108,6 +108,12 @@ export class CostoServicioDialogComponent implements OnInit {
     trackTipoServicioById(index: number, item: TipoServicio) {
         return item.id;
     }
+    onChange(event: any) {
+        this.isSaving = false;
+        if (event < 0) {
+            this.isSaving = true;
+        }
+    }
 }
 
 @Component({
