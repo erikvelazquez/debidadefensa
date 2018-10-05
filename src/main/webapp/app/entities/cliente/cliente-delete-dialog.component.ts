@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Cliente } from './cliente.model';
 import { ClientePopupService } from './cliente-popup.service';
@@ -19,7 +19,8 @@ export class ClienteDeleteDialogComponent {
     constructor(
         private clienteService: ClienteService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private jhiAlertService: JhiAlertService,
     ) {
     }
 
@@ -34,7 +35,11 @@ export class ClienteDeleteDialogComponent {
                 content: 'Deleted an cliente'
             });
             this.activeModal.dismiss(true);
-        });
+        }, (res: HttpErrorResponse) => this.onError('debidadefensaApp.cliente.erroreliminar'));
+    }
+
+     private onError(error) {
+        this.jhiAlertService.error(error, null, null);
     }
 }
 

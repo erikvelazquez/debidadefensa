@@ -17,6 +17,7 @@
             "detail": {
                 "title": "Cliente"
             },
+            "erroreliminar": "El cliente no puede ser eliminado ya que contiene trámites o expedientes asociados.",
             "nombre": "Nombre",
             "telefonos": "Telefonos",
             "correoElectronico": "Correo Electronico",
