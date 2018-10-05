@@ -10,7 +10,10 @@ import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-estatus',
-    templateUrl: './estatus.component.html'
+    templateUrl: './estatus.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class EstatusComponent implements OnInit, OnDestroy {
 estatuses: Estatus[];

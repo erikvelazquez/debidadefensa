@@ -53,3 +53,12 @@ h3 {
     cursor: inherit;
     display: block;
 }
+
+
+/********************ENCABEZADO**************************/
+
+.table thead th {
+    vertical-align: top !important;
+    border-bottom:1pt solid gray;
+    background-color: #C1D2DE;
+}
