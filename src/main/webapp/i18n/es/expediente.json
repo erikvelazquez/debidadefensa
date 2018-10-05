@@ -32,7 +32,8 @@
             "pagos": "Pagos",
             "documentosExpedientes": "Documentos Expedientes",
             "fechasServicioExpediente": "Fechas Servicio Expediente",
-            "tipoServicio": "Tipo Servicio"
+            "tipoServicio": "Tipo Servicio",
+            "erroreliminar": "El expediente no puede ser eliminado ya que contiene información relacionada."
         }
     }
 }

@@ -81,7 +81,7 @@
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;"> 
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title">DOCUMENTOS</span>       
-                        <button class="btn btn-secondary btn-sm"                                 
+                        <button class="btn btn-secondary btn-sm" type="button"                                
                             [routerLink]="['/', { outlets: { popup: 'documentos-new/' + expediente.id + '/' + tipoServicio + '/' + expediente.clienteId } }]">
                             <span class="fa fa-plus"></span>
                             
@@ -111,7 +111,7 @@
                                             <span class="fa fa-download"></span>
                                             <span class="d-none d-md-inline" >Descargar</span>
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                                 [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + expediente.clienteId + '/' + expediente.id + '/delete'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
@@ -133,7 +133,7 @@
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">  
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title">PARTES</span>       
-                        <button class="btn btn-secondary btn-sm"                                 
+                        <button class="btn btn-secondary btn-sm"  type="button"                                 
                                 [routerLink]="['/', { outlets: { popup: 'parte-new/' + expediente.id} }]">
                             <span class="fa fa-plus"></span>
                             
@@ -155,7 +155,7 @@
                                     <td>{{parte.nombre}}</td>                                   
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">                                            
-                                            <button type="submit"
+                                            <button type="button"
                                                     [routerLink]="['/', { outlets: { popup: 'parte/'+ parte.id + '/delete'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -178,7 +178,7 @@
                 <div class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title">COSTOS Y PAGOS</span>
-                        <button type="submit" 
+                        <button type="button" 
                                 [routerLink]="['../costo-servicio', expediente.id, tipoServicio  ]"      
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
@@ -207,7 +207,7 @@
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                     <div class="col-md-12" style="height: 40px;">
                         <span class="col-md-12 text-center label-title">Expedientes asociados</span>       
-                        <button class="btn btn-secondary btn-sm"  
+                        <button class="btn btn-secondary btn-sm"  type="button"  
                                 [routerLink]="['/', { outlets: { popup: 'expediente-asociado-new/' + expediente.id} }]">
                             <span class="fa fa-plus"></span>
                             
@@ -231,7 +231,7 @@
                                             <td>{{expedienteAsociado.organocompetente}}</td>
                                             <td class="text-right">
                                                 <div class="btn-group flex-btn-group-container">                                                   
-                                                    <button type="submit"
+                                                    <button type="button"
                                                             [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/edit'} }]"
                                                             replaceUrl="true"
                                                             queryParamsHandling="merge"
@@ -239,7 +239,7 @@
                                                         <span class="fa fa-pencil"></span>
                                                         <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                                                     </button>
-                                                    <button type="submit" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                    <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
                                                             [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/delete'} }]"
                                                             replaceUrl="true"
                                                             queryParamsHandling="merge"
@@ -278,7 +278,7 @@
                                     <td>{{fechasServicio.descripcion}}</td>                                
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">                                      
-                                            <button type="submit"
+                                            <button type="button"
                                                     [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
@@ -297,7 +297,7 @@
         
         </div>
         <div class="modal-footer">
-            <button type="submit"      
+            <button type="button"      
                     [routerLink]="['/expediente-usuario', expediente.clienteId ]"
                     class="btn btn-info">            
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>

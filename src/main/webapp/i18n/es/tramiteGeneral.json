@@ -32,7 +32,8 @@
             "tramiteGralCostos": "trámite Gral Costos",
             "tramiteGralDocumentos": "trámite Gral Documentos",
             "fechasServicioTramiteGeneral": "Fechas Servicio trámite General",
-            "tramiteGeneralAsociados": "trámite General Asociados"
+            "tramiteGeneralAsociados": "trámite General Asociados",
+            "erroreliminar": "El trámite general no puede ser eliminado ya que contiene información relacionada."
         }
     }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { TramiteMigratorio } from './tramite-migratorio.model';
 import { TramiteMigratorioPopupService } from './tramite-migratorio-popup.service';
@@ -19,7 +19,8 @@ export class TramiteMigratorioDeleteDialogComponent {
     constructor(
         private tramiteMigratorioService: TramiteMigratorioService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private jhiAlertService: JhiAlertService,
     ) {
     }
 
@@ -34,7 +35,11 @@ export class TramiteMigratorioDeleteDialogComponent {
                 content: 'Deleted an tramiteMigratorio'
             });
             this.activeModal.dismiss(true);
-        });
+        }, (res: HttpErrorResponse) => this.onError('debidadefensaApp.tramiteMigratorio.erroreliminar'));
+    }
+
+    private onError(error) {
+        this.jhiAlertService.error(error, null, null);
     }
 }
 

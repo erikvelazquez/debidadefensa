@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { TramiteGeneral } from './tramite-general.model';
 import { TramiteGeneralPopupService } from './tramite-general-popup.service';
@@ -19,7 +19,8 @@ export class TramiteGeneralDeleteDialogComponent {
     constructor(
         private tramiteGeneralService: TramiteGeneralService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private jhiAlertService: JhiAlertService,
     ) {
     }
 
@@ -34,7 +35,11 @@ export class TramiteGeneralDeleteDialogComponent {
                 content: 'Deleted an tramiteGeneral'
             });
             this.activeModal.dismiss(true);
-        });
+        }, (res: HttpErrorResponse) => this.onError('debidadefensaApp.tramiteGeneral.erroreliminar'));
+    }
+
+    private onError(error) {
+        this.jhiAlertService.error(error, null, null);
     }
 }
 

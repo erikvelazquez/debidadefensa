@@ -33,7 +33,8 @@
             "tramitteMigratorioPago": "Tramitte Migratorio Pago",
             "tramitteMigratorioDocumentos": "Tramitte Migratorio Documentos",
             "fechasServicioTramiteMigratorio": "Fechas Servicio Trámite Migratorio",
-            "tramitesMigraAsociados": "Tramites Migratorios Asociados"
+            "tramitesMigraAsociados": "Tramites Migratorios Asociados",
+            "erroreliminar": "El trámite migratorio no puede ser eliminado ya que contiene información relacionada."
         }
     }
 }

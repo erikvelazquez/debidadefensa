@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Expediente } from './expediente.model';
 import { ExpedientePopupService } from './expediente-popup.service';
@@ -19,7 +19,8 @@ export class ExpedienteDeleteDialogComponent {
     constructor(
         private expedienteService: ExpedienteService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private jhiAlertService: JhiAlertService,
     ) {
     }
 
@@ -34,7 +35,11 @@ export class ExpedienteDeleteDialogComponent {
                 content: 'Deleted an expediente'
             });
             this.activeModal.dismiss(true);
-        });
+        }, (res: HttpErrorResponse) => this.onError('debidadefensaApp.expediente.erroreliminar'));
+    }
+
+    private onError(error) {
+        this.jhiAlertService.error(error, null, null);
     }
 }
 

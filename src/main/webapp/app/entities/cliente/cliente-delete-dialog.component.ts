@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
@@ -38,7 +38,7 @@ export class ClienteDeleteDialogComponent {
         }, (res: HttpErrorResponse) => this.onError('debidadefensaApp.cliente.erroreliminar'));
     }
 
-     private onError(error) {
+    private onError(error) {
         this.jhiAlertService.error(error, null, null);
     }
 }
