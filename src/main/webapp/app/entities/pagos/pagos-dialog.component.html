@@ -43,7 +43,8 @@
 
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.pagos.cantidad" for="field_cantidad">Cantidad</label>
-            <input class="form-control col-md-4" name="cantidad" id="field_cantidad" maxlength="20" required currencyMask [(ngModel)]="pagos.cantidad" />
+            <input class="form-control col-md-4" name="cantidad" id="field_cantidad" maxlength="20" required currencyMask 
+                   [options]="{ allowNegative : false }" [ngStyle]="{'border-left-color':pagos.cantidad > 0 ? 'green' : 'red'}" [(ngModel)]="pagos.cantidad" />
         
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.pagos.fecha" for="field_fecha">Fecha</label>
             <div class="input-group  col-md-4">
@@ -69,7 +70,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving || pagos.cantidad <= 0" class="btn btn-primary">
             <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>

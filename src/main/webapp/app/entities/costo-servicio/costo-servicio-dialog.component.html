@@ -55,8 +55,8 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.costoServicio.costo" for="field_costo">Costo</label>
             <!--<input class="form-control col-md-10" currencyMask [(ngModel)]="costoServicio.costo" />-->
-            <input class="form-control col-md-10" currencyMask name="costo" id="field_costo" maxlength="20" 
-                    required [(ngModel)]="costoServicio.costo" (input)="onChange($event.target.value)"/>
+            <input class="form-control col-md-10" currencyMask name="costo" id="field_costo" maxlength="20"  [options]="{ allowNegative : false }"
+                   [ngStyle]="{'border-left-color':costoServicio.costo > 0 ? 'green' : 'red'}" required [(ngModel)]="costoServicio.costo" (input)="onChange($event.target.value)"/>
         </div>
 
         
@@ -66,7 +66,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving || costoServicio.costo <= 0" class="btn btn-primary">
             <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>
