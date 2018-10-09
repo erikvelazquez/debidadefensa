@@ -52,9 +52,9 @@ export class ClienteComponent implements OnInit, OnDestroy {
     loadAll() {
         if (this.currentSearch) {
             this.clienteService.search({
-                query: this.currentSearch,
+                query: this.currentSearch + '*',
                 page: this.page,
-                size: this.itemsPerPage,
+                size: this.itemsPerPage + 1000,
                 sort: this.sort()
             }).subscribe(
                 (res: HttpResponse<Cliente[]>) => this.onSuccess(res.body, res.headers),

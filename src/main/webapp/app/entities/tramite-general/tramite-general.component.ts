@@ -62,8 +62,8 @@ currentAccount: any;
         if (this.currentSearch) {
             this.tramiteGeneralService.search({
                 page: this.page - 1,
-                query: this.currentSearch,
-                size: this.itemsPerPage,
+                query: this.currentSearch + '*',
+                size: this.itemsPerPage + 1000,
                 sort: this.sort()}).subscribe(
                     (res: HttpResponse<TramiteGeneral[]>) => this.onSuccess(res.body, res.headers),
                     (res: HttpErrorResponse) => this.onError(res.message)
@@ -164,10 +164,14 @@ currentAccount: any;
     }
 
     private onSuccess(data, headers) {
-        this.links = 100; // this.parseLinks.parse(headers.get('link'));
-        this.totalItems = data.length; // headers.get('X-Total-Count');
+      //  alert(this.cliente.id);
+       // this.links = 100; // this.parseLinks.parse(headers.get('link'));
+       // this.totalItems = data.length; // headers.get('X-Total-Count');
         /* this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');*/
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = headers.get('X-Total-Count');
+
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
         this.tramiteGenerals = data;

@@ -62,8 +62,8 @@ currentAccount: any;
         if (this.currentSearch) {
             this.tramiteMigratorioService.search({
                 page: this.page - 1,
-                query: this.currentSearch,
-                size: this.itemsPerPage,
+                query: this.currentSearch + '*',
+                size: this.itemsPerPage + 1000,
                 sort: this.sort()}).subscribe(
                     (res: HttpResponse<TramiteMigratorio[]>) => this.onSuccess(res.body),
                     (res: HttpErrorResponse) => this.onError(res.message)

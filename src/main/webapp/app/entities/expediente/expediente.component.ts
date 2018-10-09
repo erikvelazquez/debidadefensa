@@ -58,9 +58,9 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     loadAll() {
         if (this.currentSearch) {
             this.expedienteService.search({
-                query: this.currentSearch,
+                query: this.currentSearch + '*',
                 page: this.page,
-                size: this.itemsPerPage,
+                size: this.itemsPerPage + 1000,
                 sort: this.sort()
             }).subscribe(
                 (res: HttpResponse<Expediente[]>) => this.onSuccess(res.body, res.headers),
@@ -166,7 +166,6 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     private onSuccess(data, headers) {
        // this.links = 100; // this.parseLinks.parse(headers.get('link'));
        // this.totalItems = data.length; // headers.get('X-Total-Count');
-
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
 
