@@ -99,24 +99,24 @@ currentAccount: any;
         }
     }
     transition() {
-        this.router.navigate(['/tramite-migratorio'], {queryParams:
+       /*  this.router.navigate(['/tramite-migratorio'], {queryParams:
             {
                 page: this.page,
                 size: this.itemsPerPage,
                 search: this.currentSearch,
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
             }
-        });
+        });*/
         this.loadAll();
     }
 
     clear() {
         this.page = 0;
         this.currentSearch = '';
-        this.router.navigate(['/tramite-migratorio', {
+       /* this.router.navigate(['/tramite-migratorio', {
             page: this.page,
             sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-        }]);
+        }]);*/
         this.loadAll();
     }
     search(query) {
@@ -125,11 +125,11 @@ currentAccount: any;
         }
         this.page = 0;
         this.currentSearch = query;
-        this.router.navigate(['/tramite-migratorio', {
+       /* this.router.navigate(['/tramite-migratorio', {
             search: this.currentSearch,
             page: this.page,
             sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-        }]);
+        }]); */
         this.loadAll();
     }
     ngOnInit() {
@@ -172,8 +172,14 @@ currentAccount: any;
         this.totalItems = data.length; // headers.get('X-Total-Count');
 
         this.queryCount = this.totalItems;
-        this.page = 1; // pagingParams.page;
-        this.tramiteMigratorios = data;
+        // this.page = 1; // pagingParams.page;
+        if (this.cliente.id !== undefined) {
+            this.tramiteMigratorios = data.filter((s) => {
+                    return s.clienteId === this.cliente.id;
+            });
+        } else {
+            this.tramiteMigratorios = data;
+        }
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);

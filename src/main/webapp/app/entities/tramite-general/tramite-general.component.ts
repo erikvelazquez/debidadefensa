@@ -34,6 +34,7 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    idCliente: any;
     private subscription: Subscription;
 
     constructor(
@@ -99,24 +100,27 @@ currentAccount: any;
         }
     }
     transition() {
-        this.router.navigate(['/tramite-general'], {queryParams:
+       /* this.router.navigate(['/tramite-general'], {queryParams:
             {
+                idCliente: 10,
                 page: this.page,
                 size: this.itemsPerPage,
                 search: this.currentSearch,
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
             }
-        });
+        });*/
         this.loadAll();
     }
 
     clear() {
         this.page = 0;
         this.currentSearch = '';
-        this.router.navigate(['/tramite-general', {
+        // [routerLink]="['../expediente-usuario', cliente.id ]"
+        /* this.router.navigate(['/tramite-general', {
+            idCliente: 10,
             page: this.page,
             sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-        }]);
+        }]);*/
         this.loadAll();
     }
     search(query) {
@@ -125,15 +129,17 @@ currentAccount: any;
         }
         this.page = 0;
         this.currentSearch = query;
-        this.router.navigate(['/tramite-general', {
+       /* this.router.navigate(['/tramite-general', {
+            idCliente: 10,
             search: this.currentSearch,
             page: this.page,
             sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-        }]);
+        }]);*/
         this.loadAll();
     }
     ngOnInit() {
         this.subscription = this.route.params.subscribe((params) => {
+            // alert('entre al id' + this.idCliente + ' ahora');
             this.cliente.id = params['id'];
         });
         this.loadAll();
@@ -152,7 +158,7 @@ currentAccount: any;
         return item.id;
     }
     registerChangeInTramiteGenerals() {
-        this.eventSubscriber = this.eventManager.subscribe('tramiteGeneralListModification', (response) => this.loadAll());
+      this.eventSubscriber = this.eventManager.subscribe('tramiteGeneralListModification', (response) => {});
     }
 
     sort() {
@@ -164,17 +170,21 @@ currentAccount: any;
     }
 
     private onSuccess(data, headers) {
-      //  alert(this.cliente.id);
        // this.links = 100; // this.parseLinks.parse(headers.get('link'));
        // this.totalItems = data.length; // headers.get('X-Total-Count');
         /* this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');*/
-        this.links = this.parseLinks.parse(headers.get('link'));
+        this.links = 100;  // this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
 
         this.queryCount = this.totalItems;
-        // this.page = pagingParams.page;
-        this.tramiteGenerals = data;
+        if (this.cliente.id !== undefined) {
+            this.tramiteGenerals = data.filter((s) => {
+                    return s.clienteId === this.cliente.id;
+            });
+        } else {
+            this.tramiteGenerals = data;
+        }
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);

@@ -168,10 +168,16 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
        // this.totalItems = data.length; // headers.get('X-Total-Count');
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
-
-        for (let i = 0; i < data.length; i++) {
-            this.expedientes.push(data[i]);
+        if (this.cliente.id !== undefined) {
+            this.expedientes = data.filter((s) => {
+                    return s.clienteId === this.cliente.id;
+            });
+        } else {
+            this.expedientes = data;
         }
+        /* for (let i = 0; i < data.length; i++) {
+            this.expedientes.push(data[i]);
+        }*/
     }
 
     private onError(error) {
