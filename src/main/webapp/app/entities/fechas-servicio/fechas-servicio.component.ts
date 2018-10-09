@@ -35,22 +35,22 @@ fechasServicios: FechasServicio[];
     loadAll() {
         if (this.currentSearch) {
             this.fechasServicioService.search({
-                query: this.currentSearch,
+                query: this.currentSearch + '*',
                 }).subscribe(
                     (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
                     (res: HttpErrorResponse) => this.onError(res.message)
                 );
             return;
-       }
-
-        const viewDate = new Date();
-        this.fechasServicioService.findByMonth(viewDate.getMonth() + 1, viewDate.getFullYear() ).subscribe(
-            (res: HttpResponse<FechasServicio[]>) => {
-                this.fechasServicios = res.body;
-                this.currentSearch = '';
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+       } else {
+            const viewDate = new Date();
+            this.fechasServicioService.findByMonth(viewDate.getMonth() + 1, viewDate.getFullYear() ).subscribe(
+                (res: HttpResponse<FechasServicio[]>) => {
+                    this.fechasServicios = res.body;
+                    this.currentSearch = '';
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        }
     }
 
     search(query) {

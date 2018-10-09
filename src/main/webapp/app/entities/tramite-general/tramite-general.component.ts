@@ -158,7 +158,7 @@ currentAccount: any;
         return item.id;
     }
     registerChangeInTramiteGenerals() {
-      this.eventSubscriber = this.eventManager.subscribe('tramiteGeneralListModification', (response) => {});
+      this.eventSubscriber = this.eventManager.subscribe('tramiteGeneralListModification', (response) => this.loadAll());
     }
 
     sort() {
