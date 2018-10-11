@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Trámite Migratorio",
                 "search": "Búsqueda"
             },
-            "created": "Un nuevo Trámite Migratorio ha sido creado con el identificador",
-            "updated": "Un Trámite Migratorio ha sido actualizado con el identificador",
-            "deleted": "Un Trámite Migratorio ha sido eliminado con el identificador",
+            "created": "Un nuevo Trámite Migratorio ha sido creado ",
+            "updated": "Un Trámite Migratorio ha sido actualizado ",
+            "deleted": "Un Trámite Migratorio ha sido eliminado ",
             "delete": {
                 "question": "¿Seguro que quiere eliminar el trámite migratorio?"
             },

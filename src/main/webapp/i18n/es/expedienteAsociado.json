@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Expediente Asociado",
                 "search": "Search for Expediente Asociado"
             },
-            "created": "Un nuevo Expediente Asociado ha sido creado con el identificador {{ param }}",
-            "updated": "Un Expediente Asociado ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Expediente Asociado ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Expediente Asociado ha sido creado  {{ param }}",
+            "updated": "Un Expediente Asociado ha sido actualizado  {{ param }}",
+            "deleted": "Un Expediente Asociado ha sido eliminado  {{ param }}",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Expediente Asociado {{ id }}?"
             },

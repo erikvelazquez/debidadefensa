@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Estatus",
                 "search": "Search for Estatus"
             },
-            "created": "Un nuevo Estatus ha sido creado con el identificador {{ param }}",
-            "updated": "Un Estatus ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Estatus ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Estatus ha sido creado  {{ param }}",
+            "updated": "Un Estatus ha sido actualizado  {{ param }}",
+            "deleted": "Un Estatus ha sido eliminado  {{ param }}",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Estatus?"
             },

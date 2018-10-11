@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Pagos",
                 "search": "Search for Pagos"
             },
-            "created": "Un nuevo Pagos ha sido creado con el identificador {{ param }}",
-            "updated": "Un Pagos ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Pagos ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Pagos ha sido creado  {{ param }}",
+            "updated": "Un Pagos ha sido actualizado  {{ param }}",
+            "deleted": "Un Pagos ha sido eliminado  {{ param }}",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Pagos?"
             },

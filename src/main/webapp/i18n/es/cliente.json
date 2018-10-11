@@ -9,8 +9,8 @@
                 "search": "Búsqueda"
             },
             "created": "Un nuevo Cliente ha sido creado con el identificado",
-            "updated": "Un Cliente ha sido actualizado con el identificador",
-            "deleted": "Un Cliente ha sido eliminado con el identificador",
+            "updated": "Un Cliente ha sido actualizado ",
+            "deleted": "Un Cliente ha sido eliminado ",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Cliente?"
             },

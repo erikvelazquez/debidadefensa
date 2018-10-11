@@ -9,9 +9,9 @@
                 "createOrEditLabel": "Crear o editar Fechas de Servicio",
                 "search": "Búsqueda"
             },
-            "created": "Un nuevo Fechas Servicio ha sido creado con el identificador {{ param }}",
-            "updated": "Un Fechas Servicio ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Fechas Servicio ha sido eliminado con el identificador {{ param }}",
+            "created": "Un nuevo Fechas Servicio ha sido creado  {{ param }}",
+            "updated": "Un Fechas Servicio ha sido actualizado  {{ param }}",
+            "deleted": "Un Fechas Servicio ha sido eliminado  {{ param }}",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Fechas de Servicio?"
             },

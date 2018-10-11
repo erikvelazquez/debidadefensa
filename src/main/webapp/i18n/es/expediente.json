@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Expediente",
                 "search": "Búsqueda"
             },
-            "created": "Un nuevo Expediente ha sido creado con el identificador",
-            "updated": "Un Expediente ha sido actualizado con el identificador",
-            "deleted": "Un Expediente ha sido eliminado con el identificador",
+            "created": "Un nuevo Expediente ha sido creado ",
+            "updated": "Un Expediente ha sido actualizado ",
+            "deleted": "Un Expediente ha sido eliminado ",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Expediente?"
             },
