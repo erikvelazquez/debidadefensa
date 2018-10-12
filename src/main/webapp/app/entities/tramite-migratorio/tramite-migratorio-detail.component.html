@@ -127,7 +127,7 @@
                                             <span class="fa fa-download"></span>
                                             <span class="d-none d-md-inline" >Descargar</span>
                                         </button>                               
-                                        <button type="submit"
+                                        <button type="button"
                                                 [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + tramiteMigratorio.clienteId + '/' + tramiteMigratorio.id + '/delete'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
@@ -155,7 +155,7 @@
         <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']" class="row col-md-12 text-center" style="margin-right: 0px; margin-left: 0px;">
                 <div class="col-md-12" style="height: 40px;">
                     <span class="text-center label-title">COSTOS Y PAGOS</span>         
-                    <button type="submit" 
+                    <button type="button" 
                             [routerLink]="['../costo-servicio', tramiteMigratorio.id, tipoServicio  ]"      
                             replaceUrl="true"
                             queryParamsHandling="merge"
@@ -246,7 +246,7 @@
                                 <td>{{fechasServicio.descripcion}}</td>                                
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">                                      
-                                        <button type="submit"
+                                        <button type="button"
                                                 [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
