@@ -40,6 +40,9 @@ export class ExpedienteDeleteDialogComponent {
 
     private onError(error) {
         this.jhiAlertService.error(error, null, null);
+        setTimeout(() => {
+            this.activeModal.dismiss(true);
+        }, 5000);
     }
 }
 
