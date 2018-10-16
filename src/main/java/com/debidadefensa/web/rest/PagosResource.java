@@ -142,11 +142,11 @@ public class PagosResource {
      */
     @GetMapping("/pagos/expediente/{id}")
     @Timed
-    public ResponseEntity<List<PagosDTO>> getAllCostosByExpedienteId(@PathVariable Long id) {
+    public List<PagosDTO> getAllCostosByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<PagosDTO> ls = pagosService.findByExpediente_id(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;     
     }
 
     /**
@@ -157,11 +157,12 @@ public class PagosResource {
      */
     @GetMapping("/pagos/migratorio/{id}")
     @Timed
-    public ResponseEntity<List<PagosDTO>> getAllCostosMigratorioById(@PathVariable Long id) {
+    public List<PagosDTO> getAllCostosMigratorioById(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<PagosDTO> ls = pagosService.findByTramite_migratorio_id(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
     /**
@@ -172,11 +173,12 @@ public class PagosResource {
      */
     @GetMapping("/pagos/general/{id}")
     @Timed
-    public ResponseEntity<List<PagosDTO>> getAllCostosGeneralById(@PathVariable Long id) {
+    public List<PagosDTO> getAllCostosGeneralById(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<PagosDTO> ls = pagosService.findByTramite_general_id(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
 }

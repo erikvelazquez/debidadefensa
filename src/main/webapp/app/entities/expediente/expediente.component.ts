@@ -152,7 +152,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         return item.id;
     }
     registerChangeInExpedientes() {
-        this.eventSubscriber = this.eventManager.subscribe('expedienteListModification', (response) => this.reset());
+        this.eventSubscriber = this.eventManager.subscribe('expedienteListMainModification', (response) => this.reset());
     }
 
     sort() {

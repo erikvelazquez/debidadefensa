@@ -96,7 +96,7 @@ export class ExpedienteDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Expediente) {
-        this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'expedienteListMainModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }

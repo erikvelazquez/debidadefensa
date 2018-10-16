@@ -143,11 +143,12 @@ public class ExpedienteAsociadoResource {
      */
     @GetMapping("/expediente-asociados/expediente/{id}")
     @Timed
-    public ResponseEntity<List<ExpedienteAsociadoDTO>> getAllCostosGeneralById(@PathVariable Long id) {
+    public List<ExpedienteAsociadoDTO> getAllCostosGeneralById(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<ExpedienteAsociadoDTO> ls = expedienteAsociadoService.findByExpediente_id(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
 }

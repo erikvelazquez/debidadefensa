@@ -178,10 +178,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInExpedientes() {
-        this.eventSubscriber = this.eventManager.subscribe(
-            'expedienteListModification',
-            (response) => this.load(this.expediente.id)
-        );
+        this.eventSubscriber = this.eventManager.subscribe('expedienteListModification', () => this.load(this.expediente.id));
     }
 
     save() {
@@ -204,7 +201,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     }
 
     private onSaveSuccess(result: Expediente) {
-        this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'expedienteListMainModification', content: 'OK'});
         this.isSaving = false;
     }
 

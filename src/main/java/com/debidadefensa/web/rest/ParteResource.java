@@ -142,11 +142,12 @@ public class ParteResource {
      */
     @GetMapping("/partes/expediente/{id}")
     @Timed
-    public ResponseEntity<List<ParteDTO>> getAllPartesByExpedienteId(@PathVariable Long id) {
+    public List<ParteDTO> getAllPartesByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<ParteDTO> ls = parteService.findByExpediente_id(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
 }

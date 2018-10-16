@@ -247,11 +247,12 @@ public class DocumentosResource {
      */
     @GetMapping("/documentos/expediente/{id}")
     @Timed
-    public ResponseEntity<List<DocumentosDTO>> getAllFechasByExpedienteId(@PathVariable Long id) {
+    public List<DocumentosDTO> getAllFechasByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<DocumentosDTO> ls = documentosService.findByExpedienteId(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       return ls;
     }
 
     /**
@@ -262,11 +263,12 @@ public class DocumentosResource {
      */
     @GetMapping("/documentos/migratorio/{id}")
     @Timed
-    public ResponseEntity<List<DocumentosDTO>> getAllFechasByMigratoriosId(@PathVariable Long id) {
+    public List<DocumentosDTO> getAllFechasByMigratoriosId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<DocumentosDTO> ls = documentosService.findByMigratorio(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       return ls;
     }
 
     /**
@@ -277,11 +279,12 @@ public class DocumentosResource {
      */
     @GetMapping("/documentos/general/{id}")
     @Timed
-    public ResponseEntity<List<DocumentosDTO>> getAllFechasByGeneralesId(@PathVariable Long id) {
+    public List<DocumentosDTO> getAllFechasByGeneralesId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<DocumentosDTO> ls = documentosService.findByGeneral(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       return ls;
     }
 
 }

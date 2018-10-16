@@ -142,11 +142,12 @@ public class FechasServicioResource {
      */
     @GetMapping("/fechas-servicios/expediente/{id}")
     @Timed
-    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByExpedienteId(@PathVariable Long id) {
+    public List<FechasServicioDTO> getAllFechasByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<FechasServicioDTO> ls = fechasServicioService.findByExpedienteId(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       return ls;
     }
 
     /**
@@ -157,11 +158,12 @@ public class FechasServicioResource {
      */
     @GetMapping("/fechas-servicios/migratorio/{id}")
     @Timed
-    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByMigratoriosId(@PathVariable Long id) {
+    public List<FechasServicioDTO> getAllFechasByMigratoriosId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<FechasServicioDTO> ls = fechasServicioService.findByMigratorio(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
     /**
@@ -172,11 +174,12 @@ public class FechasServicioResource {
      */
     @GetMapping("/fechas-servicios/general/{id}")
     @Timed
-    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByGeneralesId(@PathVariable Long id) {
+    public List<FechasServicioDTO> getAllFechasByGeneralesId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<FechasServicioDTO> ls = fechasServicioService.findByGeneral(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
     /**
@@ -187,11 +190,12 @@ public class FechasServicioResource {
      */
     @GetMapping("/fechas-servicios/month/{month}/{year}")
     @Timed
-    public ResponseEntity<List<FechasServicioDTO>> getAllFechasByMonth(@PathVariable Long month, @PathVariable Long year) {
+    public List<FechasServicioDTO> getAllFechasByMonth(@PathVariable Long month, @PathVariable Long year) {
         log.debug("REST request to get a page of Expedientes");
         List<FechasServicioDTO> ls = fechasServicioService.findByDate(month, year);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
-        return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return ls;
     }
 
 

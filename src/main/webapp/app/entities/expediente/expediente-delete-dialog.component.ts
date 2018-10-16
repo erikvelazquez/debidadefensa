@@ -31,7 +31,7 @@ export class ExpedienteDeleteDialogComponent {
     confirmDelete(id: number) {
         this.expedienteService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
-                name: 'expedienteListModification',
+                name: 'expedienteListMainModification',
                 content: 'Deleted an expediente'
             });
             this.activeModal.dismiss(true);
