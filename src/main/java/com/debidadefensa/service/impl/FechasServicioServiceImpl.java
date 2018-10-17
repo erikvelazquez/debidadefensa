@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -24,7 +22,6 @@ import io.github.jhipster.config.JHipsterProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-import java.util.Properties;
 import org.springframework.beans.factory.annotation.Value;
 import com.debidadefensa.domain.User;
 import com.debidadefensa.service.dto.UserDTO;
@@ -97,7 +94,8 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         fechasServicioSearchRepository.save(fechasServicio); 
                
         List<UserDTO> lsUsers = userMapper.usersToUserDTOs(userRepository.findAll()); // .stream().map(UserDTO::new).collect(Collectors.toCollection(LinkedList::new));
-
+        List<String> lsRoles = Arrays.asList("ROLE_ABOGADO","ROLE_ADMIN");        
+       
         mailSender.setHost(host);
         mailSender.setPort(port);
         
@@ -112,14 +110,14 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         MailService mailService = new MailService(jHipsterProperties, mailSender, messageSource, templateEngine);
 
         for (UserDTO var : lsUsers) {
-            Set<String> auth = var.getAuthorities();
-            log.debug("Request to get all FechasServicios");
-
-
-
-           // mailService.sendEmail(var.getEmail(), "Prueba ABC", "YA ENVIA EMAIL UJUUUUU ATTE. CHERIK", false, false);            
+            List<String> lsRolesUsuario = var.getAuthorities().stream().collect(Collectors.toList());
+            boolean res = !Collections.disjoint(lsRolesUsuario, lsRoles);
+         
+            if (res){
+                mailService.sendEmail(var.getEmail(), "Envio de correo de aviso", "YA ENVIA EMAIL UJUUUUU <p> ATTE. CHERIK </p>", false, false);            
+            }
         }
-        
+
         return result;
     }
 
