@@ -2,10 +2,13 @@ package com.debidadefensa.service.impl;
 
 import com.debidadefensa.service.FechasServicioService;
 import com.debidadefensa.domain.FechasServicio;
+import com.debidadefensa.domain.Authority;
 import com.debidadefensa.repository.FechasServicioRepository;
+import com.debidadefensa.repository.UserRepository;
 import com.debidadefensa.repository.search.FechasServicioSearchRepository;
 import com.debidadefensa.service.dto.FechasServicioDTO;
 import com.debidadefensa.service.mapper.FechasServicioMapper;
+import com.debidadefensa.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,9 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import io.github.jhipster.config.JHipsterProperties;
+import org.springframework.context.MessageSource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import java.util.Properties;
+import org.springframework.beans.factory.annotation.Value;
+import com.debidadefensa.domain.User;
+import com.debidadefensa.service.dto.UserDTO;
+import com.debidadefensa.service.mapper.UserMapper;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -29,15 +42,45 @@ public class FechasServicioServiceImpl implements FechasServicioService {
 
     private final FechasServicioRepository fechasServicioRepository;
 
-    private final FechasServicioMapper fechasServicioMapper;
-
+    private final FechasServicioMapper fechasServicioMapper;    
+    
     private final FechasServicioSearchRepository fechasServicioSearchRepository;
 
-    public FechasServicioServiceImpl(FechasServicioRepository fechasServicioRepository, FechasServicioMapper fechasServicioMapper, FechasServicioSearchRepository fechasServicioSearchRepository) {
+    private final UserMapper userMapper;
+    
+    private JHipsterProperties jHipsterProperties = new JHipsterProperties();
+
+    private MessageSource messageSource;
+
+    private SpringTemplateEngine templateEngine;
+
+    private UserRepository userRepository ;
+
+    private JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+    public FechasServicioServiceImpl(FechasServicioRepository fechasServicioRepository, FechasServicioMapper fechasServicioMapper, FechasServicioSearchRepository fechasServicioSearchRepository, UserRepository userRepository, UserMapper userMapper) {
         this.fechasServicioRepository = fechasServicioRepository;
         this.fechasServicioMapper = fechasServicioMapper;
         this.fechasServicioSearchRepository = fechasServicioSearchRepository;
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+
     }
+
+    @Value("${spring.mail.host}")
+    private String host;
+
+    @Value("${spring.mail.port}")
+    private int port;
+
+    @Value("${spring.mail.username}")
+    private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
+
+    @Value("${spring.mail.protocol}")
+    private String protocol;
 
     /**
      * Save a fechasServicio.
@@ -51,7 +94,32 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         FechasServicio fechasServicio = fechasServicioMapper.toEntity(fechasServicioDTO);
         fechasServicio = fechasServicioRepository.save(fechasServicio);
         FechasServicioDTO result = fechasServicioMapper.toDto(fechasServicio);
-        fechasServicioSearchRepository.save(fechasServicio);
+        fechasServicioSearchRepository.save(fechasServicio); 
+               
+        List<UserDTO> lsUsers = userMapper.usersToUserDTOs(userRepository.findAll()); // .stream().map(UserDTO::new).collect(Collectors.toCollection(LinkedList::new));
+
+        mailSender.setHost(host);
+        mailSender.setPort(port);
+        
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
+        
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", protocol);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");        
+        MailService mailService = new MailService(jHipsterProperties, mailSender, messageSource, templateEngine);
+
+        for (UserDTO var : lsUsers) {
+            Set<String> auth = var.getAuthorities();
+            log.debug("Request to get all FechasServicios");
+
+
+
+           // mailService.sendEmail(var.getEmail(), "Prueba ABC", "YA ENVIA EMAIL UJUUUUU ATTE. CHERIK", false, false);            
+        }
+        
         return result;
     }
 
