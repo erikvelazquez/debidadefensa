@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface TramiteGeneralMapper extends EntityMapper<TramiteGeneralDTO, TramiteGeneral> {
 
     @Mapping(source = "cliente.id", target = "clienteId")
+    @Mapping(source = "cliente.nombre", target = "clienteNombre")
     @Mapping(source = "estatusTramiteGeneral.id", target = "estatusTramiteGeneralId")
     @Mapping(source = "estatusTramiteGeneral.descripcion", target = "estatusDescripcion")
     TramiteGeneralDTO toDto(TramiteGeneral tramiteGeneral);

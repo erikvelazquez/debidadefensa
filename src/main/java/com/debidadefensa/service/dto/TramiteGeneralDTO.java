@@ -43,13 +43,29 @@ public class TramiteGeneralDTO implements Serializable {
 
     private Long totalDocumentos;
 
+    private String clienteNombre;
+
     public Long getId() {
         return id;
     }
 
     /**
-	 * @return the totalDocumentos
-	 */
+     * @return the clienteNombre
+     */
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    /**
+     * @param clienteNombre the clienteNombre to set
+     */
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
+    }
+
+    /**
+     * @return the totalDocumentos
+     */
 	public Long getTotalDocumentos() {
 		return totalDocumentos;
 	}

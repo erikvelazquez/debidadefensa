@@ -1,19 +1,31 @@
 package com.debidadefensa.service.impl;
 
+import com.debidadefensa.service.ExpedienteService;
 import com.debidadefensa.service.FechasServicioService;
 import com.debidadefensa.domain.FechasServicio;
 import com.debidadefensa.domain.Authority;
 import com.debidadefensa.repository.FechasServicioRepository;
 import com.debidadefensa.repository.UserRepository;
 import com.debidadefensa.repository.search.FechasServicioSearchRepository;
+import com.debidadefensa.service.dto.ExpedienteDTO;
 import com.debidadefensa.service.dto.FechasServicioDTO;
+import com.debidadefensa.service.dto.TramiteGeneralDTO;
+import com.debidadefensa.service.dto.TramiteMigratorioDTO;
 import com.debidadefensa.service.mapper.FechasServicioMapper;
 import com.debidadefensa.service.MailService;
+import com.debidadefensa.service.TramiteGeneralService;
+import com.debidadefensa.service.TramiteMigratorioService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -55,12 +67,27 @@ public class FechasServicioServiceImpl implements FechasServicioService {
 
     private JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-    public FechasServicioServiceImpl(FechasServicioRepository fechasServicioRepository, FechasServicioMapper fechasServicioMapper, FechasServicioSearchRepository fechasServicioSearchRepository, UserRepository userRepository, UserMapper userMapper) {
+    private final ExpedienteService expedienteService;
+    private final TramiteGeneralService tramiteGeneralService;
+    private final TramiteMigratorioService tramiteMigratorioService;
+
+
+    public FechasServicioServiceImpl(FechasServicioRepository fechasServicioRepository, 
+                                     FechasServicioMapper fechasServicioMapper, 
+                                     FechasServicioSearchRepository fechasServicioSearchRepository, 
+                                     UserRepository userRepository, 
+                                     UserMapper userMapper,
+                                     ExpedienteService expedienteService,
+                                     TramiteGeneralService tramiteGeneralService,
+                                     TramiteMigratorioService tramiteMigratorioService) {
         this.fechasServicioRepository = fechasServicioRepository;
         this.fechasServicioMapper = fechasServicioMapper;
         this.fechasServicioSearchRepository = fechasServicioSearchRepository;
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.expedienteService = expedienteService;
+        this.tramiteGeneralService = tramiteGeneralService;
+        this.tramiteMigratorioService = tramiteMigratorioService;
 
     }
 
@@ -109,16 +136,99 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         props.put("mail.debug", "true");        
         MailService mailService = new MailService(jHipsterProperties, mailSender, messageSource, templateEngine);
 
+        String asunto = "";
+        String cuerpo = "";
+
+        if(fechasServicioDTO.getTipoServicioId() == null){
+            fechasServicioDTO.setTipoServicioId(new Long(0));
+        }
+
+        switch ((int)(fechasServicioDTO.getTipoServicioId() % 100000)) {
+            case 1002:
+                asunto = "Debida Defensa - Notificación Trámite Migratorio – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                cuerpo =  ObtenMigratorio(fechasServicioDTO.getTramiteMigratorioId(), fechasServicioDTO);
+                break;
+            case 1003:
+                asunto = "Debida Defensa - Notificación Trámite General – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                cuerpo =  ObtenGeneral(fechasServicioDTO.getTramiteGeneralId(), fechasServicioDTO);
+                break;
+            case 1001:
+                asunto = "Debida Defensa - Notificación Expediente – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                cuerpo =  ObtenExpediente(fechasServicioDTO.getExpedienteId(), fechasServicioDTO);
+                break;
+            default:
+                asunto = "Debida Defensa - Notificación evento - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                cuerpo =  ObtenEvento(fechasServicioDTO);
+        }
+
+        
         for (UserDTO var : lsUsers) {
             List<String> lsRolesUsuario = var.getAuthorities().stream().collect(Collectors.toList());
             boolean res = !Collections.disjoint(lsRolesUsuario, lsRoles);
          
             if (res){
-                mailService.sendEmail(var.getEmail(), "Envio de correo de aviso", "YA ENVIA EMAIL UJUUUUU <p> ATTE. CHERIK </p>", false, false);            
+                mailService.sendEmail(var.getEmail(), asunto, cuerpo, false, true);            
             }
         }
 
         return result;
+    }
+
+    private String ObtenMigratorio(Long id, FechasServicioDTO fechasServicioDTO){
+        TramiteMigratorioDTO migratorioDTO = tramiteMigratorioService.findOne(id);
+
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + migratorioDTO.getClienteNombre() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Nombre del Extranjero: " + migratorioDTO.getNombreExtranjero() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Entidad: " + migratorioDTO.getEntidad() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + migratorioDTO.getEstatusDescripcion() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() + "</p>";
+        
+        return cuerpo;
+    }
+
+    private String ObtenGeneral(Long id, FechasServicioDTO fechasServicioDTO){
+        TramiteGeneralDTO generalDTO = tramiteGeneralService.findOne(id);
+
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + generalDTO.getClienteNombre() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Titular: " + generalDTO.getTitular() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Dependencia: " + generalDTO.getDependencia() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Tipo de tr&aacute;mite: " + generalDTO.getTipoTramite() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + generalDTO.getEstatusDescripcion() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() + "</p>";
+        
+        return cuerpo;
+    }
+
+    private String ObtenExpediente(Long id, FechasServicioDTO fechasServicioDTO){
+        ExpedienteDTO expedienteDTO = expedienteService.findOne(id);
+
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + expedienteDTO.getClienteNombre() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Expediente: " + expedienteDTO.getNumeroExpediente() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juicio: " + expedienteDTO.getJuicio() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + expedienteDTO.getEstatusDescripcion() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() + "</p>";
+        
+        return cuerpo;
+    }
+
+    private String ObtenEvento(FechasServicioDTO fechasServicioDTO){
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() + "</p>";
+        return cuerpo;
+    }
+
+    private String ConvierteFecha(Instant fecha){
+        return LocalDateTime.ofInstant(fecha, ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "";
     }
 
     /**

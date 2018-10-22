@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface TramiteMigratorioMapper extends EntityMapper<TramiteMigratorioDTO, TramiteMigratorio> {
 
     @Mapping(source = "cliente.id", target = "clienteId")
+    @Mapping(source = "cliente.nombre", target = "clienteNombre")
     @Mapping(source = "estatusTramiteMigratorio.id", target = "estatusTramiteMigratorioId")
     @Mapping(source = "estatusTramiteMigratorio.descripcion", target = "estatusDescripcion")
     TramiteMigratorioDTO toDto(TramiteMigratorio tramiteMigratorio);
