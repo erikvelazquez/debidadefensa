@@ -4,7 +4,11 @@ import com.debidadefensa.domain.FechasServicio;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.*;
+
+import java.time.Instant;
 import java.util.List;
+
+import javax.mail.search.DateTerm;
 
 /**
  * Spring Data JPA repository for the FechasServicio entity.
@@ -27,4 +31,10 @@ public interface FechasServicioRepository extends JpaRepository<FechasServicio, 
                 + " ORDER BY fecha ASC",
                 nativeQuery = true)
     List<FechasServicio> findByDate(@Param("month") Long month, @Param("year") Long year);
+
+    @Query(value = "SELECT f.* FROM fechas_servicio f "
+                + " where fecha = :date "                      
+                + " ORDER BY fecha ASC",
+                nativeQuery = true)
+    List<FechasServicio> findByDateEmail(@Param("date") Instant date);
 }

@@ -119,7 +119,24 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         fechasServicio = fechasServicioRepository.save(fechasServicio);
         FechasServicioDTO result = fechasServicioMapper.toDto(fechasServicio);
         fechasServicioSearchRepository.save(fechasServicio); 
-               
+        EnviaCoreo(fechasServicioDTO);
+        
+        return result;
+    }
+
+    public String ConsultaFechasEmail(Instant fecha){
+        fecha.minusSeconds(0);
+        List<FechasServicioDTO> fechas = fechasServicioRepository.findByDateEmail(fecha).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        if (fechas.size() > 0) {
+            for (FechasServicioDTO var : fechas) {
+                EnviaCoreo(var);
+            }
+        }
+
+        return "";
+    }
+
+    public void EnviaCoreo(FechasServicioDTO fechasServicioDTO){
         List<UserDTO> lsUsers = userMapper.usersToUserDTOs(userRepository.findAll()); // .stream().map(UserDTO::new).collect(Collectors.toCollection(LinkedList::new));
         List<String> lsRoles = Arrays.asList("ROLE_ABOGADO","ROLE_ADMIN");        
        
@@ -171,7 +188,6 @@ public class FechasServicioServiceImpl implements FechasServicioService {
             }
         }
 
-        return result;
     }
 
     private String ObtenMigratorio(Long id, FechasServicioDTO fechasServicioDTO){

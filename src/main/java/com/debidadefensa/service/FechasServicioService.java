@@ -1,12 +1,14 @@
 package com.debidadefensa.service;
 
 import com.debidadefensa.service.dto.FechasServicioDTO;
+
+import java.time.Instant;
 import java.util.List;
 
 /**
  * Service Interface for managing FechasServicio.
  */
-public interface FechasServicioService {
+public abstract interface FechasServicioService {
 
     /**
      * Save a fechasServicio.
@@ -78,4 +80,13 @@ public interface FechasServicioService {
      * @return the list of entities
      */
     List<FechasServicioDTO> findByDate(Long month, Long year);
+
+
+    /**
+     * Get all the expedientes by month.
+     *
+     * @param date
+     * @return the list of entities
+     */
+    String ConsultaFechasEmail(Instant fecha);
 }
