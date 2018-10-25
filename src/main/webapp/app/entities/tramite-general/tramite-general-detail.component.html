@@ -179,7 +179,7 @@
         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                     <div class="col-md-12" style="height: 40px;">
-                        <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites generales asociados</span>       
+                        <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites asociados</span>       
                         <button class="btn btn-secondary btn-sm" type="button"
                                 [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/' + tipoServicio + '/edit'} }]" >
                             <span class="fa fa-plus"></span>
@@ -188,6 +188,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="table-responsive">
+                            <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites generales</span>       
                             <table class="table table-striped">
                                 <thead>
                                     <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
@@ -213,6 +214,37 @@
                                             </div>
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <!-- ASOCIACOS -->
+                            <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites migratorios</span>       
+                            <table class="table table-striped">
+                                <thead>
+                                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >                            
+                                <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>                            
+                                <th><span>Fecha de Ingreso</span> <span class="fa"></span></th>
+                                <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
+                                <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let tramiteMigratorioasoc of tramiteMigratorios ; let i = index">                                
+                                    <td>{{tramiteMigratorioasoc.nombreExtranjero}}</td>                                
+                                    <td>{{tramiteMigratorioasoc.fechaIngreso | date:'mediumDate'}}</td>
+                                    <td>{{tramiteMigratorioasoc.estatusDescripcion}}</td>                                                            
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">                                      
+                                            <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/' + tramiteMigratorioasoc.id + '/delete'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                    class="btn btn-danger btn-sm">
+                                                <span class="fa fa-remove"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

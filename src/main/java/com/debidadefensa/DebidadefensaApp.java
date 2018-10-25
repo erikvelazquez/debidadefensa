@@ -116,7 +116,7 @@ class TiemerTaskClass extends TimerTask {
     @Override
     public void run() { 
       //  fechas = new ServicioFecha().ObtenServicio(); 
-        fechas.ConsultaFechasEmail(new Date().toInstant());          
+       // fechas.ConsultaFechasEmail(new Date().toInstant());          
         System.out.println("Timer task started at:"+new Date());
     }  
 } 

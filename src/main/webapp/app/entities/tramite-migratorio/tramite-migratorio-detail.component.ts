@@ -16,7 +16,8 @@ import { DocumentosService, Documentos } from '../documentos';
 import { saveAs } from 'file-saver/FileSaver';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
-
+import { TramiteGeneral } from '../tramite-general/tramite-general.model';
+import { TramiteGeneralService } from '../tramite-general/tramite-general.service';
 @Component({
     selector: 'jhi-tramite-migratorio-detail',
     templateUrl: './tramite-migratorio-detail.component.html',
@@ -39,6 +40,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     fechaResolucionDp: any;
     eventSubscriberFechas: Subscription;
     tramiteMigratorios: TramiteMigratorio[];
+    tramiteGenerals: TramiteGeneral[];
     documentos: Documentos[];
     costoServicios: CostoServicio[];
     pagos: Pagos[];
@@ -52,6 +54,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     constructor(
         private jhiAlertService: JhiAlertService,
         private tramiteMigratorioService: TramiteMigratorioService,
+        private tramiteGeneralService: TramiteGeneralService,
         private route: ActivatedRoute,
         private clienteService: ClienteService,
         private estatusService: EstatusService,
@@ -136,6 +139,12 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
                 .subscribe(
                     (res: HttpResponse<TramiteMigratorio[]>) => {
                         this.tramiteMigratorios = res.body;
+                });
+
+                this.tramiteGeneralService.findByAsociados(id)
+                .subscribe(
+                    (res: HttpResponse<TramiteGeneral[]>) => {
+                        this.tramiteGenerals = res.body;
                 });
 
                 this.estatusService

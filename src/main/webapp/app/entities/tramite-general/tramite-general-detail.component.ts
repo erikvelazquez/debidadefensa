@@ -6,6 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { TramiteGeneral } from './tramite-general.model';
 import { TramiteGeneralService } from './tramite-general.service';
+import { TramiteMigratorioService } from '../tramite-migratorio/tramite-migratorio.service';
 import { Cliente, ClienteService } from '../cliente';
 import { Estatus, EstatusService } from '../estatus';
 import { FechasServicio, FechasServicioService } from '../fechas-servicio';
@@ -17,6 +18,7 @@ import { DocumentosService, Documentos } from '../documentos';
 import { saveAs } from 'file-saver/FileSaver';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
+import { TramiteMigratorio } from '../tramite-migratorio/tramite-migratorio.model';
 
 @Component({
     selector: 'jhi-tramite-general-detail',
@@ -39,6 +41,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     fechaNotificacionDp: any;
     fechaResolucionDp: any;
     tramiteGenerals: TramiteGeneral[];
+    tramiteMigratorios: TramiteMigratorio[];
     documentos: Documentos[];
     costoServicios: CostoServicio[];
     pagos: Pagos[];
@@ -52,6 +55,7 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     constructor(
         private jhiAlertService: JhiAlertService,
         private tramiteGeneralService: TramiteGeneralService,
+        private tramiteMigratorioService: TramiteMigratorioService,
         private route: ActivatedRoute,
         private clienteService: ClienteService,
         private estatusService: EstatusService,
@@ -132,11 +136,16 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
                 );
 
                 this.encuentraFechas(id);
-
                 this.tramiteGeneralService.findByAsociados(id)
                 .subscribe(
                     (res: HttpResponse<TramiteGeneral[]>) => {
                         this.tramiteGenerals = res.body;
+                });
+
+                this.tramiteMigratorioService.findByAsociados(id)
+                .subscribe(
+                    (res: HttpResponse<TramiteMigratorio[]>) => {
+                        this.tramiteMigratorios = res.body;
                 });
 
                 this.estatusService

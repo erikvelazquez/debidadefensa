@@ -90,3 +90,5 @@ public abstract interface FechasServicioService {
      */
     String ConsultaFechasEmail(Instant fecha);
 }
+
+

@@ -50,23 +50,41 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.tramitesA = Array<TramiteAsociado>();
+        // switch (this.tiposervicio) {
+        //     case 1002: {
+        //     // Migratorio
+        //         this.tramiteMigratorios.forEach((entry) => {
+        //             if (entry.seleccionado === true) {
+        //                 this.tramitesA.push(new TramiteAsociado(null, this.tramiteM.id, entry.id, this.tiposervicio, this.tiposervicio));
+        //             }
+        //         });
+        //         break;
+        //     }
+        //     case 1003: {
+        //         // General
+        //         this.tramiteGenerals.forEach((entry) => {
+        //             if (entry.seleccionado === true) {
+        //                 this.tramitesA.push(new TramiteAsociado(null, this.tramiteG.id, entry.id, this.tiposervicio, this.tiposervicio));
+        //             }
+        //         });
+        //         break;
+        //     }
+        //     default: {
+        //     // statements;
+        //     break;
+        //     }
+        // }
+
+        let idTramite  = 0;
         switch (this.tiposervicio) {
             case 1002: {
             // Migratorio
-                this.tramiteMigratorios.forEach((entry) => {
-                    if (entry.seleccionado === true) {
-                        this.tramitesA.push(new TramiteAsociado(null, this.tramiteM.id, entry.id, this.tiposervicio, this.tiposervicio));
-                    }
-                });
+                idTramite  = this.tramiteM.id;
                 break;
             }
             case 1003: {
                 // General
-                this.tramiteGenerals.forEach((entry) => {
-                    if (entry.seleccionado === true) {
-                        this.tramitesA.push(new TramiteAsociado(null, this.tramiteG.id, entry.id, this.tiposervicio, this.tiposervicio));
-                    }
-                });
+                idTramite  = this.tramiteG.id;
                 break;
             }
             default: {
@@ -74,6 +92,20 @@ export class TramiteAsociadoDialogComponent implements OnInit {
             break;
             }
         }
+
+        // Migratorio
+        this.tramiteMigratorios.forEach((entry) => {
+            if (entry.seleccionado === true) {
+                this.tramitesA.push(new TramiteAsociado(null, idTramite, entry.id, this.tiposervicio, 1002));
+            }
+        });
+
+        // General
+        this.tramiteGenerals.forEach((entry) => {
+            if (entry.seleccionado === true) {
+                this.tramitesA.push(new TramiteAsociado(null, idTramite, entry.id, this.tiposervicio, 1003));
+            }
+        });
 
         this.subscribeToSaveResponse(this.tramiteAsociadoService.create(this.tramitesA));
     }
