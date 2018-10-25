@@ -43,10 +43,10 @@ export class TramiteAsociadoPopupService {
         return result;
     }
 
-    openDelete(component: Component, id?: number, tiposervicio?: number, idAsociado?: number | any): Promise<NgbModalRef> {
+    openDelete(component: Component, id?: number, tiposervicio?: number, idAsociado?: number, tiposervicioasociado?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             setTimeout(() => {
-                this.ngbModalRef = this.tramiteAsociadoDeleteModalRef(component, id, tiposervicio, idAsociado);
+                this.ngbModalRef = this.tramiteAsociadoDeleteModalRef(component, id, tiposervicio, idAsociado, tiposervicioasociado);
                 resolve(this.ngbModalRef);
             }, 0);
         });
@@ -73,13 +73,14 @@ export class TramiteAsociadoPopupService {
 
                             switch (tiposervicio) {
                                 case 1002: {
+                                    // this.tramiteMigratorios.splice(this.tramiteMigratorios.findIndex(v => v.id === id), 1);
                                     this.tramiteMigratorioService.find(id).subscribe(
                                         (ress: HttpResponse<TramiteMigratorio> ) => {
                                             this.tramiteM = ress.body;
                                             this.ngbModalRef = this.tramiteAsociadoModalRef(component
                                                 , this.tramiteGenerals
                                                 , this.tramiteG
-                                                , this.tramiteMigratorios
+                                                , this.tramiteMigratorios.filter((v) => v.id !== +id)
                                                 , this.tramiteM
                                                 , tiposervicio);
                                             resolve(this.ngbModalRef);
@@ -91,7 +92,7 @@ export class TramiteAsociadoPopupService {
                                         (ressGeneral: HttpResponse<TramiteGeneral>) => {
                                             this.tramiteG = ressGeneral.body;
                                             this.ngbModalRef = this.tramiteAsociadoModalRef(component
-                                                , this.tramiteGenerals
+                                                , this.tramiteGenerals.filter((v) => v.id !== +id)
                                                 , this.tramiteG
                                                 , this.tramiteMigratorios
                                                 , this.tramiteM
@@ -155,6 +156,7 @@ export class TramiteAsociadoPopupService {
         tramiteG: TramiteGeneral, tramiteMigratorios: TramiteMigratorio[],
         tramiteM: TramiteMigratorio, tiposervicio: number): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+
         modalRef.componentInstance.tramiteGenerals = tramiteGenerals;
         modalRef.componentInstance.tramiteG = tramiteG;
         modalRef.componentInstance.tramiteMigratorios = tramiteMigratorios;
@@ -171,11 +173,12 @@ export class TramiteAsociadoPopupService {
         return modalRef;
     }
 
-    tramiteAsociadoDeleteModalRef(component: Component, id: number, tiposervicio: number, idAsociado): NgbModalRef {
+    tramiteAsociadoDeleteModalRef(component: Component, id: number, tiposervicio: number, idAsociado: number, tiposervicioasociado: number): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.id = id;
         modalRef.componentInstance.tiposervicio = tiposervicio;
         modalRef.componentInstance.idAsociado = idAsociado;
+        modalRef.componentInstance.tiposervicioasociado = tiposervicioasociado;
 
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });

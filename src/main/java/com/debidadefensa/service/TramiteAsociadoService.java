@@ -36,7 +36,7 @@ public interface TramiteAsociadoService {
      *
      * @param id the id of the entity
      */
-    void delete(Long id, Long itiposerviciod, Long idasociado);
+    void delete(Long id, Long itiposerviciod, Long idasociado, Long tiposervicioasociado);
 
     /**
      * Search for the tramiteAsociado corresponding to the query.

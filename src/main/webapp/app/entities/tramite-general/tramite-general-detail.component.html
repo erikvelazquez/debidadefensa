@@ -203,8 +203,8 @@
                                         <td>{{tramiteGeneralasoc.titular}}</td>
                                         <td class="text-right">
                                             <div class="btn-group flex-btn-group-container">                                      
-                                                <button type="button"
-                                                        [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/' + tipoServicio + '/' + tramiteGeneralasoc.id + '/delete'} }]"
+                                                <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                        [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/' + tipoServicio + '/' + tramiteGeneralasoc.id + '/' + 1003 + '/delete'} }]"
                                                         replaceUrl="true"
                                                         queryParamsHandling="merge"
                                                         class="btn btn-danger btn-sm">
@@ -235,7 +235,7 @@
                                     <td class="text-right">
                                         <div class="btn-group flex-btn-group-container">                                      
                                             <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
-                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/' + tramiteMigratorioasoc.id + '/delete'} }]"
+                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteGeneral.id + '/' + tipoServicio + '/' + tramiteMigratorioasoc.id + '/' + 1002 + '/delete'} }]"
                                                     replaceUrl="true"
                                                     queryParamsHandling="merge"
                                                     class="btn btn-danger btn-sm">

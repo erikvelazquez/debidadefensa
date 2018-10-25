@@ -16,7 +16,8 @@ public interface TramiteAsociadoRepository extends JpaRepository<TramiteAsociado
                    + " where id_tramite = :id "
                    + " and tipo_servicio_id = :tiposervicio "
                    + " and id_tramiteasociado = :idasociado "
-                   + " and tipo_servicio_id_asociado = :tiposervicio ",
+                   + " and tipo_servicio_id = :tiposervicio "
+                   + " and tipo_servicio_id_asociado = :tiposervicioasociado ",
                 nativeQuery = true)
-    TramiteAsociado findAsociado(@Param("id") Long id, @Param("tiposervicio") Long tiposervicio, @Param("idasociado") Long idasociado);
+    TramiteAsociado findAsociado(@Param("id") Long id, @Param("tiposervicio") Long tiposervicio, @Param("idasociado") Long idasociado, @Param("tiposervicioasociado") Long tiposervicioasociado);
 }

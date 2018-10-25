@@ -109,11 +109,11 @@ public class TramiteAsociadoResource {
      * @param id the id of the tramiteAsociadoDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/tramite-asociados/{id}/{tiposervicio}/{idasociado}")
+    @DeleteMapping("/tramite-asociados/{id}/{tiposervicio}/{idasociado}/{tiposervicioasociado}")
     @Timed
-    public ResponseEntity<Void> deleteTramiteAsociado(@PathVariable Long id, @PathVariable Long tiposervicio, @PathVariable Long idasociado) {
+    public ResponseEntity<Void> deleteTramiteAsociado(@PathVariable Long id, @PathVariable Long tiposervicio, @PathVariable Long idasociado, @PathVariable Long tiposervicioasociado) {
         log.debug("REST request to delete TramiteAsociado : {}", id);
-        tramiteAsociadoService.delete(id, tiposervicio, idasociado);
+        tramiteAsociadoService.delete(id, tiposervicio, idasociado, tiposervicioasociado);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
