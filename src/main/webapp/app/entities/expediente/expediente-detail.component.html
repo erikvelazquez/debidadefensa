@@ -47,14 +47,14 @@
             <div class="form-group row">            
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
                 <div class="input-group col-md-2">
-                    <input id="field_fechaAlta" type="text" class="form-control" name="fechaAlta"  dateFormat="dd-MMM-yyyy" ngbDatepicker  #fechaAltaDp="ngbDatepicker" [(ngModel)]="expediente.fechaAlta"/>
+                    <input id="field_fechaAlta" type="date" class="form-control" name="fechaAlta"  dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaAltaDp="ngbDatepicker" [(ngModel)]="expediente.fechaAlta"/>
                     <span class="input-group-append">
                         <button type="button" class="btn btn-secondary" (click)="fechaAltaDp.toggle()"><i class="fa fa-calendar"></i></button>
                     </span>
                 </div>
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
                 <div class="input-group col-md-2">
-                    <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"/>
+                    <input id="field_fechaSentencia" type="date" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"/>
                     <span class="input-group-append">
                         <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                     </span>

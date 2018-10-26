@@ -12,7 +12,7 @@
             <h5 class="modal-title col-md-12 text-center" id="myTramiteAsociadoLabel" >Trámites Generales</h5>
             <table class="table table-striped">
                 <thead>
-                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+                    <tr>
                         <th><span >Cliente</span> </th>                        
                         <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> </th>                        
                         
@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
+                    <tr *ngFor="let tramiteGeneral of tramiteGenerals">
                         <td>{{tramiteGeneral.clienteNombre}}</td> 
                         <td>{{tramiteGeneral.titular}}</td>                       
                         
@@ -36,19 +36,18 @@
             <h5 class="modal-title col-md-12 text-center" id="myTramiteAsociadoLabel" >Trámites Migratorios</h5>
             <table class="table table-striped">
                 <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+                <tr >                
+                    <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span></th>
+                    <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite">Tipotramite</span></th>
+                    
+                    <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span></th>
+                    <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span></th>
                 
-                <th jhiSortBy="nombreExtranjero"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="tipotramite"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite">Tipotramite</span> <span class="fa fa-sort"></span></th>
-                
-                <th jhiSortBy="estatusTramiteMigratorioId"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="fechaIngreso"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span> <span class="fa fa-sort"></span></th>
-               
-                <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">                    
+                <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ">                    
                     <td>{{tramiteMigratorio.nombreExtranjero}}</td>
                     <td>{{tramiteMigratorio.tipotramite}}</td>        
                     <td>{{tramiteMigratorio.estatusDescripcion}}</td>

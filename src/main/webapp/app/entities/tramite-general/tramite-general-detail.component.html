@@ -50,7 +50,7 @@
             <div class="form-group row">            
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaIngreso" for="field_fechaIngreso">Fecha Ingreso</label>
                 <div class="input-group col-md-2">
-                    <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaIngreso"/>
+                    <input id="field_fechaIngreso" type="date" class="form-control" name="fechaIngreso" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaIngresoDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaIngreso"/>
                     <span class="input-group-append">
                         <button type="button" class="btn btn-secondary" (click)="fechaIngresoDp.toggle()"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -58,7 +58,7 @@
             
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
                 <div class="input-group col-md-2">
-                    <input id="field_fechaResolucion" type="text" class="form-control" name="fechaResolucion" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaResolucion"
+                    <input id="field_fechaResolucion" type="date" class="form-control" name="fechaResolucion" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaResolucion"
                     />
                     <span class="input-group-append">
                         <button type="button" class="btn btn-secondary" (click)="fechaResolucionDp.toggle()"><i class="fa fa-calendar"></i></button>
@@ -67,7 +67,7 @@
             
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.tramiteGeneral.fechaNotificacion" for="field_fechaNotificacion">Fecha Notificacion</label>
                 <div class="input-group col-md-2">
-                    <input id="field_fechaNotificacion" type="text" class="form-control" name="fechaNotificacion" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaNotificacion"
+                    <input id="field_fechaNotificacion" type="date" class="form-control" name="fechaNotificacion" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteGeneral.fechaNotificacion"
                     />
                     <span class="input-group-append">
                         <button type="button" class="btn btn-secondary" (click)="fechaNotificacionDp.toggle()"><i class="fa fa-calendar"></i></button>

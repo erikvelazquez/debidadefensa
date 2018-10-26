@@ -12,32 +12,35 @@
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="fechasServicio.id" readonly />
         </div>-->
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="isGeneral === false">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.fechasServicio.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
-            <select class="form-control col-md-10" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="fechasServicio.tipoServicioId" >
+            <select [disabled]="true" class="form-control col-md-10" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="fechasServicio.tipoServicioId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.descripcion}}</option>
             </select>
         </div>
+        <div class="form-group row" *ngIf="isGeneral === true">
+                <label class="form-control-label col-md-12 text-center" style="font-weight: bold" for="field_tipoServicio">Evento</label>
+        </div>
         <div class="form-group row" *ngIf="fechasServicio.tipoServicioId === 1001">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.fechasServicio.expediente" for="field_expediente">Expediente</label>
-            <select class="form-control col-md-10" id="field_expediente" name="expediente" [(ngModel)]="fechasServicio.expedienteId" >
+            <select [disabled]="true" class="form-control col-md-10" id="field_expediente" name="expediente" [(ngModel)]="fechasServicio.expedienteId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
             </select>
         </div>
         <div class="form-group row" *ngIf="fechasServicio.tipoServicioId === 1002">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.fechasServicio.tramiteMigratorio" for="field_tramiteMigratorio">Trámite Migratorio</label>
-            <select class="form-control col-md-10" id="field_tramiteMigratorio" name="tramiteMigratorio" [(ngModel)]="fechasServicio.tramiteMigratorioId" >
+            <select [disabled]="true" class="form-control col-md-10" id="field_tramiteMigratorio" name="tramiteMigratorio" [(ngModel)]="fechasServicio.tramiteMigratorioId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tramiteMigratorioOption.id" *ngFor="let tramiteMigratorioOption of tramitemigratorios; trackBy: trackTramiteMigratorioById">{{tramiteMigratorioOption.nombreExtranjero}}</option>
             </select>
         </div>       
         <div class="form-group row" *ngIf="fechasServicio.tipoServicioId === 1003">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.fechasServicio.tramiteGeneral" for="field_tramiteGeneral">Trámite General</label>
-            <select class="form-control col-md-10" id="field_tramiteGeneral" name="tramiteGeneral" [(ngModel)]="fechasServicio.tramiteGeneralId" >
+            <select [disabled]="true" class="form-control col-md-10" id="field_tramiteGeneral" name="tramiteGeneral" [(ngModel)]="fechasServicio.tramiteGeneralId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="tramiteGeneralOption.id" *ngFor="let tramiteGeneralOption of tramitegenerals; trackBy: trackTramiteGeneralById">{{tramiteGeneralOption.titular}}</option>
+                <option [ngValue]="tramiteGeneralOption.id" *ngFor="let tramiteGeneralOption of tramitegenerals; trackBy: trackTramiteGeneralById">{{tramiteGeneralOption.numeroTramite}}</option>
             </select>
         </div>
         

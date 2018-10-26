@@ -8,7 +8,7 @@
                 "createOrEditLabel": "Crear o editar Cliente",
                 "search": "Búsqueda"
             },
-            "created": "Un nuevo Cliente ha sido creado con el identificado",
+            "created": "Un nuevo Cliente ha sido creado",
             "updated": "Un Cliente ha sido actualizado ",
             "deleted": "Un Cliente ha sido eliminado ",
             "delete": {
