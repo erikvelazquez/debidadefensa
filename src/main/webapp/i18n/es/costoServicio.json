@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Costo Servicio",
                 "search": "Search for Costo Servicio"
             },
-            "created": "Un nuevo Costo Servicio ha sido creado  {{ param }}",
-            "updated": "Un Costo Servicio ha sido actualizado  {{ param }}",
-            "deleted": "Un Costo Servicio ha sido eliminado  {{ param }}",
+            "created": "Un nuevo Costo Servicio ha sido creado",
+            "updated": "Un Costo Servicio ha sido actualizado",
+            "deleted": "Un Costo Servicio ha sido eliminado",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Costo Servicio?"
             },

@@ -8,14 +8,17 @@ import com.debidadefensa.service.impl.FechasServicioServiceImpl;
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.elasticsearch.common.inject.Inject;
+import org.hibernate.envers.Audited;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
@@ -24,6 +27,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import java.net.InetAddress;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.time.Instant;
 import java.util.Arrays;
@@ -82,8 +87,6 @@ public class DebidadefensaApp {
      * @throws UnknownHostException if the local host name could not be resolved into an address
      */
     public static void main(String[] args) throws UnknownHostException {
-
-        
         SpringApplication app = new SpringApplication(DebidadefensaApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
@@ -104,46 +107,33 @@ public class DebidadefensaApp {
             env.getProperty("server.port"),
             env.getActiveProfiles());
         // And From your main() method or any other method
+       // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        
+       // context.scan("com.debidadefensa");
+      //  context.refresh();
+        
+      //FechasServicioService  fec = context.getBean(FechasServicioService.class);
+
         Timer timer = new Timer();
         timer.schedule(new TiemerTaskClass(), 0, 60000); //1 Min   
     }    
 }
 
 class TiemerTaskClass extends TimerTask {
-    @Resource(name = "FechasServicioServiceImpl")
-    private FechasServicioService fechas;     
-          
+    @Autowired
+    private FechasServicioService fechasServicioService;
+
+    public TiemerTaskClass(){
+        this.fechasServicioService = fechasServicioService;
+    }
+
     @Override
     public void run() { 
-      //  fechas = new ServicioFecha().ObtenServicio(); 
-       // fechas.ConsultaFechasEmail(new Date().toInstant());          
+        fechasServicioService.ConsultaFechasEmail();
+       
+        //System.out.println(respuesta);
         System.out.println("Timer task started at:"+new Date());
     }  
 } 
-
-class ServicioFecha {
-    @Resource
-    FechasServicioService fecha;
-
-    /**
-     * @return the fecha
-     */
-    @Resource
-    public FechasServicioService getFecha() {
-        return fecha;
-    }
-
-    /**
-     * @param fecha the fecha to set
-     */
-    @Resource
-    public void setFecha(FechasServicioService fecha) {
-        this.fecha = fecha;
-    }
-
-    public FechasServicioService ObtenServicio(){       
-        return this.fecha;
-    }
-}
 
 

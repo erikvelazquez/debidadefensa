@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Parte",
                 "search": "Search for Parte"
             },
-            "created": "Un nuevo Parte ha sido creado  {{ param }}",
-            "updated": "Un Parte ha sido actualizado  {{ param }}",
-            "deleted": "Un Parte ha sido eliminado  {{ param }}",
+            "created": "Un nuevo Parte ha sido creado",
+            "updated": "Un Parte ha sido actualizado",
+            "deleted": "Un Parte ha sido eliminado",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Parte {{ id }}?"
             },

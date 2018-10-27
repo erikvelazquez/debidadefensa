@@ -198,6 +198,15 @@ public class FechasServicioResource {
         return ls;
     }
 
+    @GetMapping("/fechas-servicios/obtenermail")
+    @Timed
+    public String getAllFechasByMonth() {
+        log.debug("REST request to get a page of Expedientes");
+       // List<FechasServicioDTO> ls = fechasServicioService.findByDate(month, year);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+        return "Hola mundo";
+    }
 
 
 }

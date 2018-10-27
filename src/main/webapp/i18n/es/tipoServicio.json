@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Tipo de Servicio",
                 "search": "Search for Tipo Servicio"
             },
-            "created": "Un nuevo Tipo Servicio ha sido creado  {{ param }}",
-            "updated": "Un Tipo Servicio ha sido actualizado  {{ param }}",
-            "deleted": "Un Tipo Servicio ha sido eliminado  {{ param }}",
+            "created": "Un nuevo Tipo Servicio ha sido creado",
+            "updated": "Un Tipo Servicio ha sido actualizado",
+            "deleted": "Un Tipo Servicio ha sido eliminado",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Tipo de Servicio?"
             },

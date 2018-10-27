@@ -2,6 +2,8 @@ package com.debidadefensa.service;
 
 import com.debidadefensa.service.dto.FechasServicioDTO;
 
+import org.springframework.context.annotation.Bean;
+
 import java.time.Instant;
 import java.util.List;
 
@@ -88,7 +90,7 @@ public abstract interface FechasServicioService {
      * @param date
      * @return the list of entities
      */
-    String ConsultaFechasEmail(Instant fecha);
+    String ConsultaFechasEmail();
 }
 
 

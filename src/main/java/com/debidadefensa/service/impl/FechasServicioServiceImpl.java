@@ -32,6 +32,7 @@ import java.util.stream.StreamSupport;
 
 import io.github.jhipster.config.JHipsterProperties;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +44,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 /**
  * Service Implementation for managing FechasServicio.
  */
-@Service
+@Service("fechaservice")
 @Transactional
 public class FechasServicioServiceImpl implements FechasServicioService {
 
@@ -124,16 +125,17 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         return result;
     }
 
-    public String ConsultaFechasEmail(Instant fecha){
-        fecha.minusSeconds(0);
+    public String ConsultaFechasEmail(){
+        Instant fecha = new Date().toInstant();
+     /*   fecha.minusSeconds(0);
         List<FechasServicioDTO> fechas = fechasServicioRepository.findByDateEmail(fecha).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
         if (fechas.size() > 0) {
             for (FechasServicioDTO var : fechas) {
                 EnviaCoreo(var);
             }
         }
-
-        return "";
+*/
+        return "lo envie " + fecha;
     }
 
     public void EnviaCoreo(FechasServicioDTO fechasServicioDTO){

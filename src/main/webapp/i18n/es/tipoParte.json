@@ -8,9 +8,9 @@
                 "createOrEditLabel": "Crear o editar Tipo de Parte",
                 "search": "Search for Tipo Parte"
             },
-            "created": "Un nuevo Tipo Parte ha sido creado  {{ param }}",
-            "updated": "Un Tipo Parte ha sido actualizado  {{ param }}",
-            "deleted": "Un Tipo Parte ha sido eliminado  {{ param }}",
+            "created": "Un nuevo Tipo Parte ha sido creado",
+            "updated": "Un Tipo Parte ha sido actualizado",
+            "deleted": "Un Tipo Parte ha sido eliminado",
             "delete": {
                 "question": "¿Seguro que quiere eliminar Tipo de Parte?"
             },
