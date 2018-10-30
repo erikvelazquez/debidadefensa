@@ -35,17 +35,19 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">            
+            <th><span>Cliente</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia">Dependencia</span> <span class="fa"></span></th>            
             <th><span>Tipo de Trámite</span> <span class="fa"></span></th>
             <th><span>Estatus</span> <span class="fa"></span></th>
-            <th><span>Fecha de Ingreso</span> <span class="fa"></span></th>
+            <!-- <th><span>Fecha de Ingreso</span> <span class="fa"></span></th> -->
             <th><span >Documentos</span> <span class="fa"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
+                    <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteGeneral.clienteId + '/edit'} }]">{{tramiteGeneral.clienteNombre}}</a></td>              
                 <td><a [routerLink]="['/', { outlets: { popup: 'tramite-general/'+ tramiteGeneral.id + '/edit'} }]">{{tramiteGeneral.titular}}</a></td>
                 
                 <td>{{tramiteGeneral.dependencia}}</td>
@@ -53,7 +55,7 @@
                 <td>{{tramiteGeneral.tipoTramite}}</td>
                 <td>{{tramiteGeneral.estatusDescripcion}}</td>
 
-                <td>{{tramiteGeneral.fechaIngreso | date:'mediumDate'}}</td>
+                <!-- <td>{{tramiteGeneral.fechaIngreso | date:'mediumDate'}}</td> -->
                 <td>{{tramiteGeneral.totalDocumentos}}</td>
                 <td class="text-right">
                         <button type="submit"

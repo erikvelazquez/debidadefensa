@@ -34,14 +34,14 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            
+            <th><span>Cliente</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>
             <th><span>Tipo de Trámite</span> <span class="fa"></span></th>
             <!--<th jhiSortBy="entidad"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad">Entidad</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nut"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nut">Nut</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="contraseniaNUT"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.contraseniaNUT">Contrasenia NUT</span> <span class="fa fa-sort"></span></th>-->
             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
-            <th><span>Fecha de Ingreso</span> <span class="fa"></span></th>
+            <!-- <th><span>Fecha de Ingreso</span> <span class="fa"></span></th> -->
             <!--<th jhiSortBy="fechaNotificacion"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaNotificacion">Fecha Notificacion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fechaResolucion"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaResolucion">Fecha Resolucion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="archivo"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.archivo">Archivo</span> <span class="fa fa-sort"></span></th>
@@ -53,14 +53,15 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">
-                <!-- <td><a [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/edit'} }]">{{tramiteMigratorio.nombreExtranjero}}</a></td>                -->
-                <td>{{tramiteMigratorio.nombreExtranjero}}</td>
+                <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteMigratorio.clienteId + '/edit'} }]">{{tramiteMigratorio.clienteNombre}}</a></td>              
+                <td><a [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/edit'} }]">{{tramiteMigratorio.nombreExtranjero}}</a></td>               
+                <!-- <td>{{tramiteMigratorio.nombreExtranjero}}</td> -->
                 <td>{{tramiteMigratorio.tipotramite}}</td>
                 <!--<td>{{tramiteMigratorio.entidad}}</td>
                 <td>{{tramiteMigratorio.nut}}</td>
                 <td>{{tramiteMigratorio.contraseniaNUT}}</td>-->
                 <td>{{tramiteMigratorio.estatusDescripcion}}</td>
-                <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>
+                <!-- <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td> -->
                 <td>{{tramiteMigratorio.totalDocumentos}}</td>
                 <!--<td>{{tramiteMigratorio.fechaNotificacion | date:'mediumDate'}}</td>
                 <td>{{tramiteMigratorio.fechaResolucion | date:'mediumDate'}}</td>

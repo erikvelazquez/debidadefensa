@@ -34,12 +34,13 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th><span>Cliente</span> <span class="fa"></span></th>
             <th><span>Número de Expediente</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.expediente.juzgado">Juzgado</span> <span class="fa"></span></th>
-            <th><span jhiTranslate="debidadefensaApp.expediente.responsable">Responsable</span> <span class="fa"></span></th>
+            <!-- <th><span jhiTranslate="debidadefensaApp.expediente.responsable">Responsable</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.expediente.observaciones">Observaciones</span> <span class="fa"></span></th>
             <th><span>Fecha de Alta</span> <span class="fa"></span></th>
-            <th><span>Fecha de Sentencia</span> <span class="fa"></span></th>            
+            <th><span>Fecha de Sentencia</span> <span class="fa"></span></th>             -->
             <th><span >Estatus</span> <span class="fa"></span></th>
             <th><span >Documentos</span> <span class="fa"></span></th>
             
@@ -48,15 +49,13 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let expediente of expedientes ;trackBy: trackId">
+                <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ expediente.clienteId + '/edit'} }]">{{expediente.clienteNombre}}</a></td>              
                 <td><a [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/edit'} }]">{{expediente.numeroExpediente}}</a></td>
                 <td>{{expediente.juzgado}}</td>
-      
-                
-                <td>{{expediente.responsable}}</td>
+                <!-- <td>{{expediente.responsable}}</td>
                 <td>{{expediente.observaciones}}</td>
                 <td>{{expediente.fechaAlta | date:'mediumDate'}}</td>
-                <td>{{expediente.fechaSentencia | date:'mediumDate'}}</td>
-               
+                <td>{{expediente.fechaSentencia | date:'mediumDate'}}</td>                -->
                 <td>{{expediente.estatusDescripcion}}</td>
                 <td>{{expediente.totalDocumentos}}</td>
               

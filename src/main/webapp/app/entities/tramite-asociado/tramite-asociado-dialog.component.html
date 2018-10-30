@@ -13,16 +13,21 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><span >Cliente</span> </th>                        
                         <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> </th>                        
+                        <th><span >Tipo trámite</span> </th>                
+                        <th><span >Dependencia</span> </th>
+                        <th><span >Estatus</span> </th>
                         
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tramiteGeneral of tramiteGenerals">
-                        <td>{{tramiteGeneral.clienteNombre}}</td> 
-                        <td>{{tramiteGeneral.titular}}</td>                       
+                        <td>{{tramiteGeneral.titular}}</td>
+                        <td>{{tramiteGeneral.tipoTramite}}</td>
+                        <td>{{tramiteGeneral.dependencia}}</td>
+                        <td>{{tramiteGeneral.estatusDescripcion}}</td>
+                       
                         
                         <td class="text-right">
                             <input type="checkbox" [checked]="tramiteGeneral.seleccionado" (change)="tramiteGeneral.seleccionado = !tramiteGeneral.seleccionado" />
@@ -39,19 +44,17 @@
                 <tr >                
                     <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span></th>
                     <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.tipotramite">Tipotramite</span></th>
-                    
-                    <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span></th>
                     <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.fechaIngreso">Fecha Ingreso</span></th>
-                
+                    <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span></th>                
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ">                    
                     <td>{{tramiteMigratorio.nombreExtranjero}}</td>
-                    <td>{{tramiteMigratorio.tipotramite}}</td>        
-                    <td>{{tramiteMigratorio.estatusDescripcion}}</td>
+                    <td>{{tramiteMigratorio.tipotramite}}</td>
                     <td>{{tramiteMigratorio.fechaIngreso | date:'mediumDate'}}</td>                   
+                    <td>{{tramiteMigratorio.estatusDescripcion}}</td>
                     <td class="text-right">
                         <input type="checkbox" [checked]="tramiteMigratorio.seleccionado" (change)="tramiteMigratorio.seleccionado = !tramiteMigratorio.seleccionado" />
                     </td>

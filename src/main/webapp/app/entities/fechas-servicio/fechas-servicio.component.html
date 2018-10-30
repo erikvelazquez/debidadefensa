@@ -42,6 +42,9 @@
             <thead>
             <tr>
             <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
+            <th><span>Hora</span></th>
+            <th><span>Cliente</span></th>
+            <th><span>Tipo Servicio</span></th>            
             <th><span>Descripción</span></th>            
             <th><span jhiTranslate="debidadefensaApp.fechasServicio.observaciones">Observaciones</span></th>            
             <th></th>
@@ -49,9 +52,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">   
-                <td>{{fechasServicio.fecha | date:'dd/MM/yy HH:mm'}}</td>             
+                <td>{{fechasServicio.fecha | date:'dd/MM/yyyy'}}</td>             
+                <td>{{fechasServicio.fecha | date:'HH:mm'}}</td> 
                 <!-- <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>-->
                 <td>{{fechasServicio.descripcion}}</td>                
+                <td>{{fechasServicio.expedienteId != null ? 'Expediente' : ''}}</td>
+                <td>{{fechasServicio.descripcion}}</td>
                 <td>{{fechasServicio.observaciones}}</td>                
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

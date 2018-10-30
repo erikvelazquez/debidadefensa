@@ -104,7 +104,7 @@ export class AgendaComponent {
           const fec = new Date(i.fecha);
           this.events.push({
             start: fec,
-            title: fec.getHours() + ':' + (fec.getMinutes() < 10 ? '0' : '') + fec.getMinutes() + ' ' + i.descripcion,
+            title: fec.getHours() + ':' + (fec.getMinutes() < 10 ? '0' : '') + fec.getMinutes() + ' ' + i.descripcion + ' - ' + i.observaciones,
             color: colors.blue
           });
       }

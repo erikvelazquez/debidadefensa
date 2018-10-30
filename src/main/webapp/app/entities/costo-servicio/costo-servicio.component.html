@@ -4,19 +4,19 @@
         <h4 class="modal-title col-md-12 text-left" style="font-weight: bold" > COSTOS Y PAGOS</h4>
         <div class="col-md-12 row" *ngIf="tiposervicio === '1001'" >
             <h4 class="col-md-6">Cliente: {{expediente.clienteNombre}}</h4>
-            <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
+            <h4 class="col-md-6">Servicio: {{nombreTipoServicio}}</h4>            
             <h4 class="col-md-6">Número Expediente: {{expediente.numeroExpediente}}</h4>
             <h4 class="col-md-6">Responsable: {{expediente.responsable}}</h4>            
         </div>
         <div class="col-md-12 row" *ngIf="tiposervicio === '1002'" >
                 <h4 class="col-md-6">Cliente: {{tramiteMigratorio.clienteNombre}}</h4>
-                <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
+                <h4 class="col-md-6">Servicio: {{nombreTipoServicio}}</h4>            
                 <h4 class="col-md-6">Nombre Extranjero: {{tramiteMigratorio.nombreExtranjero}}</h4>
                 <h4 class="col-md-6">Tipo Tramite: {{tramiteMigratorio.tipotramite}}</h4>            
             </div>
         <div class="col-md-12 row" *ngIf="tiposervicio === '1003'">
                 <h4 class="col-md-6">Cliente: {{tramiteGeneral.clienteNombre}}</h4>
-                <h4 class="col-md-6">Tipo Servicio: {{nombreTipoServicio}}</h4>            
+                <h4 class="col-md-6">Servicio: {{nombreTipoServicio}}</h4>            
                 <h4 class="col-md-6">Número Tramite: {{tramiteGeneral.numeroTramite}}</h4>
                 <h4 class="col-md-6">Tipo Tramite: {{tramiteGeneral.titular}}</h4>            
             </div>
@@ -54,7 +54,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><span >Tipo</span></th>
+                        <!-- <th><span >Tipo</span></th> -->
                         <th><span jhiTranslate="debidadefensaApp.costoServicio.concepto">Concepto</span></th>
                         <th><span jhiTranslate="debidadefensaApp.costoServicio.costo">Costo</span></th>                   
                         <th></th>
@@ -62,7 +62,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let costoServicio of costoServicios ;trackBy: trackId">                
-                    <td>{{costoServicio.tipoCosto}}</td>
+                    <!-- <td>{{costoServicio.tipoCosto}}</td> -->
                     <td>{{costoServicio.concepto}}</td>
                     <td>{{costoServicio.costo | currency}}</td>
                 
@@ -106,9 +106,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><span jhiTranslate="debidadefensaApp.pagos.tipoAbono">Tipo Abono</span></th>   
+                        <th><span >Concepto</span></th>   
                         <th><span jhiTranslate="debidadefensaApp.pagos.formaPago">Forma Pago</span></th>
-                        <th><span >Costo</span></th>
+                        <th><span >Cantidad</span></th>
                         <th><span jhiTranslate="debidadefensaApp.pagos.fecha">Fecha</span></th>
                 <th></th>
                 </tr>
