@@ -160,7 +160,7 @@
                             replaceUrl="true"
                             queryParamsHandling="merge"
                             class="btn btn-secondary btn-sm">
-                        <span class="fa fa-credit-card"></span>                
+                        <span class="fa fa-plus"></span>                
                     </button>            
                 </div>                 
                 <div class="row col-md-4">
@@ -183,7 +183,7 @@
         <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
             <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
                 <div class="col-md-12" style="height: 40px;">
-                    <span class="col-md-12 text-center label-title">Trámites asociados</span>       
+                    <span class="col-md-12 text-center label-title">TRÁMITES ASOCIADOS</span>       
                     <button class="btn btn-secondary btn-sm" type="button"
                         [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/edit'} }]" >
                         <span class="fa fa-plus"></span>                        
@@ -256,7 +256,7 @@
             </div>
             <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                 <div class="col-md-12" style="height: 40px;">
-                    <span class="text-center label-title">Fechas</span>
+                    <span class="text-center label-title">FECHAS DE SERVICIO</span>
                     <button class="btn btn-secondary btn-sm" type="button"
                             [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + tramiteMigratorio.id + '/' + tipoServicio } }]">
                         <span class="fa fa-plus"></span>                        
@@ -276,7 +276,15 @@
                                 <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
                                 <td>{{fechasServicio.descripcion}}</td>                                
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">                                      
+                                    <div class="btn-group flex-btn-group-container">  
+                                        <button type="button"
+                                                [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/edit'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="fa fa-pencil"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                        </button>                                      
                                         <button type="button"
                                                 [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
                                                 replaceUrl="true"

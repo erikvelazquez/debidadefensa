@@ -17,9 +17,9 @@
             "detail": {
                 "title": "Expediente Asociado"
             },
-            "numeroExpediente": "Numero Expediente",
+            "numeroExpediente": "Número Expediente",
             "instancia": "Instancia",
-            "organocompetente": "Organocompetente",
+            "organocompetente": "Órganocompetente",
             "archivo": "Archivo",
             "observaciones": "Observaciones",
             "fechaSentencia": "Fecha Sentencia",

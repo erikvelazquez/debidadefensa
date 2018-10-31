@@ -29,11 +29,11 @@
             "observaciones": "Observaciones",
             "cliente": "Cliente",
             "estatusTramiteMigratorio": "Estatus",
-            "tramitteMigratorioCosto": "Tramitte Migratorio Costo",
-            "tramitteMigratorioPago": "Tramitte Migratorio Pago",
+            "tramitteMigratorioCosto": "Trámite Migratorio Costo",
+            "tramitteMigratorioPago": "Trámite Migratorio Pago",
             "tramitteMigratorioDocumentos": "Tramitte Migratorio Documentos",
             "fechasServicioTramiteMigratorio": "Fechas Servicio Trámite Migratorio",
-            "tramitesMigraAsociados": "Tramites Migratorios Asociados",
+            "tramitesMigraAsociados": "Trámites Migratorios Asociados",
             "erroreliminar": "El trámite migratorio no puede ser eliminado ya que contiene información relacionada."
         }
     }

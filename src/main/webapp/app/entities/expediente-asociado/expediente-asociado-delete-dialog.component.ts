@@ -29,10 +29,12 @@ export class ExpedienteAsociadoDeleteDialogComponent {
 
     confirmDelete(id: number) {
         this.expedienteAsociadoService.delete(id).subscribe((response) => {
-            this.eventManager.broadcast({
-                name: 'expedienteAsociadoListModification',
-                content: 'Deleted an expedienteAsociado'
-            });
+            // this.eventManager.broadcast({
+            //     name: 'expedienteAsociadoListModification',
+            //     content: 'Deleted an expedienteAsociado'
+            // });
+
+            this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
             this.activeModal.dismiss(true);
         });
     }

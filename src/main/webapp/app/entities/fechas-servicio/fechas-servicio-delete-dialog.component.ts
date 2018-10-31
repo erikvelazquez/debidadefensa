@@ -30,15 +30,40 @@ export class FechasServicioDeleteDialogComponent {
 
     confirmDelete(id: number) {
         this.fechasServicioService.delete(id).subscribe((response) => {
-            this.eventManager.broadcast({
-                name: 'tramiteMigratorioListModification',
-                content: 'Deleted an fechasServicio'
-            });
+            switch (this.fechasServicio.tipoServicioId) {
+                case 1001: {
+                    // Expediente
+                    this.eventManager.broadcast({ name: 'expedienteListModification', content: 'OK'});
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+                    break;
+                }
+                case 1002: {
+                    // Migratorio
+                    this.eventManager.broadcast({ name: 'tramiteMigratorioListModification', content: 'OK'});
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+                    break;
+                }
+                case 1003: {
+                    // General
+                    this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+                    break;
+                }
+                default: {
+                    this.eventManager.broadcast({ name: 'fechasServicioListModification', content: 'OK'});
+                break;
+                }
+            }
 
-            this.eventManager2.broadcast({
-                name: 'fechasServicioListModification',
-                content: 'Deleted an fechasServicio'
-            });
+            // this.eventManager.broadcast({
+            //     name: 'tramiteMigratorioListModification',
+            //     content: 'Deleted an fechasServicio'
+            // });
+
+            // this.eventManager2.broadcast({
+            //     name: 'fechasServicioListModification',
+            //     content: 'Deleted an fechasServicio'
+            // });
             this.activeModal.dismiss(true);
         });
     }

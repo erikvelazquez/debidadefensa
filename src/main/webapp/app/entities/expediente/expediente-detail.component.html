@@ -14,7 +14,7 @@
             </div>
                 
             <div class="form-group row">
-                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.numeroExpediente" for="field_numeroExpediente">Numero Expediente</label>
+                <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.numeroExpediente" for="field_numeroExpediente">Número Expediente</label>
                 <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente"
                     [(ngModel)]="expediente.numeroExpediente" />
             </div>
@@ -182,8 +182,8 @@
                                 [routerLink]="['../costo-servicio', expediente.id, tipoServicio  ]"      
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-credit-card"></span>                
+                                class="btn btn-secondary btn-sm">
+                            <span class="fa fa-plus"></span>                
                         </button>                   
                     </div>                 
                     <div class="row col-md-4">
@@ -220,7 +220,7 @@
                                         <tr>                                        
                                             <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.numeroExpediente">Numero Expediente</span></th>
                                             <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.instancia">Instancia</span></th>
-                                            <th><span >Organo Competente</span></th>    
+                                            <th><span >Órgano Competente</span></th>    
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -257,7 +257,7 @@
                 </div>
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12" style="height: 40px;">
-                        <span class="text-center label-title">FECHAS</span>
+                        <span class="text-center label-title">FECHAS DE SERVICIO</span>
                         <button class="btn btn-secondary btn-sm"  type="button"
                                 [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + expediente.id + '/' + tipoServicio } }]">
                             <span class="fa fa-plus"></span>                        
@@ -277,7 +277,15 @@
                                     <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>
                                     <td>{{fechasServicio.descripcion}}</td>                                
                                     <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">                                      
+                                        <div class="btn-group flex-btn-group-container">    
+                                            <button type="button"
+                                                    [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/edit'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                    class="btn btn-primary btn-sm">
+                                                <span class="fa fa-pencil"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                            </button>                                  
                                             <button type="button"
                                                     [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
                                                     replaceUrl="true"

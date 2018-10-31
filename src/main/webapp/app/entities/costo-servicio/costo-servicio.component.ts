@@ -90,7 +90,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
                     this.tramiteMigratorio = tramiteMigratorioResponse.body;
                });
 
-               this.nombreTipoServicio = 'Tramite Migratorio';
+               this.nombreTipoServicio = 'Trámite Migratorio';
 
                this.costoServicioService.findByMigratorio(this.idTramite)
                 .subscribe((res: HttpResponse<CostoServicio[]>) => {
@@ -114,7 +114,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
                      this.tramiteGeneral = tramiteGeneralResponse.body;
                 });
 
-                this.nombreTipoServicio = 'Tramite General';
+                this.nombreTipoServicio = 'Trámite General';
                 this.costoServicioService.findByGeneral(this.idTramite).subscribe((res: HttpResponse<CostoServicio[]>) => {
                     this.costoServicios = res.body;
                     this.calculaTotles();

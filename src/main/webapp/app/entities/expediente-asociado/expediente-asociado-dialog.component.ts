@@ -48,6 +48,9 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Estatus[]>) => {
                 if (!this.expedienteAsociado.estatusExpedienteAsociadoId) {
                     this.estatusexpedienteasociados = res.body;
+                    this.estatusexpedienteasociados = this.estatusexpedienteasociados.filter((s) => {
+                        return s.tipoServicioId === 1001;
+                    });
                 } else {
                     this.estatusService
                         .find(this.expedienteAsociado.estatusExpedienteAsociadoId)

@@ -21,8 +21,8 @@
             "concepto": "Concepto",
             "costo": "Costo",
             "expediente": "Expediente",
-            "tramiteMigratorio": "Tramite Migratorio",
-            "tramiteGeneral": "Tramite General",
+            "tramiteMigratorio": "Trámite Migratorio",
+            "tramiteGeneral": "Trámite General",
             "tipoServicio": "Tipo Servicio"
         }
     }
