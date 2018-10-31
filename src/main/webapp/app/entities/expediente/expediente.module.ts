@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
 import { DebidadefensaSharedModule } from '../../shared';
@@ -14,6 +14,8 @@ import {
     expedienteRoute,
     expedientePopupRoute,
 } from './';
+import { registerLocaleData } from '@angular/common';
+import localeEsMX from '@angular/common/locales/es-MX';
 
 const ENTITY_STATES = [
     ...expedienteRoute,
@@ -44,6 +46,7 @@ const ENTITY_STATES = [
         ExpedienteService,
         ExpedientePopupService,
         CustomDatepickerI18n,
+        { provide: LOCALE_ID, useValue: 'es-MX' }
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -25,7 +25,7 @@ import {
         Title,
         {
             provide: LOCALE_ID,
-            useValue: 'es'
+            useValue: 'es-MX'
         },
     ],
     exports: [

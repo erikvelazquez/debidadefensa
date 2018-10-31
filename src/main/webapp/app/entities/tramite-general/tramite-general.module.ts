@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { DebidadefensaSharedModule } from '../../shared';
@@ -15,6 +15,8 @@ import {
     tramiteGeneralPopupRoute,
     TramiteGeneralResolvePagingParams,
 } from './';
+import { registerLocaleData } from '@angular/common';
+import localeEsMX from '@angular/common/locales/es-MX';
 
 const ENTITY_STATES = [
     ...tramiteGeneralRoute,
@@ -45,6 +47,7 @@ const ENTITY_STATES = [
         TramiteGeneralService,
         TramiteGeneralPopupService,
         TramiteGeneralResolvePagingParams,
+        { provide: LOCALE_ID, useValue: 'es-MX' }
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

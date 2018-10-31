@@ -187,16 +187,16 @@
                         </button>                   
                     </div>                 
                     <div class="row col-md-4">
-                        <h4 class="form-control-label col-md-8 text-right" >Costos Totales</h4>
-                        <h4 class="form-control-label col-md-4 text-left">{{totalCostos}}</h4>
+                        <h4 class="form-control-label col-md-6 text-right" >Costos Totales</h4>
+                        <h4 class="form-control-label col-md-6 text-left">{{totalCostos | currency}}</h4>
                     </div>
                     <div class="row col-md-4">
-                        <h4 class="form-control-label col-md-8 text-right" >Pagos Totales</h4>
-                        <h4 class="form-control-label col-md-4 text-left" >{{totalPagos}}</h4>
+                        <h4 class="form-control-label col-md-6 text-right" >Pagos Totales</h4>
+                        <h4 class="form-control-label col-md-6 text-left" >{{totalPagos | currency}}</h4>
                     </div>
                     <div class="row col-md-4">
-                        <h4 class="form-control-label col-md-8 text-right" >Deuda Total</h4>
-                        <h4 class="form-control-label col-md-4 text-left" >{{totalCostos - totalPagos}}</h4>
+                        <h4 class="form-control-label col-md-6 text-right" >Deuda Total</h4>
+                        <h4 class="form-control-label col-md-6 text-left" >{{totalCostos - totalPagos | currency}}</h4>
                     </div> 
                      
                 </div>

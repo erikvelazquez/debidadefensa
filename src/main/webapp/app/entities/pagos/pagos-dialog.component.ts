@@ -13,13 +13,16 @@ import { Expediente, ExpedienteService } from '../expediente';
 import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
 import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
 import { TipoServicio, TipoServicioService } from '../tipo-servicio';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-pagos-dialog',
     templateUrl: './pagos-dialog.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class PagosDialogComponent implements OnInit {
 

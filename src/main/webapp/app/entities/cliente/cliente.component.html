@@ -36,11 +36,10 @@
                     >
                     <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>-->
                     <th><span jhiTranslate="debidadefensaApp.cliente.nombre">Nombre</span> <span class="fa"></span></th>
-                    <th><span >Teléfono(s)</span> <span class="fa"></span></th>
-                    <th><span >Correo Electrónico</span> <span class="fa "></span></th>
-                    
+                    <!-- <th><span >Teléfono(s)</span> <span class="fa"></span></th>
+                    <th><span >Correo Electrónico</span> <span class="fa "></span></th>                    
                     <th><span>R.F.C.</span> <span class="fa"></span></th>
-                    <th><span jhiTranslate="debidadefensaApp.cliente.referencia">Referencia</span> <span class="fa"></span></th>
+                    <th><span jhiTranslate="debidadefensaApp.cliente.referencia">Referencia</span> <span class="fa"></span></th> -->
                     <th><span >Trámites Migratorios</span> <span class="fa"></span></th>
                     <th><span >Trámites Generales</span> <span class="fa"></span></th>
                     <th><span >Expedientes</span> <span class="fa"></span></th>
@@ -51,11 +50,11 @@
             <tr *ngFor="let cliente of clientes ;trackBy: trackId">
                 <!--<td><a [routerLink]="['../cliente', cliente.id ]">{{cliente.id}}</a></td>-->
                 <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ cliente.id + '/edit'} }]">{{cliente.nombre}}</a></td>
-                <td>{{cliente.telefonos}}</td>
+                <!-- <td>{{cliente.telefonos}}</td>
                 <td>{{cliente.correoElectronico}}</td>
                 
                 <td>{{cliente.rfc}}</td>
-                <td>{{cliente.referencia}}</td>
+                <td>{{cliente.referencia}}</td> -->
                 <td><a [routerLink]="['../tramite-migratorio-usuario', cliente.id ]"><span>{{cliente.totalMigratorios}}</span>  </a></td>
                 <td><a [routerLink]="['../tramite-general-usuario', cliente.id ]"><span>{{cliente.totalGenerales}}</span>  </a></td>
                 <td><a [routerLink]="['../expediente-usuario', cliente.id ]"><span>{{cliente.totalExpediente}}</span> </a></td>

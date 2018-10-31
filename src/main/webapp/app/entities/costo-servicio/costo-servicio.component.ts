@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, LOCALE_ID } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-
 import { CostoServicio } from './costo-servicio.model';
 import { CostoServicioService } from './costo-servicio.service';
 import { Principal } from '../../shared';
@@ -15,7 +14,8 @@ import { Expediente, ExpedienteService } from '../expediente';
 
 @Component({
     selector: 'jhi-costo-servicio',
-    templateUrl: './costo-servicio.component.html'
+    templateUrl: './costo-servicio.component.html',
+    providers: [{provide: LOCALE_ID, useValue: 'es-MX'}]
 })
 export class CostoServicioComponent implements OnInit, OnDestroy {
     costoServicios: CostoServicio[];
