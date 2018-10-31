@@ -14,13 +14,16 @@ import { ExpedienteAsociado, ExpedienteAsociadoService } from '../expediente-aso
 import { TramiteMigratorio, TramiteMigratorioService } from '../tramite-migratorio';
 import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
 import { TipoServicio, TipoServicioService } from '../tipo-servicio';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-documentos-dialog',
     templateUrl: './documentos-dialog.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class DocumentosDialogComponent implements OnInit {
 

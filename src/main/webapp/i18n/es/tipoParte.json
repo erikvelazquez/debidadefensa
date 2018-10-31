@@ -12,7 +12,7 @@
             "updated": "Un Tipo Parte ha sido actualizado",
             "deleted": "Un Tipo Parte ha sido eliminado",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Tipo de Parte?"
+                "question": "¿Está seguro que desea eliminar este tipo de parte?"
             },
             "detail": {
                 "title": "Tipo de Parte"

@@ -12,7 +12,7 @@
             "updated": "Un Expediente ha sido actualizado ",
             "deleted": "Un Expediente ha sido eliminado ",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Expediente?"
+                "question": "¿Está seguro que desea eliminar este expediente?"
             },
             "detail": {
                 "title": "Expediente"

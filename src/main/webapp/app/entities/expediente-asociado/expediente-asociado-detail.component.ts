@@ -7,9 +7,13 @@ import { JhiEventManager } from 'ng-jhipster';
 import { ExpedienteAsociado } from './expediente-asociado.model';
 import { ExpedienteAsociadoService } from './expediente-asociado.service';
 
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
+
 @Component({
     selector: 'jhi-expediente-asociado-detail',
-    templateUrl: './expediente-asociado-detail.component.html'
+    templateUrl: './expediente-asociado-detail.component.html',
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class ExpedienteAsociadoDetailComponent implements OnInit, OnDestroy {
 

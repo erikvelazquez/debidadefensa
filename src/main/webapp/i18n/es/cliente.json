@@ -12,7 +12,7 @@
             "updated": "Un Cliente ha sido actualizado ",
             "deleted": "Un Cliente ha sido eliminado ",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Cliente?"
+                "question": "¿Está seguro que desea eliminar a este cliente?"
             },
             "detail": {
                 "title": "Cliente"

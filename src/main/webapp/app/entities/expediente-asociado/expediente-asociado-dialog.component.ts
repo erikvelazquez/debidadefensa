@@ -1,23 +1,24 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-
 import { ExpedienteAsociado } from './expediente-asociado.model';
 import { ExpedienteAsociadoPopupService } from './expediente-asociado-popup.service';
 import { ExpedienteAsociadoService } from './expediente-asociado.service';
 import { Expediente, ExpedienteService } from '../expediente';
 import { Estatus, EstatusService } from '../estatus';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 @Component({
     selector: 'jhi-expediente-asociado-dialog',
     templateUrl: './expediente-asociado-dialog.component.html',
     styleUrls: [
         '../../app.scss'
-    ]
+    ],
+    providers: [{provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}]
 })
 export class ExpedienteAsociadoDialogComponent implements OnInit {
 

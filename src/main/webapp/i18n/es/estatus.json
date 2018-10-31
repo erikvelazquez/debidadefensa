@@ -12,7 +12,7 @@
             "updated": "Un Estatus ha sido actualizado",
             "deleted": "Un Estatus ha sido eliminado",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Estatus?"
+                "question": "¿Está seguro que desea eliminar este estatus?"
             },
             "detail": {
                 "title": "Estatus"

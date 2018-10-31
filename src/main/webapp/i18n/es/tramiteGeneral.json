@@ -12,7 +12,7 @@
             "updated": "Un trámite General ha sido actualizado ",
             "deleted": "Un trámite General ha sido eliminado ",
             "delete": {
-                "question": "¿Seguro que quiere eliminar el trámite general?"
+                "question": "¿Está seguro que desea eliminar este trámite general?"
             },
             "detail": {
                 "title": "trámite General"
