@@ -229,6 +229,7 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + expedienteDTO.getClienteNombre() + "</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Expediente: " + expedienteDTO.getNumeroExpediente() + "</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juicio: " + expedienteDTO.getJuicio() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juzgado: " + expedienteDTO.getJuzgado() + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + expedienteDTO.getEstatusDescripcion() + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";

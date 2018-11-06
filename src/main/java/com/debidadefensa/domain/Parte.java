@@ -28,8 +28,7 @@ public class Parte implements Serializable {
     @ManyToOne
     private Expediente expediente;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private TipoParte tipoParte;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

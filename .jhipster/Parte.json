@@ -8,12 +8,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
             "relationshipName": "tipoParte",
             "otherEntityName": "tipoParte",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "parte"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -23,9 +21,9 @@
         }
     ],
     "changelogDate": "20180610211044",
-    "entityTableName": "parte",
     "dto": "mapstruct",
-    "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "parte",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
 }

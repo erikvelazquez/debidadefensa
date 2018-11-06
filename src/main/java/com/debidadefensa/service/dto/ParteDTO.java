@@ -26,20 +26,20 @@ public class ParteDTO implements Serializable {
     }
 
     /**
-	 * @return the tipoParteNombre
-	 */
-	public String getTipoParteNombre() {
-		return tipoParteNombre;
-	}
+     * @return the tipoParteNombre
+     */
+    public String getTipoParteNombre() {
+        return tipoParteNombre;
+    }
 
-	/**
-	 * @param tipoParteNombre the tipoParteNombre to set
-	 */
-	public void setTipoParteNombre(String tipoParteNombre) {
-		this.tipoParteNombre = tipoParteNombre;
-	}
+    /**
+     * @param tipoParteNombre the tipoParteNombre to set
+     */
+    public void setTipoParteNombre(String tipoParteNombre) {
+        this.tipoParteNombre = tipoParteNombre;
+    }
 
-	public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
