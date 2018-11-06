@@ -91,6 +91,10 @@
         {
             "fieldName": "totalDocumentos",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "asociados",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180610211043",

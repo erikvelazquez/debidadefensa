@@ -2,6 +2,7 @@ package com.debidadefensa.service.dto;
 
 
 import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,37 +29,55 @@ public class ExpedienteDTO implements Serializable {
 
     private LocalDate fechaSentencia;
 
+    private Long totalDocumentos;
+
+    private String asociados;
+
     private Long clienteId;
 
     private String clienteNombre;
+
+    private Long tipoServicioId;
 
     private Long estatusExpedienteId;
 
     private String estatusDescripcion;
 
-    private Long tipoServicioId;
-
-    private Long totalDocumentos;
+    private String estatusExpedienteDescripcion;
 
     public Long getId() {
         return id;
     }
 
     /**
-	 * @return the totalDocumentos
-	 */
-	public Long getTotalDocumentos() {
-		return totalDocumentos;
-	}
+     * @return the estatusDescripcion
+     */
+    public String getEstatusDescripcion() {
+        return estatusDescripcion;
+    }
 
-	/**
-	 * @param totalDocumentos the totalDocumentos to set
-	 */
-	public void setTotalDocumentos(Long totalDocumentos) {
-		this.totalDocumentos = totalDocumentos;
-	}
+    /**
+     * @param estatusDescripcion the estatusDescripcion to set
+     */
+    public void setEstatusDescripcion(String estatusDescripcion) {
+        this.estatusDescripcion = estatusDescripcion;
+    }
 
-	public void setId(Long id) {
+    /**
+     * @return the clienteNombre
+     */
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    /**
+     * @param clienteNombre the clienteNombre to set
+     */
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -118,6 +137,22 @@ public class ExpedienteDTO implements Serializable {
         this.fechaSentencia = fechaSentencia;
     }
 
+    public Long getTotalDocumentos() {
+        return totalDocumentos;
+    }
+
+    public void setTotalDocumentos(Long totalDocumentos) {
+        this.totalDocumentos = totalDocumentos;
+    }
+
+    public String getAsociados() {
+        return asociados;
+    }
+
+    public void setAsociados(String asociados) {
+        this.asociados = asociados;
+    }
+
     public Long getClienteId() {
         return clienteId;
     }
@@ -126,13 +161,13 @@ public class ExpedienteDTO implements Serializable {
         this.clienteId = clienteId;
     }
 
-    public String getClienteNombre() {
-        return clienteNombre;
+    public Long getTipoServicioId() {
+        return tipoServicioId;
     }
 
-    public void setClienteNombre(String clienteNombre) {
-        this.clienteNombre = clienteNombre;
-    }    
+    public void setTipoServicioId(Long tipoServicioId) {
+        this.tipoServicioId = tipoServicioId;
+    }
 
     public Long getEstatusExpedienteId() {
         return estatusExpedienteId;
@@ -142,21 +177,12 @@ public class ExpedienteDTO implements Serializable {
         this.estatusExpedienteId = estatusId;
     }
 
-    public String getEstatusDescripcion() {
-        return estatusDescripcion;
+    public String getEstatusExpedienteDescripcion() {
+        return estatusExpedienteDescripcion;
     }
 
-    public void setEstatusDescripcion(String estatusDescripcion) {
-        this.estatusDescripcion = estatusDescripcion;
-    }
-
-
-    public Long getTipoServicioId() {
-        return tipoServicioId;
-    }
-
-    public void setTipoServicioId(Long tipoServicioId) {
-        this.tipoServicioId = tipoServicioId;
+    public void setEstatusExpedienteDescripcion(String estatusDescripcion) {
+        this.estatusExpedienteDescripcion = estatusDescripcion;
     }
 
     @Override
@@ -191,6 +217,8 @@ public class ExpedienteDTO implements Serializable {
             ", observaciones='" + getObservaciones() + "'" +
             ", fechaAlta='" + getFechaAlta() + "'" +
             ", fechaSentencia='" + getFechaSentencia() + "'" +
+            ", totalDocumentos=" + getTotalDocumentos() +
+            ", asociados='" + getAsociados() + "'" +
             "}";
     }
 }

@@ -51,6 +51,9 @@ public class Expediente implements Serializable {
     @Column(name = "total_documentos")
     private Long totalDocumentos;
 
+    @Column(name = "asociados")
+    private String asociados;
+
     @ManyToOne
     private Cliente cliente;
 
@@ -196,6 +199,19 @@ public class Expediente implements Serializable {
 
     public void setTotalDocumentos(Long totalDocumentos) {
         this.totalDocumentos = totalDocumentos;
+    }
+
+    public String getAsociados() {
+        return asociados;
+    }
+
+    public Expediente asociados(String asociados) {
+        this.asociados = asociados;
+        return this;
+    }
+
+    public void setAsociados(String asociados) {
+        this.asociados = asociados;
     }
 
     public Cliente getCliente() {
@@ -420,6 +436,7 @@ public class Expediente implements Serializable {
             ", fechaAlta='" + getFechaAlta() + "'" +
             ", fechaSentencia='" + getFechaSentencia() + "'" +
             ", totalDocumentos=" + getTotalDocumentos() +
+            ", asociados='" + getAsociados() + "'" +
             "}";
     }
 }

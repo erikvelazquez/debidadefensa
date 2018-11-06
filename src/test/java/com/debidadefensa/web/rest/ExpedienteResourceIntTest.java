@@ -69,6 +69,9 @@ public class ExpedienteResourceIntTest {
     private static final Long DEFAULT_TOTAL_DOCUMENTOS = 1L;
     private static final Long UPDATED_TOTAL_DOCUMENTOS = 2L;
 
+    private static final String DEFAULT_ASOCIADOS = "AAAAAAAAAA";
+    private static final String UPDATED_ASOCIADOS = "BBBBBBBBBB";
+
     @Autowired
     private ExpedienteRepository expedienteRepository;
 
@@ -123,7 +126,8 @@ public class ExpedienteResourceIntTest {
             .observaciones(DEFAULT_OBSERVACIONES)
             .fechaAlta(DEFAULT_FECHA_ALTA)
             .fechaSentencia(DEFAULT_FECHA_SENTENCIA)
-            .totalDocumentos(DEFAULT_TOTAL_DOCUMENTOS);
+            .totalDocumentos(DEFAULT_TOTAL_DOCUMENTOS)
+            .asociados(DEFAULT_ASOCIADOS);
         // Add required entity
         Estatus estatusExpediente = EstatusResourceIntTest.createEntity(em);
         em.persist(estatusExpediente);
@@ -162,6 +166,7 @@ public class ExpedienteResourceIntTest {
         assertThat(testExpediente.getFechaAlta()).isEqualTo(DEFAULT_FECHA_ALTA);
         assertThat(testExpediente.getFechaSentencia()).isEqualTo(DEFAULT_FECHA_SENTENCIA);
         assertThat(testExpediente.getTotalDocumentos()).isEqualTo(DEFAULT_TOTAL_DOCUMENTOS);
+        assertThat(testExpediente.getAsociados()).isEqualTo(DEFAULT_ASOCIADOS);
 
         // Validate the Expediente in Elasticsearch
         Expediente expedienteEs = expedienteSearchRepository.findOne(testExpediente.getId());
@@ -206,7 +211,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
             .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())))
-            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())))
+            .andExpect(jsonPath("$.[*].asociados").value(hasItem(DEFAULT_ASOCIADOS.toString())));
     }
 
     @Test
@@ -227,7 +233,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
             .andExpect(jsonPath("$.fechaAlta").value(DEFAULT_FECHA_ALTA.toString()))
             .andExpect(jsonPath("$.fechaSentencia").value(DEFAULT_FECHA_SENTENCIA.toString()))
-            .andExpect(jsonPath("$.totalDocumentos").value(DEFAULT_TOTAL_DOCUMENTOS.intValue()));
+            .andExpect(jsonPath("$.totalDocumentos").value(DEFAULT_TOTAL_DOCUMENTOS.intValue()))
+            .andExpect(jsonPath("$.asociados").value(DEFAULT_ASOCIADOS.toString()));
     }
 
     @Test
@@ -258,7 +265,8 @@ public class ExpedienteResourceIntTest {
             .observaciones(UPDATED_OBSERVACIONES)
             .fechaAlta(UPDATED_FECHA_ALTA)
             .fechaSentencia(UPDATED_FECHA_SENTENCIA)
-            .totalDocumentos(UPDATED_TOTAL_DOCUMENTOS);
+            .totalDocumentos(UPDATED_TOTAL_DOCUMENTOS)
+            .asociados(UPDATED_ASOCIADOS);
         ExpedienteDTO expedienteDTO = expedienteMapper.toDto(updatedExpediente);
 
         restExpedienteMockMvc.perform(put("/api/expedientes")
@@ -278,6 +286,7 @@ public class ExpedienteResourceIntTest {
         assertThat(testExpediente.getFechaAlta()).isEqualTo(UPDATED_FECHA_ALTA);
         assertThat(testExpediente.getFechaSentencia()).isEqualTo(UPDATED_FECHA_SENTENCIA);
         assertThat(testExpediente.getTotalDocumentos()).isEqualTo(UPDATED_TOTAL_DOCUMENTOS);
+        assertThat(testExpediente.getAsociados()).isEqualTo(UPDATED_ASOCIADOS);
 
         // Validate the Expediente in Elasticsearch
         Expediente expedienteEs = expedienteSearchRepository.findOne(testExpediente.getId());
@@ -344,7 +353,8 @@ public class ExpedienteResourceIntTest {
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
             .andExpect(jsonPath("$.[*].fechaSentencia").value(hasItem(DEFAULT_FECHA_SENTENCIA.toString())))
-            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())));
+            .andExpect(jsonPath("$.[*].totalDocumentos").value(hasItem(DEFAULT_TOTAL_DOCUMENTOS.intValue())))
+            .andExpect(jsonPath("$.[*].asociados").value(hasItem(DEFAULT_ASOCIADOS.toString())));
     }
 
     @Test

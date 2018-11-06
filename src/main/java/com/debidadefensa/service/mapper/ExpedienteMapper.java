@@ -8,14 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Expediente and its DTO ExpedienteDTO.
  */
-@Mapper(componentModel = "spring", uses = {ClienteMapper.class, EstatusMapper.class, TipoServicioMapper.class})
+@Mapper(componentModel = "spring", uses = {ClienteMapper.class, TipoServicioMapper.class, EstatusMapper.class})
 public interface ExpedienteMapper extends EntityMapper<ExpedienteDTO, Expediente> {
 
     @Mapping(source = "cliente.id", target = "clienteId")
-    @Mapping(source = "cliente.nombre", target = "clienteNombre")
+    @Mapping(source = "cliente.nombre", target = "clienteNombre")    
     @Mapping(source = "estatusExpediente.id", target = "estatusExpedienteId")
     @Mapping(source = "estatusExpediente.descripcion", target = "estatusDescripcion")
     @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
+    @Mapping(source = "estatusExpediente.descripcion", target = "estatusExpedienteDescripcion")
     ExpedienteDTO toDto(Expediente expediente);
 
     @Mapping(source = "clienteId", target = "cliente")

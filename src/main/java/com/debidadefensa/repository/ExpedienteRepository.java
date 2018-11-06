@@ -17,7 +17,7 @@ import org.springframework.data.domain.Page;
 public interface ExpedienteRepository extends JpaRepository<Expediente, Long> {
    
     @Query(value = " SELECT c.id, c.juzgado, c.numero_expediente, c.juicio, c.responsable, c.observaciones, c.fecha_alta, c.fecha_sentencia, "
-                    + " p.total_documentos, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
+                    + " p.total_documentos, c.asociados, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
                     + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p "
                     + " ON (c.id = p.expediente_id) "
                     + " ORDER BY ?#{#pageable}",
@@ -30,7 +30,7 @@ public interface ExpedienteRepository extends JpaRepository<Expediente, Long> {
 
 
     @Query(value = " SELECT c.id, c.juzgado, c.numero_expediente, c.juicio, c.responsable, c.observaciones, c.fecha_alta, c.fecha_sentencia, "
-            + " p.total_documentos, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
+            + " p.total_documentos, c.asociados, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
             + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p "
             + " ON (c.id = p.expediente_id) "
             + " WHERE c.cliente_id = :id"
