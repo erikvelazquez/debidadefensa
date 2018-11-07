@@ -52,6 +52,9 @@ public class Cliente implements Serializable {
     @Column(name = "total_generales")
     private Long totalGenerales;
 
+    @Column(name = "total_costo")
+    private Float totalCosto;
+
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private Set<Expediente> expedientes = new HashSet<>();
@@ -190,6 +193,19 @@ public class Cliente implements Serializable {
         this.totalGenerales = totalGenerales;
     }
 
+    public Float getTotalCosto() {
+        return totalCosto;
+    }
+
+    public Cliente totalCosto(Float totalCosto) {
+        this.totalCosto = totalCosto;
+        return this;
+    }
+
+    public void setTotalCosto(Float totalCosto) {
+        this.totalCosto = totalCosto;
+    }
+
     public Set<Expediente> getExpedientes() {
         return expedientes;
     }
@@ -299,6 +315,7 @@ public class Cliente implements Serializable {
             ", totalExpediente=" + getTotalExpediente() +
             ", totalMigratorios=" + getTotalMigratorios() +
             ", totalGenerales=" + getTotalGenerales() +
+            ", totalCosto=" + getTotalCosto() +
             "}";
     }
 }

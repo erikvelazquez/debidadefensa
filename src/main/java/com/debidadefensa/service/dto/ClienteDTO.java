@@ -31,6 +31,8 @@ public class ClienteDTO implements Serializable {
 
     private Long totalGenerales = (long)0;
 
+    private Float totalCosto = (float)0;
+
     public Long getId() {
         return id;
     }
@@ -111,6 +113,14 @@ public class ClienteDTO implements Serializable {
         this.totalGenerales = totalGenerales;
     }
 
+    public Float getTotalCosto() {
+        return totalCosto;
+    }
+
+    public void setTotalCosto(Float totalCosto) {
+        this.totalCosto = totalCosto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -145,6 +155,7 @@ public class ClienteDTO implements Serializable {
             ", totalExpediente=" + getTotalExpediente() +
             ", totalMigratorios=" + getTotalMigratorios() +
             ", totalGenerales=" + getTotalGenerales() +
+            ", totalCosto=" + getTotalCosto() +
             "}";
     }
 }

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,10 +64,13 @@ public class EstatusServiceImpl implements EstatusService {
     @Override
     @Transactional(readOnly = true)
     public List<EstatusDTO> findAll() {
-        log.debug("Request to get all Estatuses");
-        return estatusRepository.findAll().stream()
-            .map(estatusMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        log.debug("Request to get all Estatuses");        
+        List<EstatusDTO> ls = estatusRepository.findAll().stream()
+                                .sorted(Comparator.comparing(Estatus::getDescripcion))
+                                .map(estatusMapper::toDto)
+                                .collect(Collectors.toCollection(LinkedList::new));
+
+        return ls;
     }
 
     /**

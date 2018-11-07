@@ -12,6 +12,7 @@ export class Cliente implements BaseEntity {
         public totalExpediente?: number,
         public totalMigratorios?: number,
         public totalGenerales?: number,
+        public totalCosto?: number,
         public expedientes?: BaseEntity[],
         public tramiteMigras?: BaseEntity[],
         public tramiteGrals?: BaseEntity[],

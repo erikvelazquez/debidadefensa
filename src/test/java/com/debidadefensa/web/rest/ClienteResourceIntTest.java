@@ -69,6 +69,9 @@ public class ClienteResourceIntTest {
     private static final Long DEFAULT_TOTAL_GENERALES = 1L;
     private static final Long UPDATED_TOTAL_GENERALES = 2L;
 
+    private static final Float DEFAULT_TOTAL_COSTO = 1F;
+    private static final Float UPDATED_TOTAL_COSTO = 2F;
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -124,7 +127,8 @@ public class ClienteResourceIntTest {
             .referencia(DEFAULT_REFERENCIA)
             .totalExpediente(DEFAULT_TOTAL_EXPEDIENTE)
             .totalMigratorios(DEFAULT_TOTAL_MIGRATORIOS)
-            .totalGenerales(DEFAULT_TOTAL_GENERALES);
+            .totalGenerales(DEFAULT_TOTAL_GENERALES)
+            .totalCosto(DEFAULT_TOTAL_COSTO);
         return cliente;
     }
 
@@ -159,6 +163,7 @@ public class ClienteResourceIntTest {
         assertThat(testCliente.getTotalExpediente()).isEqualTo(DEFAULT_TOTAL_EXPEDIENTE);
         assertThat(testCliente.getTotalMigratorios()).isEqualTo(DEFAULT_TOTAL_MIGRATORIOS);
         assertThat(testCliente.getTotalGenerales()).isEqualTo(DEFAULT_TOTAL_GENERALES);
+        assertThat(testCliente.getTotalCosto()).isEqualTo(DEFAULT_TOTAL_COSTO);
 
         // Validate the Cliente in Elasticsearch
         Cliente clienteEs = clienteSearchRepository.findOne(testCliente.getId());
@@ -204,7 +209,8 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.[*].referencia").value(hasItem(DEFAULT_REFERENCIA.toString())))
             .andExpect(jsonPath("$.[*].totalExpediente").value(hasItem(DEFAULT_TOTAL_EXPEDIENTE.intValue())))
             .andExpect(jsonPath("$.[*].totalMigratorios").value(hasItem(DEFAULT_TOTAL_MIGRATORIOS.intValue())))
-            .andExpect(jsonPath("$.[*].totalGenerales").value(hasItem(DEFAULT_TOTAL_GENERALES.intValue())));
+            .andExpect(jsonPath("$.[*].totalGenerales").value(hasItem(DEFAULT_TOTAL_GENERALES.intValue())))
+            .andExpect(jsonPath("$.[*].totalCosto").value(hasItem(DEFAULT_TOTAL_COSTO.doubleValue())));
     }
 
     @Test
@@ -226,7 +232,8 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.referencia").value(DEFAULT_REFERENCIA.toString()))
             .andExpect(jsonPath("$.totalExpediente").value(DEFAULT_TOTAL_EXPEDIENTE.intValue()))
             .andExpect(jsonPath("$.totalMigratorios").value(DEFAULT_TOTAL_MIGRATORIOS.intValue()))
-            .andExpect(jsonPath("$.totalGenerales").value(DEFAULT_TOTAL_GENERALES.intValue()));
+            .andExpect(jsonPath("$.totalGenerales").value(DEFAULT_TOTAL_GENERALES.intValue()))
+            .andExpect(jsonPath("$.totalCosto").value(DEFAULT_TOTAL_COSTO.doubleValue()));
     }
 
     @Test
@@ -258,7 +265,8 @@ public class ClienteResourceIntTest {
             .referencia(UPDATED_REFERENCIA)
             .totalExpediente(UPDATED_TOTAL_EXPEDIENTE)
             .totalMigratorios(UPDATED_TOTAL_MIGRATORIOS)
-            .totalGenerales(UPDATED_TOTAL_GENERALES);
+            .totalGenerales(UPDATED_TOTAL_GENERALES)
+            .totalCosto(UPDATED_TOTAL_COSTO);
         ClienteDTO clienteDTO = clienteMapper.toDto(updatedCliente);
 
         restClienteMockMvc.perform(put("/api/clientes")
@@ -279,6 +287,7 @@ public class ClienteResourceIntTest {
         assertThat(testCliente.getTotalExpediente()).isEqualTo(UPDATED_TOTAL_EXPEDIENTE);
         assertThat(testCliente.getTotalMigratorios()).isEqualTo(UPDATED_TOTAL_MIGRATORIOS);
         assertThat(testCliente.getTotalGenerales()).isEqualTo(UPDATED_TOTAL_GENERALES);
+        assertThat(testCliente.getTotalCosto()).isEqualTo(UPDATED_TOTAL_COSTO);
 
         // Validate the Cliente in Elasticsearch
         Cliente clienteEs = clienteSearchRepository.findOne(testCliente.getId());
@@ -346,7 +355,8 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.[*].referencia").value(hasItem(DEFAULT_REFERENCIA.toString())))
             .andExpect(jsonPath("$.[*].totalExpediente").value(hasItem(DEFAULT_TOTAL_EXPEDIENTE.intValue())))
             .andExpect(jsonPath("$.[*].totalMigratorios").value(hasItem(DEFAULT_TOTAL_MIGRATORIOS.intValue())))
-            .andExpect(jsonPath("$.[*].totalGenerales").value(hasItem(DEFAULT_TOTAL_GENERALES.intValue())));
+            .andExpect(jsonPath("$.[*].totalGenerales").value(hasItem(DEFAULT_TOTAL_GENERALES.intValue())))
+            .andExpect(jsonPath("$.[*].totalCosto").value(hasItem(DEFAULT_TOTAL_COSTO.doubleValue())));
     }
 
     @Test

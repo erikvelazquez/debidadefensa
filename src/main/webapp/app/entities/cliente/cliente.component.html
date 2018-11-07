@@ -43,6 +43,8 @@
                     <th><span >Trámites Migratorios</span> <span class="fa"></span></th>
                     <th><span >Trámites Generales</span> <span class="fa"></span></th>
                     <th><span >Expedientes</span> <span class="fa"></span></th>
+                    <th><span >Adeudos total por cliente </span> <span class="fa"></span></th>
+                    
                     <th  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"></th>
                 </tr>
             </thead>
@@ -58,6 +60,8 @@
                 <td><a [routerLink]="['../tramite-migratorio-usuario', cliente.id ]"><span>{{cliente.totalMigratorios}}</span>  </a></td>
                 <td><a [routerLink]="['../tramite-general-usuario', cliente.id ]"><span>{{cliente.totalGenerales}}</span>  </a></td>
                 <td><a [routerLink]="['../expediente-usuario', cliente.id ]"><span>{{cliente.totalExpediente}}</span> </a></td>
+                <td><a><span>{{cliente.totalCosto | currency}}</span> </a></td>
+                
                 <!--<td>{{cliente.totalExpediente}}</td>-->
                 <td class="text-right"  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']">
                     <div class="btn-group flex-btn-group-container">
