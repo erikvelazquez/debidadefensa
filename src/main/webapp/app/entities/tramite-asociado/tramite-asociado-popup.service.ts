@@ -52,7 +52,7 @@ export class TramiteAsociadoPopupService {
         });
     }
 
-    open(component: Component, id?: number, tiposervicio?: number | any): Promise<NgbModalRef> {
+    open(component: Component, id?: number, tiposervicio?: number, idCliente?: number | any): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -64,10 +64,10 @@ export class TramiteAsociadoPopupService {
             this.tramiteM = new TramiteGeneral();
             tiposervicio = +tiposervicio;
 
-            this.tramiteMigratorioService.findByFaltantes(id).subscribe(
+            this.tramiteMigratorioService.findByFaltantes(id, idCliente).subscribe(
                 (res: HttpResponse<TramiteMigratorio[]>) => {
                     this.tramiteMigratorios = res.body;
-                    this.tramiteGeneralService.findByFaltantes(id).subscribe(
+                    this.tramiteGeneralService.findByFaltantes(id, idCliente).subscribe(
                         (resGeneral: HttpResponse<TramiteGeneral[]>) => {
                             this.tramiteGenerals = resGeneral.body;
 

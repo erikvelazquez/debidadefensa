@@ -153,7 +153,7 @@ export class TramiteAsociadoPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.tramiteAsociadoPopupService
-                    .open(TramiteAsociadoDialogComponent as Component, params['id'], params['tiposervicio']);
+                    .open(TramiteAsociadoDialogComponent as Component, params['id'], params['tiposervicio'], params['idCliente']);
             } else {
                 this.tramiteAsociadoPopupService
                     .open(TramiteAsociadoDialogComponent as Component);

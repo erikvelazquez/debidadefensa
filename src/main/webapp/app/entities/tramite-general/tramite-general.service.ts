@@ -40,8 +40,8 @@ export class TramiteGeneralService {
             .map((res: HttpResponse<TramiteGeneral[]>) => this.convertArrayResponse(res));
     }
 
-    findByFaltantes(req: number): Observable<HttpResponse<TramiteGeneral[]>> {
-        return this.http.get<TramiteGeneral[]>(SERVER_API_URL + 'api/tramite-generals/faltante/' + req, { observe: 'response' })
+    findByFaltantes(req: number, idCliente: number): Observable<HttpResponse<TramiteGeneral[]>> {
+        return this.http.get<TramiteGeneral[]>(SERVER_API_URL + 'api/tramite-generals/faltante/' + req + '/' + idCliente, { observe: 'response' })
             .map((res: HttpResponse<TramiteGeneral[]>) => this.convertArrayResponse(res));
     }
 

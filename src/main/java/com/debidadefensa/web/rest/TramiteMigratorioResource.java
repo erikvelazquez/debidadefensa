@@ -167,11 +167,11 @@ public class TramiteMigratorioResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
      */
-    @GetMapping("/tramite-migratorios/faltante/{id}")
+    @GetMapping("/tramite-migratorios/faltante/{id}/{idCliente}")
     @Timed
-    public List<TramiteMigratorioDTO> getAllTramitesMigratoriosByFaltantes(@PathVariable Long id) {
+    public List<TramiteMigratorioDTO> getAllTramitesMigratoriosByFaltantes(@PathVariable Long id, @PathVariable Long idCliente) {
         log.debug("REST request to get a page of migratorios");
-        List<TramiteMigratorioDTO> ls = tramiteMigratorioService.findByFaltantes(id);
+        List<TramiteMigratorioDTO> ls = tramiteMigratorioService.findByFaltantes(id, idCliente);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
         // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
         return ls;
