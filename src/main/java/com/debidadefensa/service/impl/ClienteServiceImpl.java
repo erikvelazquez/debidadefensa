@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
+import java.util.List;
+
 /**
  * Service Implementation for managing Cliente.
  */
@@ -66,6 +68,11 @@ public class ClienteServiceImpl implements ClienteService {
         //return clienteRepository.findClientes(pageable);
        // .map(clienteMapper::toDto);
        Page<Cliente> page = clienteRepository.findClientes(pageable);
+       List<Cliente> clientlist = page.getContent();
+
+       for (int i = 0; i < clientlist.size(); i++) {
+            clienteSearchRepository.save(clientlist.get(i));
+        }
        return page.map(clienteMapper::toDto);
     }
 
