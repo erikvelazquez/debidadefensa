@@ -20,6 +20,7 @@ export class Expediente implements BaseEntity {
         public fechasServicioExpedientes?: BaseEntity[],
         public tipoServicioId?: number,
         public totalDocumentos?: number,
+        public asociados?: string,
     ) {
     }
 }

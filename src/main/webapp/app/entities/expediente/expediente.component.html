@@ -42,7 +42,7 @@
             <th><span>Fecha de Alta</span> <span class="fa"></span></th>
             <th><span>Fecha de Sentencia</span> <span class="fa"></span></th>             -->
             <th><span >Estatus</span> <span class="fa"></span></th>
-            <th><span >Documentos</span> <span class="fa"></span></th>
+            <th><span >Número Expedientes (Asociados)</span> <span class="fa"></span></th>
             
             <th></th>
             </tr>
@@ -57,7 +57,7 @@
                 <td>{{expediente.fechaAlta | date:'mediumDate'}}</td>
                 <td>{{expediente.fechaSentencia | date:'mediumDate'}}</td>                -->
                 <td>{{expediente.estatusDescripcion}}</td>
-                <td>{{expediente.totalDocumentos}}</td>
+                <td>{{expediente.asociados}}</td>
               
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

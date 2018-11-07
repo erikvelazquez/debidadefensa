@@ -17,9 +17,9 @@ import org.springframework.data.domain.Page;
 public interface ExpedienteRepository extends JpaRepository<Expediente, Long> {
    
     @Query(value = " SELECT c.id, c.juzgado, c.numero_expediente, c.juicio, c.responsable, c.observaciones, c.fecha_alta, c.fecha_sentencia, "
-                    + " p.total_documentos, c.asociados, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
-                    + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p "
-                    + " ON (c.id = p.expediente_id) "
+                    + " p.total_documentos, expasc.asociados, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
+                    + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p ON (c.id = p.expediente_id)"
+                    + " LEFT OUTER JOIN (SELECT string_agg(ea.numero_expediente, ', ') AS asociados,  ea.expediente_id  FROM public.expediente_asociado ea group by ea.expediente_id ) expasc on expasc.expediente_id = c.id "
                     + " ORDER BY ?#{#pageable}",
             countQuery = " SELECT count(c.id) FROM expediente c "
                         + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p "
@@ -30,11 +30,11 @@ public interface ExpedienteRepository extends JpaRepository<Expediente, Long> {
 
 
     @Query(value = " SELECT c.id, c.juzgado, c.numero_expediente, c.juicio, c.responsable, c.observaciones, c.fecha_alta, c.fecha_sentencia, "
-            + " p.total_documentos, c.asociados, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
-            + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p "
-            + " ON (c.id = p.expediente_id) "
-            + " WHERE c.cliente_id = :id"
-            + " ORDER BY ?#{#pageable}",
-            nativeQuery = true)
+                + " p.total_documentos, expasc.asociados, c.cliente_id, c.tipo_servicio_id, c.estatus_expediente_id FROM expediente c "
+                + " LEFT OUTER JOIN (select count(a.expediente_id) as total_documentos, a.expediente_id from documentos a group by a.expediente_id) p ON (c.id = p.expediente_id)"
+                + " LEFT OUTER JOIN (SELECT string_agg(ea.numero_expediente, ', ') AS asociados,  ea.expediente_id  FROM public.expediente_asociado ea group by ea.expediente_id ) expasc on expasc.expediente_id = c.id "
+                + " WHERE c.cliente_id = :id"
+                + " ORDER BY ?#{#pageable}",
+                nativeQuery = true)
     Page<Expediente> findByCliente_id(Pageable pageable, @Param("id") long cliente_id);
 }

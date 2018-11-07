@@ -82,7 +82,8 @@ export class TramiteAsociadoPopupService {
                                                 , this.tramiteG
                                                 , this.tramiteMigratorios.filter((v) => v.id !== +id)
                                                 , this.tramiteM
-                                                , tiposervicio);
+                                                , tiposervicio
+                                                , this.tramiteM.clienteId);
                                             resolve(this.ngbModalRef);
                                     });
                                     break;
@@ -96,7 +97,8 @@ export class TramiteAsociadoPopupService {
                                                 , this.tramiteG
                                                 , this.tramiteMigratorios
                                                 , this.tramiteM
-                                                , tiposervicio);
+                                                , tiposervicio
+                                                , this.tramiteG.clienteId);
                                             resolve(this.ngbModalRef);
                                     });
                                     break;
@@ -154,7 +156,7 @@ export class TramiteAsociadoPopupService {
 
     tramiteAsociadoModalRef(component: Component, tramiteGenerals: TramiteGeneral[],
         tramiteG: TramiteGeneral, tramiteMigratorios: TramiteMigratorio[],
-        tramiteM: TramiteMigratorio, tiposervicio: number): NgbModalRef {
+        tramiteM: TramiteMigratorio, tiposervicio: number, clienteID: number): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
 
         modalRef.componentInstance.tramiteGenerals = tramiteGenerals;
@@ -162,7 +164,7 @@ export class TramiteAsociadoPopupService {
         modalRef.componentInstance.tramiteMigratorios = tramiteMigratorios;
         modalRef.componentInstance.tramiteM = tramiteM;
         modalRef.componentInstance.tiposervicio = tiposervicio;
-
+        modalRef.componentInstance.clienteID = clienteID;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;

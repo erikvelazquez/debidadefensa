@@ -138,8 +138,8 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
     @Transactional(readOnly = true)
     public List<TramiteGeneralDTO> findByFaltantes(Long id) {
         log.debug("Request to get all tramites generales not in asociados");       
-    
-        return tramiteGeneralRepository.findByFaltantes(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        TramiteGeneralDTO tramite = this.findOne(id);
+        return tramiteGeneralRepository.findByFaltantes(id, tramite.getClienteId()).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override

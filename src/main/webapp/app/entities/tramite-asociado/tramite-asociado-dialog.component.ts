@@ -11,6 +11,7 @@ import { TramiteAsociadoPopupService } from './tramite-asociado-popup.service';
 import { TramiteAsociadoService } from './tramite-asociado.service';
 import { TramiteGeneral } from '../tramite-general';
 import { TramiteMigratorio } from '../tramite-migratorio';
+import { Cliente, ClienteService } from '../cliente';
 
 @Component({
     selector: 'jhi-tramite-asociado-dialog',
@@ -28,19 +29,27 @@ export class TramiteAsociadoDialogComponent implements OnInit {
     esMigratorio: boolean;
     isSaving: boolean;
     tramitesA: TramiteAsociado[];
+    clienteID: number;
+    cliente: Cliente;
 
     constructor(
         public activeModal: NgbActiveModal,
         private tramiteAsociadoService: TramiteAsociadoService,
         private eventManager: JhiEventManager,
         private eventManager2: JhiEventManager,
+        private clienteService: ClienteService,
     ) {
+        this.cliente = new Cliente();
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.esGeneral = this.tiposervicio === 1003 ? true : false;
         this.esMigratorio = this.tiposervicio === 1002 ? true : false;
+        this.clienteService.find(this.clienteID)
+        .subscribe((clienteResponse: HttpResponse<Cliente>) => {
+            this.cliente = clienteResponse.body;
+        });
     }
 
     clear() {
