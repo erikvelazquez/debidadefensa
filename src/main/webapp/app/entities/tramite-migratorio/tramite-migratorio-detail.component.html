@@ -308,8 +308,8 @@
 
     </div>
     <div class="modal-footer">  
-        <button type="button"      
-                [routerLink]="['/tramite-migratorio-usuario', tramiteMigratorio.clienteId ]"
+        <button type="button"
+                [routerLink]="esGeneral ? ['/tramite-migratorio' ] : ['/tramite-migratorio-usuario', tramiteMigratorio.clienteId ]"
                 class="btn btn-info">            
             <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
         </button>

@@ -50,6 +50,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     private eventSubscriber: Subscription;
     predicate: any;
     reverse: any;
+    esGeneral: boolean;
 
     constructor(
         private jhiAlertService: JhiAlertService,
@@ -78,6 +79,7 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
             .subscribe((res: HttpResponse<TramiteAsociado[]>) => { this.tramiteasociados = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
+            this.esGeneral = params['general'] === 'false' ? false : true;
         });
         this.registerChangeInTramiteMigratorios();
         this.tramiteMigratorio = new TramiteMigratorio();

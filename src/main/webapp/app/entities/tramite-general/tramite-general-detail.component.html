@@ -305,8 +305,8 @@
             </div>        
         </div>
         <div class="modal-footer">
-            <button type="button"                                          
-                    [routerLink]="['/tramite-general-usuario', tramiteGeneral.clienteId ]"
+            <button type="button"   
+                    [routerLink]="esGeneral ? ['/tramite-general' ] : ['/tramite-general-usuario', tramiteGeneral.clienteId ]"
                     class="btn btn-info">            
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>

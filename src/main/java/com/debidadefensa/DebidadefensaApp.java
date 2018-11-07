@@ -114,26 +114,26 @@ public class DebidadefensaApp {
         
       //FechasServicioService  fec = context.getBean(FechasServicioService.class);
 
-        Timer timer = new Timer();
-        timer.schedule(new TiemerTaskClass(), 0, 60000); //1 Min   
+        // Timer timer = new Timer();
+        // timer.schedule(new TiemerTaskClass(), 0, 60000); //1 Min   
     }    
 }
 
-class TiemerTaskClass extends TimerTask {
-    @Autowired
-    private FechasServicioService fechasServicioService;
+// class TiemerTaskClass extends TimerTask {
+//     @Autowired
+//     private FechasServicioService fechasServicioService;
 
-    public TiemerTaskClass(){
-        this.fechasServicioService = fechasServicioService;
-    }
+//     public TiemerTaskClass(){
+//         this.fechasServicioService = fechasServicioService;
+//     }
 
-    @Override
-    public void run() { 
-        fechasServicioService.ConsultaFechasEmail();
+//     @Override
+//     public void run() { 
+//         fechasServicioService.ConsultaFechasEmail();
        
-        //System.out.println(respuesta);
-        System.out.println("Timer task started at:"+new Date());
-    }  
-} 
+//         //System.out.println(respuesta);
+//         System.out.println("Timer task started at:"+new Date());
+//     }  
+// } 
 
 

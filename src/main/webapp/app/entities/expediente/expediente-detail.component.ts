@@ -18,6 +18,7 @@ import { Documentos, DocumentosService } from '../documentos';
 import { saveAs } from 'file-saver/FileSaver';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
+import { CastExpr } from '@angular/compiler';
 
 @Component({
     selector: 'jhi-expediente-detail',
@@ -49,6 +50,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     private eventSubscriber: Subscription;
     fileUploads: Observable<string[]>;
     imageToShow: any;
+    esGeneral: boolean;
 
     constructor(
         private documentosService: DocumentosService,
@@ -73,7 +75,8 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         this.clienteService.query()
             .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
                 this.subscription = this.route.params.subscribe((params) => {
-            this.load(params['id']);
+                this.load(params['id']);
+                this.esGeneral = params['general'] === 'false' ? false : true;
         });
         this.registerChangeInExpedientes();
         this.expediente = new Expediente();

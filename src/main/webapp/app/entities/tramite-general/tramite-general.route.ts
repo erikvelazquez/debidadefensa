@@ -48,7 +48,7 @@ export const tramiteGeneralRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'tramite-general/:id',
+        path: 'tramite-general/:id/:general',
         component: TramiteGeneralDetailComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

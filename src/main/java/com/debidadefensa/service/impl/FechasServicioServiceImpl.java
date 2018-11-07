@@ -44,7 +44,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 /**
  * Service Implementation for managing FechasServicio.
  */
-@Service("fechaservice")
+@Service
 @Transactional
 public class FechasServicioServiceImpl implements FechasServicioService {
 

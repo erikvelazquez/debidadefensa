@@ -20,6 +20,17 @@ logging:
         io.github.jhipster: INFO
 
 spring:
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: debidadefensamx@gmail.com
+        password: D3bid@dfen54
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
     devtools:
         restart:
             enabled: false
@@ -42,18 +53,7 @@ spring:
     data:
         elasticsearch:
             cluster-name:
-            cluster-nodes: localhost:9300
-    mail:
-        host: smtp.gmail.com
-        port: 587
-        username: debidadefensamx@gmail.com
-        password: D3bid@dfen54
-        protocol: smtp
-        tls: true
-        properties.mail.smtp:
-            auth: true
-            starttls.enable: true
-            ssl.trust: smtp.gmail.com
+            cluster-nodes: localhost:9300    
     thymeleaf:
         cache: true
     http:

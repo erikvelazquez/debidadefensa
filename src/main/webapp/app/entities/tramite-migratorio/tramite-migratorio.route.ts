@@ -48,7 +48,7 @@ export const tramiteMigratorioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'tramite-migratorio/:id',
+        path: 'tramite-migratorio/:id/:general',
         component: TramiteMigratorioDetailComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

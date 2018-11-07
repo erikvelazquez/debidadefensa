@@ -24,7 +24,7 @@ export const expedienteRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'expediente/:id',
+        path: 'expediente/:id/:general',
         component: ExpedienteDetailComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

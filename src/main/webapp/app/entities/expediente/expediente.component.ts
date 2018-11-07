@@ -30,6 +30,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     currentSearch: string;
+    esGeneral: boolean;
     private subscription: Subscription;
 
     constructor(
@@ -131,9 +132,10 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
         this.loadAll();
     }
     ngOnInit() {
-
+        this.esGeneral = false;
         this.subscription = this.route.params.subscribe((params) => {
             this.cliente.id = params['id'];
+            this.esGeneral = this.cliente.id === undefined ? true : false;
         });
 
         this.loadAll();
