@@ -21,7 +21,6 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
     @Query("select tramite_migratorio from TramiteMigratorio tramite_migratorio left join fetch tramite_migratorio.tramitesMigraAsociados where tramite_migratorio.id =:id")
     TramiteMigratorio findOneWithEagerRelationships(@Param("id") Long id);
 
-
     @Query(value = " SELECT c.id, c.nombre_extranjero, c.tipotramite, c.entidad, c.nut, c.contrasenia_nut, c.fecha_ingreso, c.fecha_notificacion, c.fecha_resolucion, "
             + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_migratorio_id FROM tramite_migratorio c "
             + " LEFT OUTER JOIN (select count(a.tramite_migratorio_id) as total_documentos, a.tramite_migratorio_id from documentos a group by a.tramite_migratorio_id) p "
@@ -43,7 +42,6 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
             nativeQuery = true)
     Page<TramiteMigratorio> findByCliente_id(Pageable pageable, @Param("id") long cliente_id);
 
-
     @Query(value = "SELECT * FROM tramite_migratorio "
                 + " WHERE id NOT IN ( SELECT id_tramiteasociado "  
                 + " FROM tramite_asociado "           
@@ -52,10 +50,9 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
     List<TramiteMigratorio> findByFaltantes(@Param("id") Long id, @Param("idCliente") Long cliente_id);
 
     @Query(value = "SELECT * FROM tramite_migratorio "
-                + " WHERE id IN ( SELECT id_tramiteasociado "  
-                + " FROM tramite_asociado "           
-                + " WHERE id_tramite = :id)",
+                + " WHERE id IN ( SELECT id_tramiteasociado FROM tramite_asociado WHERE id_tramite = :id and tipo_servicio_id = :tipo) "  
+                + " OR id IN ( SELECT id_tramite FROM tramite_asociado WHERE id_tramiteasociado = :id and tipo_servicio_id_Asociado = :tipo) ",
                 nativeQuery = true)
-    List<TramiteMigratorio> findByAsociados(@Param("id") Long id);
+    List<TramiteMigratorio> findByAsociados(@Param("id") Long id, @Param("tipo") Long tipo);
 
 }

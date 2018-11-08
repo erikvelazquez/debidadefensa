@@ -45,8 +45,8 @@ export class TramiteMigratorioService {
             .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
     }
 
-    findByAsociados(req: number): Observable<HttpResponse<TramiteMigratorio[]>> {
-        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + 'api/tramite-migratorios/asociado/' + req, { observe: 'response' })
+    findByAsociados(req: number, tipo: number): Observable<HttpResponse<TramiteMigratorio[]>> {
+        return this.http.get<TramiteMigratorio[]>(SERVER_API_URL + 'api/tramite-migratorios/asociado/' + req + '/' + tipo, { observe: 'response' })
             .map((res: HttpResponse<TramiteMigratorio[]>) => this.convertArrayResponse(res));
     }
 

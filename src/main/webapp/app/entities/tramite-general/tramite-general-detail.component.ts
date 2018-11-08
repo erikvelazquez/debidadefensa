@@ -138,13 +138,13 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
                 );
 
                 this.encuentraFechas(id);
-                this.tramiteGeneralService.findByAsociados(id)
+                this.tramiteGeneralService.findByAsociados(id, this.tipoServicio)
                 .subscribe(
                     (res: HttpResponse<TramiteGeneral[]>) => {
                         this.tramiteGenerals = res.body;
                 });
 
-                this.tramiteMigratorioService.findByAsociados(id)
+                this.tramiteMigratorioService.findByAsociados(id, this.tipoServicio)
                 .subscribe(
                     (res: HttpResponse<TramiteMigratorio[]>) => {
                         this.tramiteMigratorios = res.body;

@@ -61,5 +61,5 @@ public interface TramiteGeneralService {
 
     List<TramiteGeneralDTO> findByFaltantes(Long id, Long idCliente);
 
-    List<TramiteGeneralDTO> findByAsociados(Long id);
+    List<TramiteGeneralDTO> findByAsociados(Long id, Long tipo);
 }

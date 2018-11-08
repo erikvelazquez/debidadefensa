@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy,
-        ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -16,6 +15,7 @@ import { FechasServicioPopupService } from './fechas-servicio-popup.service';
 import { FechasServicioService } from './fechas-servicio.service';
 import { HttpResponse, HttpErrorResponse } from '../../../../../../node_modules/@angular/common/http';
 import { CustomDateFormatter } from '../../services/fecha.service';
+import { Router } from '@angular/router';
 
 const colors: any = {
   red: {
@@ -56,6 +56,7 @@ export class AgendaComponent {
         private jhiAlertService: JhiAlertService,
         private fechasServicioService: FechasServicioService,
         public activeModal: NgbActiveModal,
+        private router: Router,
     ) {
       this.cargaFechas();
     }
@@ -74,6 +75,48 @@ export class AgendaComponent {
           this.viewDate = date;
         }
       }
+    }
+
+    eventClicked({event}: CalendarEventTimesChangedEvent): void {
+      this.fechasServicioService.find(+event.id).subscribe(
+          (res: HttpResponse<FechasServicio>) => {
+
+            let url = '';
+            let id = 0;
+            // "['/expediente', expediente.id, esGeneral]"
+            // "['/tramite-general', tramiteGeneral.id, esGeneral ]"
+            // "['/tramite-migratorio', tramiteMigratorio.id, esGeneral ]"
+            switch (res.body.tipoServicioId) {
+                case 1001: {
+                    // Expediente;
+                    url = '../expediente';
+                    id =  res.body.expedienteId;
+                    break;
+                }
+                case 1002: {
+                    // Migratorio;
+                    url = '../tramite-migratorio';
+                    id =  res.body.tramiteMigratorioId;
+                    break;
+                }
+                case 1003: {
+                    // General;
+                    url = '../tramite-general';
+                    id =  res.body.tramiteGeneralId;
+                    break;
+                }
+                default: {
+                  // statements;
+                  break;
+                }
+            }
+            this.router.navigate([url, id, true ]).then(() => {
+               this.clear();
+            });
+            // alert(res.body.descripcion);
+          },
+          (res: HttpErrorResponse) => this.onError(res.message)
+      );
     }
 
     eventTimesChanged({
@@ -105,7 +148,8 @@ export class AgendaComponent {
           this.events.push({
             start: fec,
             title: fec.getHours() + ':' + (fec.getMinutes() < 10 ? '0' : '') + fec.getMinutes() + ' ' + i.descripcion + ' - ' + i.observaciones,
-            color: colors.blue
+            color: colors.blue,
+            id: i.id
           });
       }
 

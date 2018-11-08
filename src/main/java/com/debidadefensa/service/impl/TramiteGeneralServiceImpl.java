@@ -143,9 +143,9 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<TramiteGeneralDTO> findByAsociados(Long id) {
+    public List<TramiteGeneralDTO> findByAsociados(Long id, Long tipo) {
         log.debug("Request to get all tramites generales not in asociados");       
     
-        return tramiteGeneralRepository.findByAsociados(id).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return tramiteGeneralRepository.findByAsociados(id, tipo).stream().map(tramiteGeneralMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 }

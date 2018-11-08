@@ -181,11 +181,11 @@ public class TramiteGeneralResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
      */
-    @GetMapping("/tramite-generals/asociado/{id}")
+    @GetMapping("/tramite-generals/asociado/{id}/{tipo}")
     @Timed
-    public List<TramiteGeneralDTO> getAllTramitesGeneralesByAsociados(@PathVariable Long id) {
+    public List<TramiteGeneralDTO> getAllTramitesGeneralesByAsociados(@PathVariable Long id, @PathVariable Long tipo) {
         log.debug("REST request to get a page of Expedientes");
-        List<TramiteGeneralDTO> ls = tramiteGeneralService.findByAsociados(id);
+        List<TramiteGeneralDTO> ls = tramiteGeneralService.findByAsociados(id, tipo);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
         // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
         return ls;

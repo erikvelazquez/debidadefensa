@@ -61,5 +61,5 @@ public interface TramiteMigratorioService {
 
     List<TramiteMigratorioDTO> findByFaltantes(Long id, Long idCliente);
 
-    List<TramiteMigratorioDTO> findByAsociados(Long id);
+    List<TramiteMigratorioDTO> findByAsociados(Long id, Long tipo);
 }
