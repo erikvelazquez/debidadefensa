@@ -22,7 +22,8 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
     TramiteMigratorio findOneWithEagerRelationships(@Param("id") Long id);
 
     @Query(value = " SELECT c.id, c.nombre_extranjero, c.tipotramite, c.entidad, c.nut, c.contrasenia_nut, c.fecha_ingreso, c.fecha_notificacion, c.fecha_resolucion, "
-            + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_migratorio_id FROM tramite_migratorio c "
+            + " c.archivo, c.observaciones, (SELECT COUNT(id) as total FROM tramite_asociado WHERE id_tramite =  c.id and tipo_servicio_id = 1002 or id_tramiteasociado =  c.id and tipo_servicio_id_Asociado = 1002) as total_documentos, "
+            + " c.cliente_id, c.estatus_tramite_migratorio_id FROM tramite_migratorio c "
             + " LEFT OUTER JOIN (select count(a.tramite_migratorio_id) as total_documentos, a.tramite_migratorio_id from documentos a group by a.tramite_migratorio_id) p "
             + " ON (c.id = p.tramite_migratorio_id) "
             + " ORDER BY ?#{#pageable}",
@@ -34,7 +35,8 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
     Page<TramiteMigratorio> findAllItems(Pageable pageable);
 
     @Query(value = " SELECT c.id, c.nombre_extranjero, c.tipotramite, c.entidad, c.nut, c.contrasenia_nut, c.fecha_ingreso, c.fecha_notificacion, c.fecha_resolucion, "
-            + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_migratorio_id FROM tramite_migratorio c "
+            + " c.archivo, c.observaciones, (SELECT COUNT(id) as total FROM tramite_asociado WHERE id_tramite =  c.id and tipo_servicio_id = 1002 or id_tramiteasociado =  c.id and tipo_servicio_id_Asociado = 1002) as total_documentos, "
+            + " c.cliente_id, c.estatus_tramite_migratorio_id FROM tramite_migratorio c "
             + " LEFT OUTER JOIN (select count(a.tramite_migratorio_id) as total_documentos, a.tramite_migratorio_id from documentos a group by a.tramite_migratorio_id) p "
             + " ON (c.id = p.tramite_migratorio_id) "
             + " WHERE c.cliente_id = :id"

@@ -22,7 +22,8 @@ public interface TramiteGeneralRepository extends JpaRepository<TramiteGeneral, 
     TramiteGeneral findOneWithEagerRelationships(@Param("id") Long id);
 
     @Query(value = " SELECT c.id, c.titular, c.dependencia, c.numero_tramite, c.tipo_tramite, c.fecha_ingreso, c.fecha_resolucion, c.fecha_notificacion,"
-            + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_general_id FROM tramite_general c "
+            + " c.archivo, c.observaciones, (SELECT COUNT(id) as total FROM tramite_asociado WHERE id_tramite =  c.id and tipo_servicio_id = 1003 or id_tramiteasociado =  c.id and tipo_servicio_id_Asociado = 1003) as total_documentos, "
+            + " c.cliente_id, c.estatus_tramite_general_id FROM tramite_general c "
             + " LEFT OUTER JOIN (select count(a.tramite_general_id) as total_documentos, a.tramite_general_id from documentos a group by a.tramite_general_id) p "
             + " ON (c.id = p.tramite_general_id) "
             + " ORDER BY ?#{#pageable}",
@@ -34,7 +35,8 @@ public interface TramiteGeneralRepository extends JpaRepository<TramiteGeneral, 
     Page<TramiteGeneral> findAllItems(Pageable pageable);
 
     @Query(value = " SELECT c.id, c.titular, c.dependencia, c.numero_tramite, c.tipo_tramite, c.fecha_ingreso, c.fecha_resolucion, c.fecha_notificacion,"
-            + " c.archivo, c.observaciones, p.total_documentos, c.cliente_id, c.estatus_tramite_general_id FROM tramite_general c "
+            + " c.archivo, c.observaciones, (SELECT COUNT(id) as total FROM tramite_asociado WHERE id_tramite =  c.id and tipo_servicio_id = 1003 or id_tramiteasociado =  c.id and tipo_servicio_id_Asociado = 1003) as total_documentos, "
+            + " c.cliente_id, c.estatus_tramite_general_id FROM tramite_general c "
             + " LEFT OUTER JOIN (select count(a.tramite_general_id) as total_documentos, a.tramite_general_id from documentos a group by a.tramite_general_id) p "
             + " ON (c.id = p.tramite_general_id) "
             + " WHERE c.cliente_id = :id"
