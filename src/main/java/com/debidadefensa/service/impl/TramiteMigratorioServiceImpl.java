@@ -131,9 +131,9 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<TramiteMigratorioDTO> findByFaltantes(Long id, Long idCliente) {
+    public List<TramiteMigratorioDTO> findByFaltantes(Long id, Long tipo, Long idCliente) {
         log.debug("Request to get all tramites generales not in asociados"); 
-        return tramiteMigratorioRepository.findByFaltantes(id, idCliente).stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return tramiteMigratorioRepository.findByFaltantes(id, tipo, idCliente).stream().map(tramiteMigratorioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override

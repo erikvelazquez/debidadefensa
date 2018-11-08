@@ -59,7 +59,7 @@ public interface TramiteGeneralService {
      */
     Page<TramiteGeneralDTO> findByIdUser( Pageable pageable, Long idUser);
 
-    List<TramiteGeneralDTO> findByFaltantes(Long id, Long idCliente);
+    List<TramiteGeneralDTO> findByFaltantes(Long id, Long tipo, Long idCliente);
 
     List<TramiteGeneralDTO> findByAsociados(Long id, Long tipo);
 }

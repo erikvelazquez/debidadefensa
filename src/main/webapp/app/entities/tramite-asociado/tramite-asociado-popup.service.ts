@@ -64,10 +64,10 @@ export class TramiteAsociadoPopupService {
             this.tramiteM = new TramiteGeneral();
             tiposervicio = +tiposervicio;
 
-            this.tramiteMigratorioService.findByFaltantes(id, idCliente).subscribe(
+            this.tramiteMigratorioService.findByFaltantes(id, tiposervicio, idCliente).subscribe(
                 (res: HttpResponse<TramiteMigratorio[]>) => {
                     this.tramiteMigratorios = res.body;
-                    this.tramiteGeneralService.findByFaltantes(id, idCliente).subscribe(
+                    this.tramiteGeneralService.findByFaltantes(id, tiposervicio, idCliente).subscribe(
                         (resGeneral: HttpResponse<TramiteGeneral[]>) => {
                             this.tramiteGenerals = resGeneral.body;
 

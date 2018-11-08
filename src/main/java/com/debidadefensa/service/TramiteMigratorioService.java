@@ -59,7 +59,7 @@ public interface TramiteMigratorioService {
      */
     Page<TramiteMigratorioDTO> findByIdUser(Pageable pageable, Long idUser);
 
-    List<TramiteMigratorioDTO> findByFaltantes(Long id, Long idCliente);
+    List<TramiteMigratorioDTO> findByFaltantes(Long id, Long tipo, Long idCliente);
 
     List<TramiteMigratorioDTO> findByAsociados(Long id, Long tipo);
 }
