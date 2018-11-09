@@ -11,6 +11,8 @@ import { Expediente, ExpedienteService } from '../expediente';
 import { Estatus, EstatusService } from '../estatus';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
+import { Subscription } from 'rxjs/Subscription';
+import { Documentos, DocumentosService } from '../documentos';
 
 @Component({
     selector: 'jhi-expediente-asociado-dialog',
@@ -24,13 +26,16 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
 
     expedienteAsociado: ExpedienteAsociado;
     isSaving: boolean;
-
+    expedienteOriginal: Expediente;
     expedientes: Expediente[];
-
+    tipoServicio: number;
     estatusexpedienteasociados: Estatus[];
     fechaSentenciaDp: any;
+    private eventSubscriber: Subscription;
+    documentos: Documentos[];
 
     constructor(
+        private documentosService: DocumentosService,
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private expedienteAsociadoService: ExpedienteAsociadoService,
@@ -38,12 +43,18 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
         private estatusService: EstatusService,
         private eventManager: JhiEventManager
     ) {
+        this.expedienteOriginal = new Expediente();
     }
 
     ngOnInit() {
+        this.tipoServicio = 1004;
         this.isSaving = false;
         this.expedienteService.query()
-            .subscribe((res: HttpResponse<Expediente[]>) => { this.expedientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<Expediente[]>) => {
+                this.expedientes = res.body;
+                this.expedienteOriginal = this.expedientes.find((item) => item.id === this.expedienteAsociado.expedienteId);
+                this.cargaDocumentos();
+            }, (res: HttpErrorResponse) => this.onError(res.message));
         this.estatusService
             .query({filter: 'expedienteasociado-is-null'})
             .subscribe((res: HttpResponse<Estatus[]>) => {
@@ -66,6 +77,13 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
         this.activeModal.dismiss('cancel');
     }
 
+    cargaDocumentos() {
+        this.documentosService.findByExpedienteAsociadosId(this.expedienteAsociado.id).subscribe(
+            (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
+
     save() {
         this.isSaving = true;
         if (this.expedienteAsociado.id !== undefined) {
@@ -75,6 +93,10 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
             this.subscribeToSaveResponse(
                 this.expedienteAsociadoService.create(this.expedienteAsociado));
         }
+    }
+
+    registerChangeInExpedientes() {
+        this.eventSubscriber = this.eventManager.subscribe('expedienteAsociadoListModification', () => this.cargaDocumentos());
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<ExpedienteAsociado>>) {

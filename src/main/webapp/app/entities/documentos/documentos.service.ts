@@ -18,22 +18,27 @@ export class DocumentosService {
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
-    create(fileToUpload: File, documentos: Documentos): Observable<EntityResponseType> {
-        this.postFile(fileToUpload, documentos)
-        .subscribe((event) => {
-            if (event instanceof HttpResponse) {
-               // console.log(event.body);
-             }
-        });
-        const copy = this.convert(documentos);
-        return this.http.post<Documentos>(this.resourceUrl, copy, { observe: 'response' })
-        .map((res: EntityResponseType) => this.convertResponse(res));
+    create(fileToUpload: File, documentos: Documentos): Observable<Documentos> {
+        const doc: Documentos = documentos;
+        return  this.postFile(fileToUpload, documentos).map((res: HttpEvent<Documentos>) => this.returnObject(doc));
+        // .subscribe((event) => {
+        //     if (event instanceof HttpResponse) {
+        //        // console.log(event.body);
+        //      }
+        // });
+        // const copy = this.convert(documentos);
+        // return this.http.post<Documentos>(this.resourceUrl, copy, { observe: 'response' })
+        // .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    postFile(fileToUpload: File, documentos: Documentos ): Observable<HttpEvent<{}>> {
+    private returnObject(res: Documentos): Documentos {
+        return res;
+    }
+
+    postFile(fileToUpload: File, documentos: Documentos ): Observable<HttpEvent<Documentos>> {
         const formData: FormData = new FormData();
         formData.append('file', fileToUpload, fileToUpload.name);
-        formData.append('fecha', String(documentos.fecha));
+        formData.append('fecha', String(documentos.fecha.day + '/' + documentos.fecha.month + '/' + documentos.fecha.year));
         formData.append('descripcion', documentos.descripcion);
         formData.append('idCliente', String(documentos.idCliente));
         formData.append('tipoServicioId', String(documentos.tipoServicioId));
@@ -45,7 +50,7 @@ export class DocumentosService {
         formData.append('idDocumento', String(documentos.idDocumento));
 
         const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, {reportProgress: true,  responseType: 'text' });
-        return this.http.request(req);
+        return this.http.request<Documentos>(req);
     }
 
     getFile(fileName: String, idCliente: string, tipoServicioId: string, idDocumento: string): Observable<Blob> {
@@ -78,6 +83,11 @@ export class DocumentosService {
 
     findByExpedienteId(id: number): Observable<HttpResponse<Documentos[]>> {
         return this.http.get<Documentos[]>(SERVER_API_URL + 'api/documentos/expediente/' + id, { observe: 'response' })
+            .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
+    }
+
+    findByExpedienteAsociadosId(id: number): Observable<HttpResponse<Documentos[]>> {
+        return this.http.get<Documentos[]>(SERVER_API_URL + 'api/documentos/expedienteasociado/' + id, { observe: 'response' })
             .map((res: HttpResponse<Documentos[]>) => this.convertArrayResponse(res));
     }
 

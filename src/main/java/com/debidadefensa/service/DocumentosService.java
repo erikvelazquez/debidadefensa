@@ -55,6 +55,14 @@ public interface DocumentosService {
      */
     List<DocumentosDTO> findByExpedienteId(Long id);
 
+    /**
+     * Get all the expedientes by user.
+     *
+     * @param idUser the id of user
+     * @return the list of entities
+     */
+    List<DocumentosDTO> findByExpedienteAsociadoId(Long id);
+
      /**
      * Get all the expedientes by user.
      *

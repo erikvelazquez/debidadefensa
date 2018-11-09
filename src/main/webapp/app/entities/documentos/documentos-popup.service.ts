@@ -62,6 +62,11 @@ export class DocumentosPopupService {
                             // General;
                             documentos.tramiteGeneralId = +idTramite;
                             break;
+                        }
+                        case 1004: {
+                            // General;
+                            documentos.expedienteAsociadoId = +idTramite;
+                            break;
                          }
                         default: {
                            // statements

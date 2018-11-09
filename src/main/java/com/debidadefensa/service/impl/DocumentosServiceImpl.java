@@ -132,6 +132,24 @@ public class DocumentosServiceImpl implements DocumentosService {
       //  return result.map(expedienteMapper::toDto);
     }
 
+    /**
+     * Get all the expedientes.
+     *
+     * @Long iduser the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<DocumentosDTO> findByExpedienteAsociadoId(Long id) {
+        log.debug("Request to get all Expedientes by user");       
+       /*  Cliente cliente = new Cliente();
+        cliente.setId(idUser);
+        Expediente exp = new Expediente();
+        exp.setCliente(cliente);
+        Example<Expediente> expediente = Example.of(exp);*/
+       return documentosRepository.findByExpedienteAsociado_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      //  return result.map(expedienteMapper::toDto);
+    }
 
     /**
      * Get all the expedientes.

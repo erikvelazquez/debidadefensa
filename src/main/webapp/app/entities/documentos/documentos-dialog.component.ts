@@ -109,6 +109,11 @@ export class DocumentosDialogComponent implements OnInit {
                 this.documentos.idDocumento = this.documentos.tramiteGeneralId;
                 break;
             }
+            case 1004: {
+                // General;
+                this.documentos.idDocumento = this.documentos.expedienteAsociadoId;
+                break;
+            }
             default: {
             // statements;
             break;
@@ -117,9 +122,9 @@ export class DocumentosDialogComponent implements OnInit {
         this.subscribeToSaveResponse(this.documentosService.create(this.fileToUpload, this.documentos));
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<Documentos>>) {
-        result.subscribe((res: HttpResponse<Documentos>) =>
-            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<Documentos>) {
+        result.subscribe((res: Documentos) =>
+            this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: Documentos) {
@@ -137,6 +142,11 @@ export class DocumentosDialogComponent implements OnInit {
             case 1003: {
                 // General;
                 this.eventManager.broadcast({ name: 'tramiteGeneralListModification', content: 'OK'});
+                break;
+            }
+            case 1004: {
+                // General;
+                this.eventManager.broadcast({ name: 'expedienteAsociadoListModification', content: 'OK'});
                 break;
             }
             default: {

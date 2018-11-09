@@ -14,6 +14,8 @@ import org.springframework.data.jpa.repository.*;
 public interface DocumentosRepository extends JpaRepository<Documentos, Long> {
     List<Documentos> findByExpediente_id(long expediente_id);
 
+    List<Documentos> findByExpedienteAsociado_id(long expediente_id);
+
     List<Documentos> findByTramiteMigratorio_id(long id);
 
     List<Documentos> findByTramiteGeneral_id(long id);

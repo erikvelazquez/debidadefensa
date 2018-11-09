@@ -27,8 +27,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import ch.qos.logback.core.pattern.Converter;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.net.MalformedURLException;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -60,7 +65,7 @@ public class DocumentosResource {
     private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 
      @PostMapping("/documentos/upload")
-    public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file, 
+    public ResponseEntity <DocumentosDTO> handleFileUpload(@RequestParam("file") MultipartFile file, 
                                                     @RequestParam("fecha") String fecha,
                                                     @RequestParam("descripcion") String descripcion,
                                                     @RequestParam("idCliente") String idCliente,
@@ -83,10 +88,43 @@ public class DocumentosResource {
             fout.write(file.getBytes());		
             fout.close();	
             message = "You successfully uploaded " + file.getOriginalFilename() + "!";
-            return ResponseEntity.status(HttpStatus.OK).body(message);
+            
+            
+            // "1001"	"Expediente"
+            // "1002"	"Trámite Migratorio"
+            // "1003"	"Trámite General"
+            // "1004"	"Expediente Asociado"
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DocumentosDTO documentosDTO = new DocumentosDTO();
+            int tipo = Integer.parseInt(tipoServicioId);
+            switch (tipo) {
+            case 1001:
+                    documentosDTO.setExpedienteId(Long.parseLong(expedienteId));          
+                break;            
+            case 1002:            
+                    documentosDTO.setTramiteMigratorioId(Long.parseLong(tramiteMigratorioId));           
+                break;            
+            case 1003:            
+                    documentosDTO.setTramiteGeneralId(Long.parseLong(tramiteGeneralId));          
+                break;
+            case 1004:            
+                    documentosDTO.setExpedienteAsociadoId(Long.parseLong(expedienteAsociadoId));          
+                break;
+            }
+
+            documentosDTO.setDescripcion(descripcion);
+            documentosDTO.setFecha(LocalDate.parse(fecha, formatter));
+            documentosDTO.setTipoServicioId(Long.parseLong(tipoServicioId));  
+            documentosDTO.setNombreDocumento(file.getOriginalFilename());
+
+            DocumentosDTO result = documentosService.save(documentosDTO);
+            return ResponseEntity.created(new URI("/api/documentos/" + result.getId()))
+                                            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                                            .body(result);
+           // return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
             message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new DocumentosDTO());
         }
     }    
  
@@ -250,6 +288,22 @@ public class DocumentosResource {
     public List<DocumentosDTO> getAllFechasByExpedienteId(@PathVariable Long id) {
         log.debug("REST request to get a page of Expedientes");
         List<DocumentosDTO> ls = documentosService.findByExpedienteId(id);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
+       // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
+       return ls;
+    }
+
+    /**
+     * GET  /expedientes : get all the expedientes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of expedientes in body
+     */
+    @GetMapping("/documentos/expedienteasociado/{id}")
+    @Timed
+    public List<DocumentosDTO> getAllFechasByExpedienteAsociadoId(@PathVariable Long id) {
+        log.debug("REST request to get a page of Expedientes");
+        List<DocumentosDTO> ls = documentosService.findByExpedienteAsociadoId(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
        return ls;
