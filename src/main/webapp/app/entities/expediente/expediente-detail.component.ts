@@ -187,11 +187,12 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     save() {
         this.isSaving = true;
         if (this.expediente.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.expedienteService.update(this.expediente));
-                this.router.navigate(['/expediente-usuario', this.expediente.clienteId]).then((res) => {
-                    // this.clear();
-                });
+            this.subscribeToSaveResponse(this.expedienteService.update(this.expediente));
+            if (!this.esGeneral) {
+                this.router.navigate(['/expediente-usuario', this.expediente.clienteId]).then((res) => {});
+            } else {
+                this.router.navigate(['/expediente']).then((res) => {});
+            }
         } else {
             this.subscribeToSaveResponse(
                 this.expedienteService.create(this.expediente));

@@ -110,9 +110,17 @@ export class AgendaComponent {
                   break;
                 }
             }
-            this.router.navigate([url, id, true ]).then(() => {
-               this.clear();
-            });
+
+            if (url !== '') {
+              this.router.navigate([url, id, true ]).then(() => {
+                this.clear();
+              });
+            } else {
+              url = '../fechas-servicio/';
+              this.router.navigate(['../fechas-servicio/', res.body.id, 'edit' ]).then(() => {
+                this.clear();
+              });
+            }
             // alert(res.body.descripcion);
           },
           (res: HttpErrorResponse) => this.onError(res.message)
@@ -144,10 +152,11 @@ export class AgendaComponent {
       this.events = new Array<CalendarEvent>();
 
       for (const i of this.fechasServicios) {
+         const evento = i.tipoServicioId == null ? ' - Evento' : '';
           const fec = new Date(i.fecha);
           this.events.push({
             start: fec,
-            title: fec.getHours() + ':' + (fec.getMinutes() < 10 ? '0' : '') + fec.getMinutes() + ' ' + i.descripcion + ' - ' + i.observaciones,
+            title: fec.getHours() + ':' + (fec.getMinutes() < 10 ? '0' : '') + fec.getMinutes() + ' ' + i.descripcion + ' - ' + i.observaciones + evento,
             color: colors.blue,
             id: i.id
           });

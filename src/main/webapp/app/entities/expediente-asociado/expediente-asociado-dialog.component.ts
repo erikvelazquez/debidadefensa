@@ -33,6 +33,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     fechaSentenciaDp: any;
     private eventSubscriber: Subscription;
     documentos: Documentos[];
+    esDeshabilitada: boolean;
 
     constructor(
         private documentosService: DocumentosService,
@@ -44,6 +45,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
         private eventManager: JhiEventManager
     ) {
         this.expedienteOriginal = new Expediente();
+        this.esDeshabilitada = false;
     }
 
     ngOnInit() {
@@ -53,7 +55,9 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Expediente[]>) => {
                 this.expedientes = res.body;
                 this.expedienteOriginal = this.expedientes.find((item) => item.id === this.expedienteAsociado.expedienteId);
-                this.cargaDocumentos();
+                if (this.expedienteAsociado.id !== undefined) {
+                    this.cargaDocumentos();
+                }
             }, (res: HttpErrorResponse) => this.onError(res.message));
         this.estatusService
             .query({filter: 'expedienteasociado-is-null'})
@@ -79,7 +83,9 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
 
     cargaDocumentos() {
         this.documentosService.findByExpedienteAsociadosId(this.expedienteAsociado.id).subscribe(
-            (res: HttpResponse<Documentos[]>) => this.documentos = res.body,
+            (res: HttpResponse<Documentos[]>) => {
+                this.documentos = res.body;
+            },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
@@ -96,7 +102,10 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     }
 
     registerChangeInExpedientes() {
-        this.eventSubscriber = this.eventManager.subscribe('expedienteAsociadoListModification', () => this.cargaDocumentos());
+        this.eventSubscriber = this.eventManager.subscribe('expedienteAsociadoListModification', () => {
+            this.cargaDocumentos();
+            this.esDeshabilitada = false;
+        });
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<ExpedienteAsociado>>) {

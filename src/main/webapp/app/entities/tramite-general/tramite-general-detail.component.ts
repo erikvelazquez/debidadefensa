@@ -195,11 +195,12 @@ export class TramiteGeneralDetailComponent implements OnInit, OnDestroy {
     save() {
         this.isSaving = true;
         if (this.tramiteGeneral.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.tramiteGeneralService.update(this.tramiteGeneral));
-                this.router.navigate(['/tramite-general-usuario', this.tramiteGeneral.clienteId]).then((res) => {
-                    // this.clear();
-                });
+            this.subscribeToSaveResponse(this.tramiteGeneralService.update(this.tramiteGeneral));
+            if (!this.esGeneral) {
+                this.router.navigate(['/tramite-general-usuario', this.tramiteGeneral.clienteId]).then((res) => {});
+            } else {
+                this.router.navigate(['/tramite-general']).then((res) => {});
+            }
         } else {
             this.subscribeToSaveResponse(
                 this.tramiteGeneralService.create(this.tramiteGeneral));

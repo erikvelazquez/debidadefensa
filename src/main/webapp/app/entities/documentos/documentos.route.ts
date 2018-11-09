@@ -4,6 +4,7 @@ import { UserRouteAccessService } from '../../shared';
 import { DocumentosComponent } from './documentos.component';
 import { DocumentosDetailComponent } from './documentos-detail.component';
 import { DocumentosPopupComponent } from './documentos-dialog.component';
+import { DocumentosPdfviewerPopupComponent } from './documentos-pdfviewer-dialog.component';
 import { DocumentosDeletePopupComponent } from './documentos-delete-dialog.component';
 
 export const documentosRoute: Routes = [
@@ -50,6 +51,16 @@ export const documentosPopupRoute: Routes = [
     {
         path: 'documentos/:id/:idCliente/:idTramite/delete',
         component: DocumentosDeletePopupComponent,
+        data: {
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
+            pageTitle: 'debidadefensaApp.documentos.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'documentos/:id/:idCliente/:idTramite/:tiposervicio/pdfview',
+        component: DocumentosPdfviewerPopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.documentos.home.title'

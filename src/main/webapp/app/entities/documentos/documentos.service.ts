@@ -136,8 +136,9 @@ export class DocumentosService {
      */
     private convertItemFromServer(documentos: Documentos): Documentos {
         const copy: Documentos = Object.assign({}, documentos);
-        copy.fecha = this.dateUtils
-            .convertLocalDateFromServer(documentos.fecha);
+        copy.fecha = this.dateUtils.convertLocalDateFromServer(documentos.fecha);
+        copy.isPDF = copy.nombreDocumento.substring(copy.nombreDocumento.length - 4, copy.nombreDocumento.length).toLowerCase() === '.pdf';
+
         return copy;
     }
 

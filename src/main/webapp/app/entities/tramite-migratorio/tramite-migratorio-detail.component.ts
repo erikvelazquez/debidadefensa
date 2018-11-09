@@ -196,11 +196,12 @@ export class TramiteMigratorioDetailComponent implements OnInit, OnDestroy {
     save() {
         this.isSaving = true;
         if (this.tramiteMigratorio.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.tramiteMigratorioService.update(this.tramiteMigratorio));
-                this.router.navigate(['/tramite-migratorio-usuario', this.tramiteMigratorio.clienteId]).then((res) => {
-                    // this.clear();
-                });
+            this.subscribeToSaveResponse(this.tramiteMigratorioService.update(this.tramiteMigratorio));
+            if (!this.esGeneral) {
+                this.router.navigate(['/tramite-migratorio-usuario', this.tramiteMigratorio.clienteId]).then((res) => {});
+            } else {
+                this.router.navigate(['/tramite-migratorio']).then((res) => {});
+            }
         } else {
             this.subscribeToSaveResponse(
                 this.tramiteMigratorioService.create(this.tramiteMigratorio));

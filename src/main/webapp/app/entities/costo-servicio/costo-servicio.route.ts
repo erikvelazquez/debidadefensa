@@ -8,7 +8,7 @@ import { CostoServicioDeletePopupComponent } from './costo-servicio-delete-dialo
 
 export const costoServicioRoute: Routes = [
     {
-        path: 'expediente/costo-servicio/:id/:tiposervicio',
+        path: 'expediente/:id/costo-servicio/:id/:tiposervicio/:esGeneral',
         component: CostoServicioComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
@@ -16,7 +16,7 @@ export const costoServicioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'tramite-migratorio/costo-servicio/:id/:tiposervicio',
+        path: 'tramite-migratorio/:id/costo-servicio/:id/:tiposervicio/:esGeneral',
         component: CostoServicioComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
@@ -24,7 +24,7 @@ export const costoServicioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'tramite-general/costo-servicio/:id/:tiposervicio',
+        path: 'tramite-general/:id/costo-servicio/:id/:tiposervicio/:esGeneral',
         component: CostoServicioComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
@@ -42,6 +42,15 @@ export const costoServicioRoute: Routes = [
     }, {
         path: 'costo-servicio/:id',
         component: CostoServicioDetailComponent,
+        data: {
+            authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
+            pageTitle: 'debidadefensaApp.costoServicio.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'costo-servicio/:id/:tiposervicio',
+        component: CostoServicioComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],
             pageTitle: 'debidadefensaApp.costoServicio.home.title'

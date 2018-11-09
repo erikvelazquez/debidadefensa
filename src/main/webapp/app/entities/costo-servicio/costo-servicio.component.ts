@@ -22,6 +22,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
     pagos: Pagos[];
     idTramite: number;
     tiposervicio: String;
+    esGeneral: boolean;
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
@@ -152,6 +153,7 @@ export class CostoServicioComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.route.params.subscribe((params) => {
             this.idTramite = params['id'];
             this.tiposervicio = params['tiposervicio'];
+            this.esGeneral = params['esGeneral'];
         });
 
         this.loadAll();

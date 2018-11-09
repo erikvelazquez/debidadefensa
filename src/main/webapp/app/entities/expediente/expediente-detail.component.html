@@ -105,20 +105,29 @@
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">                                  
+                                    <div class="btn-group flex-btn-group-container"> 
+                                        <button type="button" *ngIf="documentos.isPDF"
+                                                [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + expediente.clienteId + '/' + expediente.id + '/' + tipoServicio + '/pdfview'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="fa fa-file-pdf-o"></span>
+                                            <span class="d-none d-md-inline" >Ver</span>
+                                        </button>                                 
                                         <button type="button" (click)="getFile(documentos.nombreDocumento, expediente.clienteId, tipoServicio)"
                                                 class="btn btn-primary btn-sm">
                                             <span class="fa fa-download"></span>
                                             <span class="d-none d-md-inline" >Descargar</span>
                                         </button>
                                         <button type="button"
-                                                [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + expediente.clienteId + '/' + expediente.id + '/delete'} }]"
+                                                [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + expediente.clienteId + '/' + expediente.id  +  '/delete'} }]"
                                                 replaceUrl="true"
                                                 queryParamsHandling="merge"
                                                 class="btn btn-danger btn-sm">
                                             <span class="fa fa-remove"></span>
                                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                                         </button>
+                                        
                                     </div>
                                 </td>
                             </tr>
@@ -179,7 +188,7 @@
                     <div class="col-md-12" style="height: 40px;">
                         <span class="text-center label-title">COSTOS Y PAGOS</span>
                         <button type="button" 
-                                [routerLink]="['../costo-servicio', expediente.id, tipoServicio  ]"      
+                                [routerLink]="['../costo-servicio', expediente.id, tipoServicio, esGeneral ]"      
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-secondary btn-sm">

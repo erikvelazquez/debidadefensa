@@ -23,21 +23,21 @@
         <br>  
         <div class="col-md-12 row text-right" *ngIf="tiposervicio === '1001'">
             <button type="submit"                               
-                    [routerLink]="['/expediente', idTramite ]"
+                    [routerLink]="['/expediente', idTramite, esGeneral ]"
                     class="btn btn-info">            
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button> 
         </div> 
         <div class="col-md-12 row text-right" *ngIf="tiposervicio === '1002'">
             <button type="submit"                               
-                    [routerLink]="['/tramite-migratorio', idTramite ]"
+                    [routerLink]="['/tramite-migratorio', idTramite, esGeneral ]"
                     class="btn btn-info">            
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button> 
         </div> 
         <div class="col-md-12 row text-right" *ngIf="tiposervicio === '1003'">
             <button type="submit"                               
-                    [routerLink]="['/tramite-general', idTramite ]"
+                    [routerLink]="['/tramite-general', idTramite, esGeneral ]"
                     class="btn btn-info">            
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button> 

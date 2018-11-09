@@ -121,7 +121,15 @@
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">   
+                                    <div class="btn-group flex-btn-group-container"> 
+                                        <button type="button" *ngIf="documentos.isPDF"
+                                                [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + tramiteMigratorio.clienteId + '/' + tramiteMigratorio.id + '/' + tipoServicio + '/pdfview'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="fa fa-file-pdf-o"></span>
+                                            <span class="d-none d-md-inline" >Ver</span>
+                                        </button>  
                                         <button type="button" (click)="getFile(documentos.nombreDocumento, tramiteMigratorio.clienteId, tipoServicio)"
                                                 class="btn btn-primary btn-sm">
                                             <span class="fa fa-download"></span>
@@ -156,7 +164,7 @@
                 <div class="col-md-12" style="height: 40px;">
                     <span class="text-center label-title">COSTOS Y PAGOS</span>         
                     <button type="button" 
-                            [routerLink]="['../costo-servicio', tramiteMigratorio.id, tipoServicio  ]"      
+                            [routerLink]="['../costo-servicio', tramiteMigratorio.id, tipoServicio, esGeneral  ]"      
                             replaceUrl="true"
                             queryParamsHandling="merge"
                             class="btn btn-secondary btn-sm">

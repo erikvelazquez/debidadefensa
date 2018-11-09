@@ -31,6 +31,7 @@ export class DocumentosPopupService {
                         const documentos: Documentos = documentosResponse.body;
                         documentos.idCliente = idCliente;
                         documentos.idDocumento = idTramite;
+                        documentos.tipoServicioId = tiposervicio;
                         if (documentos.fecha) {
                             documentos.fecha = {
                                 year: documentos.fecha.getFullYear(),

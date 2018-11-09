@@ -11,6 +11,8 @@ import {
     DocumentosPopupComponent,
     DocumentosDeletePopupComponent,
     DocumentosDeleteDialogComponent,
+    DocumentosPdfviewerDialogComponent,
+    DocumentosPdfviewerPopupComponent,
     documentosRoute,
     documentosPopupRoute,
 } from './';
@@ -30,6 +32,8 @@ const ENTITY_STATES = [
         DocumentosDetailComponent,
         DocumentosDialogComponent,
         DocumentosDeleteDialogComponent,
+        DocumentosPdfviewerDialogComponent,
+        DocumentosPdfviewerPopupComponent,
         DocumentosPopupComponent,
         DocumentosDeletePopupComponent,
     ],
@@ -38,6 +42,8 @@ const ENTITY_STATES = [
         DocumentosDialogComponent,
         DocumentosPopupComponent,
         DocumentosDeleteDialogComponent,
+        DocumentosPdfviewerDialogComponent,
+        DocumentosPdfviewerPopupComponent,
         DocumentosDeletePopupComponent,
     ],
     providers: [

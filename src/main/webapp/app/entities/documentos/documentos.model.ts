@@ -13,7 +13,8 @@ export class Documentos implements BaseEntity {
         public tramiteGeneralId?: number,
         public tipoServicioId?: number,
         public idCliente?: number,
-        public idDocumento?: number
+        public idDocumento?: number,
+        public isPDF?: boolean,
     ) {
     }
 }
