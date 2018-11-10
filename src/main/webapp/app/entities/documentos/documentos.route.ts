@@ -49,7 +49,7 @@ export const documentosPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'documentos/:id/:idCliente/:idTramite/delete',
+        path: 'documentos/:id/:idCliente/:idTramite/:tiposervicio/delete',
         component: DocumentosDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER', 'ROLE_DIRECTOR', 'ROLE_ABOGADO', 'ROLE_AUXILIAR', 'ROLE_ADMIN'],

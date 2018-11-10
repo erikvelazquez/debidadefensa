@@ -11,12 +11,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'jhi-documentos-pdfviewer-dialog',
-    templateUrl: './documentos-pdfviewer-dialog.component.html'
+    templateUrl: './documentos-pdfviewer-dialog.component.html',
+    styleUrls: [
+        '../../app.scss'
+    ],
 })
 export class DocumentosPdfviewerDialogComponent implements OnInit {
 
     documentos: Documentos;
     imageData: any;
+    isLoading: boolean;
     constructor(
         private documentosService: DocumentosService,
         public activeModal: NgbActiveModal,
@@ -24,7 +28,10 @@ export class DocumentosPdfviewerDialogComponent implements OnInit {
         private eventManager2: JhiEventManager,
         private eventManager3: JhiEventManager,
         private domSanitizer: DomSanitizer,
-    ) {}
+    ) {
+        this.isLoading = true;
+
+    }
 
     ngOnInit() {
         this.documentosService.getFile(this.documentos.nombreDocumento,
@@ -34,6 +41,7 @@ export class DocumentosPdfviewerDialogComponent implements OnInit {
             const blob = new Blob([data], { type: 'application/pdf' });
             const fileURL = URL.createObjectURL(blob);
             this.imageData = this.domSanitizer.bypassSecurityTrustResourceUrl(fileURL);
+            this.isLoading = false;
             // window.open(fileURL);
 
         }, (error) => {
