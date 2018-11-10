@@ -262,7 +262,7 @@ public class FechasServicioServiceImpl implements FechasServicioService {
     }
 
     private String ConvierteFecha(Instant fecha){
-        return LocalDateTime.ofInstant(fecha, ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "";
+        return LocalDateTime.ofInstant(fecha, ZoneId.of("Mexico/General")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "";
     }
 
     /**

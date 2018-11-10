@@ -123,7 +123,6 @@ fechasServicios: FechasServicio[];
             this.clear();
           });
         }
-        alert('Se envia la alaerta');
     }
 
     private onError(error) {
