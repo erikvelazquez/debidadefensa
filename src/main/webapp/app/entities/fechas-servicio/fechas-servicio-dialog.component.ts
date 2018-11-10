@@ -90,7 +90,7 @@ export class FechasServicioDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.date = new Date();
-        this.isGeneral = isNaN(this.fechasServicio.tipoServicioId) ? true : false;
+        this.isGeneral = isNaN(this.fechasServicio.tipoServicioId) ||  this.fechasServicio.tipoServicioId === null ? true : false;
         this.expedienteService.query()
             .subscribe((res: HttpResponse<Expediente[]>) => { this.expedientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.tramiteMigratorioService.query()

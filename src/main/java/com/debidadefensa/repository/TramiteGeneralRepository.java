@@ -47,7 +47,7 @@ public interface TramiteGeneralRepository extends JpaRepository<TramiteGeneral, 
     @Query(value = "SELECT * FROM tramite_general "
                 + " WHERE id NOT IN ( SELECT id_tramiteasociado FROM tramite_asociado WHERE id_tramite = :id and tipo_servicio_id = :tipo) "  
                 + " AND id NOT IN ( SELECT id_tramite FROM tramite_asociado WHERE id_tramiteasociado = :id and tipo_servicio_id_Asociado = :tipo) "   
-                + " and cliente_id = :idCliente ",
+                + " and cliente_id = :idCliente order by titular ",
                 nativeQuery = true)
     List<TramiteGeneral> findByFaltantes(@Param("id") Long id, @Param("tipo") Long tipo, @Param("idCliente") Long cliente_id);
 

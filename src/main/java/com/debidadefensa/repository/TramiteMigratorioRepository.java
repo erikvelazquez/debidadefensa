@@ -47,7 +47,7 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
     @Query(value = "SELECT * FROM tramite_migratorio "
                 + " WHERE id NOT IN ( SELECT id_tramiteasociado FROM tramite_asociado WHERE id_tramite = :id and tipo_servicio_id = :tipo) "  
                 + " AND id NOT IN ( SELECT id_tramite FROM tramite_asociado WHERE id_tramiteasociado = :id and tipo_servicio_id_Asociado = :tipo) "   
-                + " and cliente_id = :idCliente ",
+                + " and cliente_id = :idCliente order by nombre_extranjero",
                 nativeQuery = true)
     List<TramiteMigratorio> findByFaltantes(@Param("id") Long id, @Param("tipo") Long tipo, @Param("idCliente") Long cliente_id);
 
