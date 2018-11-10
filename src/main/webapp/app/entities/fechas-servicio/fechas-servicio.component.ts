@@ -3,7 +3,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-
+import { Router } from '@angular/router';
 import { FechasServicio } from './fechas-servicio.model';
 import { FechasServicioService } from './fechas-servicio.service';
 import { Principal } from '../../shared';
@@ -26,7 +26,8 @@ fechasServicios: FechasServicio[];
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router,
     ) {
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
             this.activatedRoute.snapshot.params['search'] : '';
@@ -82,6 +83,47 @@ fechasServicios: FechasServicio[];
     }
     registerChangeInFechasServicios() {
         this.eventSubscriber = this.eventManager.subscribe('fechasServicioListModification', (response) => this.loadAll());
+    }
+
+    abrelink(item: FechasServicio) {
+        let url = '';
+        let id = 0;
+        switch (item.tipoServicioId) {
+            case 1001: {
+                // Expediente;
+                url = '../expediente';
+                id =  item.expedienteId;
+                break;
+            }
+            case 1002: {
+                // Migratorio;
+                url = '../tramite-migratorio';
+                id =  item.tramiteMigratorioId;
+                break;
+            }
+            case 1003: {
+                // General;
+                url = '../tramite-general';
+                id =  item.tramiteGeneralId;
+                break;
+            }
+            default: {
+              // statements;
+              break;
+            }
+        }
+
+        if (url !== '') {
+          this.router.navigate([url, id, true ]).then(() => {
+            this.clear();
+          });
+        } else {
+          url = '../fechas-servicio/';
+          this.router.navigate(['../fechas-servicio/', item.id, 'edit' ]).then(() => {
+            this.clear();
+          });
+        }
+        alert('Se envia la alaerta');
     }
 
     private onError(error) {

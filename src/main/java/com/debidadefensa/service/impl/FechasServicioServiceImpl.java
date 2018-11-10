@@ -9,10 +9,12 @@ import com.debidadefensa.repository.UserRepository;
 import com.debidadefensa.repository.search.FechasServicioSearchRepository;
 import com.debidadefensa.service.dto.ExpedienteDTO;
 import com.debidadefensa.service.dto.FechasServicioDTO;
+import com.debidadefensa.service.dto.ParteDTO;
 import com.debidadefensa.service.dto.TramiteGeneralDTO;
 import com.debidadefensa.service.dto.TramiteMigratorioDTO;
 import com.debidadefensa.service.mapper.FechasServicioMapper;
 import com.debidadefensa.service.MailService;
+import com.debidadefensa.service.ParteService;
 import com.debidadefensa.service.TramiteGeneralService;
 import com.debidadefensa.service.TramiteMigratorioService;
 
@@ -71,7 +73,7 @@ public class FechasServicioServiceImpl implements FechasServicioService {
     private final ExpedienteService expedienteService;
     private final TramiteGeneralService tramiteGeneralService;
     private final TramiteMigratorioService tramiteMigratorioService;
-
+    private final ParteService parteService;
 
     public FechasServicioServiceImpl(FechasServicioRepository fechasServicioRepository, 
                                      FechasServicioMapper fechasServicioMapper, 
@@ -80,7 +82,8 @@ public class FechasServicioServiceImpl implements FechasServicioService {
                                      UserMapper userMapper,
                                      ExpedienteService expedienteService,
                                      TramiteGeneralService tramiteGeneralService,
-                                     TramiteMigratorioService tramiteMigratorioService) {
+                                     TramiteMigratorioService tramiteMigratorioService,
+                                     ParteService parteService) {
         this.fechasServicioRepository = fechasServicioRepository;
         this.fechasServicioMapper = fechasServicioMapper;
         this.fechasServicioSearchRepository = fechasServicioSearchRepository;
@@ -89,6 +92,7 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         this.expedienteService = expedienteService;
         this.tramiteGeneralService = tramiteGeneralService;
         this.tramiteMigratorioService = tramiteMigratorioService;
+        this.parteService = parteService;
 
     }
 
@@ -225,12 +229,23 @@ public class FechasServicioServiceImpl implements FechasServicioService {
 
     private String ObtenExpediente(Long id, FechasServicioDTO fechasServicioDTO){
         ExpedienteDTO expedienteDTO = expedienteService.findOne(id);
+        List<ParteDTO> lsPartes = this.parteService.findByExpediente_id(id);
+        String partes = "";
+        lsPartes =  lsPartes
+        .stream()
+        .sorted((object1, object2) -> object1.getTipoParteNombre().compareTo(object2.getTipoParteNombre()))
+        .collect(Collectors.toList());
+
+        for (ParteDTO parte : lsPartes) {
+            partes = partes + parte.getTipoParteNombre() + ": " + parte.getNombre() + ", ";
+        }
 
         String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + expedienteDTO.getClienteNombre() + "</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Expediente: " + expedienteDTO.getNumeroExpediente() + "</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juicio: " + expedienteDTO.getJuicio() + "</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juzgado: " + expedienteDTO.getJuzgado() + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + expedienteDTO.getEstatusDescripcion() + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Partes: " + partes + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() + "</p>";
@@ -375,6 +390,7 @@ public class FechasServicioServiceImpl implements FechasServicioService {
     @Transactional(readOnly = true)
     public List<FechasServicioDTO> findByDate(Long month, Long year) {
         log.debug("Request to get all Expedientes by month"); 
-       return fechasServicioRepository.findByDate(month, year).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));      
+        List<FechasServicioDTO> ls = fechasServicioRepository.findByDate(month, year).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));      
+        return ls;
     }
 }

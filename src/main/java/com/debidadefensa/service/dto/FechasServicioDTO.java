@@ -30,8 +30,24 @@ public class FechasServicioDTO implements Serializable {
 
     private Long tipoServicioId;
 
+    private String nombreCliente;
+
     public Long getId() {
         return id;
+    }
+
+    /**
+     * @return the nombreCliente
+     */
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    /**
+     * @param nombreCliente the nombreCliente to set
+     */
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
     public void setId(Long id) {

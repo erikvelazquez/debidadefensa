@@ -10,6 +10,7 @@ export class FechasServicio implements BaseEntity {
         public tramiteMigratorioId?: number,
         public tramiteGeneralId?: number,
         public tipoServicioId?: number,
+        public nombreCliente?: string,
     ) {
     }
 }

@@ -77,7 +77,7 @@ public class DocumentosResource {
                                                     @RequestParam("idDocumento") String idDocumento) {
         String message = "";
         try {            
-            File convertFile = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + idDocumento + "/" + file.getOriginalFilename());		
+            File convertFile = new File(DIRECTORY + idCliente + "\\" + tipoServicioId  + "\\" + idDocumento + "\\" + file.getOriginalFilename());		
 
             if(!convertFile.exists()) {
                 convertFile.getParentFile().mkdirs();
@@ -121,7 +121,6 @@ public class DocumentosResource {
             return ResponseEntity.created(new URI("/api/documentos/" + result.getId()))
                                             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                                             .body(result);
-           // return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
             message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new DocumentosDTO());
@@ -141,7 +140,7 @@ public class DocumentosResource {
         System.out.println("fileName: " + fileName);
         System.out.println("mediaType: " + mediaType);
  
-        Path path = Paths.get(DIRECTORY + idCliente + "/" + tipoServicioId + "/" + idDocumento  + "/" + fileName );
+        Path path = Paths.get(DIRECTORY + idCliente + "\\" + tipoServicioId + "\\" + idDocumento  + "\\" + fileName );
         byte[] data = Files.readAllBytes(path);
         ByteArrayResource resource = new ByteArrayResource(data);
  
