@@ -53,7 +53,7 @@ public interface TramiteMigratorioRepository extends JpaRepository<TramiteMigrat
 
     @Query(value = "SELECT * FROM tramite_migratorio "
                 + " WHERE id IN ( SELECT id_tramiteasociado FROM tramite_asociado WHERE id_tramite = :id and tipo_servicio_id = :tipo) "  
-                + " OR id IN ( SELECT id_tramite FROM tramite_asociado WHERE id_tramiteasociado = :id and tipo_servicio_id_Asociado = :tipo) ",
+                + " OR id IN ( SELECT id_tramite FROM tramite_asociado WHERE id_tramiteasociado = :id and tipo_servicio_id_Asociado = :tipo) order by nombre_extranjero",
                 nativeQuery = true)
     List<TramiteMigratorio> findByAsociados(@Param("id") Long id, @Param("tipo") Long tipo);
 

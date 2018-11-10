@@ -16,6 +16,7 @@ import { FechasServicioService } from './fechas-servicio.service';
 import { HttpResponse, HttpErrorResponse } from '../../../../../../node_modules/@angular/common/http';
 import { CustomDateFormatter } from '../../services/fecha.service';
 import { Router } from '@angular/router';
+import { CustomDatepickerI18n } from '../../services/fecha.service';
 
 const colors: any = {
   red: {
@@ -36,12 +37,7 @@ const colors: any = {
     selector: 'jhi-agenda',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './agenda.component.html',
-    providers: [
-      {
-        provide: CalendarDateFormatter,
-        useClass: CustomDateFormatter
-      }
-    ]
+    providers: [{provide: CalendarDateFormatter, useClass: CustomDateFormatter}]
 })
 export class AgendaComponent {
 
