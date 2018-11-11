@@ -1,11 +1,16 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-
-    <div class="modal-header">
+    <div class="" *ngIf="isLoading" >        
+        <h4 class="modal-title text-center" style="font-weight: bold" id="myFechasServicioLabel" >Enviando correo...</h4>        
+        <div class="spinner">
+            <img src="./../../../content/images/Loading.gif">
+        </div>
+    </div>
+    <div class="modal-header" *ngIf="!isLoading">
         <h4 class="modal-title" style="font-weight: bold" id="myFechasServicioLabel" jhiTranslate="debidadefensaApp.fechasServicio.home.createOrEditLabel">Create or edit a Fechas Servicio</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" *ngIf="!isLoading">
         <jhi-alert-error></jhi-alert-error>
         <!--<div class="form-group" [hidden]="!fechasServicio.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
@@ -68,7 +73,7 @@
         
         
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" *ngIf="!isLoading">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>

@@ -75,7 +75,7 @@ export class FechasServicioDialogComponent implements OnInit {
     date: Date;
     tiposervicios: TipoServicio[];
     fechaDp: any;
-
+    isLoading: boolean;
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
@@ -85,7 +85,9 @@ export class FechasServicioDialogComponent implements OnInit {
         private tramiteGeneralService: TramiteGeneralService,
         private tipoServicioService: TipoServicioService,
         private eventManager: JhiEventManager,
-    ) { }
+    ) {
+        this.isLoading = false;
+    }
 
     ngOnInit() {
         this.isSaving = false;
@@ -107,6 +109,7 @@ export class FechasServicioDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.isLoading = true;
         if (this.fechasServicio.id !== null) {
             this.subscribeToSaveResponse(
                 this.fechasServicioService.update(this.fechasServicio));
@@ -122,6 +125,7 @@ export class FechasServicioDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: FechasServicio) {
+        this.isLoading = false;
         if (!this.isGeneral) {
             switch (result.tipoServicioId) {
                 case 1001: {
@@ -156,6 +160,7 @@ export class FechasServicioDialogComponent implements OnInit {
     }
 
     private onSaveError() {
+        this.isLoading = false;
         this.isSaving = false;
     }
 

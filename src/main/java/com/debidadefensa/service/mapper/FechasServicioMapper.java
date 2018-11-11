@@ -16,18 +16,22 @@ public interface FechasServicioMapper extends EntityMapper<FechasServicioDTO, Fe
     default void beforeMapping(@MappingTarget FechasServicioDTO target, FechasServicio source) {
          
         int idServicio = source.getTipoServicio() != null ? (int)(source.getTipoServicio().getId() % 100000) : 0;
+        String nombre = "Evento";
         switch (idServicio) {
             case 1002:
-                target.setNombreCliente(source.getTramiteMigratorio().getCliente().getNombre());
+                nombre = source.getTramiteMigratorio().getCliente() != null ? source.getTramiteMigratorio().getCliente().getNombre() : "";
+                target.setNombreCliente(nombre);
             break;
             case 1003:
-                target.setNombreCliente(source.getTramiteGeneral().getCliente().getNombre());
+                nombre = source.getTramiteGeneral().getCliente() != null ? source.getTramiteGeneral().getCliente().getNombre() : "";
+                target.setNombreCliente(nombre);
                 break;
             case 1001:
-                target.setNombreCliente(source.getExpediente().getCliente().getNombre());
+                nombre = source.getExpediente().getCliente() != null ? source.getExpediente().getCliente().getNombre() : "";
+                target.setNombreCliente(nombre);
                 break;
             default:
-                target.setNombreCliente("Evento");
+                target.setNombreCliente(nombre);
         }
     }
 
