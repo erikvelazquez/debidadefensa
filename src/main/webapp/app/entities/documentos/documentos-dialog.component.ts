@@ -75,6 +75,9 @@ export class DocumentosDialogComponent implements OnInit {
     }
 
     clear() {
+        if (this.documentos.tipoServicioId === 1004) {
+            this.eventManager.broadcast({ name: 'expedienteAsociadoListModification', content: 'OK'});
+        }
         this.activeModal.dismiss('cancel');
     }
 

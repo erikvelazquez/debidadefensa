@@ -1,4 +1,4 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm" >
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm"  *ngIf="!esDeshabilitada">
 
     <div class="modal-header" >
         <h4 class="modal-title" style="font-weight: bold" id="myExpedienteAsociadoLabel" jhiTranslate="debidadefensaApp.expedienteAsociado.home.createOrEditLabel">Create or edit a Expediente Asociado</h4>
@@ -6,7 +6,7 @@
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
+        <!-- <jhi-alert-error></jhi-alert-error> -->
         <!--<div class="form-group" [hidden]="!expedienteAsociado.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
@@ -87,7 +87,15 @@
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
                                 <td class="text-right">
-                                    <div class="btn-group flex-btn-group-container">                                  
+                                    <div class="btn-group flex-btn-group-container"> 
+                                        <button type="button" *ngIf="documentos.isPDF"
+                                                [routerLink]="['/', { outlets: { popup: 'documentos/'+ documentos.id + '/' + expedienteOriginal.clienteId + '/' + expedienteAsociado.id + '/' + tipoServicio + '/pdfview'} }]"
+                                                replaceUrl="true"
+                                                queryParamsHandling="merge"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="fa fa-file-pdf-o"></span>
+                                            <span class="d-none d-md-inline" >Ver</span>
+                                        </button>                                    
                                         <button type="button" (click)="getFile(documentos.nombreDocumento, expedienteOriginal.clienteId, tipoServicio)"
                                                 class="btn btn-primary btn-sm">
                                             <span class="fa fa-download"></span>

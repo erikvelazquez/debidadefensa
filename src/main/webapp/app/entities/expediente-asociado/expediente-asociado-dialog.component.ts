@@ -13,6 +13,7 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Documentos, DocumentosService } from '../documentos';
+import { saveAs } from 'file-saver/FileSaver';
 
 @Component({
     selector: 'jhi-expediente-asociado-dialog',
@@ -75,6 +76,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.registerChangeInExpedientes();
     }
 
     clear() {
@@ -133,6 +135,15 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
 
     trackEstatusById(index: number, item: Estatus) {
         return item.id;
+    }
+
+    getFile(fileName: String, idCliente: string, tipoServicioId: string) {
+        this.documentosService.getFile(fileName, idCliente, tipoServicioId, String(this.expedienteAsociado.id)).subscribe((data) => {
+            const blob = new Blob([data], { type: 'application/octet-stream' });
+            saveAs(blob, fileName);
+        }, (error) => {
+            console.log(error);
+        });
     }
 }
 
