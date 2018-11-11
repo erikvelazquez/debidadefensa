@@ -17,8 +17,24 @@ public class EstatusDTO implements Serializable {
 
     private Long tipoServicioId;
 
+    private String tipoServicioNombre;
+
     public Long getId() {
         return id;
+    }
+
+    /**
+     * @return the tipoServicioNombre
+     */
+    public String getTipoServicioNombre() {
+        return tipoServicioNombre;
+    }
+
+    /**
+     * @param tipoServicioNombre the tipoServicioNombre to set
+     */
+    public void setTipoServicioNombre(String tipoServicioNombre) {
+        this.tipoServicioNombre = tipoServicioNombre;
     }
 
     public void setId(Long id) {

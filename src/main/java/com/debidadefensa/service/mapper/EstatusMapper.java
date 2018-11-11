@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface EstatusMapper extends EntityMapper<EstatusDTO, Estatus> {
 
     @Mapping(source = "tipoServicio.id", target = "tipoServicioId")
+    @Mapping(source = "tipoServicio.descripcion", target = "tipoServicioNombre")    
     EstatusDTO toDto(Estatus estatus);
 
     @Mapping(source = "tipoServicioId", target = "tipoServicio")

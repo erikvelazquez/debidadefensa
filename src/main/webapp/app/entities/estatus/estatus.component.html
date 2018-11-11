@@ -39,13 +39,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let estatus of estatuses ;trackBy: trackId">
-                <td><a [routerLink]="['../estatus', estatus.id ]">{{estatus.id}}</a></td>
+                <td>{{estatus.id}}</td>
                 <td>{{estatus.descripcion}}</td>
-                <td>
-                    <div *ngIf="estatus.tipoServicioId">
-                        <a [routerLink]="['../tipo-servicio', estatus.tipoServicioId  ]" >{{estatus.tipoServicioId}}</a>
-                    </div>
-                </td>
+                <td>{{tipoServicioNombre}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <!--<button type="submit"

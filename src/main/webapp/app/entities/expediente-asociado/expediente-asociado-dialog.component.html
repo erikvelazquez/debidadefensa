@@ -14,24 +14,24 @@
         </div>-->
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.expediente" for="field_expediente">Expediente</label>
-            <select  [disabled]="true" class="form-control col-md-10" id="field_expediente" name="expediente" [(ngModel)]="expedienteAsociado.expedienteId" >
+            <select  [disabled]="true" class="form-control col-md-10" id="field_expediente" name="expediente" [(ngModel)]="expedienteAsociado.expedienteId" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="expedienteOption.id" *ngFor="let expedienteOption of expedientes; trackBy: trackExpedienteById">{{expedienteOption.numeroExpediente}}</option>
             </select>
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.numeroExpediente" for="field_numeroExpediente">Numero Expediente</label>
-            <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente"
+            <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente" required
                 [(ngModel)]="expedienteAsociado.numeroExpediente" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.instancia" for="field_instancia">Instancia</label>
-            <input type="text" class="form-control col-md-10" name="instancia" id="field_instancia"
+            <input type="text" class="form-control col-md-10" name="instancia" id="field_instancia" required
                 [(ngModel)]="expedienteAsociado.instancia" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" for="field_organocompetente">Órgano Competente</label>
-            <input type="text" class="form-control col-md-10" name="organocompetente" id="field_organocompetente"
+            <input type="text" class="form-control col-md-10" name="organocompetente" id="field_organocompetente" required
                 [(ngModel)]="expedienteAsociado.organocompetente" />
         </div>
         <!--<div class="form-group row">
@@ -43,7 +43,7 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
             <div class="input-group col-md-4" style="padding-left: 0px; padding-right: 0px">
-                <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"/>
+                <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>

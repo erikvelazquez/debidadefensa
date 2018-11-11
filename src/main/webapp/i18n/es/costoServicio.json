@@ -3,7 +3,7 @@
     "debidadefensaApp": {
         "costoServicio" : {
             "home": {
-                "title": "Costo Servicios",
+                "title": "Costo y Pagos",
                 "createLabel": "Crear nuevo Costo Servicio",
                 "createOrEditLabel": "Crear o editar Costo Servicio",
                 "search": "Search for Costo Servicio"
@@ -15,7 +15,7 @@
                 "question": "¿Seguro que quiere eliminar Costo Servicio?"
             },
             "detail": {
-                "title": "Costo Servicio"
+                "title": "Costo y Pagos"
             },
             "tipoCosto": "Tipo Costo",
             "concepto": "Concepto",

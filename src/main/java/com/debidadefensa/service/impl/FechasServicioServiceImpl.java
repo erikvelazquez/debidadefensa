@@ -258,6 +258,8 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         log.debug("Request to get all Expedientes by month");      
         LocalDateTime now = LocalDateTime.ofInstant(Instant.now(), ZoneId.of("Mexico/General"));
         log.debug("Fecha de ejecucion : {}", now);
+        now = now.plusDays(1);
+        log.debug("Fecha a encontrar : {}", now);
         List<FechasServicioDTO> lsCitas = fechasServicioRepository.findByHour(now.getYear(), now.getMonthValue(), now.getDayOfMonth(), now.getHour()).
                                                               stream().map(fechasServicioMapper::toDto).
                                                               collect(Collectors.toCollection(LinkedList::new));

@@ -5,6 +5,7 @@ export class Estatus implements BaseEntity {
         public id?: number,
         public descripcion?: string,
         public tipoServicioId?: number,
+        public tipoServicioNombre?: string,
     ) {
     }
 }
