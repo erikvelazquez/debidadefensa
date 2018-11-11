@@ -37,4 +37,12 @@ public interface FechasServicioRepository extends JpaRepository<FechasServicio, 
                 + " ORDER BY fecha ASC",
                 nativeQuery = true)
     List<FechasServicio> findByDateEmail(@Param("date") Instant date);
+
+    @Query(value = "SELECT f.* FROM fechas_servicio f "
+    + " where extract(year from fecha) = :year "  
+    + " and extract(month from fecha) = :month "           
+    + " and extract(day from fecha) = :day "
+    + " and extract(hour from fecha) = :hour " ,
+    nativeQuery = true)
+    List<FechasServicio> findByHour(@Param("year") int year, @Param("month") int month, @Param("day") int day, @Param("hour") int hour);
 }

@@ -36,6 +36,7 @@ import io.github.jhipster.config.JHipsterProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.springframework.beans.factory.annotation.Value;
 import com.debidadefensa.domain.User;
@@ -124,25 +125,12 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         fechasServicio = fechasServicioRepository.save(fechasServicio);
         FechasServicioDTO result = fechasServicioMapper.toDto(fechasServicio);
         fechasServicioSearchRepository.save(fechasServicio); 
-        EnviaCoreo(fechasServicioDTO);
+        EnviaCoreo(fechasServicioDTO, "");
         
         return result;
     }
 
-    public String ConsultaFechasEmail(){
-        Instant fecha = new Date().toInstant();
-     /*   fecha.minusSeconds(0);
-        List<FechasServicioDTO> fechas = fechasServicioRepository.findByDateEmail(fecha).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
-        if (fechas.size() > 0) {
-            for (FechasServicioDTO var : fechas) {
-                EnviaCoreo(var);
-            }
-        }
-*/
-        return "lo envie " + fecha;
-    }
-
-    public void EnviaCoreo(FechasServicioDTO fechasServicioDTO){
+    public void EnviaCoreo(FechasServicioDTO fechasServicioDTO, String asuntoadjunto){
         List<UserDTO> lsUsers = userMapper.usersToUserDTOs(userRepository.findAll()); // .stream().map(UserDTO::new).collect(Collectors.toCollection(LinkedList::new));
         List<String> lsRoles = Arrays.asList("ROLE_ABOGADO","ROLE_ADMIN");        
        
@@ -168,19 +156,19 @@ public class FechasServicioServiceImpl implements FechasServicioService {
 
         switch ((int)(fechasServicioDTO.getTipoServicioId() % 100000)) {
             case 1002:
-                asunto = "Debida Defensa - Notificación Trámite Migratorio – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                asunto = asuntoadjunto + "Debida Defensa - Notificación Trámite Migratorio – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
                 cuerpo =  ObtenMigratorio(fechasServicioDTO.getTramiteMigratorioId(), fechasServicioDTO);
                 break;
             case 1003:
-                asunto = "Debida Defensa - Notificación Trámite General – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                asunto = asuntoadjunto + "Debida Defensa - Notificación Trámite General – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
                 cuerpo =  ObtenGeneral(fechasServicioDTO.getTramiteGeneralId(), fechasServicioDTO);
                 break;
             case 1001:
-                asunto = "Debida Defensa - Notificación Expediente – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                asunto = asuntoadjunto + "Debida Defensa - Notificación Expediente – Cliente - " + ConvierteFecha(fechasServicioDTO.getFecha());
                 cuerpo =  ObtenExpediente(fechasServicioDTO.getExpedienteId(), fechasServicioDTO);
                 break;
             default:
-                asunto = "Debida Defensa - Notificación evento - " + ConvierteFecha(fechasServicioDTO.getFecha());
+                asunto = asuntoadjunto + "Debida Defensa - Notificación evento - " + ConvierteFecha(fechasServicioDTO.getFecha());
                 cuerpo =  ObtenEvento(fechasServicioDTO);
         }
 
@@ -263,6 +251,21 @@ public class FechasServicioServiceImpl implements FechasServicioService {
 
     private String ConvierteFecha(Instant fecha){
         return LocalDateTime.ofInstant(fecha, ZoneId.of("Mexico/General")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "";
+    }
+
+    @Override
+    public void ConsultaFechasEmail(){        
+        log.debug("Request to get all Expedientes by month");      
+        LocalDateTime now = LocalDateTime.ofInstant(Instant.now(), ZoneId.of("Mexico/General"));
+        log.debug("Fecha de ejecucion : {}", now);
+        List<FechasServicioDTO> lsCitas = fechasServicioRepository.findByHour(now.getYear(), now.getMonthValue(), now.getDayOfMonth(), now.getHour()).
+                                                              stream().map(fechasServicioMapper::toDto).
+                                                              collect(Collectors.toCollection(LinkedList::new));
+        log.debug("Total : {}", lsCitas.size());
+        for (FechasServicioDTO cita : lsCitas) {
+            EnviaCoreo(cita, "URGENTE - ");  
+        }                                                              
+        log.debug("Termina envio de citas");
     }
 
     /**

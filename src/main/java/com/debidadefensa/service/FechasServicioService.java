@@ -90,7 +90,7 @@ public abstract interface FechasServicioService {
      * @param date
      * @return the list of entities
      */
-    String ConsultaFechasEmail();
+    void ConsultaFechasEmail();
 }
 
 

@@ -124,12 +124,12 @@ public class DebidadefensaApp {
 //     private FechasServicioService fechasServicioService;
 
 //     public TiemerTaskClass(){
-//         this.fechasServicioService = fechasServicioService;
+//        // this.fechasServicioService = fechasServicioService;
 //     }
 
 //     @Override
 //     public void run() { 
-//         fechasServicioService.ConsultaFechasEmail();
+//        // fechasServicioService.ConsultaFechasEmail();
        
 //         //System.out.println(respuesta);
 //         System.out.println("Timer task started at:"+new Date());
