@@ -15,6 +15,7 @@ import {
     tramiteMigratorioPopupRoute,
     TramiteMigratorioResolvePagingParams,
 } from './';
+import { NumberOnlyDirective  } from '../../directives/numeros.directive';
 
 const ENTITY_STATES = [
     ...tramiteMigratorioRoute,
@@ -35,6 +36,7 @@ import localeEsMX from '@angular/common/locales/es-MX';
         TramiteMigratorioDeleteDialogComponent,
         TramiteMigratorioPopupComponent,
         TramiteMigratorioDeletePopupComponent,
+        NumberOnlyDirective,
     ],
     entryComponents: [
         TramiteMigratorioComponent,

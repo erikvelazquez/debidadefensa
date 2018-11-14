@@ -21,12 +21,12 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.nombre" for="field_nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="field_nombre"
+            <input type="text" class="form-control" name="nombre" id="field_nombre" maxlength="250" required
                 [(ngModel)]="parte.nombre" />
         </div>        
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.parte.tipoParte" for="field_tipoParte">Tipo Parte</label>
-            <select class="form-control" id="field_tipoParte" name="tipoParte" [(ngModel)]="parte.tipoParteId">
+            <select class="form-control" id="field_tipoParte" name="tipoParte" [(ngModel)]="parte.tipoParteId" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tipoParteOption.id" *ngFor="let tipoParteOption of tipopartes; trackBy: trackTipoParteById">{{tipoParteOption.descripcion}}</option>
             </select>

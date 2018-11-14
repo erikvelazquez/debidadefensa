@@ -20,13 +20,14 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.documentos.fecha" for="field_fecha">Fecha</label>
             <div class="input-group col-md-10" style="padding-left: 0px; padding-right: 0px">
-                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker dateFormat="dd-MM-yyyy" #fechaDp="ngbDatepicker" [(ngModel)]="documentos.fecha" required
+                <input id="field_fecha" type="date" style="font-size: 12px" class="form-control" name="fecha" ngbDatepicker dateFormat="dd-MM-yyyy" #fechaDp="ngbDatepicker" [(ngModel)]="documentos.fecha" required
                 />
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
         </div>
+        
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" for="field_descripcion">Descripción</label>
             <input type="text" class="form-control col-md-10" name="descripcion" id="field_descripcion" required

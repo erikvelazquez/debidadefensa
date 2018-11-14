@@ -48,7 +48,7 @@
         
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.pagos.fecha" for="field_fecha">Fecha</label>
             <div class="input-group  col-md-4">
-                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  required dateFormat="dd-MM-yyyy"
+                <input id="field_fecha" type="date" style="font-size: 12px" class="form-control" name="fecha" ngbDatepicker  required dateFormat="dd-MM-yyyy"
                        #fechaDp="ngbDatepicker" [(ngModel)]="pagos.fecha"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>

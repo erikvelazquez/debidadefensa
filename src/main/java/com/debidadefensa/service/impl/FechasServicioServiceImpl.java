@@ -187,14 +187,14 @@ public class FechasServicioServiceImpl implements FechasServicioService {
     private String ObtenMigratorio(Long id, FechasServicioDTO fechasServicioDTO){
         TramiteMigratorioDTO migratorioDTO = tramiteMigratorioService.findOne(id);
 
-        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + migratorioDTO.getClienteNombre() == null ? "" :  migratorioDTO.getClienteNombre() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Nombre del Extranjero: " + migratorioDTO.getNombreExtranjero() == null ? "" :  migratorioDTO.getNombreExtranjero() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Entidad: " + migratorioDTO.getEntidad() == null ? "" :  migratorioDTO.getEntidad() + "</p>";
-        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + migratorioDTO.getEstatusDescripcion() == null ? "" :  migratorioDTO.getEstatusDescripcion() + "</p>";
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + (migratorioDTO.getClienteNombre() == null ? "" :  migratorioDTO.getClienteNombre()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Nombre del Extranjero: " + (migratorioDTO.getNombreExtranjero() == null ? "" :  migratorioDTO.getNombreExtranjero()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Entidad: " + (migratorioDTO.getEntidad() == null ? "" :  migratorioDTO.getEntidad()) + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + (migratorioDTO.getEstatusDescripcion() == null ? "" :  migratorioDTO.getEstatusDescripcion()) + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + (fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + (fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones()) + "</p>";
         
         return cuerpo;
     }
@@ -202,15 +202,15 @@ public class FechasServicioServiceImpl implements FechasServicioService {
     private String ObtenGeneral(Long id, FechasServicioDTO fechasServicioDTO){
         TramiteGeneralDTO generalDTO = tramiteGeneralService.findOne(id);
 
-        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + generalDTO.getClienteNombre() == null ? "" : generalDTO.getClienteNombre()  + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Titular: " + generalDTO.getTitular() == null ? "" : generalDTO.getTitular() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Dependencia: " + generalDTO.getDependencia() == null ? "" : generalDTO.getDependencia() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Tipo de tr&aacute;mite: " + generalDTO.getTipoTramite() == null ? "" : generalDTO.getTipoTramite() + "</p>";
-        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + generalDTO.getEstatusDescripcion() == null ? "" : generalDTO.getEstatusDescripcion() + "</p>";
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + (generalDTO.getClienteNombre() == null ? "" : generalDTO.getClienteNombre())  + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Titular: " + (generalDTO.getTitular() == null ? "" : generalDTO.getTitular()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Dependencia: " + (generalDTO.getDependencia() == null ? "" : generalDTO.getDependencia()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Tipo de tr&aacute;mite: " + (generalDTO.getTipoTramite() == null ? "" : generalDTO.getTipoTramite()) + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + (generalDTO.getEstatusDescripcion() == null ? "" : generalDTO.getEstatusDescripcion()) + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + (fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + (fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones()) + "</p>";
         
         return cuerpo;
     }
@@ -228,24 +228,24 @@ public class FechasServicioServiceImpl implements FechasServicioService {
             partes = partes + parte.getTipoParteNombre() + ": " + parte.getNombre() + ", ";
         }
 
-        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + expedienteDTO.getClienteNombre() == null ? "" : expedienteDTO.getClienteNombre() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Expediente: " + expedienteDTO.getNumeroExpediente() == null ? "" : expedienteDTO.getNumeroExpediente() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juicio: " + expedienteDTO.getJuicio() == null ? "" : expedienteDTO.getJuicio() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juzgado: " + expedienteDTO.getJuzgado() == null ? "" : expedienteDTO.getJuzgado() + "</p>";
-        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + expedienteDTO.getEstatusDescripcion() == null ? "" : expedienteDTO.getEstatusDescripcion() + "</p>";
+        String cuerpo = "<p style='margin-left: 35.4pt;'>Cliente: " + (expedienteDTO.getClienteNombre() == null ? "" : expedienteDTO.getClienteNombre()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Expediente: " + (expedienteDTO.getNumeroExpediente() == null ? "" : expedienteDTO.getNumeroExpediente()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juicio: " + (expedienteDTO.getJuicio() == null ? "" : expedienteDTO.getJuicio()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Juzgado: " + (expedienteDTO.getJuzgado() == null ? "" : expedienteDTO.getJuzgado()) + "</p>";
+        cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Estatus: " + (expedienteDTO.getEstatusDescripcion() == null ? "" : expedienteDTO.getEstatusDescripcion()) + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>Partes: " + partes + "</p>";
         cuerpo = cuerpo +  "<p style='margin-left: 35.4pt;'>_______________________________</p>";
         cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + (fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + (fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones()) + "</p>";
         
         return cuerpo;
     }
 
     private String ObtenEvento(FechasServicioDTO fechasServicioDTO){
         String cuerpo = "<p style='margin-left: 35.4pt;'>Recordatorio: " + ConvierteFecha(fechasServicioDTO.getFecha()) + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion() + "</p>";
-        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones() + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Descripción: " + (fechasServicioDTO.getDescripcion() == null ? "" :  fechasServicioDTO.getDescripcion()) + "</p>";
+        cuerpo = cuerpo + "<p style='margin-left: 35.4pt;'>Observaciones: " + (fechasServicioDTO.getObservaciones() == null ? "" :  fechasServicioDTO.getObservaciones()) + "</p>";
         return cuerpo;
     }
 

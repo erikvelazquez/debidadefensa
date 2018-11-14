@@ -15,8 +15,15 @@
                 
             <div class="form-group row">
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.numeroExpediente" for="field_numeroExpediente">Número Expediente</label>
-                <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente"
+                <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente" maxlength="250" required
                     [(ngModel)]="expediente.numeroExpediente" />
+            </div>
+            <div class="form-group row">
+                <label class="form-control-label col-md-2 text-right"  for="field_estatusExpediente">Estatus</label>
+                <select class="form-control col-md-10" id="field_estatusExpediente" name="estatusExpediente" [(ngModel)]="expediente.estatusExpedienteId" required>
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedientes; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
+                </select>
             </div>
             <!-- <div class="form-group row" [hidden]="!expediente.id">
                 <label for="id" jhiTranslate="global.field.id">ID</label>
@@ -25,23 +32,23 @@
             </div> -->
             <div class="form-group row">
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.juzgado" for="field_juzgado">Juzgado</label>
-                <input type="text" class="form-control col-md-10" name="juzgado" id="field_juzgado"
+                <input type="text" class="form-control col-md-10" name="juzgado" id="field_juzgado" maxlength="250"
                     [(ngModel)]="expediente.juzgado" />
             </div>
             
             <div class="form-group row">
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.juicio" for="field_juicio">Juicio</label>
-                <input type="text" class="form-control col-md-10" name="juicio" id="field_juicio"
+                <input type="text" class="form-control col-md-10" name="juicio" id="field_juicio" maxlength="250"
                     [(ngModel)]="expediente.juicio" />
             </div>
             <div class="form-group row">
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.responsable" for="field_responsable">Responsable</label>
-                <input type="text" class="form-control col-md-10" name="responsable" id="field_responsable"
+                <input type="text" class="form-control col-md-10" name="responsable" id="field_responsable" maxlength="250"
                     [(ngModel)]="expediente.responsable" />
             </div>
             <div class="form-group row">
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.observaciones" for="field_observaciones">Observaciones</label>
-                <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
+                <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" maxlength="250"
                     [(ngModel)]="expediente.observaciones" />
             </div>
             <div class="form-group row">            
@@ -61,13 +68,7 @@
                 </div>            
             </div>
             
-            <div class="form-group row">
-                <label class="form-control-label col-md-2 text-right"  for="field_estatusExpediente">Estatus</label>
-                <select class="form-control col-md-10" id="field_estatusExpediente" name="estatusExpediente" [(ngModel)]="expediente.estatusExpedienteId">
-                    <option [ngValue]="null"></option>
-                    <option [ngValue]="estatusOption.id" *ngFor="let estatusOption of estatusexpedientes; trackBy: trackEstatusById">{{estatusOption.descripcion}}</option>
-                </select>
-            </div>
+           
             <!--<div class="form-group">
                 <label class="form-control-label" jhiTranslate="debidadefensaApp.expediente.tipoServicio" for="field_tipoServicio">Tipo Servicio</label>
                 <select class="form-control" id="field_tipoServicio" name="tipoServicio" [(ngModel)]="expediente.tipoServicioId" >

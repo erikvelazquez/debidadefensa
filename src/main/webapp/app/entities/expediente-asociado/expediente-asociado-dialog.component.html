@@ -21,17 +21,17 @@
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.numeroExpediente" for="field_numeroExpediente">Numero Expediente</label>
-            <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente" required
+            <input type="text" class="form-control col-md-10" name="numeroExpediente" id="field_numeroExpediente" required maxlength="250"
                 [(ngModel)]="expedienteAsociado.numeroExpediente" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.instancia" for="field_instancia">Instancia</label>
-            <input type="text" class="form-control col-md-10" name="instancia" id="field_instancia" required
+            <input type="text" class="form-control col-md-10" name="instancia" id="field_instancia" required maxlength="250"
                 [(ngModel)]="expedienteAsociado.instancia" />
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" for="field_organocompetente">Órgano Competente</label>
-            <input type="text" class="form-control col-md-10" name="organocompetente" id="field_organocompetente" required
+            <input type="text" class="form-control col-md-10" name="organocompetente" id="field_organocompetente" required maxlength="250"
                 [(ngModel)]="expedienteAsociado.organocompetente" />
         </div>
         <!--<div class="form-group row">
@@ -43,7 +43,7 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
             <div class="input-group col-md-4" style="padding-left: 0px; padding-right: 0px">
-                <input id="field_fechaSentencia" type="text" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"/>
+                <input id="field_fechaSentencia" type="date" style="font-size: 12px" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.observaciones" for="field_observaciones">Observaciones</label>
-            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones"
+            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" maxlength="250"
                 [(ngModel)]="expedienteAsociado.observaciones" />
         </div>
 
