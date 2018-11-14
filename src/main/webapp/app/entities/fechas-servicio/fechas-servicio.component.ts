@@ -119,7 +119,9 @@ fechasServicios: FechasServicio[];
           });
         } else {
           url = '../fechas-servicio/';
-          this.router.navigate(['../fechas-servicio/', item.id, 'edit' ]).then(() => {
+          // [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/edit'} }]"
+          this.router.navigate(['/', { outlets: { popup: ['fechas-servicio', item.id, 'edit' ] } }], { skipLocationChange: true }).then(() => {
+          // this.router.navigate(['../fechas-servicio/', item.id, 'edit' ]).then(() => {
             this.clear();
           });
         }

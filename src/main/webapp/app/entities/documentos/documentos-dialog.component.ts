@@ -125,9 +125,9 @@ export class DocumentosDialogComponent implements OnInit {
         this.subscribeToSaveResponse(this.documentosService.create(this.fileToUpload, this.documentos));
     }
 
-    private subscribeToSaveResponse(result: Observable<Documentos>) {
-        result.subscribe((res: Documentos) =>
-            this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Documentos>>) {
+        result.subscribe((res: HttpResponse<Documentos>) =>
+            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: Documentos) {

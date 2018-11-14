@@ -65,7 +65,7 @@ public class DocumentosResource {
     private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 
      @PostMapping("/documentos/upload")
-    public ResponseEntity <DocumentosDTO> handleFileUpload(@RequestParam("file") MultipartFile file, 
+    public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file, 
                                                     @RequestParam("fecha") String fecha,
                                                     @RequestParam("descripcion") String descripcion,
                                                     @RequestParam("idCliente") String idCliente,
@@ -76,8 +76,10 @@ public class DocumentosResource {
                                                     @RequestParam("tramiteGeneralId") String tramiteGeneralId,
                                                     @RequestParam("idDocumento") String idDocumento) {
         String message = "";
-        try {            
-            File convertFile = new File(DIRECTORY + idCliente + "\\" + tipoServicioId  + "\\" + idDocumento + "\\" + file.getOriginalFilename());		
+        try {   
+            File convertFile = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + idDocumento + "/" + file.getOriginalFilename());
+            	         
+            // File convertFile = new File(DIRECTORY + idCliente + "\\" + tipoServicioId  + "\\" + idDocumento + "\\" + file.getOriginalFilename());		
 
             if(!convertFile.exists()) {
                 convertFile.getParentFile().mkdirs();
@@ -94,36 +96,45 @@ public class DocumentosResource {
             // "1002"	"Trámite Migratorio"
             // "1003"	"Trámite General"
             // "1004"	"Expediente Asociado"
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            DocumentosDTO documentosDTO = new DocumentosDTO();
-            int tipo = Integer.parseInt(tipoServicioId);
-            switch (tipo) {
-            case 1001:
-                    documentosDTO.setExpedienteId(Long.parseLong(expedienteId));          
-                break;            
-            case 1002:            
-                    documentosDTO.setTramiteMigratorioId(Long.parseLong(tramiteMigratorioId));           
-                break;            
-            case 1003:            
-                    documentosDTO.setTramiteGeneralId(Long.parseLong(tramiteGeneralId));          
-                break;
-            case 1004:            
-                    documentosDTO.setExpedienteAsociadoId(Long.parseLong(expedienteAsociadoId));          
-                break;
-            }
+            // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // DocumentosDTO documentosDTO = new DocumentosDTO();
+            // int tipo = Integer.parseInt(tipoServicioId);
+            // switch (tipo) {
+            // case 1001:
+            //         documentosDTO.setExpedienteId(Long.parseLong(expedienteId));          
+            //     break;            
+            // case 1002:            
+            //         documentosDTO.setTramiteMigratorioId(Long.parseLong(tramiteMigratorioId));           
+            //     break;            
+            // case 1003:            
+            //         documentosDTO.setTramiteGeneralId(Long.parseLong(tramiteGeneralId));          
+            //     break;
+            // case 1004:            
+            //         documentosDTO.setExpedienteAsociadoId(Long.parseLong(expedienteAsociadoId));          
+            //     break;
+            // }
 
-            documentosDTO.setDescripcion(descripcion);
-            documentosDTO.setFecha(LocalDate.parse(fecha, formatter));
-            documentosDTO.setTipoServicioId(Long.parseLong(tipoServicioId));  
-            documentosDTO.setNombreDocumento(file.getOriginalFilename());
+            // documentosDTO.setDescripcion(descripcion);
+            // log.debug("Descripcion : {}", documentosDTO.getDescripcion());
+            // documentosDTO.setFecha(LocalDate.parse(fecha, formatter));
+            // log.debug("Fecha : {}", documentosDTO.getFecha());
+            // documentosDTO.setTipoServicioId(Long.parseLong(tipoServicioId));  
+            // log.debug("Tipo Servicio : {}", documentosDTO.getTipoServicioId());
+            // documentosDTO.setNombreDocumento(file.getOriginalFilename());
+            // log.debug("Nombre Documento : {}", documentosDTO.getNombreDocumento());
+            // log.debug("objeto a guardar : {}", documentosDTO);
+            // DocumentosDTO result = documentosService.save(documentosDTO);
+            // return ResponseEntity.created(new URI("/api/documentos/" + result.getId()))
+            //                                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            //                                 .body(result);
 
-            DocumentosDTO result = documentosService.save(documentosDTO);
-            return ResponseEntity.created(new URI("/api/documentos/" + result.getId()))
-                                            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-                                            .body(result);
+            return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
+            log.debug("REST salvar el archivo fisico : {}", e);
             message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new DocumentosDTO());
+            // DocumentosDTO respuesta = new DocumentosDTO();
+            // respuesta.setDescripcion(e.getMessage() + message);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message); 
         }
     }    
  
@@ -136,22 +147,27 @@ public class DocumentosResource {
                                                            @RequestParam String tipoServicioId,
                                                            @RequestParam String idDocumento) throws IOException {
  
-        MediaType mediaType = getMediaTypeForFileName(this.servletContext, fileName);
-        System.out.println("fileName: " + fileName);
-        System.out.println("mediaType: " + mediaType);
- 
-        Path path = Paths.get(DIRECTORY + idCliente + "\\" + tipoServicioId + "\\" + idDocumento  + "\\" + fileName );
-        byte[] data = Files.readAllBytes(path);
-        ByteArrayResource resource = new ByteArrayResource(data);
- 
-        return ResponseEntity.ok()
-                // Content-Disposition
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
-                // Content-Type
-                .contentType(mediaType) //
-                // Content-Lengh
-                .contentLength(data.length) //
-                .body(resource);
+        try {   
+            MediaType mediaType = getMediaTypeForFileName(this.servletContext, fileName);
+            System.out.println("fileName: " + fileName);
+            System.out.println("mediaType: " + mediaType);
+    
+            // Path path = Paths.get(DIRECTORY + idCliente + "\\" + tipoServicioId + "\\" + idDocumento  + "\\" + fileName );
+            Path path = Paths.get(DIRECTORY + idCliente + "/" + tipoServicioId + "/" + idDocumento  + "/" + fileName );
+            byte[] data = Files.readAllBytes(path);
+            ByteArrayResource resource = new ByteArrayResource(data);
+    
+            return ResponseEntity.ok()
+                    // Content-Disposition
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
+                    // Content-Type
+                    .contentType(mediaType) //
+                    // Content-Lengh
+                    .contentLength(data.length) //
+                    .body(resource);    
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ByteArrayResource(new byte[0]));
+        }
     }
  
     // abc.zip
@@ -285,7 +301,7 @@ public class DocumentosResource {
     @GetMapping("/documentos/expediente/{id}")
     @Timed
     public List<DocumentosDTO> getAllFechasByExpedienteId(@PathVariable Long id) {
-        log.debug("REST request to get a page of Expedientes");
+        log.debug("REST request to get all document by expediente");
         List<DocumentosDTO> ls = documentosService.findByExpedienteId(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
@@ -301,7 +317,7 @@ public class DocumentosResource {
     @GetMapping("/documentos/expedienteasociado/{id}")
     @Timed
     public List<DocumentosDTO> getAllFechasByExpedienteAsociadoId(@PathVariable Long id) {
-        log.debug("REST request to get a page of Expedientes");
+        log.debug("REST request to get all document by expedientes asociados");
         List<DocumentosDTO> ls = documentosService.findByExpedienteAsociadoId(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
@@ -317,7 +333,7 @@ public class DocumentosResource {
     @GetMapping("/documentos/migratorio/{id}")
     @Timed
     public List<DocumentosDTO> getAllFechasByMigratoriosId(@PathVariable Long id) {
-        log.debug("REST request to get a page of Expedientes");
+        log.debug("REST request to get all document by migratorios");
         List<DocumentosDTO> ls = documentosService.findByMigratorio(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     
@@ -333,7 +349,7 @@ public class DocumentosResource {
     @GetMapping("/documentos/general/{id}")
     @Timed
     public List<DocumentosDTO> getAllFechasByGeneralesId(@PathVariable Long id) {
-        log.debug("REST request to get a page of Expedientes");
+        log.debug("REST request to get all document by generales");
         List<DocumentosDTO> ls = documentosService.findByGeneral(id);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(1, "/api/expedientes/user");
        // return new ResponseEntity<>(ls, HeaderUtil.createAlert("ok", ""), HttpStatus.OK);     

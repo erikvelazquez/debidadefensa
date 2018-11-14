@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
 import { Documentos } from './documentos.model';
-import { createRequestOption } from '../../shared';
+import { createRequestOption, AuthServerProvider } from '../../shared';
+import { SessionStorageService } from 'ngx-webstorage';
 
 export type EntityResponseType = HttpResponse<Documentos>;
 
@@ -15,30 +16,39 @@ export class DocumentosService {
 
     private resourceUrl =  SERVER_API_URL + 'api/documentos';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/documentos';
+    private authServerProvider: AuthServerProvider;
+    private token: string;
+    constructor(private http: HttpClient,
+                private dateUtils: JhiDateUtils,
+                private $sessionStorage: SessionStorageService) {
+        this.token = this.$sessionStorage.retrieve('authenticationToken');
+    }
 
-    constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
-
-    create(fileToUpload: File, documentos: Documentos): Observable<Documentos> {
+    create(fileToUpload: File, documentos: Documentos): Observable<EntityResponseType> {
         const doc: Documentos = documentos;
-        return  this.postFile(fileToUpload, documentos).map((res: HttpEvent<Documentos>) => this.returnObject(doc));
-        // .subscribe((event) => {
-        //     if (event instanceof HttpResponse) {
-        //        // console.log(event.body);
-        //      }
-        // });
-        // const copy = this.convert(documentos);
-        // return this.http.post<Documentos>(this.resourceUrl, copy, { observe: 'response' })
-        // .map((res: EntityResponseType) => this.convertResponse(res));
+        this.postFile(fileToUpload, documentos)
+        .subscribe((event) => {
+            if (event instanceof HttpResponse) {
+               // console.log(event.body);
+             }
+        });
+        const copy = this.convert(documentos);
+        return this.http.post<Documentos>(this.resourceUrl, copy, { observe: 'response' })
+        .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     private returnObject(res: Documentos): Documentos {
         return res;
     }
 
-    postFile(fileToUpload: File, documentos: Documentos ): Observable<HttpEvent<Documentos>> {
+    postFile(fileToUpload: File, documentos: Documentos ): Observable<HttpEvent<{EntityResponseType}>> {
+        const headers = new HttpHeaders();
+        headers.append('Authorization', 'Bearer ' + this.token);
+
         const formData: FormData = new FormData();
         formData.append('file', fileToUpload, fileToUpload.name);
-        formData.append('fecha', String(documentos.fecha.day + '/' + documentos.fecha.month + '/' + documentos.fecha.year));
+        // formData.append('fecha', String(documentos.fecha.day + '/' + documentos.fecha.month + '/' + documentos.fecha.year));
+        formData.append('fecha', String(documentos.fecha));
         formData.append('descripcion', documentos.descripcion);
         formData.append('idCliente', String(documentos.idCliente));
         formData.append('tipoServicioId', String(documentos.tipoServicioId));
@@ -50,14 +60,17 @@ export class DocumentosService {
         formData.append('idDocumento', String(documentos.idDocumento));
 
         const req = new HttpRequest('POST', this.resourceUrl + '/upload', formData, {reportProgress: true,  responseType: 'text' });
-        return this.http.request<Documentos>(req);
+        return this.http.request(req);
     }
 
     getFile(fileName: String, idCliente: string, tipoServicioId: string, idDocumento: string): Observable<Blob> {
+        const headers = new HttpHeaders();
+        headers.append('Authorization', 'Bearer ' + this.token);
+
         return this.http.get(this.resourceUrl + '/download?fileName=' + fileName
                                               + '&idCliente=' + idCliente
                                               + '&tipoServicioId=' + tipoServicioId
-                                              + '&idDocumento=' + idDocumento, { responseType: 'blob' });
+                                              + '&idDocumento=' + idDocumento, {responseType: 'blob' });
     }
 
     update(documentos: Documentos): Observable<EntityResponseType> {
