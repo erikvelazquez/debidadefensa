@@ -1,147 +1,166 @@
 <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']">
     <jhi-alert></jhi-alert>  
     <div class="row">
-        <h4 class="modal-title col-md-12 text-left" style="font-weight: bold" > COSTOS Y PAGOS</h4>
-        <div class="col-md-12 row" *ngIf="tiposervicio === '1001'" >
-            <h4 class="col-md-6">Cliente: {{expediente.clienteNombre}}</h4>
-            <h4 class="col-md-6">Servicio: {{nombreTipoServicio}}</h4>            
-            <h4 class="col-md-6">Número Expediente: {{expediente.numeroExpediente}}</h4>
-            <h4 class="col-md-6">Responsable: {{expediente.responsable}}</h4>            
-        </div>
-        <div class="col-md-12 row" *ngIf="tiposervicio === '1002'" >
-                <h4 class="col-md-6">Cliente: {{tramiteMigratorio.clienteNombre}}</h4>
-                <h4 class="col-md-6">Servicio: {{nombreTipoServicio}}</h4>            
-                <h4 class="col-md-6">Nombre Extranjero: {{tramiteMigratorio.nombreExtranjero}}</h4>
-                <h4 class="col-md-6">Tipo Trámite: {{tramiteMigratorio.tipotramite}}</h4>            
+        <h4 class="modal-title col-md-11 text-left" style="font-weight: bold" > COSTOS Y PAGOS</h4>
+            <div class="col-md-1  text-right" *ngIf="tiposervicio === '1001'">
+                <button type="submit"                               
+                        [routerLink]="['/expediente', idTramite, esGeneral ]"
+                        class="btn btn-info">            
+                    <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                </button> 
+            </div> 
+            <div class="col-md-1  text-right" *ngIf="tiposervicio === '1002'">
+                <button type="submit"                               
+                        [routerLink]="['/tramite-migratorio', idTramite, esGeneral ]"
+                        class="btn btn-info">            
+                    <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                </button> 
+            </div> 
+            <div class="col-md-1  text-right" *ngIf="tiposervicio === '1003'">
+                <button type="submit"                               
+                        [routerLink]="['/tramite-general', idTramite, esGeneral ]"
+                        class="btn btn-info">            
+                    <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                </button> 
             </div>
-        <div class="col-md-12 row" *ngIf="tiposervicio === '1003'">
-                <h4 class="col-md-6">Cliente: {{tramiteGeneral.clienteNombre}}</h4>
-                <h4 class="col-md-6">Servicio: {{nombreTipoServicio}}</h4>            
-                <h4 class="col-md-6">Número Trámite: {{tramiteGeneral.numeroTramite}}</h4>
-                <h4 class="col-md-6">Tipo Trámite: {{tramiteGeneral.tipoTramite}}</h4>            
-            </div>
-        <br>  
-        <div class="col-md-12 row text-right" *ngIf="tiposervicio === '1001'">
-            <button type="submit"                               
-                    [routerLink]="['/expediente', idTramite, esGeneral ]"
-                    class="btn btn-info">            
-                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button> 
-        </div> 
-        <div class="col-md-12 row text-right" *ngIf="tiposervicio === '1002'">
-            <button type="submit"                               
-                    [routerLink]="['/tramite-migratorio', idTramite, esGeneral ]"
-                    class="btn btn-info">            
-                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button> 
-        </div> 
-        <div class="col-md-12 row text-right" *ngIf="tiposervicio === '1003'">
-            <button type="submit"                               
-                    [routerLink]="['/tramite-general', idTramite, esGeneral ]"
-                    class="btn btn-info">            
-                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button> 
-        </div>      
-        <h4 class="col-md-2">
-            <span >Costos</span>
-            <button class="btn btn-primary float-right jh-create-entity create-costo-servicio" 
-                [routerLink]="['/', { outlets: { popup: 'costo-servicio-new/' + idTramite + '/' + tiposervicio } }]">
-                <span class="fa fa-plus"></span>            
-            </button>
-        </h4>    
-        <br/>
-        <div class="table-responsive col-md-8" >
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <!-- <th><span >Tipo</span></th> -->
-                        <th><span jhiTranslate="debidadefensaApp.costoServicio.concepto">Concepto</span></th>
-                        <th><span jhiTranslate="debidadefensaApp.costoServicio.costo">Costo</span></th>                   
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let costoServicio of costoServicios ;trackBy: trackId">                
-                    <!-- <td>{{costoServicio.tipoCosto}}</td> -->
-                    <td>{{costoServicio.concepto}}</td>
-                    <td><div>{{costoServicio.costo | currency }}</div></td>
-                
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">                    
-                            <button type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'costo-servicio/' + costoServicio.id + '/edit'} }]"
-                                    replaceUrl="true"
-                                    queryParamsHandling="merge"
-                                    class="btn btn-primary btn-sm">
-                                <span class="fa fa-pencil"></span>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
-                            <button type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'costo-servicio/'+ costoServicio.id + '/delete'} }]"
-                                    replaceUrl="true"
-                                    queryParamsHandling="merge"
-                                    class="btn btn-danger btn-sm">
-                                <span class="fa fa-remove"></span>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    </div> 
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 row" *ngIf="tiposervicio === '1001'" >
+            <h5 class="col-md-2 encabezado-title" >Cliente:</h5>
+            <h5 class="col-md-4 encabezado-content" >{{expediente.clienteNombre}}</h5>            
+            <h5 class="col-md-2 encabezado-title" >Servicio:</h5>            
+            <h5 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h5>
+            <h5 class="col-md-2 encabezado-title" >Número Expediente:</h5>
+            <h5 class="col-md-4 encabezado-content" >{{expediente.numeroExpediente}}</h5>
+            <h5 class="col-md-2 encabezado-title" style="padding-right: 10px;">Responsable:</h5>           
+            <h5 class="col-md-4 encabezado-content" >{{expediente.responsable}}</h5>            
         </div>
+        <div class="col-md-6 row" *ngIf="tiposervicio === '1002'" >
+            <h5 class="col-md-2 encabezado-title" >Cliente:</h5>
+            <h5 class="col-md-4 encabezado-content" >{{tramiteMigratorio.clienteNombre}}</h5>            
+            <h5 class="col-md-2 encabezado-title" >Servicio:</h5>            
+            <h5 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h5>
+            <h5 class="col-md-2 encabezado-title" >Nombre Extranjero:</h5>
+            <h5 class="col-md-4 encabezado-content" >{{tramiteMigratorio.nombreExtranjero}}</h5>
+            <h5 class="col-md-2 encabezado-title" >Tipo Trámite:</h5>           
+            <h5 class="col-md-4 encabezado-content" >{{tramiteMigratorio.tipotramite}}</h5>            
+        </div>
+        <div class="col-md-6 row" *ngIf="tiposervicio === '1003'">
+            <h5 class="col-md-2 encabezado-title" >Cliente:</h5>
+            <h5 class="col-md-4 encabezado-content" >{{tramiteGeneral.clienteNombre}}</h5>            
+            <h5 class="col-md-2 encabezado-title" >Servicio:</h5>            
+            <h5 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h5>
+            <h5 class="col-md-2 encabezado-title" >Número Trámite:</h5>
+            <h5 class="col-md-4 encabezado-content" >{{tramiteGeneral.numeroTramite}}</h5>
+            <h5 class="col-md-2 encabezado-title" >Tipo Trámite:</h5>           
+            <h5 class="col-md-4 encabezado-content" >{{tramiteGeneral.tipoTramite}}</h5>    
+        </div> 
+        <div class="col-md-3"></div>            
     </div> 
     <br>
-    <div class="row">
-        <h4 class="col-md-2 ">
-            <span jhiTranslate="debidadefensaApp.pagos.home.title">Pagos</span>
-            <button class="btn btn-primary float-right jh-create-entity create-pagos"   
-                
-                [routerLink]="['/', { outlets: { popup: 'pagos-new/' + idTramite + '/' + tiposervicio } }]">
-                <span class="fa fa-plus"></span>
-            </button>
-        </h4>
-        <br>
-        <div class="table-responsive col-md-8">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th><span >Concepto</span></th>   
-                        <th><span jhiTranslate="debidadefensaApp.pagos.formaPago">Forma Pago</span></th>
-                        <th><span >Cantidad</span></th>
-                        <th><span jhiTranslate="debidadefensaApp.pagos.fecha">Fecha</span></th>
-                <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let pagos of pagos ;trackBy: trackId">
-                    <td>{{pagos.tipoAbono}}</td>                    
-                    <td>{{pagos.formaPago}}</td>
-                    <td>{{pagos.cantidad | currency}}</td>
-                    <td>{{pagos.fecha | date:'mediumDate'}}</td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">                           
-                            <button type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'pagos/'+ pagos.id + '/edit'} }]"
-                                    replaceUrl="true"
-                                    queryParamsHandling="merge"
-                                    class="btn btn-primary btn-sm">
-                                <span class="fa fa-pencil"></span>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
-                            <button type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'pagos/'+ pagos.id + '/delete'} }]"
-                                    replaceUrl="true"
-                                    queryParamsHandling="merge"
-                                    class="btn btn-danger btn-sm">
-                                <span class="fa fa-remove"></span>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="row"> 
+        <div class="col-md-6">
+            <h4 class="col-md-2">
+                <span >Costos</span>
+                <button class="btn btn-primary float-right jh-create-entity create-costo-servicio" 
+                    [routerLink]="['/', { outlets: { popup: 'costo-servicio-new/' + idTramite + '/' + tiposervicio } }]">
+                    <span class="fa fa-plus"></span>            
+                </button>
+            </h4>    
+            <br/>
+            <div class="table-responsive col-md-12" >
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <!-- <th><span >Tipo</span></th> -->
+                            <th><span jhiTranslate="debidadefensaApp.costoServicio.concepto">Concepto</span></th>
+                            <th><span jhiTranslate="debidadefensaApp.costoServicio.costo">Costo</span></th>                   
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let costoServicio of costoServicios ;trackBy: trackId">                
+                        <!-- <td>{{costoServicio.tipoCosto}}</td> -->
+                        <td>{{costoServicio.concepto}}</td>
+                        <td><div>{{costoServicio.costo | currency }}</div></td>
+                    
+                        <td class="text-right">
+                            <div class="btn-group flex-btn-group-container">                    
+                                <button type="submit"
+                                        [routerLink]="['/', { outlets: { popup: 'costo-servicio/' + costoServicio.id + '/edit'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-primary btn-sm">
+                                    <span class="fa fa-pencil"></span>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/', { outlets: { popup: 'costo-servicio/'+ costoServicio.id + '/delete'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="fa fa-remove"></span>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4 class="col-md-2 ">
+                <span jhiTranslate="debidadefensaApp.pagos.home.title">Pagos</span>
+                <button class="btn btn-primary float-right jh-create-entity create-pagos"   
+                    
+                    [routerLink]="['/', { outlets: { popup: 'pagos-new/' + idTramite + '/' + tiposervicio } }]">
+                    <span class="fa fa-plus"></span>
+                </button>
+            </h4>
+            <br>
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><span >Concepto</span></th>   
+                            <th><span jhiTranslate="debidadefensaApp.pagos.formaPago">Forma Pago</span></th>
+                            <th><span >Cantidad</span></th>
+                            <th><span jhiTranslate="debidadefensaApp.pagos.fecha">Fecha</span></th>
+                    <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let pagos of pagos ;trackBy: trackId">
+                        <td>{{pagos.tipoAbono}}</td>                    
+                        <td>{{pagos.formaPago}}</td>
+                        <td>{{pagos.cantidad | currency}}</td>
+                        <td>{{pagos.fecha | date:'mediumDate'}}</td>
+                        <td class="text-right">
+                            <div class="btn-group flex-btn-group-container">                           
+                                <button type="submit"
+                                        [routerLink]="['/', { outlets: { popup: 'pagos/'+ pagos.id + '/edit'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-primary btn-sm">
+                                    <span class="fa fa-pencil"></span>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/', { outlets: { popup: 'pagos/'+ pagos.id + '/delete'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="fa fa-remove"></span>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

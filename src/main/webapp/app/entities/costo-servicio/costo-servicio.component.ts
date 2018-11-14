@@ -15,7 +15,10 @@ import { Expediente, ExpedienteService } from '../expediente';
 @Component({
     selector: 'jhi-costo-servicio',
     templateUrl: './costo-servicio.component.html',
-    providers: [{provide: LOCALE_ID, useValue: 'es-MX'}]
+    providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],
+    styleUrls: [
+        '../../app.scss'
+    ]
 })
 export class CostoServicioComponent implements OnInit, OnDestroy {
     costoServicios: CostoServicio[];
