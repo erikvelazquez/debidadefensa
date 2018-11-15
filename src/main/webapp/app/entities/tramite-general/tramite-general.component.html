@@ -17,7 +17,8 @@
             </span>
         </button>
         <br>
-        <span *ngIf="cliente.id">Cliente: {{cliente.nombre}}</span>
+        
+        <span *ngIf="cliente.id">Cliente: <a [routerLink]="['/', { outlets: { popup: 'cliente/'+ cliente.id + '/edit'} }]">{{cliente.nombre}}</a></span>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -40,7 +41,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">            
-            <th><span>Cliente</span> <span class="fa"></span></th>
+            <th *ngIf="!cliente.id"><span>Cliente</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.titular">Titular</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.tramiteGeneral.dependencia">Dependencia</span> <span class="fa"></span></th>            
             <th><span>Tipo de Trámite</span> <span class="fa"></span></th>
@@ -52,11 +53,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteGeneral of tramiteGenerals ;trackBy: trackId">
-                    <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteGeneral.clienteId + '/edit'} }]">{{tramiteGeneral.clienteNombre}}</a></td>              
-                <td><a [routerLink]="['/', { outlets: { popup: 'tramite-general/'+ tramiteGeneral.id + '/edit'} }]">{{tramiteGeneral.titular}}</a></td>
-                
+                <td *ngIf="!cliente.id"><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteGeneral.clienteId + '/edit'} }]">{{tramiteGeneral.clienteNombre}}</a></td>                              
+                <td>{{tramiteGeneral.titular}}</td>
                 <td>{{tramiteGeneral.dependencia}}</td>
-                
                 <td>{{tramiteGeneral.tipoTramite}}</td>
                 <td>{{tramiteGeneral.estatusDescripcion}}</td>
 

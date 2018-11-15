@@ -57,6 +57,12 @@ export class TramiteMigratorioPopupService {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
                     const migratorio = new TramiteMigratorio();
+                    const date = new Date();
+                    migratorio.fechaIngreso = {
+                        year: date.getFullYear(),
+                        month: date.getMonth() + 1,
+                        day: date.getDate()
+                    };
                     migratorio.clienteId = +idCliente;
                     migratorio.clienteId = Number.isNaN(migratorio.clienteId) ? null : migratorio.clienteId;
                     this.ngbModalRef = this.tramiteMigratorioModalRef(component, migratorio);

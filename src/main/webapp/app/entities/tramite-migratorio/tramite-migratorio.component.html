@@ -11,7 +11,7 @@
             </span>
         </button>
         <br>
-        <span *ngIf="cliente.id">Cliente: {{cliente.nombre}}</span>
+        <span *ngIf="cliente.id">Cliente: <a [routerLink]="['/', { outlets: { popup: 'cliente/'+ cliente.id + '/edit'} }]">{{cliente.nombre}}</a></span>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -34,7 +34,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th><span>Cliente</span> <span class="fa"></span></th>
+            <th *ngIf="!cliente.id"><span>Cliente</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>
             <th><span>Tipo de Trámite</span> <span class="fa"></span></th>
             <!--<th jhiSortBy="entidad"><span jhiTranslate="debidadefensaApp.tramiteMigratorio.entidad">Entidad</span> <span class="fa fa-sort"></span></th>
@@ -53,8 +53,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramiteMigratorio of tramiteMigratorios ;trackBy: trackId">
-                <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteMigratorio.clienteId + '/edit'} }]">{{tramiteMigratorio.clienteNombre}}</a></td>              
-                <td><a [routerLink]="['/', { outlets: { popup: 'tramite-migratorio/'+ tramiteMigratorio.id + '/edit'} }]">{{tramiteMigratorio.nombreExtranjero}}</a></td>               
+                <td *ngIf="!cliente.id"><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ tramiteMigratorio.clienteId + '/edit'} }]">{{tramiteMigratorio.clienteNombre}}</a></td>              
+                <td>{{tramiteMigratorio.nombreExtranjero}}</td>               
                 <!-- <td>{{tramiteMigratorio.nombreExtranjero}}</td> -->
                 <td>{{tramiteMigratorio.tipotramite}}</td>
                 <!--<td>{{tramiteMigratorio.entidad}}</td>

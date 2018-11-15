@@ -25,38 +25,38 @@
             </div>
     </div> 
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 row" *ngIf="tiposervicio === '1001'" >
-            <h5 class="col-md-2 encabezado-title" >Cliente:</h5>
-            <h5 class="col-md-4 encabezado-content" >{{expediente.clienteNombre}}</h5>            
-            <h5 class="col-md-2 encabezado-title" >Servicio:</h5>            
-            <h5 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h5>
-            <h5 class="col-md-2 encabezado-title" >Número Expediente:</h5>
-            <h5 class="col-md-4 encabezado-content" >{{expediente.numeroExpediente}}</h5>
-            <h5 class="col-md-2 encabezado-title" style="padding-right: 10px;">Responsable:</h5>           
-            <h5 class="col-md-4 encabezado-content" >{{expediente.responsable}}</h5>            
+        <div class="col-md-2"></div>
+        <div class="col-md-8 row" *ngIf="tiposervicio === '1001'" >
+            <h6 class="col-md-2 encabezado-title" >Cliente:</h6>
+            <h6 class="col-md-4 encabezado-content" >{{expediente.clienteNombre}}</h6>            
+            <h6 class="col-md-2 encabezado-title" >Servicio:</h6>            
+            <h6 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h6>
+            <h6 class="col-md-2 encabezado-title" >Número Expediente:</h6>
+            <h6 class="col-md-4 encabezado-content" >{{expediente.numeroExpediente}}</h6>
+            <h6 class="col-md-2 encabezado-title" style="padding-right: 10px;">Responsable:</h6>           
+            <h6 class="col-md-4 encabezado-content" >{{expediente.responsable}}</h6>            
         </div>
-        <div class="col-md-6 row" *ngIf="tiposervicio === '1002'" >
-            <h5 class="col-md-2 encabezado-title" >Cliente:</h5>
-            <h5 class="col-md-4 encabezado-content" >{{tramiteMigratorio.clienteNombre}}</h5>            
-            <h5 class="col-md-2 encabezado-title" >Servicio:</h5>            
-            <h5 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h5>
-            <h5 class="col-md-2 encabezado-title" >Nombre Extranjero:</h5>
-            <h5 class="col-md-4 encabezado-content" >{{tramiteMigratorio.nombreExtranjero}}</h5>
-            <h5 class="col-md-2 encabezado-title" >Tipo Trámite:</h5>           
-            <h5 class="col-md-4 encabezado-content" >{{tramiteMigratorio.tipotramite}}</h5>            
+        <div class="col-md-8 row" *ngIf="tiposervicio === '1002'" >
+            <h6 class="col-md-2 encabezado-title" >Cliente:</h6>
+            <h6 class="col-md-4 encabezado-content" >{{tramiteMigratorio.clienteNombre}}</h6>            
+            <h6 class="col-md-2 encabezado-title" >Servicio:</h6>            
+            <h6 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h6>
+            <h6 class="col-md-2 encabezado-title" >Nombre Extranjero:</h6>
+            <h6 class="col-md-4 encabezado-content" >{{tramiteMigratorio.nombreExtranjero}}</h6>
+            <h6 class="col-md-2 encabezado-title" >Tipo Trámite:</h6>           
+            <h6 class="col-md-4 encabezado-content" >{{tramiteMigratorio.tipotramite}}</h6>            
         </div>
-        <div class="col-md-6 row" *ngIf="tiposervicio === '1003'">
-            <h5 class="col-md-2 encabezado-title" >Cliente:</h5>
-            <h5 class="col-md-4 encabezado-content" >{{tramiteGeneral.clienteNombre}}</h5>            
-            <h5 class="col-md-2 encabezado-title" >Servicio:</h5>            
-            <h5 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h5>
-            <h5 class="col-md-2 encabezado-title" >Número Trámite:</h5>
-            <h5 class="col-md-4 encabezado-content" >{{tramiteGeneral.numeroTramite}}</h5>
-            <h5 class="col-md-2 encabezado-title" >Tipo Trámite:</h5>           
-            <h5 class="col-md-4 encabezado-content" >{{tramiteGeneral.tipoTramite}}</h5>    
+        <div class="col-md-8 row" *ngIf="tiposervicio === '1003'">
+            <h6 class="col-md-2 encabezado-title" >Cliente:</h6>
+            <h6 class="col-md-4 encabezado-content" >{{tramiteGeneral.clienteNombre}}</h6>            
+            <h6 class="col-md-2 encabezado-title" >Servicio:</h6>            
+            <h6 class="col-md-4 encabezado-content" >{{nombreTipoServicio}}</h6>
+            <h6 class="col-md-2 encabezado-title" >Número Trámite:</h6>
+            <h6 class="col-md-4 encabezado-content" >{{tramiteGeneral.numeroTramite}}</h6>
+            <h6 class="col-md-2 encabezado-title" >Tipo Trámite:</h6>           
+            <h6 class="col-md-4 encabezado-content" >{{tramiteGeneral.tipoTramite}}</h6>    
         </div> 
-        <div class="col-md-3"></div>            
+        <div class="col-md-2"></div>            
     </div> 
     <br>
     <div class="row"> 
@@ -166,7 +166,7 @@
 
     <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
         <div class="row col-md-4">
-            <h5 class="form-control-label col-md-6 text-right" style="font-weight: bold">Costos Totales</h5>
+            <h6 class="form-control-label col-md-6 text-right" style="font-weight: bold">Costos Totales</h5>
             <h4 class="form-control-label col-md-6 text-left">{{totalCostos | currency}}</h4>
         </div>
         <div class="row col-md-4">

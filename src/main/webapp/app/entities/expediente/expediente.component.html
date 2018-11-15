@@ -11,7 +11,7 @@
             </span>
         </button>
         <br>
-        <span *ngIf="cliente.id">Cliente: {{cliente.nombre}}</span>
+        <span *ngIf="cliente.id">Cliente: <a [routerLink]="['/', { outlets: { popup: 'cliente/'+ cliente.id + '/edit'} }]">{{cliente.nombre}}</a></span>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -34,7 +34,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th><span>Cliente</span> <span class="fa"></span></th>
+            <th *ngIf="!cliente.id"><span >Cliente</span> <span class="fa"></span></th>
             <th><span>Número de Expediente</span> <span class="fa"></span></th>
             <th><span jhiTranslate="debidadefensaApp.expediente.juzgado">Juzgado</span> <span class="fa"></span></th>
             <!-- <th><span jhiTranslate="debidadefensaApp.expediente.responsable">Responsable</span> <span class="fa"></span></th>
@@ -49,8 +49,8 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let expediente of expedientes ;trackBy: trackId">
-                <td><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ expediente.clienteId + '/edit'} }]">{{expediente.clienteNombre}}</a></td>              
-                <td><a [routerLink]="['/', { outlets: { popup: 'expediente/'+ expediente.id + '/edit'} }]">{{expediente.numeroExpediente}}</a></td>
+                <td *ngIf="!cliente.id"><a [routerLink]="['/', { outlets: { popup: 'cliente/'+ expediente.clienteId + '/edit'} }]">{{expediente.clienteNombre}}</a></td>              
+                <td>{{expediente.numeroExpediente}}</td>
                 <td>{{expediente.juzgado}}</td>
                 <!-- <td>{{expediente.responsable}}</td>
                 <td>{{expediente.observaciones}}</td>

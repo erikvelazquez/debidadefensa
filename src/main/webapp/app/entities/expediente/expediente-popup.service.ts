@@ -50,6 +50,12 @@ export class ExpedientePopupService {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
                     const expediente = new Expediente();
+                    const date = new Date();
+                    expediente.fechaAlta = {
+                        year: date.getFullYear(),
+                        month: date.getMonth() + 1,
+                        day: date.getDate()
+                    };
                     expediente.clienteId = + idCliente;
                     expediente.clienteId = Number.isNaN(expediente.clienteId) ? null : expediente.clienteId;
                     this.ngbModalRef = this.expedienteModalRef(component, expediente);

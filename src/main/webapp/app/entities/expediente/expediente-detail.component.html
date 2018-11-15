@@ -61,7 +61,8 @@
                 </div>
                 <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expediente.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
                 <div class="input-group col-md-2">
-                    <input id="field_fechaSentencia" type="date" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expediente.fechaSentencia"/>
+                    <input id="field_fechaSentencia" type="date" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" 
+                            [(ngModel)]="expediente.fechaSentencia"  [minDate]="expediente.fechaAlta"/>
                     <span class="input-group-append">
                         <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -214,106 +215,110 @@
     
             <!-- Asociaciones y Fechas -->
             <div class="form-group row" style="border-top:1px solid #474a63; padding-top: 20px">            
-                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">  
-                    <div class="col-md-12" style="height: 40px;">
-                        <span class="col-md-12 text-center label-title">EXPEDIENTES ASOCIADOS</span>       
-                        <button class="btn btn-secondary btn-sm"  type="button"  
-                                [routerLink]="['/', { outlets: { popup: 'expediente-asociado-new/' + expediente.id} }]">
-                            <span class="fa fa-plus"></span>
-                            
-                        </button>
-                    </div>
+                <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
                     <div class="col-md-12">
-                        <div class="table-responsive">
-                                <table class="table table-striped">
-                                        <thead>
-                                        <tr>                                        
-                                            <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.numeroExpediente">Numero Expediente</span></th>
-                                            <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.instancia">Instancia</span></th>
-                                            <th><span >Órgano Competente</span></th>    
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr *ngFor="let expedienteAsociado of expedienteAsociados ;let i = index">                                            
-                                            <td>{{expedienteAsociado.numeroExpediente}}</td>
-                                            <td>{{expedienteAsociado.instancia}}</td>
-                                            <td>{{expedienteAsociado.organocompetente}}</td>
-                                            <td class="text-right">
-                                                <div class="btn-group flex-btn-group-container">                                                   
-                                                    <button type="button"
-                                                            [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/edit'} }]"
-                                                            replaceUrl="true"
-                                                            queryParamsHandling="merge"
-                                                            class="btn btn-primary btn-sm">
-                                                        <span class="fa fa-pencil"></span>
-                                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                                                    </button>
-                                                    <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
-                                                            [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/delete'} }]"
-                                                            replaceUrl="true"
-                                                            queryParamsHandling="merge"
-                                                            class="btn btn-danger btn-sm">
-                                                        <span class="fa fa-remove"></span>
-                                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                </table>
+                        <div class="col-md-12" style="height: 40px;">
+                            <span class="col-md-12 text-center label-title">EXPEDIENTES ASOCIADOS</span>       
+                            <button class="btn btn-secondary btn-sm"  type="button"  
+                                    [routerLink]="['/', { outlets: { popup: 'expediente-asociado-new/' + expediente.id} }]">
+                                <span class="fa fa-plus"></span>
+                                
+                            </button>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                    <table class="table table-striped">
+                                            <thead>
+                                            <tr>                                        
+                                                <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.numeroExpediente">Numero Expediente</span></th>
+                                                <th><span jhiTranslate="debidadefensaApp.expedienteAsociado.instancia">Instancia</span></th>
+                                                <th><span >Órgano Competente</span></th>    
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let expedienteAsociado of expedienteAsociados ;let i = index">                                            
+                                                <td>{{expedienteAsociado.numeroExpediente}}</td>
+                                                <td>{{expedienteAsociado.instancia}}</td>
+                                                <td>{{expedienteAsociado.organocompetente}}</td>
+                                                <td class="text-right">
+                                                    <div class="btn-group flex-btn-group-container">                                                   
+                                                        <button type="button"
+                                                                [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/edit'} }]"
+                                                                replaceUrl="true"
+                                                                queryParamsHandling="merge"
+                                                                class="btn btn-primary btn-sm">
+                                                            <span class="fa fa-pencil"></span>
+                                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                        </button>
+                                                        <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                                [routerLink]="['/', { outlets: { popup: 'expediente-asociado/'+ expedienteAsociado.id + '/delete'} }]"
+                                                                replaceUrl="true"
+                                                                queryParamsHandling="merge"
+                                                                class="btn btn-danger btn-sm">
+                                                            <span class="fa fa-remove"></span>
+                                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                    </table>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row col-md-6 text-center" style="margin-right: 0px; margin-left: 0px;">
-                    <div class="col-md-12" style="height: 40px;">
-                        <span class="text-center label-title">FECHAS DE SERVICIO</span>
-                        <button class="btn btn-secondary btn-sm"  type="button"
-                                [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + expediente.id + '/' + tipoServicio } }]">
-                            <span class="fa fa-plus"></span>                        
-                        </button>
-                    </div>
-                    <div class="table-responsive" >
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>   
-                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
-                                    <th><span>Hora</span></th> 
-                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripción</span></th>                            
-                                    <th><span jhiTranslate="debidadefensaApp.fechasServicio.observaciones">Observacion</span></th>                            
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let fechasServicio of fechasServicios ;let i = index">
-                                    <td>{{fechasServicio.fecha | date:'dd/MM/yyyy'}}</td>             
-                                    <td>{{fechasServicio.fecha | date:'HH:mm'}}</td> 
-                                    <td>{{fechasServicio.descripcion}}</td>                                
-                                    <td>{{fechasServicio.observaciones}}</td>      
-                                    <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">    
-                                            <button type="button"
-                                                    [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/edit'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                    class="btn btn-primary btn-sm">
-                                                <span class="fa fa-pencil"></span>
-                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                                            </button>                                  
-                                            <button type="button"
-                                                    [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                    class="btn btn-danger btn-sm">
-                                                <span class="fa fa-remove"></span>
-                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-md-12">
+                        <div class="col-md-12" style="height: 40px;">
+                            <span class="text-center label-title">FECHAS DE SERVICIO</span>
+                            <button class="btn btn-secondary btn-sm"  type="button"
+                                    [routerLink]="['/', { outlets: { popup: 'fechas-servicio-newby/' + expediente.id + '/' + tipoServicio } }]">
+                                <span class="fa fa-plus"></span>                        
+                            </button>
                         </div>
+                        <div class="table-responsive" >
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>   
+                                        <th><span jhiTranslate="debidadefensaApp.fechasServicio.fecha">Fecha</span></th>
+                                        <th><span>Hora</span></th> 
+                                        <th><span jhiTranslate="debidadefensaApp.fechasServicio.descripcion">Descripción</span></th>                            
+                                        <th><span jhiTranslate="debidadefensaApp.fechasServicio.observaciones">Observacion</span></th>                            
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let fechasServicio of fechasServicios ;let i = index">
+                                        <td>{{fechasServicio.fecha | date:'dd/MM/yyyy'}}</td>             
+                                        <td>{{fechasServicio.fecha | date:'HH:mm'}}</td> 
+                                        <td>{{fechasServicio.descripcion}}</td>                                
+                                        <td>{{fechasServicio.observaciones}}</td>      
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">    
+                                                <button type="button"
+                                                        [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/edit'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-pencil"></span>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                </button>                                  
+                                                <button type="button"
+                                                        [routerLink]="['/', { outlets: { popup: 'fechas-servicio/'+ fechasServicio.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <span class="fa fa-remove"></span>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         
