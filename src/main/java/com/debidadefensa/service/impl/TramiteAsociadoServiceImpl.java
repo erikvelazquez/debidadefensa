@@ -99,6 +99,10 @@ public class TramiteAsociadoServiceImpl implements TramiteAsociadoService {
     public void delete(Long id, Long tiposervicio, Long idasociado, Long tiposervicioasociado) {
         log.debug("Request to delete TramiteAsociado : {}", id);
         TramiteAsociado tramite = tramiteAsociadoRepository.findAsociado(id, tiposervicio, idasociado, tiposervicioasociado);
+        if (tramite == null) { 
+            tramite = tramiteAsociadoRepository.findAsociado(idasociado, tiposervicioasociado, id, tiposervicio);
+        }
+
         tramiteAsociadoRepository.delete(tramite.getId());
         tramiteAsociadoSearchRepository.delete(tramite.getId());
     }

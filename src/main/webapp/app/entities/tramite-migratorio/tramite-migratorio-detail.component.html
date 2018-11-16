@@ -64,16 +64,16 @@
             </div>
             <label class="form-control-label col-md-2 text-right" for="field_fechaNotificacion">Fecha de Notificación</label>
             <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
-                <input id="field_fechaNotificacion" type="date" class="form-control" name="fechaNotificacion" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaNotificacion"
-                />
+                <input id="field_fechaNotificacion" type="date" class="form-control" name="fechaNotificacion" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaNotificacionDp="ngbDatepicker"
+                [(ngModel)]="tramiteMigratorio.fechaNotificacion"  [minDate]="tramiteMigratorio.fechaIngreso" />
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaNotificacionDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
             <label class="form-control-label col-md-2 text-right" for="field_fechaResolucion">Fecha de Resolución</label>
             <div class="input-group col-md-2" style="padding-left: 0px; padding-right: 0px;">
-                <input id="field_fechaResolucion" type="date" class="form-control" name="fechaResolucion" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" [(ngModel)]="tramiteMigratorio.fechaResolucion"
-                />
+                <input id="field_fechaResolucion" type="date" class="form-control" name="fechaResolucion" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaResolucionDp="ngbDatepicker" 
+                [(ngModel)]="tramiteMigratorio.fechaResolucion" [minDate]="tramiteMigratorio.fechaNotificacion"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaResolucionDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
@@ -199,37 +199,7 @@
                         </button>
                     </div>
                     <div class="col-md-12">
-                        <div class="table-responsive">
-                            <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites migratorios</span>       
-                            <table class="table table-striped">
-                                <thead>
-                                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >                            
-                                        <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>                            
-                                        <th><span>Tipo trámite</span> <span class="fa"></span></th>
-                                        <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
-                                <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let tramiteMigratorioasoc of tramiteMigratorios ; let i = index">                                
-                                    <td>{{tramiteMigratorioasoc.nombreExtranjero}}</td>                                
-                                    <td>{{tramiteMigratorioasoc.tipotramite}}</td>
-                                    <td>{{tramiteMigratorioasoc.estatusDescripcion}}</td>                                                           
-                                    <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">                                      
-                                            <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
-                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/' + tramiteMigratorioasoc.id + '/' + 1002 + '/delete'} }]"
-                                                    replaceUrl="true"
-                                                    queryParamsHandling="merge"
-                                                    class="btn btn-danger btn-sm">
-                                                <span class="fa fa-remove"></span>
-                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="table-responsive">                            
                             <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites generales</span>       
                             <table class="table table-striped">
                                 <thead>
@@ -258,6 +228,37 @@
                                             </div>
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+
+                            <span class="col-md-12 text-center label-title" style="font-weight: bold">Trámites migratorios</span>       
+                            <table class="table table-striped">
+                                <thead>
+                                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" >                            
+                                        <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.nombreExtranjero">Nombre Extranjero</span> <span class="fa"></span></th>                            
+                                        <th><span>Tipo trámite</span> <span class="fa"></span></th>
+                                        <th><span jhiTranslate="debidadefensaApp.tramiteMigratorio.estatusTramiteMigratorio">Estatus Tramite Migratorio</span> <span class="fa"></span></th>
+                                <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let tramiteMigratorioasoc of tramiteMigratorios ; let i = index">                                
+                                    <td>{{tramiteMigratorioasoc.nombreExtranjero}}</td>                                
+                                    <td>{{tramiteMigratorioasoc.tipotramite}}</td>
+                                    <td>{{tramiteMigratorioasoc.estatusDescripcion}}</td>                                                           
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">                                      
+                                            <button type="button" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"
+                                                    [routerLink]="['/', { outlets: { popup: 'tramite-asociado/'+ tramiteMigratorio.id + '/' + tipoServicio + '/' + tramiteMigratorioasoc.id + '/' + 1002 + '/delete'} }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                    class="btn btn-danger btn-sm">
+                                                <span class="fa fa-remove"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -61,13 +61,15 @@
     <br>
     <div class="row"> 
         <div class="col-md-6">
-            <h4 class="col-md-2">
-                <span >Costos</span>
-                <button class="btn btn-primary float-right jh-create-entity create-costo-servicio" 
-                    [routerLink]="['/', { outlets: { popup: 'costo-servicio-new/' + idTramite + '/' + tiposervicio } }]">
-                    <span class="fa fa-plus"></span>            
+            <div class="row">
+                <h4 class="col-md-2">
+                    <span >Costos</span>                
+                </h4>    
+                <button class=" btn btn-primary float-right jh-create-entity create-costo-servicio" 
+                        [routerLink]="['/', { outlets: { popup: 'costo-servicio-new/' + idTramite + '/' + tiposervicio } }]">
+                        <span class="fa fa-plus"></span>            
                 </button>
-            </h4>    
+            </div>
             <br/>
             <div class="table-responsive col-md-12" >
                 <table class="table table-striped">
@@ -111,14 +113,15 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h4 class="col-md-2 ">
-                <span jhiTranslate="debidadefensaApp.pagos.home.title">Pagos</span>
-                <button class="btn btn-primary float-right jh-create-entity create-pagos"   
-                    
-                    [routerLink]="['/', { outlets: { popup: 'pagos-new/' + idTramite + '/' + tiposervicio } }]">
-                    <span class="fa fa-plus"></span>
+            <div class="row">
+                <h4 class="col-md-2 ">
+                    <span jhiTranslate="debidadefensaApp.pagos.home.title">Pagos</span>                
+                </h4>
+                <button class="btn btn-primary float-right jh-create-entity create-pagos"
+                        [routerLink]="['/', { outlets: { popup: 'pagos-new/' + idTramite + '/' + tiposervicio } }]">
+                        <span class="fa fa-plus"></span>
                 </button>
-            </h4>
+            </div>
             <br>
             <div class="table-responsive col-md-12">
                 <table class="table table-striped">
@@ -165,9 +168,10 @@
     </div>
 
     <div class="form-group row" style="border-top: 1px solid #474a63; padding-top: 20px"> 
+      
         <div class="row col-md-4">
-            <h6 class="form-control-label col-md-6 text-right" style="font-weight: bold">Costos Totales</h5>
-            <h4 class="form-control-label col-md-6 text-left">{{totalCostos | currency}}</h4>
+            <h5 class="form-control-label col-md-6 text-right" style="font-weight: bold">Costos Totales</h5>
+            <h4 class="form-control-label col-md-6 text-left" >{{totalCostos | currency}}</h4>
         </div>
         <div class="row col-md-4">
             <h5 class="form-control-label col-md-6 text-right" style="font-weight: bold">Pagos Totales</h5>

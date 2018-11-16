@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { NgxUploaderModule } from 'ngx-uploader';
 
 import {
     DebidadefensaSharedLibsModule,
@@ -19,7 +20,8 @@ import {
 @NgModule({
     imports: [
         DebidadefensaSharedLibsModule,
-        DebidadefensaSharedCommonModule
+        DebidadefensaSharedCommonModule,
+        NgxUploaderModule,
     ],
     declarations: [
         JhiLoginModalComponent,
@@ -41,7 +43,8 @@ import {
         DebidadefensaSharedCommonModule,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
-        DatePipe
+        DatePipe,
+        NgxUploaderModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

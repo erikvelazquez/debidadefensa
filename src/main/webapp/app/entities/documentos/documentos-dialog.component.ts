@@ -16,6 +16,7 @@ import { TramiteGeneral, TramiteGeneralService } from '../tramite-general';
 import { TipoServicio, TipoServicioService } from '../tipo-servicio';
 import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from '../../services/fecha.service';
+import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
 
 @Component({
     selector: 'jhi-documentos-dialog',
@@ -126,6 +127,7 @@ export class DocumentosDialogComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<Documentos>>) {
+        alert('lo estoy enviando');
         result.subscribe((res: HttpResponse<Documentos>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
@@ -188,6 +190,9 @@ export class DocumentosDialogComponent implements OnInit {
     trackTipoServicioById(index: number, item: TipoServicio) {
         return item.id;
     }
+
+    /****************************   NUEVO CODIGO**************************** */
+
 }
 
 @Component({
