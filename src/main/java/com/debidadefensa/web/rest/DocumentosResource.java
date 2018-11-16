@@ -65,16 +65,12 @@ public class DocumentosResource {
     private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 
      @PostMapping("/documentos/upload")
-    public ResponseEntity <String> handleFileUpload(@RequestParam("file") MultipartFile file, 
-                                                    @RequestParam("fecha") String fecha,
+    public ResponseEntity <DocumentosDTO> handleFileUpload(@RequestParam("idCliente") String idCliente,
+                                                    @RequestParam("tipoServicioId") String tipoServicioId,                                                    
+                                                    @RequestParam("idDocumento") String idDocumento,
                                                     @RequestParam("descripcion") String descripcion,
-                                                    @RequestParam("idCliente") String idCliente,
-                                                    @RequestParam("tipoServicioId") String tipoServicioId,
-                                                    @RequestParam("expedienteId") String expedienteId,
-                                                    @RequestParam("expedienteAsociadoId") String expedienteAsociadoId,
-                                                    @RequestParam("tramiteMigratorioId") String tramiteMigratorioId,
-                                                    @RequestParam("tramiteGeneralId") String tramiteGeneralId,
-                                                    @RequestParam("idDocumento") String idDocumento) {
+                                                    @RequestParam("fecha") String fecha,
+                                                    @RequestParam("file") MultipartFile file) throws URISyntaxException {
         String message = "";
         try {   
             File convertFile = new File(DIRECTORY + idCliente + "/" + tipoServicioId  + "/" + idDocumento + "/" + file.getOriginalFilename());
@@ -96,45 +92,45 @@ public class DocumentosResource {
             // "1002"	"Trámite Migratorio"
             // "1003"	"Trámite General"
             // "1004"	"Expediente Asociado"
-            // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            // DocumentosDTO documentosDTO = new DocumentosDTO();
-            // int tipo = Integer.parseInt(tipoServicioId);
-            // switch (tipo) {
-            // case 1001:
-            //         documentosDTO.setExpedienteId(Long.parseLong(expedienteId));          
-            //     break;            
-            // case 1002:            
-            //         documentosDTO.setTramiteMigratorioId(Long.parseLong(tramiteMigratorioId));           
-            //     break;            
-            // case 1003:            
-            //         documentosDTO.setTramiteGeneralId(Long.parseLong(tramiteGeneralId));          
-            //     break;
-            // case 1004:            
-            //         documentosDTO.setExpedienteAsociadoId(Long.parseLong(expedienteAsociadoId));          
-            //     break;
-            // }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DocumentosDTO documentosDTO = new DocumentosDTO();
+            int tipo = Integer.parseInt(tipoServicioId);
+            switch (tipo) {
+            case 1001:
+                    documentosDTO.setExpedienteId(Long.parseLong(idDocumento));          
+                break;            
+            case 1002:            
+                    documentosDTO.setTramiteMigratorioId(Long.parseLong(idDocumento));           
+                break;            
+            case 1003:            
+                    documentosDTO.setTramiteGeneralId(Long.parseLong(idDocumento));          
+                break;
+            case 1004:            
+                    documentosDTO.setExpedienteAsociadoId(Long.parseLong(idDocumento));          
+                break;
+            }
 
-            // documentosDTO.setDescripcion(descripcion);
-            // log.debug("Descripcion : {}", documentosDTO.getDescripcion());
-            // documentosDTO.setFecha(LocalDate.parse(fecha, formatter));
-            // log.debug("Fecha : {}", documentosDTO.getFecha());
-            // documentosDTO.setTipoServicioId(Long.parseLong(tipoServicioId));  
-            // log.debug("Tipo Servicio : {}", documentosDTO.getTipoServicioId());
-            // documentosDTO.setNombreDocumento(file.getOriginalFilename());
-            // log.debug("Nombre Documento : {}", documentosDTO.getNombreDocumento());
-            // log.debug("objeto a guardar : {}", documentosDTO);
-            // DocumentosDTO result = documentosService.save(documentosDTO);
-            // return ResponseEntity.created(new URI("/api/documentos/" + result.getId()))
-            //                                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            //                                 .body(result);
+            documentosDTO.setDescripcion(descripcion);
+            log.debug("Descripcion : {}", documentosDTO.getDescripcion());
+            documentosDTO.setFecha(LocalDate.parse(fecha, formatter));
+            log.debug("Fecha : {}", documentosDTO.getFecha());
+            documentosDTO.setTipoServicioId(Long.parseLong(tipoServicioId));  
+            log.debug("Tipo Servicio : {}", documentosDTO.getTipoServicioId());
+            documentosDTO.setNombreDocumento(file.getOriginalFilename());
+            log.debug("Nombre Documento : {}", documentosDTO.getNombreDocumento());
+            log.debug("objeto a guardar : {}", documentosDTO);
+            DocumentosDTO result = documentosService.save(documentosDTO);
+            return ResponseEntity.created(new URI("/api/documentos/" + result.getId()))
+                                            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                                            .body(result);
 
-            return ResponseEntity.status(HttpStatus.OK).body(message);
+            // return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
             log.debug("REST salvar el archivo fisico : {}", e);
             message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
-            // DocumentosDTO respuesta = new DocumentosDTO();
-            // respuesta.setDescripcion(e.getMessage() + message);
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message); 
+             DocumentosDTO respuesta = new DocumentosDTO();
+             respuesta.setDescripcion(e.getMessage() + message);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(respuesta); 
         }
     }    
  

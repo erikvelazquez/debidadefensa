@@ -35,6 +35,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     private eventSubscriber: Subscription;
     documentos: Documentos[];
     esDeshabilitada: boolean;
+    esVisibleCarga: boolean;
 
     constructor(
         private documentosService: DocumentosService,
@@ -47,6 +48,7 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     ) {
         this.expedienteOriginal = new Expediente();
         this.esDeshabilitada = false;
+        this.esVisibleCarga = false;
     }
 
     ngOnInit() {
@@ -138,10 +140,13 @@ export class ExpedienteAsociadoDialogComponent implements OnInit {
     }
 
     getFile(fileName: String, idCliente: string, tipoServicioId: string) {
+        this.esVisibleCarga = true;
         this.documentosService.getFile(fileName, idCliente, tipoServicioId, String(this.expedienteAsociado.id)).subscribe((data) => {
             const blob = new Blob([data], { type: 'application/octet-stream' });
+            this.esVisibleCarga = false;
             saveAs(blob, fileName);
         }, (error) => {
+            this.esVisibleCarga = false;
             console.log(error);
         });
     }

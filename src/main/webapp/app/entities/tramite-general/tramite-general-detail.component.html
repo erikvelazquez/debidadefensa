@@ -318,6 +318,9 @@
                 </div>
         </div>        
         </div>
+        <div class="text-center load-modal-white" *ngIf="esVisibleCarga">
+                <img src="./../../../content/images/Loading.gif">           
+        </div>
         <div class="modal-footer">
             <button type="button"   
                     [routerLink]="esGeneral ? ['/tramite-general' ] : ['/tramite-general-usuario', tramiteGeneral.clienteId ]"

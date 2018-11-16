@@ -41,7 +41,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     fechaSentenciaDp: any;
     partes: Parte[];
     currentAccount: any;
-
+    esVisibleCarga: boolean;
     costoServicios: CostoServicio[];
     pagos: Pagos[];
     totalCostos: number;
@@ -80,6 +80,7 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
         });
         this.registerChangeInExpedientes();
         this.expediente = new Expediente();
+        this.esVisibleCarga = false;
     }
 
     load(id) {
@@ -237,10 +238,13 @@ export class ExpedienteDetailComponent implements OnInit, OnDestroy {
     }
 
     getFile(fileName: String, idCliente: string, tipoServicioId: string) {
+        this.esVisibleCarga = true;
         this.documentosService.getFile(fileName, idCliente, tipoServicioId, String(this.expediente.id)).subscribe((data) => {
             const blob = new Blob([data], { type: 'application/octet-stream' });
+            this.esVisibleCarga = false;
             saveAs(blob, fileName);
         }, (error) => {
+            this.esVisibleCarga = false;
             console.log(error);
         });
     }

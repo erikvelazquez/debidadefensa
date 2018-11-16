@@ -1,8 +1,8 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+<form name="editForm" role="form" novalidate (ngSubmit)="startUpload()" #editForm="ngForm">
 
     <div class="modal-header">
         <h4 class="modal-title" style="font-weight: bold" id="myDocumentosLabel" >Documentos</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+        <button *ngIf="!esVisibleCarga" type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
@@ -36,15 +36,14 @@
         <div class="input-group">
             <label class="input-group-btn col-md-2">
                 <span class="btn btn-primary">
-                    Seleccionar archivo <input type="file" id="file"
-                    (change)="handleFileInput($event.target.files)" 
-                    style="display: none;">
+                    Seleccionar archivo 
+                    <!-- <input type="file" id="file" (change)="handleFileInput($event.target.files)" style="display: none;"> -->
+                    <input type="file" id="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" style="display: none;">
                 </span>
             </label>
             <input type="text" class="form-control col-md-6" name="nombreDocumento" id="field_nombreDocumento"
                 [(ngModel)]="documentos.nombreDocumento" readonly required/>            
         </div>
-       
         <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.ruta" for="field_ruta">Ruta</label>
             <input type="text" class="form-control" name="ruta" id="field_ruta"
@@ -86,7 +85,28 @@
                 <option [ngValue]="tipoServicioOption.id" *ngFor="let tipoServicioOption of tiposervicios; trackBy: trackTipoServicioById">{{tipoServicioOption.id}}</option>
             </select>
         </div>-->
+        
     </div>
+    <div class="text-center load-modal" *ngIf="esVisibleCarga">
+            <div style="padding-left:40%; padding-right:40%; padding-top: 50px">
+                <round-progress [current]="current"
+                                [max]="max"
+                                [radius]="125"
+                                [color]="'#29abe9'"
+                                [background]="'#eaeaea'"        
+                                [stroke]="20"
+                                [semicircle]="false"
+                                [rounded]="true"
+                                [clockwise]="true"
+                                [responsive]="true"
+                                [duration]="400"
+                                [animation]="'easeOutBack'"
+                                [animationDelay]="0">            
+                </round-progress>
+                <span style="font-weight: bold; color: white" >Progreso {{current}} %</span>
+            </div>
+            
+        </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

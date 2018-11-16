@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { DebidadefensaSharedModule } from '../../shared';
 import {
     DocumentosService,
@@ -16,6 +15,7 @@ import {
     documentosRoute,
     documentosPopupRoute,
 } from './';
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 const ENTITY_STATES = [
     ...documentosRoute,
@@ -25,7 +25,8 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         DebidadefensaSharedModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
+        RoundProgressModule
     ],
     declarations: [
         DocumentosComponent,
