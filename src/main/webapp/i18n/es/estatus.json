@@ -4,7 +4,7 @@
         "estatus" : {
             "home": {
                 "title": "Estatus",
-                "createLabel": "Crear nuevo Estatus",
+                "createLabel": "Nuevo Estatus",
                 "createOrEditLabel": "Crear o editar Estatus",
                 "search": "Search for Estatus"
             },

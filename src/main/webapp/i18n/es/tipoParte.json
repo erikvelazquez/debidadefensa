@@ -4,7 +4,7 @@
         "tipoParte" : {
             "home": {
                 "title": "Tipo de Partes",
-                "createLabel": "Crear nuevo Tipo Parte",
+                "createLabel": "Nuevo Tipo Parte",
                 "createOrEditLabel": "Crear o editar Tipo de Parte",
                 "search": "Search for Tipo Parte"
             },
