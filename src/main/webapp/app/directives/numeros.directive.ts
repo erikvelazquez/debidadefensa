@@ -18,12 +18,12 @@ export class NumberOnlyDirective {
         if (this.specialKeys.indexOf(event.key) !== -1) {
             return;
         }
-        if (event.key === 'Dead') {
-            event.preventDefault();
-        }
-        if (event.key === '+') {
-            event.preventDefault();
-        }
+        // if (event.key === 'Dead') {
+        //     event.preventDefault();
+        // }
+        // if (event.key === '+') {
+        //     event.preventDefault();
+        // }
 
         const current: string = this.el.nativeElement.value;
         const next: string = current.concat(event.key);

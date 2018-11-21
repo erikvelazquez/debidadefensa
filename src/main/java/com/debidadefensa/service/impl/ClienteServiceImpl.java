@@ -6,6 +6,8 @@ import com.debidadefensa.repository.ClienteRepository;
 import com.debidadefensa.repository.search.ClienteSearchRepository;
 import com.debidadefensa.service.dto.ClienteDTO;
 import com.debidadefensa.service.mapper.ClienteMapper;
+import com.debidadefensa.service.util.RandomUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -113,7 +115,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional(readOnly = true)
     public Page<ClienteDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Clientes for query {}", query);
-        Page<Cliente> result = clienteSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Cliente> result = clienteSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
         return result.map(clienteMapper::toDto);
     }
 }

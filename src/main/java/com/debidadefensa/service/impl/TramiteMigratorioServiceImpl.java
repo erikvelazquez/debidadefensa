@@ -6,6 +6,8 @@ import com.debidadefensa.repository.TramiteMigratorioRepository;
 import com.debidadefensa.repository.search.TramiteMigratorioSearchRepository;
 import com.debidadefensa.service.dto.TramiteMigratorioDTO;
 import com.debidadefensa.service.mapper.TramiteMigratorioMapper;
+
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
+import com.debidadefensa.service.util.RandomUtil;
 /**
  * Service Implementation for managing TramiteMigratorio.
  */
@@ -106,7 +109,10 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
     @Transactional(readOnly = true)
     public Page<TramiteMigratorioDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of TramiteMigratorios for query {}", query);
-        Page<TramiteMigratorio> result = tramiteMigratorioSearchRepository.search(queryStringQuery(query), pageable);
+        Page<TramiteMigratorio> result = tramiteMigratorioSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
+        log.info("Query: {}", queryStringQuery(query));
+        // Page<TramiteMigratorio> result = tramiteMigratorioSearchRepository.search(QueryBuilders.boolQuery().must(queryStringQuery(query)), pageable);
+
         return result.map(tramiteMigratorioMapper::toDto);
     }
 

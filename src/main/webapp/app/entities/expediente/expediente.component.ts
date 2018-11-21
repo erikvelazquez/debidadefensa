@@ -59,7 +59,7 @@ export class ExpedienteComponent implements OnInit, OnDestroy {
     loadAll() {
         if (this.currentSearch) {
             this.expedienteService.search({
-                query: this.currentSearch + '*',
+                query: '*' + this.currentSearch + '*',
                 page: this.page,
                 size: this.itemsPerPage + 1000,
                 sort: this.sort()

@@ -7,6 +7,7 @@ import com.debidadefensa.repository.ExpedienteRepository;
 import com.debidadefensa.repository.search.ExpedienteSearchRepository;
 import com.debidadefensa.service.dto.ExpedienteDTO;
 import com.debidadefensa.service.mapper.ExpedienteMapper;
+import com.debidadefensa.service.util.RandomUtil;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -136,8 +137,8 @@ public class ExpedienteServiceImpl implements ExpedienteService {
     @Transactional(readOnly = true)
     public Page<ExpedienteDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Expedientes for query {}", query);
-        QueryBuilder qry = QueryBuilders.wildcardQuery("numero_expediente", query + "*");
-        Page<Expediente> result = expedienteSearchRepository.search(queryStringQuery( query ), pageable);
+       // QueryBuilder qry = QueryBuilders.wildcardQuery("numero_expediente", query + "*");
+        Page<Expediente> result = expedienteSearchRepository.search(queryStringQuery( RandomUtil.cambiaString(query) ), pageable);
         // Page<Expediente> result = expedienteSearchRepository.search(qry, pageable);
         return result.map(expedienteMapper::toDto);
     }

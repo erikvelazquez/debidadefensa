@@ -35,7 +35,7 @@ estatuses: Estatus[];
     loadAll() {
         if (this.currentSearch) {
             this.estatusService.search({
-                query: this.currentSearch,
+                query: '*' + this.currentSearch + '*',
                 }).subscribe(
                     (res: HttpResponse<Estatus[]>) => this.estatuses = res.body,
                     (res: HttpErrorResponse) => this.onError(res.message)

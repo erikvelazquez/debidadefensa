@@ -36,7 +36,7 @@ fechasServicios: FechasServicio[];
     loadAll() {
         if (this.currentSearch) {
             this.fechasServicioService.search({
-                query: this.currentSearch + '*',
+                query: '*' + this.currentSearch + '*',
                 }).subscribe(
                     (res: HttpResponse<FechasServicio[]>) => this.fechasServicios = res.body,
                     (res: HttpErrorResponse) => this.onError(res.message)

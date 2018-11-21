@@ -4,8 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-
+import org.springframework.data.elasticsearch.annotations.Setting;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Mapping;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -17,17 +22,22 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "tramite_migratorio")
-@Document(indexName = "tramitemigratorio")
+@Document(indexName = "tramitemigratorio", type = "tramitemigratorio")
+@Setting(settingPath = "/config/es-settings.json")
+@Mapping(mappingPath = "/config/es-migratorio-mapping.json")
 public class TramiteMigratorio implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @Field(store = true, type = FieldType.Long)
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "nombre_extranjero")
+//    @Field(index = true, store = true, type = FieldType.Text, analyzer = "spanish", searchAnalyzer = "spanish")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String nombreExtranjero;
 
     @Column(name = "tipotramite")

@@ -6,6 +6,8 @@ import com.debidadefensa.repository.TipoServicioRepository;
 import com.debidadefensa.repository.search.TipoServicioSearchRepository;
 import com.debidadefensa.service.dto.TipoServicioDTO;
 import com.debidadefensa.service.mapper.TipoServicioMapper;
+import com.debidadefensa.service.util.RandomUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -106,7 +108,7 @@ public class TipoServicioServiceImpl implements TipoServicioService {
     public List<TipoServicioDTO> search(String query) {
         log.debug("Request to search TipoServicios for query {}", query);
         return StreamSupport
-            .stream(tipoServicioSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .stream(tipoServicioSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query))).spliterator(), false)
             .map(tipoServicioMapper::toDto)
             .collect(Collectors.toList());
     }

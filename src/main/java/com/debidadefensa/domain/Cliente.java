@@ -5,17 +5,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Setting;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Mapping;
 /**
  * A Cliente.
  */
 @Entity
 @Table(name = "cliente")
-@Document(indexName = "cliente")
+@Document(indexName = "cliente", type = "cliente")
+// @Setting(settingPath = "/config/es-settings.json")
+// @Mapping(mappingPath = "/config/es-cliente-mapping.json")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,9 +31,11 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    // @Field(store = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "nombre")
+    // @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String nombre;
 
     @Column(name = "telefonos")

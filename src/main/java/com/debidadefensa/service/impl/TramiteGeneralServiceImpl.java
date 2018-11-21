@@ -6,6 +6,8 @@ import com.debidadefensa.repository.TramiteGeneralRepository;
 import com.debidadefensa.repository.search.TramiteGeneralSearchRepository;
 import com.debidadefensa.service.dto.TramiteGeneralDTO;
 import com.debidadefensa.service.mapper.TramiteGeneralMapper;
+import com.debidadefensa.service.util.RandomUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -105,7 +107,7 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
     @Transactional(readOnly = true)
     public Page<TramiteGeneralDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of TramiteGenerals for query {}", query);
-        Page<TramiteGeneral> result = tramiteGeneralSearchRepository.search(queryStringQuery(query), pageable);
+        Page<TramiteGeneral> result = tramiteGeneralSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
         return result.map(tramiteGeneralMapper::toDto);
     }
 

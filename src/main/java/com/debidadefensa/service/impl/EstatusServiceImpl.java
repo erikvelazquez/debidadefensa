@@ -6,6 +6,8 @@ import com.debidadefensa.repository.EstatusRepository;
 import com.debidadefensa.repository.search.EstatusSearchRepository;
 import com.debidadefensa.service.dto.EstatusDTO;
 import com.debidadefensa.service.mapper.EstatusMapper;
+import com.debidadefensa.service.util.RandomUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -110,7 +112,9 @@ public class EstatusServiceImpl implements EstatusService {
     public List<EstatusDTO> search(String query) {
         log.debug("Request to search Estatuses for query {}", query);
         return StreamSupport
-            .stream(estatusSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .stream(
+            //    estatusSearchRepository.search(QueryBuilders.wil .boolQuery().must(queryStringQuery(query)), pageable);    
+             estatusSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query))).spliterator(), false)
             .map(estatusMapper::toDto)
             .collect(Collectors.toList());
     }
