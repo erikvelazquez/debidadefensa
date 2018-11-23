@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "fechas_servicio")
-@Document(indexName = "fechasservicio")
+@Document(indexName =  "debida", type = "fechas_servicio", shards = 1, replicas = 0)
 public class FechasServicio implements Serializable {
 
     private static final long serialVersionUID = 1L;

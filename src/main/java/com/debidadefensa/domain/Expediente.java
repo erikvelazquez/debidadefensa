@@ -6,6 +6,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Setting;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -17,7 +22,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "expediente")
-@Document(indexName = "expediente")
+@Document(indexName = "expediente", type = "expediente", shards = 1, replicas = 0)
+@Setting(settingPath = "/config/es-settings.json")
 public class Expediente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,33 +31,40 @@ public class Expediente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "juzgado")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String juzgado;
 
     @Column(name = "numero_expediente")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String numeroExpediente;
 
     @Column(name = "juicio")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String juicio;
 
     @Column(name = "responsable")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String responsable;
 
     @Column(name = "observaciones")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String observaciones;
 
     @Column(name = "fecha_alta")
     private LocalDate fechaAlta;
 
-    @Column(name = "fecha_sentencia")
+    @Column(name = "fecha_sentencia") 
     private LocalDate fechaSentencia;
 
     @Column(name = "total_documentos")
     private Long totalDocumentos;
 
     @Column(name = "asociados")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String asociados;
 
     @ManyToOne

@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "pagos")
-@Document(indexName = "pagos")
+@Document(indexName = "debida", type = "pagos", shards = 1, replicas = 0)
 public class Pagos implements Serializable {
 
     private static final long serialVersionUID = 1L;

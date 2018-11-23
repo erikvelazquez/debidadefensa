@@ -7,7 +7,12 @@ import com.debidadefensa.repository.search.TramiteMigratorioSearchRepository;
 import com.debidadefensa.service.dto.TramiteMigratorioDTO;
 import com.debidadefensa.service.mapper.TramiteMigratorioMapper;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
+import org.elasticsearch.index.search.MultiMatchQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -18,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.stream.Collectors;
 import java.util.LinkedList;
 import java.util.List;
-import static org.elasticsearch.index.query.QueryBuilders.*;
+// import static org.elasticsearch.index.query.QueryBuilders.*;
 
 import com.debidadefensa.service.util.RandomUtil;
 /**
@@ -107,12 +112,10 @@ public class TramiteMigratorioServiceImpl implements TramiteMigratorioService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<TramiteMigratorioDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of TramiteMigratorios for query {}", query);
-        Page<TramiteMigratorio> result = tramiteMigratorioSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
-        log.info("Query: {}", queryStringQuery(query));
-        // Page<TramiteMigratorio> result = tramiteMigratorioSearchRepository.search(QueryBuilders.boolQuery().must(queryStringQuery(query)), pageable);
-
+    public Page<TramiteMigratorioDTO> search(String query, Pageable pageable) {       
+        MultiMatchQueryBuilder queryBuilder2 = QueryBuilders.multiMatchQuery(query, "nombreExtranjero", "tipotramite", "entidad", "observaciones", "_all").type("phrase_prefix").analyzer("spanish");      
+        log.info("Query: {}", queryBuilder2);       
+        Page<TramiteMigratorio> result = tramiteMigratorioSearchRepository.search(queryBuilder2, pageable);
         return result.map(tramiteMigratorioMapper::toDto);
     }
 

@@ -64,7 +64,7 @@ currentAccount: any;
         if (this.currentSearch) {
             this.tramiteGeneralService.search({
                 page: this.page - 1,
-                query: '*' + this.currentSearch + '*',
+                query: this.currentSearch,
                 size: this.itemsPerPage + 1000,
                 sort: this.sort()}).subscribe(
                     (res: HttpResponse<TramiteGeneral[]>) => this.onSuccess(res.body, res.headers),

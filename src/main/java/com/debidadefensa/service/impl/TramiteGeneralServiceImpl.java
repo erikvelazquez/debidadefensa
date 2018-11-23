@@ -8,6 +8,8 @@ import com.debidadefensa.service.dto.TramiteGeneralDTO;
 import com.debidadefensa.service.mapper.TramiteGeneralMapper;
 import com.debidadefensa.service.util.RandomUtil;
 
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -106,9 +108,14 @@ public class TramiteGeneralServiceImpl implements TramiteGeneralService {
     @Override
     @Transactional(readOnly = true)
     public Page<TramiteGeneralDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of TramiteGenerals for query {}", query);
-        Page<TramiteGeneral> result = tramiteGeneralSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
+        MultiMatchQueryBuilder queryBuilder2 = QueryBuilders.multiMatchQuery(query, "titular", "dependencia", "numero_tramite", "tipo_tramite", "observaciones", "_all").type("phrase_prefix").analyzer("spanish");      
+        log.info("Query: {}", queryBuilder2);       
+        Page<TramiteGeneral> result = tramiteGeneralSearchRepository.search(queryBuilder2, pageable);
         return result.map(tramiteGeneralMapper::toDto);
+
+        // log.debug("Request to search for a page of TramiteGenerals for query {}", query);
+        // Page<TramiteGeneral> result = tramiteGeneralSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
+        // return result.map(tramiteGeneralMapper::toDto);
     }
 
     /**

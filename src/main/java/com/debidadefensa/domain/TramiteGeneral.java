@@ -6,6 +6,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Setting;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -17,7 +22,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "tramite_general")
-@Document(indexName = "tramitegeneral")
+@Document(indexName = "tramitegeneral", type = "tramitegeneral", shards = 1, replicas = 0)
+@Setting(settingPath = "/config/es-settings.json")
 public class TramiteGeneral implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,18 +31,23 @@ public class TramiteGeneral implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "titular")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String titular;
 
     @Column(name = "dependencia")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String dependencia;
 
     @Column(name = "numero_tramite")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String numeroTramite;
 
     @Column(name = "tipo_tramite")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String tipoTramite;
 
     @Column(name = "fecha_ingreso")
@@ -52,6 +63,7 @@ public class TramiteGeneral implements Serializable {
     private String archivo;
 
     @Column(name = "observaciones")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String observaciones;
 
     @Column(name = "total_documentos")

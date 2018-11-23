@@ -8,6 +8,8 @@ import com.debidadefensa.service.dto.ClienteDTO;
 import com.debidadefensa.service.mapper.ClienteMapper;
 import com.debidadefensa.service.util.RandomUtil;
 
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -114,8 +116,13 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     @Transactional(readOnly = true)
     public Page<ClienteDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Clientes for query {}", query);
-        Page<Cliente> result = clienteSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
+        MultiMatchQueryBuilder queryBuilder2 = QueryBuilders.multiMatchQuery(query, "nombre", "telefonos", "correo_electronico", "domicilio", "referencia", "rfc", "_all").type("phrase_prefix").analyzer("spanish");      
+        log.info("Query: {}", queryBuilder2);       
+        Page<Cliente> result = clienteSearchRepository.search(queryBuilder2, pageable);
         return result.map(clienteMapper::toDto);
+
+        // log.debug("Request to search for a page of Clientes for query {}", query);
+        // Page<Cliente> result = clienteSearchRepository.search(queryStringQuery(RandomUtil.cambiaString(query)), pageable);
+        // return result.map(clienteMapper::toDto);
     }
 }

@@ -21,8 +21,8 @@ import org.springframework.data.elasticsearch.annotations.Mapping;
  */
 @Entity
 @Table(name = "cliente")
-@Document(indexName = "cliente", type = "cliente")
-// @Setting(settingPath = "/config/es-settings.json")
+@Document(indexName = "cliente", type = "cliente", shards = 1, replicas = 0)
+@Setting(settingPath = "/config/es-settings.json")
 // @Mapping(mappingPath = "/config/es-cliente-mapping.json")
 public class Cliente implements Serializable {
 
@@ -31,26 +31,31 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    // @Field(store = true, type = FieldType.Long)
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "nombre")
-    // @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String nombre;
 
     @Column(name = "telefonos")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String telefonos;
 
     @Column(name = "correo_electronico")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String correoElectronico;
 
     @Column(name = "domicilio")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String domicilio;
 
     @Column(name = "rfc")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String rfc;
 
     @Column(name = "referencia")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String referencia;
 
     @Column(name = "total_expediente")

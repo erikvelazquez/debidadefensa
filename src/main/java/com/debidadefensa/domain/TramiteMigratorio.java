@@ -22,17 +22,17 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "tramite_migratorio")
-@Document(indexName = "tramitemigratorio", type = "tramitemigratorio")
+@Document(indexName = "debida", type = "tramitemigratorio", shards = 1, replicas = 0)
 @Setting(settingPath = "/config/es-settings.json")
-@Mapping(mappingPath = "/config/es-migratorio-mapping.json")
+// @Mapping(mappingPath = "/config/es-migratorio-mapping.json")
 public class TramiteMigratorio implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @Field(store = true, type = FieldType.Long)
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "nombre_extranjero")
@@ -41,33 +41,43 @@ public class TramiteMigratorio implements Serializable {
     private String nombreExtranjero;
 
     @Column(name = "tipotramite")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String tipotramite;
 
     @Column(name = "entidad")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String entidad;
 
     @Column(name = "nut")
+    // @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long nut;
-
+    
     @Column(name = "contrasenia_nut")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String contraseniaNUT;
 
     @Column(name = "fecha_ingreso")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Date)
     private LocalDate fechaIngreso;
 
     @Column(name = "fecha_notificacion")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Date)
     private LocalDate fechaNotificacion;
 
     @Column(name = "fecha_resolucion")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Date)
     private LocalDate fechaResolucion;
 
     @Column(name = "archivo")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String archivo;
 
     @Column(name = "observaciones")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String observaciones;
 
     @Column(name = "total_documentos")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long totalDocumentos;
 
     @ManyToOne

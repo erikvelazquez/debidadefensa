@@ -41,19 +41,19 @@ public final class RandomUtil {
 
 
     public static String cambiaString(String cadena) {
-        cadena = cadena.replace("á", "a");
-        cadena = cadena.replace("é", "e");
-        cadena = cadena.replace("í", "i");
-        cadena = cadena.replace("ó", "o");
-        cadena = cadena.replace("ú", "u");
+        // cadena = cadena.replace("á", "a");
+        // cadena = cadena.replace("é", "e");
+        // cadena = cadena.replace("í", "i");
+        // cadena = cadena.replace("ó", "o");
+        // cadena = cadena.replace("ú", "u");
 
-        cadena = cadena.replace("Á", "A");
-        cadena = cadena.replace("É", "E");
-        cadena = cadena.replace("Í", "I");
-        cadena = cadena.replace("Ó", "O");
-        cadena = cadena.replace("Ú", "U");
+        // cadena = cadena.replace("Á", "A");
+        // cadena = cadena.replace("É", "E");
+        // cadena = cadena.replace("Í", "I");
+        // cadena = cadena.replace("Ó", "O");
+        // cadena = cadena.replace("Ú", "U");
 
 
-        return cadena;
+        return cadena ;
     }
 }

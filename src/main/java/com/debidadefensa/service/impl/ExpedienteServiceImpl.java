@@ -9,6 +9,7 @@ import com.debidadefensa.service.dto.ExpedienteDTO;
 import com.debidadefensa.service.mapper.ExpedienteMapper;
 import com.debidadefensa.service.util.RandomUtil;
 
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.hibernate.annotations.Any;
@@ -136,10 +137,15 @@ public class ExpedienteServiceImpl implements ExpedienteService {
     @Override
     @Transactional(readOnly = true)
     public Page<ExpedienteDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Expedientes for query {}", query);
-       // QueryBuilder qry = QueryBuilders.wildcardQuery("numero_expediente", query + "*");
-        Page<Expediente> result = expedienteSearchRepository.search(queryStringQuery( RandomUtil.cambiaString(query) ), pageable);
-        // Page<Expediente> result = expedienteSearchRepository.search(qry, pageable);
+        MultiMatchQueryBuilder queryBuilder2 = QueryBuilders.multiMatchQuery(query, "juzgado", "numeroExpediente", "juicio", "responsable", "observaciones", "_all").type("phrase_prefix").analyzer("spanish");      
+        log.info("Query: {}", queryBuilder2);       
+        Page<Expediente> result = expedienteSearchRepository.search(queryBuilder2, pageable);
         return result.map(expedienteMapper::toDto);
+
+    //     log.debug("Request to search for a page of Expedientes for query {}", query);
+    //    // QueryBuilder qry = QueryBuilders.wildcardQuery("numero_expediente", query + "*");
+    //     Page<Expediente> result = expedienteSearchRepository.search(queryStringQuery( RandomUtil.cambiaString(query) ), pageable);
+    //     // Page<Expediente> result = expedienteSearchRepository.search(qry, pageable);
+    //     return result.map(expedienteMapper::toDto);
     }
 }
