@@ -53,7 +53,7 @@
             <tbody>
             <tr *ngFor="let fechasServicio of fechasServicios ;trackBy: trackId">   
                 <td>{{fechasServicio.fecha | date:'dd/MM/yyyy'}}</td>             
-                <td>{{fechasServicio.fecha | date:'HH:mm'}}</td> 
+                <td>{{fechasServicio.fecha | date:'hh:mm a'}}</td> 
                 <!-- <td>{{fechasServicio.fecha | date:'mediumDate'}}</td>-->
                 <!-- <td>{{fechasServicio.descripcion}}</td>                 -->
                 <td><a (click)="abrelink(fechasServicio)">{{fechasServicio.nombreCliente}}</a></td>

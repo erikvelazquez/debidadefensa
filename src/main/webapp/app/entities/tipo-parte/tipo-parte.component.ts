@@ -35,7 +35,7 @@ tipoPartes: TipoParte[];
     loadAll() {
         if (this.currentSearch) {
             this.tipoParteService.search({
-                query: this.currentSearch,
+                query: '*' + this.currentSearch + '*',
                 }).subscribe(
                     (res: HttpResponse<TipoParte[]>) => this.tipoPartes = res.body,
                     (res: HttpErrorResponse) => this.onError(res.message)

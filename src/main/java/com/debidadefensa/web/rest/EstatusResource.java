@@ -88,7 +88,8 @@ public class EstatusResource {
     @Timed
     public List<EstatusDTO> getAllEstatuses() {
         log.debug("REST request to get all Estatuses");
-        return estatusService.findAll();
+        List<EstatusDTO> lsEstatus = estatusService.findAll();
+        return  lsEstatus;
         }
 
     /**

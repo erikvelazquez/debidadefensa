@@ -5,6 +5,10 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
@@ -14,7 +18,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "fechas_servicio")
-@Document(indexName =  "debida", type = "fechas_servicio", shards = 1, replicas = 0)
+@Document(indexName =  "fechas_servicio", type = "fechas_servicio", shards = 1, replicas = 0)
 public class FechasServicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,12 +26,15 @@ public class FechasServicio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "descripcion")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String descripcion;
 
     @Column(name = "observaciones")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String observaciones;
 
     @NotNull

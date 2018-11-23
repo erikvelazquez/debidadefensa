@@ -1,0 +1,122 @@
+{
+  "tramitemigratorio": {
+    
+    "dynamic": "strict",
+    "properties": {
+      "cliente": {
+        "properties": {
+            "correoElectronico": {
+                "type": "string"
+            },
+            "domicilio": {
+                "type": "string"
+            },
+            "id": {
+                "type": "long"
+            },
+            "nombre": {
+                "type": "string"
+            },
+            "telefonos": {
+                "type": "string"
+            },
+            "totalCosto": {
+                "type": "double"
+            },
+            "totalExpediente": {
+                "type": "long"
+            },
+            "totalGenerales": {
+                "type": "long"
+            },
+            "totalMigratorios": {
+                "type": "long"
+            }
+        }
+      },
+      "estatusTramiteMigratorio": {
+          "properties": {
+              "descripcion": {
+                  "type": "string"
+              },
+              "id": {
+                  "type": "long"
+              },
+              "tipoServicio": {
+                  "properties": {
+                      "descripcion": {
+                          "type": "string"
+                      },
+                      "id": {
+                          "type": "long"
+                      }
+                  }
+              }
+          }
+      },
+      "id": {
+        "type": "string",
+        "store": true
+      },
+      "nombreExtranjero": {
+        "type": "string",
+        "store": true,
+        "analyzer": "spanish"
+      },
+      "tipotramite": {
+        "type": "string",
+        "store": true,
+        "analyzer": "spanish"
+      },
+      "nut": {
+          "type": "long"
+      },
+      "entidad": {
+        "type": "string",
+        "store": true,
+        "analyzer": "spanish"
+      },
+      
+      "contraseniaNUT": {
+        "type": "string",
+        "store": true,
+        "analyzer": "spanish"
+      },
+      "totalDocumentos": {
+          "type": "long",
+          "store": true
+      } 
+      ,
+      "fechaIngreso": {
+        "type": "date",
+        "store": true
+      },
+      "fechaNotificacion": {
+        "type": "date",
+        "store": true
+      },
+      "fechaResolucion": {
+        "type": "date",
+        "store": true
+      },
+      "archivo": {
+        "type": "string",
+        "store": true,
+        "analyzer": "spanish"
+      },
+      "observaciones": {
+        "type": "string",
+        "store": true,
+        "analyzer": "spanish"
+      },
+      "tramitesMigraAsociados": {
+        "properties": {
+          "id": {
+            "type": "Long",
+            "store": true
+          }
+        }
+      }
+    }
+  }
+}

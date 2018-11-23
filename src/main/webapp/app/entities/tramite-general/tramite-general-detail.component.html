@@ -287,7 +287,7 @@
                                 <tbody>
                                 <tr *ngFor="let fechasServicio of fechasServicios ; let i = index">
                                     <td>{{fechasServicio.fecha | date:'dd/MM/yyyy'}}</td>             
-                                    <td>{{fechasServicio.fecha | date:'HH:mm'}}</td> 
+                                    <td>{{fechasServicio.fecha | date:'hh:mm a'}}</td> 
                                     <td>{{fechasServicio.descripcion}}</td>                                
                                     <td>{{fechasServicio.observaciones}}</td>                              
                                     <td class="text-right">

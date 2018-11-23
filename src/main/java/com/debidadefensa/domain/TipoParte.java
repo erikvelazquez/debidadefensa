@@ -4,6 +4,9 @@ package com.debidadefensa.domain;
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.Setting;
 
 import java.io.Serializable;
@@ -14,7 +17,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "tipo_parte")
-@Document(indexName = "debida", type = "tipo_parte", shards = 1, replicas = 0)
+@Document(indexName = "tipo_parte", type = "tipo_parte", shards = 1, replicas = 0)
 @Setting(settingPath = "/config/es-settings.json")
 public class TipoParte implements Serializable {
 
@@ -23,9 +26,11 @@ public class TipoParte implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "descripcion")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String descripcion;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

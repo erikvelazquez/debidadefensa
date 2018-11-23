@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "estatus")
-@Document(indexName = "debida", type = "estatus", shards = 1, replicas = 0)
+@Document(indexName = "estatus", type = "estatus", shards = 1, replicas = 0)
 @Setting(settingPath = "/config/es-settings.json")
 public class Estatus implements Serializable {
 

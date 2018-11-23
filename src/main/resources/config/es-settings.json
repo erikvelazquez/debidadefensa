@@ -1,0 +1,35 @@
+{
+    "index": {
+        "number_of_shards": "1",
+        "number_of_replicas": "0",
+        "max_result_window": "500000",
+        "mapper": {
+          "dynamic": "true"
+        },
+        "analysis": {
+            "analyzer": {
+               "spanish": {
+                  "filter": [ "lowercase",
+                              "asciifolding"
+                              ],
+                  "tokenizer":  "standard"
+               }                                
+            },
+            "filter": {
+               "spanish_stop": {
+                  "type": "stop",
+                  "stopwords": [
+                  ]
+               },
+               "spanish_keywords": {
+                  "type": "keyword_marker",
+                  "keywords": "_spanish_"
+               },
+               "spanish_stemmer": {
+                  "type": "stemmer",
+                  "language": "light_spanish"
+                 }
+             }           
+       }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "cliente": {
+        "_all": {
+        "enabled": true,
+        "analyzer": "spanish"
+        },
+        "dynamic": "strict",
+        "properties": {
+            "correoElectronico": {
+                "type": "string"
+            },
+            "domicilio": {
+                "type": "string"
+            },
+            "id": {
+                "type": "long",
+                "store": true
+            },
+            "nombre": {
+                "type": "string",
+                "store": true,
+                "analyzer": "spanish"
+            },
+            "telefonos": {
+                "type": "string"
+            },
+            "totalCosto": {
+                "type": "double"
+            },
+            "totalExpediente": {
+                "type": "long"
+            },
+            "totalGenerales": {
+                "type": "long"
+            },
+            "totalMigratorios": {
+                "type": "long"
+            }
+        }
+    }
+}

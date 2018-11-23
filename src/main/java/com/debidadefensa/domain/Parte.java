@@ -4,6 +4,10 @@ package com.debidadefensa.domain;
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,7 +16,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "parte")
-@Document(indexName = "debida", type = "parte", shards = 1, replicas = 0)
+@Document(indexName = "parte", type = "parte", shards = 1, replicas = 0)
 public class Parte implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,9 +24,11 @@ public class Parte implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.Long)
     private Long id;
 
     @Column(name = "nombre")
+    @Field(index = FieldIndex.analyzed, store  = true, type = FieldType.String, analyzer = "spanish", searchAnalyzer = "spanish")
     private String nombre;
 
     @ManyToOne

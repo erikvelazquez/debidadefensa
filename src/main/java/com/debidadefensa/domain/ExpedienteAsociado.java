@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "expediente_asociado")
-@Document(indexName = "debida", type = "expediente_asociado", shards = 1, replicas = 0)
+@Document(indexName = "expediente_asociado", type = "expediente_asociado", shards = 1, replicas = 0)
 public class ExpedienteAsociado implements Serializable {
 
     private static final long serialVersionUID = 1L;
