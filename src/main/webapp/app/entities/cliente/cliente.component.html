@@ -17,7 +17,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control " [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'debidadefensaApp.cliente.home.search' | translate }}">
+                    <input type="text" class="form-control " maxlength="350" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'debidadefensaApp.cliente.home.search' | translate }}">
                     <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -43,7 +43,7 @@
                     <th><span >Trámites Migratorios</span> <span class="fa"></span></th>
                     <th><span >Trámites Generales</span> <span class="fa"></span></th>
                     <th><span >Expedientes</span> <span class="fa"></span></th>
-                    <th><span >Adeudos total por cliente </span> <span class="fa"></span></th>
+                    <th><span >Adeudos</span> <span class="fa"></span></th>
                     
                     <th  *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR']"></th>
                 </tr>

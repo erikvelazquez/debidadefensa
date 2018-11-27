@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -128,7 +129,10 @@ public class DocumentosServiceImpl implements DocumentosService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return documentosRepository.findByExpediente_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return documentosRepository.findByExpediente_id(id).stream()
+                                    .sorted(Comparator.comparing(Documentos::getFecha))
+                                    .map(documentosMapper::toDto)
+                                    .collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 
@@ -147,7 +151,10 @@ public class DocumentosServiceImpl implements DocumentosService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return documentosRepository.findByExpedienteAsociado_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return documentosRepository.findByExpedienteAsociado_id(id).stream()
+                                    .sorted(Comparator.comparing(Documentos::getFecha))
+                                    .map(documentosMapper::toDto)
+                                    .collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 
@@ -166,7 +173,10 @@ public class DocumentosServiceImpl implements DocumentosService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return documentosRepository.findByTramiteMigratorio_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return documentosRepository.findByTramiteMigratorio_id(id).stream()
+                                    .sorted(Comparator.comparing(Documentos::getFecha))
+                                    .map(documentosMapper::toDto)
+                                    .collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 
@@ -185,7 +195,10 @@ public class DocumentosServiceImpl implements DocumentosService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return documentosRepository.findByTramiteGeneral_id(id).stream().map(documentosMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return documentosRepository.findByTramiteGeneral_id(id).stream()
+                                    .sorted(Comparator.comparing(Documentos::getFecha))
+                                    .map(documentosMapper::toDto)
+                                    .collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 

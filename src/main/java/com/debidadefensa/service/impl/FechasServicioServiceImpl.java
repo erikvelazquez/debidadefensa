@@ -343,7 +343,10 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return fechasServicioRepository.findByExpediente_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+       return fechasServicioRepository.findByExpediente_id(id).stream()
+                                        .sorted(Comparator.comparing(FechasServicio::getFecha))
+                                        .map(fechasServicioMapper::toDto)
+                                        .collect(Collectors.toCollection(LinkedList::new));
       //  return result.map(expedienteMapper::toDto);
     }
 
@@ -363,7 +366,11 @@ public class FechasServicioServiceImpl implements FechasServicioService {
         Expediente exp = new Expediente();
         exp.setCliente(cliente);
         Example<Expediente> expediente = Example.of(exp);*/
-       return fechasServicioRepository.findByTramiteMigratorio_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        List<FechasServicioDTO> ls = fechasServicioRepository.findByTramiteMigratorio_id(id).stream()
+                                        .sorted(Comparator.comparing(FechasServicio::getFecha))
+                                        .map(fechasServicioMapper::toDto)
+                                        .collect(Collectors.toCollection(LinkedList::new));
+        return ls;
       //  return result.map(expedienteMapper::toDto);
     }
 
@@ -377,12 +384,12 @@ public class FechasServicioServiceImpl implements FechasServicioService {
     @Transactional(readOnly = true)
     public List<FechasServicioDTO> findByGeneral(Long id) {
         log.debug("Request to get all Expedientes by user");       
-       /*  Cliente cliente = new Cliente();
-        cliente.setId(idUser);
-        Expediente exp = new Expediente();
-        exp.setCliente(cliente);
-        Example<Expediente> expediente = Example.of(exp);*/
-       return fechasServicioRepository.findByTramiteGeneral_id(id).stream().map(fechasServicioMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+      
+        List<FechasServicioDTO> ls =  fechasServicioRepository.findByTramiteGeneral_id(id).stream()
+                                        .sorted(Comparator.comparing(FechasServicio::getFecha))
+                                        .map(fechasServicioMapper::toDto)
+                                        .collect(Collectors.toCollection(LinkedList::new));
+        return ls;
       //  return result.map(expedienteMapper::toDto);
     }
 
