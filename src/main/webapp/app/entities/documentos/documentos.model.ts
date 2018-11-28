@@ -15,6 +15,7 @@ export class Documentos implements BaseEntity {
         public idCliente?: number,
         public idDocumento?: number,
         public isPDF?: boolean,
+        public observaciones?: string,
     ) {
     }
 }

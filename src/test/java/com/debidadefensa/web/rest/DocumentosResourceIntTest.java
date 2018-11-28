@@ -56,6 +56,9 @@ public class DocumentosResourceIntTest {
     private static final String DEFAULT_RUTA = "AAAAAAAAAA";
     private static final String UPDATED_RUTA = "BBBBBBBBBB";
 
+    private static final String DEFAULT_OBSERVACIONES = "AAAAAAAAAA";
+    private static final String UPDATED_OBSERVACIONES = "BBBBBBBBBB";
+
     @Autowired
     private DocumentosRepository documentosRepository;
 
@@ -106,7 +109,8 @@ public class DocumentosResourceIntTest {
             .nombreDocumento(DEFAULT_NOMBRE_DOCUMENTO)
             .fecha(DEFAULT_FECHA)
             .descripcion(DEFAULT_DESCRIPCION)
-            .ruta(DEFAULT_RUTA);
+            .ruta(DEFAULT_RUTA)
+            .observaciones(DEFAULT_OBSERVACIONES);
         return documentos;
     }
 
@@ -136,6 +140,7 @@ public class DocumentosResourceIntTest {
         assertThat(testDocumentos.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testDocumentos.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
         assertThat(testDocumentos.getRuta()).isEqualTo(DEFAULT_RUTA);
+        assertThat(testDocumentos.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
 
         // Validate the Documentos in Elasticsearch
         Documentos documentosEs = documentosSearchRepository.findOne(testDocumentos.getId());
@@ -176,7 +181,8 @@ public class DocumentosResourceIntTest {
             .andExpect(jsonPath("$.[*].nombreDocumento").value(hasItem(DEFAULT_NOMBRE_DOCUMENTO.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].ruta").value(hasItem(DEFAULT_RUTA.toString())));
+            .andExpect(jsonPath("$.[*].ruta").value(hasItem(DEFAULT_RUTA.toString())))
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
     }
 
     @Test
@@ -193,7 +199,8 @@ public class DocumentosResourceIntTest {
             .andExpect(jsonPath("$.nombreDocumento").value(DEFAULT_NOMBRE_DOCUMENTO.toString()))
             .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
             .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
-            .andExpect(jsonPath("$.ruta").value(DEFAULT_RUTA.toString()));
+            .andExpect(jsonPath("$.ruta").value(DEFAULT_RUTA.toString()))
+            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
     }
 
     @Test
@@ -220,7 +227,8 @@ public class DocumentosResourceIntTest {
             .nombreDocumento(UPDATED_NOMBRE_DOCUMENTO)
             .fecha(UPDATED_FECHA)
             .descripcion(UPDATED_DESCRIPCION)
-            .ruta(UPDATED_RUTA);
+            .ruta(UPDATED_RUTA)
+            .observaciones(UPDATED_OBSERVACIONES);
         DocumentosDTO documentosDTO = documentosMapper.toDto(updatedDocumentos);
 
         restDocumentosMockMvc.perform(put("/api/documentos")
@@ -236,6 +244,7 @@ public class DocumentosResourceIntTest {
         assertThat(testDocumentos.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testDocumentos.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
         assertThat(testDocumentos.getRuta()).isEqualTo(UPDATED_RUTA);
+        assertThat(testDocumentos.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
 
         // Validate the Documentos in Elasticsearch
         Documentos documentosEs = documentosSearchRepository.findOne(testDocumentos.getId());
@@ -298,7 +307,8 @@ public class DocumentosResourceIntTest {
             .andExpect(jsonPath("$.[*].nombreDocumento").value(hasItem(DEFAULT_NOMBRE_DOCUMENTO.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].ruta").value(hasItem(DEFAULT_RUTA.toString())));
+            .andExpect(jsonPath("$.[*].ruta").value(hasItem(DEFAULT_RUTA.toString())))
+            .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
     }
 
     @Test

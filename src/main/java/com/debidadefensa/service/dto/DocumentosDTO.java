@@ -37,6 +37,8 @@ public class DocumentosDTO implements Serializable {
 
     private MultipartFile file;
 
+    private String observaciones;
+
     public Long getId() {
         return id;
     }
@@ -55,7 +57,7 @@ public class DocumentosDTO implements Serializable {
 		this.file = file;
 	}
 
-	public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -89,6 +91,14 @@ public class DocumentosDTO implements Serializable {
 
     public void setRuta(String ruta) {
         this.ruta = ruta;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public Long getExpedienteId() {
@@ -160,6 +170,7 @@ public class DocumentosDTO implements Serializable {
             ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
             ", ruta='" + getRuta() + "'" +
+            ", observaciones='" + getObservaciones() + "'" +
             "}";
     }
 }

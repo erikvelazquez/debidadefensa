@@ -299,6 +299,7 @@ export class DocumentosDialogComponent implements OnInit {
             tipoServicioId: this.documentos.tipoServicioId.toString(),
             idDocumento: this.documentos.idDocumento.toString(),
             descripcion: this.documentos.descripcion,
+            observaciones: this.documentos.observaciones,
             fecha: ( daySelected.length === 1 ? '0' + this.documentos.fecha.day : this.documentos.fecha.day) + '/' + this.documentos.fecha.month + '/' + this.documentos.fecha.year
         },
         withCredentials: true,

@@ -20,6 +20,7 @@
     <include file="config/liquibase/changelog/20180610211053_added_entity_TipoServicio.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180610211054_added_entity_Documentos.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20181128130900_modify_entity_documentos.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180610211042_added_entity_constraints_Estatus.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180610211043_added_entity_constraints_Expediente.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180610211044_added_entity_constraints_Parte.xml" relativeToChangelogFile="false"/>

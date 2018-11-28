@@ -98,6 +98,7 @@
                             <th><span >Nombre</span></th>
                             <th><span jhiTranslate="debidadefensaApp.documentos.fecha">Fecha</span></th>
                             <th><span jhiTranslate="debidadefensaApp.documentos.descripcion">Descripción</span></th>                            
+                            <th><span >Observaciones</span></th>                            
                             <th></th>
                             </tr>
                             </thead>
@@ -106,6 +107,7 @@
                                 <td>{{documentos.nombreDocumento}}</td>
                                 <td>{{documentos.fecha | date:'mediumDate'}}</td>
                                 <td>{{documentos.descripcion}}</td>                                
+                                <td>{{documentos.observaciones}}</td>                                
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container"> 
                                         <button type="button" *ngIf="documentos.isPDF"

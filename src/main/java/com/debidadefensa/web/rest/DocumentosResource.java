@@ -69,6 +69,7 @@ public class DocumentosResource {
                                                     @RequestParam("tipoServicioId") String tipoServicioId,                                                    
                                                     @RequestParam("idDocumento") String idDocumento,
                                                     @RequestParam("descripcion") String descripcion,
+                                                    @RequestParam("observaciones") String observaciones,                                                    
                                                     @RequestParam("fecha") String fecha,
                                                     @RequestParam("file") MultipartFile file) throws URISyntaxException {
         String message = "";
@@ -112,6 +113,8 @@ public class DocumentosResource {
 
             documentosDTO.setDescripcion(descripcion);
             log.debug("Descripcion : {}", documentosDTO.getDescripcion());
+            documentosDTO.setObservaciones(observaciones);
+            log.debug("Descripcion : {}", documentosDTO.getObservaciones());
             documentosDTO.setFecha(LocalDate.parse(fecha, formatter));
             log.debug("Fecha : {}", documentosDTO.getFecha());
             documentosDTO.setTipoServicioId(Long.parseLong(tipoServicioId));  

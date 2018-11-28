@@ -30,8 +30,15 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" for="field_descripcion">Descripción</label>
             <input type="text" class="form-control col-md-10" name="descripcion" id="field_descripcion" required
-                [(ngModel)]="documentos.descripcion" />
+                [(ngModel)]="documentos.descripcion" maxlength="250" />
         </div>
+
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" for="field_observaciones">Observaciones</label>
+            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" required
+                [(ngModel)]="documentos.observaciones" maxlength="250" />
+        </div>
+
         <div class="input-group">
             <label class="input-group-btn col-md-2">
                 <span class="btn btn-primary">

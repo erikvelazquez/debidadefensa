@@ -48,12 +48,16 @@
         {
             "fieldName": "ruta",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180610211054",
-    "entityTableName": "documentos",
     "dto": "mapstruct",
-    "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "documentos",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
 }

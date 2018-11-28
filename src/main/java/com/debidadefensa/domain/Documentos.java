@@ -35,6 +35,9 @@ public class Documentos implements Serializable {
     @Column(name = "ruta")
     private String ruta;
 
+    @Column(name = "observaciones")
+    private String observaciones;
+
     @ManyToOne
     private Expediente expediente;
 
@@ -109,6 +112,19 @@ public class Documentos implements Serializable {
 
     public void setRuta(String ruta) {
         this.ruta = ruta;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public Documentos observaciones(String observaciones) {
+        this.observaciones = observaciones;
+        return this;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public Expediente getExpediente() {
@@ -205,6 +221,7 @@ public class Documentos implements Serializable {
             ", fecha='" + getFecha() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
             ", ruta='" + getRuta() + "'" +
+            ", observaciones='" + getObservaciones() + "'" +
             "}";
     }
 }

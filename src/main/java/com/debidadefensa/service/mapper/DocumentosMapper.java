@@ -23,6 +23,7 @@ public interface DocumentosMapper extends EntityMapper<DocumentosDTO, Documentos
     @Mapping(source = "tramiteMigratorioId", target = "tramiteMigratorio")
     @Mapping(source = "tramiteGeneralId", target = "tramiteGeneral")
     @Mapping(source = "tipoServicioId", target = "tipoServicio")
+    @Mapping(source = "observaciones", target = "observaciones")    
     Documentos toEntity(DocumentosDTO documentosDTO);
 
     default Documentos fromId(Long id) {
