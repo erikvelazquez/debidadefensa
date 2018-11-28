@@ -25,7 +25,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'debidadefensaApp.fechasServicio.home.search' | translate }}">
+                    <input type="text" class="form-control" maxlength="350"  [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'debidadefensaApp.fechasServicio.home.search' | translate }}">
                     <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>

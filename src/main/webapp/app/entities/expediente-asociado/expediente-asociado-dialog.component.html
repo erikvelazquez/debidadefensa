@@ -1,4 +1,4 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm"  *ngIf="!esDeshabilitada">
+en <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm"  *ngIf="!esDeshabilitada">
 
     <div class="modal-header" >
         <h4 class="modal-title" style="font-weight: bold" id="myExpedienteAsociadoLabel" jhiTranslate="debidadefensaApp.expedienteAsociado.home.createOrEditLabel">Create or edit a Expediente Asociado</h4>
@@ -43,7 +43,7 @@
         <div class="form-group row">
             <label class="form-control-label col-md-2 text-right" jhiTranslate="debidadefensaApp.expedienteAsociado.fechaSentencia" for="field_fechaSentencia">Fecha Sentencia</label>
             <div class="input-group col-md-4" style="padding-left: 0px; padding-right: 0px">
-                <input id="field_fechaSentencia" type="date" style="font-size: 12px" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"/>
+                <input id="field_fechaSentencia" type="date" style="font-size: 12px" class="form-control" name="fechaSentencia" dateFormat="dd-MM-yyyy" [readonly]="true" ngbDatepicker  #fechaSentenciaDp="ngbDatepicker" [(ngModel)]="expedienteAsociado.fechaSentencia"/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="fechaSentenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
