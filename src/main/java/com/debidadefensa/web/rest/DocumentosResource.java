@@ -60,7 +60,7 @@ public class DocumentosResource {
     }
 
     //private static final String DIRECTORY = "C:/archivos/";
-    private static final String DIRECTORY = "\\Documents\\";
+    private static final String DIRECTORY = "Documents/";
     
     private static final String DEFAULT_FILE_NAME = "java-tutorial.pdf";
 

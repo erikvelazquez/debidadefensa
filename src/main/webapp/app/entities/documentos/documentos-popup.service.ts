@@ -48,6 +48,7 @@ export class DocumentosPopupService {
                     const documentos = new Documentos();
                     documentos.tipoServicioId = +tiposervicio;
                     documentos.idCliente = +idCliente;
+                    documentos.observaciones = '';
                     switch (documentos.tipoServicioId) {
                         case 1001: {
                            // Expediente

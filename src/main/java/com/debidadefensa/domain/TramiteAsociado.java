@@ -5,6 +5,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Setting;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +16,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tramite_asociado")
 @Document(indexName =  "tramite_asociado", type = "tramite_asociado", shards = 1, replicas = 0)
+@Setting(settingPath = "/config/es-settings.json")
 public class TramiteAsociado implements Serializable {
 
     private static final long serialVersionUID = 1L;

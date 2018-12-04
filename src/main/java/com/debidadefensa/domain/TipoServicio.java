@@ -8,6 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldIndex;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Setting;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tipo_servicio")
 @Document(indexName = "tramite_asociado", type = "tipo_servicio", shards = 1, replicas = 0)
+@Setting(settingPath = "/config/es-settings.json")
 public class TipoServicio implements Serializable {
 
     private static final long serialVersionUID = 1L;

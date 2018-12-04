@@ -32,13 +32,6 @@
             <input type="text" class="form-control col-md-10" name="descripcion" id="field_descripcion" required
                 [(ngModel)]="documentos.descripcion" maxlength="250" />
         </div>
-
-        <div class="form-group row">
-            <label class="form-control-label col-md-2 text-right" for="field_observaciones">Observaciones</label>
-            <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" required
-                [(ngModel)]="documentos.observaciones" maxlength="250" />
-        </div>
-
         <div class="input-group">
             <label class="input-group-btn col-md-2">
                 <span class="btn btn-primary">
@@ -49,6 +42,13 @@
             </label>
             <input type="text" class="form-control col-md-6" name="nombreDocumento" id="field_nombreDocumento"
                 [(ngModel)]="documentos.nombreDocumento" readonly required/>            
+        </div>
+        <div class="form-group row">
+            <label class="form-control-label col-md-2 text-right" for="field_observaciones">Observaciones</label>
+            <textarea class="form-control col-md-10" name="observaciones" id="exampleFormControlTextarea1" rows="3" 
+                        id="field_observaciones" [(ngModel)]="documentos.observaciones" maxlength="540"></textarea>
+           <!-- [ <input type="text" class="form-control col-md-10" name="observaciones" id="field_observaciones" required
+                [(ngModel)]="documentos.observaciones" maxlength="250" />] -->
         </div>
         <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="debidadefensaApp.documentos.ruta" for="field_ruta">Ruta</label>
