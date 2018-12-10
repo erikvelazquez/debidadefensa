@@ -122,7 +122,7 @@
                                 <tbody>
                                 <tr *ngFor="let documentos of documentos ; let i = index">                                
                                     <td>{{documentos.nombreDocumento}}</td>
-                                    <td>{{documentos.fecha | date:'mediumDate'}}</td>
+                                    <td>{{documentos.fecha | date:'dd/MM/yyyy'}}</td>
                                     <td>{{documentos.descripcion}}</td>    
                                     <td style="width: 40%">{{documentos.observaciones}}</td>                             
                                     <td class="text-right">

@@ -289,6 +289,10 @@ export class DocumentosDialogComponent implements OnInit {
 
         let daySelected: string = this.documentos.fecha.day;
         daySelected = daySelected.toString();
+
+        let monthSelected: string = this.documentos.fecha.month;
+        monthSelected = monthSelected.toString();
+
         const event: UploadInput = {
 
         type: 'uploadAll',
@@ -300,7 +304,9 @@ export class DocumentosDialogComponent implements OnInit {
             idDocumento: this.documentos.idDocumento.toString(),
             descripcion: this.documentos.descripcion,
             observaciones: this.documentos.observaciones,
-            fecha: ( daySelected.length === 1 ? '0' + this.documentos.fecha.day : this.documentos.fecha.day) + '/' + this.documentos.fecha.month + '/' + this.documentos.fecha.year
+            fecha: ( daySelected.length === 1 ? '0' + this.documentos.fecha.day : this.documentos.fecha.day) + '/' +
+                   ( monthSelected.length === 1 ? '0' + this.documentos.fecha.month : this.documentos.fecha.month) + '/' +
+                   this.documentos.fecha.year
         },
         withCredentials: true,
         headers: { 'Authorization': 'Bearer ' + this.$sessionStorage.retrieve('authenticationToken')}
