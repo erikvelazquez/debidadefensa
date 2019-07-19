@@ -33,19 +33,19 @@
                     <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTOR', 'ROLE_ABOGADO']">
                         <a class="dropdown-item" routerLink="cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.cliente">Cliente</span>
+                            <span jhiTranslate="global.menu.entities.cliente">Clientes</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="tramite-migratorio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span >Trámite Migratorio</span>
+                            <span >Trámites Migratorios</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="tramite-general" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span >Trámite General</span>
+                            <span >Trámites Generales</span>
                         </a>
                     </li>
                     <li>
