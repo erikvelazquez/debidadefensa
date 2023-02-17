@@ -6,6 +6,6 @@ services:
         #     - ~/volumes/jhipster/debidadefensa/postgresql/:/var/lib/postgresql/data/
         environment:
             - POSTGRES_USER=debidadefensa
-            - POSTGRES_PASSWORD=
+            - POSTGRES_PASSWORD=debidadefensa
         ports:
             - 5432:5432
